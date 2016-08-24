@@ -1,0 +1,133 @@
+14:28:23.452 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+14:30:32.615 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+14:30:32.736 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+14:30:33.440 [main] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be null
+14:30:33.921 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.1.2.Final
+14:31:13.125 [http-9999-4] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==>  Preparing: select * from TOP_USERINFO where 1=1 and LOGIN_ACCOUNT = ? and LOGIN_PWD = ? 
+14:31:13.185 [http-9999-4] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==> Parameters: user(String), 123456(String)
+14:31:13.267 [http-9999-4] DEBUG c.t.y.d.s.T.searchTopUserinfo - <==      Total: 1
+14:31:13.277 [http-9999-4] DEBUG c.t.y.d.s.T.getTopBankinfo - ==>  Preparing: select * from TOP_BANKINFO where BANK_CODE = ? 
+14:31:13.278 [http-9999-4] DEBUG c.t.y.d.s.T.getTopBankinfo - ==> Parameters: 01201(String)
+14:31:13.293 [http-9999-4] DEBUG c.t.y.d.s.T.getTopBankinfo - <==      Total: 1
+14:38:12.521 [http-9999-4] ERROR 500.jsp - javax.ws.rs.ClientErrorException.validate(Ljavax/ws/rs/core/Response;Ljavax/ws/rs/core/Response$Status$Family;)Ljavax/ws/rs/core/Response;
+java.lang.NoSuchMethodError: javax.ws.rs.ClientErrorException.validate(Ljavax/ws/rs/core/Response;Ljavax/ws/rs/core/Response$Status$Family;)Ljavax/ws/rs/core/Response;
+	at javax.ws.rs.ClientErrorException.<init>(ClientErrorException.java:88) ~[javax.ws.rs-api-2.0-m10.jar:na]
+	at org.apache.cxf.jaxrs.utils.JAXRSUtils.findTargetMethod(JAXRSUtils.java:503) ~[cxf-rt-frontend-jaxrs-2.7.5.jar:2.7.5]
+	at org.apache.cxf.jaxrs.interceptor.JAXRSInInterceptor.processRequest(JAXRSInInterceptor.java:184) ~[cxf-rt-frontend-jaxrs-2.7.5.jar:2.7.5]
+	at org.apache.cxf.jaxrs.interceptor.JAXRSInInterceptor.handleMessage(JAXRSInInterceptor.java:100) ~[cxf-rt-frontend-jaxrs-2.7.5.jar:2.7.5]
+	at org.apache.cxf.phase.PhaseInterceptorChain.doIntercept(PhaseInterceptorChain.java:271) ~[cxf-api-2.7.5.jar:2.7.5]
+	at org.apache.cxf.transport.ChainInitiationObserver.onMessage(ChainInitiationObserver.java:121) ~[cxf-api-2.7.5.jar:2.7.5]
+	at org.apache.cxf.transport.http.AbstractHTTPDestination.invoke(AbstractHTTPDestination.java:239) ~[cxf-rt-transports-http-2.7.5.jar:2.7.5]
+	at org.apache.cxf.transport.servlet.ServletController.invokeDestination(ServletController.java:223) ~[cxf-rt-transports-http-2.7.5.jar:2.7.5]
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:203) ~[cxf-rt-transports-http-2.7.5.jar:2.7.5]
+	at org.apache.cxf.transport.servlet.ServletController.invoke(ServletController.java:137) ~[cxf-rt-transports-http-2.7.5.jar:2.7.5]
+	at org.apache.cxf.transport.servlet.CXFNonSpringServlet.invoke(CXFNonSpringServlet.java:158) ~[cxf-rt-transports-http-2.7.5.jar:2.7.5]
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.handleRequest(AbstractHTTPServlet.java:243) ~[cxf-rt-transports-http-2.7.5.jar:2.7.5]
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.doGet(AbstractHTTPServlet.java:168) ~[cxf-rt-transports-http-2.7.5.jar:2.7.5]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:617) ~[servlet-api.jar:na]
+	at org.apache.cxf.transport.servlet.AbstractHTTPServlet.service(AbstractHTTPServlet.java:219) ~[cxf-rt-transports-http-2.7.5.jar:2.7.5]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:290) ~[catalina.jar:6.0.35]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) ~[catalina.jar:6.0.35]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88) ~[spring-web-4.1.5.RELEASE.jar:4.1.5.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:107) ~[spring-web-4.1.5.RELEASE.jar:4.1.5.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:235) ~[catalina.jar:6.0.35]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:206) ~[catalina.jar:6.0.35]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:233) ~[catalina.jar:6.0.35]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:191) ~[catalina.jar:6.0.35]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:127) ~[catalina.jar:6.0.35]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:102) [catalina.jar:6.0.35]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:109) [catalina.jar:6.0.35]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:293) [catalina.jar:6.0.35]
+	at org.apache.coyote.http11.Http11Processor.process(Http11Processor.java:859) [tomcat-coyote.jar:6.0.35]
+	at org.apache.coyote.http11.Http11Protocol$Http11ConnectionHandler.process(Http11Protocol.java:602) [tomcat-coyote.jar:6.0.35]
+	at org.apache.tomcat.util.net.JIoEndpoint$Worker.run(JIoEndpoint.java:489) [tomcat-coyote.jar:6.0.35]
+	at java.lang.Thread.run(Thread.java:662) [na:1.6.0_29]
+14:39:15.658 [http-9999-4] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==>  Preparing: select * from TOP_USERINFO where 1=1 and LOGIN_ACCOUNT = ? and LOGIN_PWD = ? 
+14:39:15.659 [http-9999-4] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==> Parameters: user(String), 123456(String)
+14:39:15.663 [http-9999-4] DEBUG c.t.y.d.s.T.searchTopUserinfo - <==      Total: 1
+14:39:15.666 [http-9999-4] DEBUG c.t.y.d.s.T.getTopBankinfo - ==>  Preparing: select * from TOP_BANKINFO where BANK_CODE = ? 
+14:39:15.668 [http-9999-4] DEBUG c.t.y.d.s.T.getTopBankinfo - ==> Parameters: 01201(String)
+14:39:15.671 [http-9999-4] DEBUG c.t.y.d.s.T.getTopBankinfo - <==      Total: 1
+14:41:33.602 [http-9999-3] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==>  Preparing: select * from TOP_USERINFO where 1=1 and LOGIN_ACCOUNT = ? and LOGIN_PWD = ? 
+14:41:33.603 [http-9999-3] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==> Parameters: user(String), 123456(String)
+14:41:33.605 [http-9999-3] DEBUG c.t.y.d.s.T.searchTopUserinfo - <==      Total: 1
+14:41:33.606 [http-9999-3] DEBUG c.t.y.d.s.T.getTopBankinfo - ==>  Preparing: select * from TOP_BANKINFO where BANK_CODE = ? 
+14:41:33.606 [http-9999-3] DEBUG c.t.y.d.s.T.getTopBankinfo - ==> Parameters: 01201(String)
+14:41:33.607 [http-9999-3] DEBUG c.t.y.d.s.T.getTopBankinfo - <==      Total: 1
+14:41:38.679 [http-9999-3] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==>  Preparing: select * from TOP_USERINFO where 1=1 and LOGIN_ACCOUNT = ? and LOGIN_PWD = ? 
+14:41:38.681 [http-9999-3] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==> Parameters: user(String), 1(String)
+14:41:38.683 [http-9999-3] DEBUG c.t.y.d.s.T.searchTopUserinfo - <==      Total: 0
+14:41:43.486 [http-9999-3] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==>  Preparing: select * from TOP_USERINFO where 1=1 and LOGIN_ACCOUNT = ? and LOGIN_PWD = ? 
+14:41:43.486 [http-9999-3] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==> Parameters: user(String), 123456(String)
+14:41:43.488 [http-9999-3] DEBUG c.t.y.d.s.T.searchTopUserinfo - <==      Total: 1
+14:41:43.490 [http-9999-3] DEBUG c.t.y.d.s.T.getTopBankinfo - ==>  Preparing: select * from TOP_BANKINFO where BANK_CODE = ? 
+14:41:43.490 [http-9999-3] DEBUG c.t.y.d.s.T.getTopBankinfo - ==> Parameters: 01201(String)
+14:41:43.493 [http-9999-3] DEBUG c.t.y.d.s.T.getTopBankinfo - <==      Total: 1
+19:06:19.315 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+19:06:19.430 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:06:20.165 [main] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be null
+19:06:20.740 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.1.2.Final
+19:30:36.322 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==>  Preparing: select * from TOP_USERINFO where 1=1 and LOGIN_ACCOUNT = ? and LOGIN_PWD = ? 
+19:30:36.377 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==> Parameters: user(String), 123456(String)
+19:30:36.407 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - <==      Total: 1
+19:30:36.419 [http-9999-2] DEBUG c.t.y.d.s.T.getTopBankinfo - ==>  Preparing: select * from TOP_BANKINFO where BANK_CODE = ? 
+19:30:36.420 [http-9999-2] DEBUG c.t.y.d.s.T.getTopBankinfo - ==> Parameters: 01201(String)
+19:30:36.427 [http-9999-2] DEBUG c.t.y.d.s.T.getTopBankinfo - <==      Total: 1
+19:31:10.300 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==>  Preparing: select * from TOP_USERINFO where 1=1 and LOGIN_ACCOUNT = ? and LOGIN_PWD = ? 
+19:31:10.303 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==> Parameters: user(String), 123(String)
+19:31:10.308 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - <==      Total: 0
+19:32:02.288 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==>  Preparing: select * from TOP_USERINFO where 1=1 and LOGIN_ACCOUNT = ? and LOGIN_PWD = ? 
+19:32:02.289 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==> Parameters: user(String), 123456(String)
+19:32:02.291 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - <==      Total: 1
+19:32:02.293 [http-9999-2] DEBUG c.t.y.d.s.T.getTopBankinfo - ==>  Preparing: select * from TOP_BANKINFO where BANK_CODE = ? 
+19:32:02.294 [http-9999-2] DEBUG c.t.y.d.s.T.getTopBankinfo - ==> Parameters: 01201(String)
+19:32:02.295 [http-9999-2] DEBUG c.t.y.d.s.T.getTopBankinfo - <==      Total: 1
+10:55:54.481 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+10:55:54.715 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+10:55:55.883 [main] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be null
+10:55:56.758 [main] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.1.2.Final
+10:57:15.452 [http-9999-2] INFO  c.t.y.c.system.LoginContorller - 用户登录用户名admin,密码admin
+10:57:15.639 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==>  Preparing: select * from TOP_USERINFO where 1=1 and LOGIN_ACCOUNT = ? and LOGIN_PWD = ? 
+10:57:15.731 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==> Parameters: admin(String), admin(String)
+10:57:15.751 [http-9999-2] DEBUG c.t.y.d.s.T.searchTopUserinfo - <==      Total: 1
+10:57:16.643 [http-9999-5] INFO  com.topcheer.ybt.filter.LoginFilter - 登录账户为admin
+10:57:16.650 [http-9999-5] INFO  c.t.y.c.system.TopMenuinfoController - 自动加载导航菜单。。。
+10:57:16.654 [http-9999-5] DEBUG c.t.y.d.s.T.searchAll - ==>  Preparing: select * from TOP_MENUINFO 
+10:57:16.655 [http-9999-5] DEBUG c.t.y.d.s.T.searchAll - ==> Parameters: 
+10:57:16.688 [http-9999-5] DEBUG c.t.y.d.s.T.searchAll - <==      Total: 18
+10:57:16.790 [http-9999-5] INFO  c.t.y.c.system.TopMenuinfoController - [{"menuId":"5c71f6747bca498db9ea4efd83eecf05","id":"1","faMenuCode":"YBT","text":"业务管理","icon":"icon-group","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103428","updateOperator":"0000","menus":[{"menuId":"260da8853a234662a07ab71a3eb51665","id":"1004","faMenuCode":"1","text":"机构管理","icon":"icon-user","url":"../system/bankinfo.jsp","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false},{"menuId":"260da8853a234652a07ab71a3eb51657","id":"1001","faMenuCode":"1","text":"用户管理","icon":"icon-user","url":"../system/userList.jsp","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false},{"menuId":"260da8853a234652a07ab71a3eb51659","id":"1002","faMenuCode":"1","text":"角色管理","icon":"icon-user","url":"../system/roleinfo.jsp","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false},{"menuId":"260da8853a234652a07ab71a3eb51664","id":"1003","faMenuCode":"1","text":"菜单管理","icon":"icon-lock","url":"../system/menuinfo.jsp","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false}],"checked":false,"remark1":"YBT_YD"},{"menuId":"e3dd932ac71248709550672cb86a483e","id":"3","faMenuCode":"YBT","text":"合规管理","icon":"icon-desktop","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false,"remark1":"YBT_YD"},{"menuId":"260da8853a234652a07ab71a3eb51653","id":"4","faMenuCode":"YBT","text":"运营管理","icon":"icon-desktop","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false},{"menuId":"260da8853a234652a07ab71a3eb51654","id":"5","faMenuCode":"YBT","text":"系统管理","icon":"icon-cog","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false},{"menuId":"260da8853a234652a07ab71a3eb51655","id":"6","faMenuCode":"YBT","text":"job管理","icon":"icon-desktop","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[{"menuId":"260da8853a234652a07ab71a3eb51658","id":"6003","faMenuCode":"6","text":"计划任务列表","icon":"icon-leaf","url":"job/toQueryPlanJobList.do","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false},{"menuId":"260da8853a234652a07ab71a3eb51661","id":"6001","faMenuCode":"6","text":"增加job任务","icon":"icon-leaf","url":"job/toAddJob.do","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false},{"menuId":"260da8853a234652a07ab71a3eb51662","id":"6002","faMenuCode":"6","text":"新增任务列表","icon":"icon-leaf","url":"job/toScheduleJobList.do","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false}],"checked":false},{"menuId":"260da8853a234652a07ab71a3eb51656","id":"7","faMenuCode":"YBT","text":"系统监控","icon":"icon-desktop","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[{"menuId":"260da8853a234652a07ab71a3eb51663","id":"7001","faMenuCode":"7","text":"druid监控","icon":"icon-leaf","url":"druid/index.html","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false},{"menuId":"260da8853a234652a07ab71a3eb51665","id":"7002","faMenuCode":"7","text":"JavaMelody应用监控","icon":"icon-leaf","url":"monitoring","status":"0","createDate":"20160701","updateDate":"20160701","updateTime":"103551","updateOperator":"0000","menus":[],"checked":false}],"checked":false}]
+10:57:23.278 [http-9999-5] INFO  com.topcheer.ybt.filter.LoginFilter - 登录账户为admin
+10:57:23.585 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopBankinfo_COUNT - ==>  Preparing: SELECT count(*) FROM TOP_BANKINFO WHERE 1 = 1 
+10:57:23.585 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopBankinfo_COUNT - ==> Parameters: 
+10:57:23.599 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopBankinfo_COUNT - <==      Total: 1
+10:57:23.602 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopBankinfo - ==>  Preparing: select * from ( select tmp_page.*, rownum row_id from ( select * from TOP_BANKINFO where 1=1 ) tmp_page where rownum <= ? ) where row_id > ? 
+10:57:23.603 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopBankinfo - ==> Parameters: 10(Integer), 0(Integer)
+10:57:23.626 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopBankinfo - <==      Total: 1
+10:58:33.499 [http-9999-5] INFO  com.topcheer.ybt.filter.LoginFilter - 登录账户为admin
+10:58:33.505 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopUserinfo_COUNT - ==>  Preparing: SELECT count(*) FROM TOP_USERINFO WHERE 1 = 1 
+10:58:33.506 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopUserinfo_COUNT - ==> Parameters: 
+10:58:33.524 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopUserinfo_COUNT - <==      Total: 1
+10:58:33.530 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==>  Preparing: select * from ( select tmp_page.*, rownum row_id from ( select * from TOP_USERINFO where 1=1 ) tmp_page where rownum <= ? ) where row_id > ? 
+10:58:33.532 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopUserinfo - ==> Parameters: 10(Integer), 0(Integer)
+10:58:33.537 [http-9999-5] DEBUG c.t.y.d.s.T.searchTopUserinfo - <==      Total: 2
+10:58:39.632 [http-9999-5] INFO  com.topcheer.ybt.filter.LoginFilter - 登录账户为admin
+10:58:39.634 [http-9999-5] DEBUG c.t.y.d.s.T.searchAll - ==>  Preparing: select * from TOP_ROLEINFO 
+10:58:39.635 [http-9999-5] DEBUG c.t.y.d.s.T.searchAll - ==> Parameters: 
+10:58:39.650 [http-9999-5] DEBUG c.t.y.d.s.T.searchAll - <==      Total: 2
+10:58:39.651 [http-9999-5] DEBUG c.t.y.d.s.T.getTopUserRole - ==>  Preparing: select * from TOP_USER_ROLE where USER_ID = ? 
+10:58:39.652 [http-9999-5] DEBUG c.t.y.d.s.T.getTopUserRole - ==> Parameters: 9ee9cfe8c489490795fa056d3ed7be3a(String)
+10:58:39.658 [http-9999-5] DEBUG c.t.y.d.s.T.getTopUserRole - <==      Total: 1
+10:58:44.980 [http-9999-6] INFO  com.topcheer.ybt.filter.LoginFilter - 登录账户为admin
+10:58:44.982 [http-9999-6] DEBUG c.t.y.d.s.T.searchAll - ==>  Preparing: select * from TOP_ROLEINFO 
+10:58:44.982 [http-9999-6] DEBUG c.t.y.d.s.T.searchAll - ==> Parameters: 
+10:58:44.984 [http-9999-6] DEBUG c.t.y.d.s.T.searchAll - <==      Total: 2
+10:58:44.985 [http-9999-6] DEBUG c.t.y.d.s.T.getTopUserRole - ==>  Preparing: select * from TOP_USER_ROLE where USER_ID = ? 
+10:58:44.986 [http-9999-6] DEBUG c.t.y.d.s.T.getTopUserRole - ==> Parameters: 1(String)
+10:58:44.988 [http-9999-6] DEBUG c.t.y.d.s.T.getTopUserRole - <==      Total: 1
+10:58:48.620 [http-9999-6] INFO  com.topcheer.ybt.filter.LoginFilter - 登录账户为admin
+10:58:48.626 [http-9999-6] DEBUG c.t.y.d.s.T.searchTopRoleinfo_COUNT - ==>  Preparing: SELECT count(*) FROM TOP_ROLEINFO WHERE 1 = 1 
+10:58:48.627 [http-9999-6] DEBUG c.t.y.d.s.T.searchTopRoleinfo_COUNT - ==> Parameters: 
+10:58:48.630 [http-9999-6] DEBUG c.t.y.d.s.T.searchTopRoleinfo_COUNT - <==      Total: 1
+10:58:48.633 [http-9999-6] DEBUG c.t.y.d.s.T.searchTopRoleinfo - ==>  Preparing: select * from ( select tmp_page.*, rownum row_id from ( select * from TOP_ROLEINFO where 1=1 ) tmp_page where rownum <= ? ) where row_id > ? 
+10:58:48.634 [http-9999-6] DEBUG c.t.y.d.s.T.searchTopRoleinfo - ==> Parameters: 10(Integer), 0(Integer)
+10:58:48.638 [http-9999-6] DEBUG c.t.y.d.s.T.searchTopRoleinfo - <==      Total: 2
