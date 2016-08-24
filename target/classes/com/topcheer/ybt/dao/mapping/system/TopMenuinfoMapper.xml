@@ -141,37 +141,28 @@
 	<insert id="update" parameterType="com.topcheer.ybt.entity.system.TopMenuinfo">
 		update TOP_MENUINFO set
 		MENU_CODE = #{menuCode,jdbcType=VARCHAR} ,
-		FA_MENU_CODE =
-		#{faMenuCode,jdbcType=VARCHAR} ,
-		MENU_NAME =
-		#{menuName,jdbcType=VARCHAR} ,
+		FA_MENU_CODE = #{faMenuCode,jdbcType=VARCHAR} ,
+		MENU_NAME = #{menuName,jdbcType=VARCHAR} ,
 		MENU_URL = #{menuUrl,jdbcType=VARCHAR} ,
 		STATUS = #{status,jdbcType=CHAR} ,
-		UPDATE_DATE =
-		#{updateDate,jdbcType=VARCHAR} ,
-		UPDATE_TIME =
-		#{updateTime,jdbcType=VARCHAR} ,
-		UPDATE_OPERATOR =
-		#{updateOperator,jdbcType=VARCHAR} ,
-		REMARK1 =
-		#{remark1,jdbcType=VARCHAR} ,
+		UPDATE_DATE = #{updateDate,jdbcType=VARCHAR} ,
+		UPDATE_TIME = #{updateTime,jdbcType=VARCHAR} ,
+		UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR} ,
+		REMARK1 = #{remark1,jdbcType=VARCHAR} ,
 		REMARK2 = #{remark2,jdbcType=VARCHAR} ,
 		REMARK3 = #{remark3,jdbcType=VARCHAR} ,
-		REMARK4 =
-		#{remark4,jdbcType=VARCHAR} ,
+		REMARK4 = #{remark4,jdbcType=VARCHAR} ,
 		REMARK5 = #{remark5,jdbcType=VARCHAR}
 		where MENU_ID = #{menuId,jdbcType=VARCHAR}
 	</insert>
 
 	<delete id="delete" parameterType="String">
-		delete from TOP_MENUINFO where
-		MENU_ID = #{menuId,jdbcType=VARCHAR}
+		delete from TOP_MENUINFO where MENU_ID = #{menuId,jdbcType=VARCHAR}
 	</delete>
 
 	<select id="getTopMenuinfo" resultMap="TopMenuinfoResultMap"
 		parameterType="String">
-		select * from TOP_MENUINFO where MENU_ID =
-		#{menuId,jdbcType=VARCHAR}
+		select * from TOP_MENUINFO where MENU_ID = #{menuId,jdbcType=VARCHAR}
 	</select>
 
 	<select id="getTopMenusByUserId" resultMap="MenuResultMap"
@@ -179,11 +170,9 @@
 		select * from top_menuinfo t1 where t1.menu_code in(
 		select distinct(menu_id) from top_task_menu t where t.role_id
 		in(select role_id from top_user_role where
-		user_id = (select user_id
-		from top_userinfo where
+		user_id = (select user_id from top_userinfo where
 		login_account=#{loginAccount,jdbcType=VARCHAR}))
-		) start with
-		t1.fa_menu_code='YBT_YD' connect by prior
+		) start with t1.fa_menu_code='YBT_YD' connect by prior
 		t1.menu_code=t1.fa_menu_code
 
 	</select>

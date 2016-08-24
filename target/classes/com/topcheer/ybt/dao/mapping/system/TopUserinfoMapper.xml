@@ -161,49 +161,37 @@
 	<insert id="update" parameterType="com.topcheer.ybt.entity.system.TopUserinfo">
 		update TOP_USERINFO set
 		LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR} ,
-		LOGIN_PWD =
-		#{loginPwd,jdbcType=VARCHAR} ,
-		USER_NAME = #{userName,jdbcType=VARCHAR}
-		,
+		LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR} ,
+		USER_NAME = #{userName,jdbcType=VARCHAR} ,
 		USER_LEVEL = #{userLevel,jdbcType=VARCHAR} ,
-		USER_DEPT =
-		#{userDept,jdbcType=VARCHAR} ,
-		USER_STATUS =
-		#{userStatus,jdbcType=CHAR} ,
+		USER_DEPT = #{userDept,jdbcType=VARCHAR} ,
+		USER_STATUS = #{userStatus,jdbcType=CHAR} ,
 		ISREVIEW = #{isreview,jdbcType=CHAR} ,
 		CREATE_DATE = #{createDate,jdbcType=VARCHAR} ,
-		UPDATE_DATE =
-		#{updateDate,jdbcType=VARCHAR} ,
-		UPDATE_TIME =
-		#{updateTime,jdbcType=VARCHAR} ,
-		UPDATE_OPERATOR =
-		#{updateOperator,jdbcType=VARCHAR} ,
+		UPDATE_DATE = #{updateDate,jdbcType=VARCHAR} ,
+		UPDATE_TIME = #{updateTime,jdbcType=VARCHAR} ,
+		UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR} ,
 		SALT = #{salt,jdbcType=VARCHAR} ,
 		REMARK1 = #{remark1,jdbcType=VARCHAR} ,
-		REMARK2 =
-		#{remark2,jdbcType=VARCHAR} ,
+		REMARK2 = #{remark2,jdbcType=VARCHAR} ,
 		REMARK3 = #{remark3,jdbcType=VARCHAR} ,
 		REMARK4 = #{remark4,jdbcType=VARCHAR} ,
-		REMARK5 =
-		#{remark5,jdbcType=VARCHAR}
+		REMARK5 = #{remark5,jdbcType=VARCHAR}
 		where USER_ID = #{userId,jdbcType=VARCHAR}
 	</insert>
 
 	<insert id="uploadPath" parameterType="com.topcheer.ybt.entity.system.TopUserinfo">
 		update TOP_USERINFO set
 		FILE_PATH = #{filePath,jdbcType=VARCHAR}
-		where USER_ID =
-		#{userId,jdbcType=VARCHAR}
+		where USER_ID = #{userId,jdbcType=VARCHAR}
 	</insert>
 
 	<delete id="delete" parameterType="String">
-		delete from TOP_USERINFO where
-		USER_ID = #{userId,jdbcType=VARCHAR}
+		delete from TOP_USERINFO where USER_ID = #{userId,jdbcType=VARCHAR}
 	</delete>
 
 	<select id="getTopUserinfo" resultMap="TopUserinfoResultMap"
 		parameterType="String">
-		select * from TOP_USERINFO where USER_ID =
-		#{userId,jdbcType=VARCHAR}
+		select * from TOP_USERINFO where USER_ID = #{userId,jdbcType=VARCHAR}
 	</select>
 </mapper>

@@ -1,5 +1,7 @@
-#Thu Jun 30 09:30:00 CST 2016
 eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/resources=UTF-8
 encoding//src/main/resources/sql/create.sql=UTF-8
 encoding//src/main/webapp/system/userList.jsp=UTF-8
+encoding//src/test/java=UTF-8
 encoding/<project>=UTF-8

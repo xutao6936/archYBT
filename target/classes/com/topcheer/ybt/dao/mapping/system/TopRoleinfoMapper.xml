@@ -132,39 +132,28 @@
 	<insert id="update" parameterType="com.topcheer.ybt.entity.system.TopRoleinfo">
 		update TOP_ROLEINFO set
 		ROLE_CODE = #{roleCode,jdbcType=VARCHAR} ,
-		ROLE_NAME =
-		#{roleName,jdbcType=VARCHAR} ,
-		DESCRIPTION =
-		#{description,jdbcType=VARCHAR} ,
-		ISREVIEW = #{isreview,jdbcType=CHAR}
-		,
+		ROLE_NAME = #{roleName,jdbcType=VARCHAR} ,
+		DESCRIPTION = #{description,jdbcType=VARCHAR} ,
+		ISREVIEW = #{isreview,jdbcType=CHAR} ,
 		STATUS = #{status,jdbcType=CHAR} ,
-		CREATE_DATE =
-		#{createDate,jdbcType=VARCHAR} ,
-		UPDATE_DATE =
-		#{updateDate,jdbcType=VARCHAR} ,
-		UPDATE_TIME =
-		#{updateTime,jdbcType=VARCHAR} ,
-		UPDATE_OPERATOR =
-		#{updateOperator,jdbcType=VARCHAR} ,
-		REMARK1 =
-		#{remark1,jdbcType=VARCHAR} ,
+		CREATE_DATE = #{createDate,jdbcType=VARCHAR} ,
+		UPDATE_DATE = #{updateDate,jdbcType=VARCHAR} ,
+		UPDATE_TIME = #{updateTime,jdbcType=VARCHAR} ,
+		UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR} ,
+		REMARK1 = #{remark1,jdbcType=VARCHAR} ,
 		REMARK2 = #{remark2,jdbcType=VARCHAR} ,
 		REMARK3 = #{remark3,jdbcType=VARCHAR} ,
-		REMARK4 =
-		#{remark4,jdbcType=VARCHAR} ,
+		REMARK4 = #{remark4,jdbcType=VARCHAR} ,
 		REMARK5 = #{remark5,jdbcType=VARCHAR}
 		where ROLE_ID = #{roleId,jdbcType=VARCHAR}
 	</insert>
 
 	<delete id="delete" parameterType="String">
-		delete from TOP_ROLEINFO where
-		ROLE_ID = #{roleId,jdbcType=VARCHAR}
+		delete from TOP_ROLEINFO where ROLE_ID = #{roleId,jdbcType=VARCHAR}
 	</delete>
 
 	<select id="getTopRoleinfo" resultMap="TopRoleinfoResultMap"
 		parameterType="String">
-		select * from TOP_ROLEINFO where ROLE_ID =
-		#{roleId,jdbcType=VARCHAR}
+		select * from TOP_ROLEINFO where ROLE_ID = #{roleId,jdbcType=VARCHAR}
 	</select>
 </mapper>

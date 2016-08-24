@@ -78,8 +78,7 @@
 			and STATUS = #{status,jdbcType=VARCHAR}
 		</if>
 		<if test="operatorBankcode !=null and operatorBankcode != '' ">
-			and OPERATOR_BANKCODE =
-			#{operatorBankcode,jdbcType=VARCHAR}
+			and OPERATOR_BANKCODE = #{operatorBankcode,jdbcType=VARCHAR}
 		</if>
 		<if test="operatorCode !=null and operatorCode != '' ">
 			and OPERATOR_CODE = #{operatorCode,jdbcType=VARCHAR}
@@ -149,43 +148,30 @@
 	<insert id="update" parameterType="com.topcheer.ybt.entity.system.TopBankinfo">
 		update TOP_BANKINFO set
 		BANK_NAME = #{bankName,jdbcType=VARCHAR} ,
-		BANK_LEVEL =
-		#{bankLevel,jdbcType=VARCHAR} ,
-		UP_BANKCODE =
-		#{upBankcode,jdbcType=VARCHAR} ,
-		ADMIN_FLAG =
-		#{adminFlag,jdbcType=VARCHAR} ,
+		BANK_LEVEL = #{bankLevel,jdbcType=VARCHAR} ,
+		UP_BANKCODE = #{upBankcode,jdbcType=VARCHAR} ,
+		ADMIN_FLAG = #{adminFlag,jdbcType=VARCHAR} ,
 		ADDRESS = #{address,jdbcType=VARCHAR} ,
 		POSTCODE = #{postcode,jdbcType=VARCHAR} ,
-		PHONE =
-		#{phone,jdbcType=VARCHAR} ,
+		PHONE = #{phone,jdbcType=VARCHAR} ,
 		FAX = #{fax,jdbcType=VARCHAR} ,
-		STATUS =
-		#{status,jdbcType=VARCHAR} ,
-		OPERATOR_BANKCODE =
-		#{operatorBankcode,jdbcType=VARCHAR} ,
-		OPERATOR_CODE =
-		#{operatorCode,jdbcType=VARCHAR} ,
-		UPDATEDATE =
-		#{updatedate,jdbcType=VARCHAR} ,
-		UPDATETIME =
-		#{updatetime,jdbcType=VARCHAR} ,
+		STATUS = #{status,jdbcType=VARCHAR} ,
+		OPERATOR_BANKCODE = #{operatorBankcode,jdbcType=VARCHAR} ,
+		OPERATOR_CODE = #{operatorCode,jdbcType=VARCHAR} ,
+		UPDATEDATE = #{updatedate,jdbcType=VARCHAR} ,
+		UPDATETIME = #{updatetime,jdbcType=VARCHAR} ,
 		CERTNO = #{certno,jdbcType=VARCHAR} ,
 		CERTENDDATE = #{certenddate,jdbcType=VARCHAR} ,
-		CERTSTARTDATE =
-		#{certstartdate,jdbcType=VARCHAR}
-		where BANK_CODE =
-		#{bankCode,jdbcType=VARCHAR}
+		CERTSTARTDATE = #{certstartdate,jdbcType=VARCHAR}
+		where BANK_CODE = #{bankCode,jdbcType=VARCHAR}
 	</insert>
 
 	<delete id="delete" parameterType="String">
-		delete from TOP_BANKINFO where
-		BANK_CODE = #{bankCode,jdbcType=VARCHAR}
+		delete from TOP_BANKINFO where BANK_CODE = #{bankCode,jdbcType=VARCHAR}
 	</delete>
 
 	<select id="getTopBankinfo" resultMap="TopBankinfoResultMap"
 		parameterType="String">
-		select * from TOP_BANKINFO where BANK_CODE =
-		#{bankCode,jdbcType=VARCHAR}
+		select * from TOP_BANKINFO where BANK_CODE = #{bankCode,jdbcType=VARCHAR}
 	</select>
 </mapper>

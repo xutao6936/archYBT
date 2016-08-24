@@ -93,32 +93,25 @@
 	<insert id="update" parameterType="com.topcheer.ybt.entity.system.TopTaskMenu">
 		update TOP_TASK_MENU set
 		CREATE_DATE = #{createDate,jdbcType=VARCHAR} ,
-		UPDATE_OPERATOR =
-		#{updateOperator,jdbcType=VARCHAR} ,
-		REMARK1 =
-		#{remark1,jdbcType=VARCHAR} ,
+		UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR} ,
+		REMARK1 = #{remark1,jdbcType=VARCHAR} ,
 		REMARK2 = #{remark2,jdbcType=VARCHAR} ,
 		REMARK3 = #{remark3,jdbcType=VARCHAR} ,
-		REMARK4 =
-		#{remark4,jdbcType=VARCHAR} ,
+		REMARK4 = #{remark4,jdbcType=VARCHAR} ,
 		REMARK5 = #{remark5,jdbcType=VARCHAR} ,
 		ROLE_ID = #{roleId,jdbcType=VARCHAR}
-		where MENU_ID =
-		#{menuId,jdbcType=VARCHAR}
+		where MENU_ID = #{menuId,jdbcType=VARCHAR}
 	</insert>
 
 	<delete id="delete" parameterType="String">
-		delete from TOP_TASK_MENU
-		where MENU_ID = #{menuId,jdbcType=VARCHAR}
+		delete from TOP_TASK_MENU where MENU_ID = #{menuId,jdbcType=VARCHAR}
 	</delete>
 	<delete id="deleteByRoleId" parameterType="String">
-		delete from
-		TOP_TASK_MENU where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+		delete from TOP_TASK_MENU where ROLE_ID = #{roleId,jdbcType=VARCHAR}
 	</delete>
 
 	<select id="getTopTaskMenu" resultMap="TopTaskMenuResultMap"
 		parameterType="String">
-		select * from TOP_TASK_MENU where MENU_ID =
-		#{menuId,jdbcType=VARCHAR}
+		select * from TOP_TASK_MENU where MENU_ID = #{menuId,jdbcType=VARCHAR}
 	</select>
 </mapper>
