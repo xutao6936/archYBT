@@ -1,8 +1,9 @@
+
 insert into TOP_BANKINFO (bank_code, bank_name, bank_level, up_bankcode, admin_flag, address, postcode, phone, fax, status, operator_bankcode, operator_code, updatedate, updatetime, certno, certenddate, certstartdate)
 values ('01201', '总行', '1', '0', '0', null, null, null, null, '0', '1', 'user', '20160612', '100820', null, null, null);
 commit;
----prompt 1 records loaded
----prompt Loading TOP_MENUINFO...
+----prompt 1 records loaded
+----prompt Loading TOP_MENUINFO...
 insert into TOP_MENUINFO (menu_id, menu_code, fa_menu_code, menu_name, menu_url, status, create_date, update_date, update_time, update_operator, icon, belong_system, remark1, remark2, remark3, remark4, remark5)
 values ('260da8853a234662a07ab71a3eb51665', '1004', '1', '机构管理', '../system/bankinfo.jsp', '0', '20160701', '20160701', '103551', '0000', 'icon-user', null, null, null, null, null, null);
 insert into TOP_MENUINFO (menu_id, menu_code, fa_menu_code, menu_name, menu_url, status, create_date, update_date, update_time, update_operator, icon, belong_system, remark1, remark2, remark3, remark4, remark5)
@@ -40,15 +41,15 @@ values ('260da8853a234652a07ab71a3eb51663', '7001', '7', 'druid监控', 'druid/i
 insert into TOP_MENUINFO (menu_id, menu_code, fa_menu_code, menu_name, menu_url, status, create_date, update_date, update_time, update_operator, icon, belong_system, remark1, remark2, remark3, remark4, remark5)
 values ('260da8853a234652a07ab71a3eb51665', '7002', '7', 'JavaMelody应用监控', 'monitoring', '0', '20160701', '20160701', '103551', '0000', 'icon-leaf', null, null, null, null, null, null);
 commit;
----prompt 18 records loaded
----prompt Loading TOP_ROLEINFO...
+----prompt 18 records loaded
+----prompt Loading TOP_ROLEINFO...
 insert into TOP_ROLEINFO (role_id, role_code, role_name, description, isreview, status, create_date, update_date, update_time, update_operator, remark1, remark2, remark3, remark4, remark5)
 values ('1db8d466a1f1458789fb6b031f4a3f10', '1', '管理员', null, '0', '0', '20160628', '20160628', '162215', '444444', null, null, null, null, null);
 insert into TOP_ROLEINFO (role_id, role_code, role_name, description, isreview, status, create_date, update_date, update_time, update_operator, remark1, remark2, remark3, remark4, remark5)
 values ('97cf7d6e550b41ada81d6c4f54fe85f8', '2', '产品管理员', null, '0', '0', '20160704', '20160704', '225102', '0000', null, null, null, null, null);
 commit;
----prompt 2 records loaded
----prompt Loading TOP_TASK_MENU...
+----prompt 2 records loaded
+----prompt Loading TOP_TASK_MENU...
 insert into TOP_TASK_MENU (role_id, menu_id, create_date, update_operator, remark1, remark2, remark3, remark4, remark5)
 values ('1db8d466a1f1458789fb6b031f4a3f10', '1001', '20160705', '20160705', null, null, null, null, null);
 insert into TOP_TASK_MENU (role_id, menu_id, create_date, update_operator, remark1, remark2, remark3, remark4, remark5)
@@ -96,17 +97,19 @@ values ('1db8d466a1f1458789fb6b031f4a3f10', 'YBT', '20160705', '20160705', null,
 insert into TOP_TASK_MENU (role_id, menu_id, create_date, update_operator, remark1, remark2, remark3, remark4, remark5)
 values ('1db8d466a1f1458789fb6b031f4a3f10', '1004', '20160705', '20160705', null, null, null, null, null);
 commit;
----prompt 23 records loaded
----prompt Loading TOP_USERINFO...
+----prompt 23 records loaded
+----prompt Loading TOP_USERINFO...
 insert into TOP_USERINFO (user_id, login_account, login_pwd, user_name, user_level, user_dept, user_status, isreview, create_date, update_date, update_time, update_operator, salt, file_path, remark1, remark2, remark3, remark4, remark5)
 values ('1', 'user', '123456', '用户', '1', '01201', '1', '1', '20160611', '20160611', '175323', '000000', null, '/home/user/美女.jpg', null, null, null, null, null);
 insert into TOP_USERINFO (user_id, login_account, login_pwd, user_name, user_level, user_dept, user_status, isreview, create_date, update_date, update_time, update_operator, salt, file_path, remark1, remark2, remark3, remark4, remark5)
 values ('9ee9cfe8c489490795fa056d3ed7be3a', 'admin', 'admin', '管理员', null, '01201', '0', '0', '20160611', '20160611', '181816', 'user', null, '/home/user/美女.jpg', null, null, null, null, null);
 commit;
----prompt 2 records loaded
----prompt Loading TOP_USER_ROLE...
+----prompt 2 records loaded
+----prompt Loading TOP_USER_ROLE...
 insert into TOP_USER_ROLE (user_id, role_id, create_date, update_operator, remark1, remark2, remark3, remark4, remark5)
 values ('9ee9cfe8c489490795fa056d3ed7be3a', '97cf7d6e550b41ada81d6c4f54fe85f8', '20160705', '20160705', null, null, null, null, null);
 insert into TOP_USER_ROLE (user_id, role_id, create_date, update_operator, remark1, remark2, remark3, remark4, remark5)
 values ('1', '1db8d466a1f1458789fb6b031f4a3f10', '20160628', '111111', null, null, null, null, null);
 commit;
+
+----prompt Done.
