@@ -1,0 +1,48 @@
+19:00:01.370 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+19:05:36.530 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+19:26:56.812 [pool-56-thread-1] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+19:26:56.984 [pool-56-thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:26:57.609 [pool-56-thread-1] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be null
+19:26:58.125 [pool-56-thread-1] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.1.2.Final
+19:27:08.708 [http-bio-9999-exec-3] INFO  com.topcheer.ybt.filter.LoginFilter - 用户未登录
+19:27:38.342 [http-bio-9999-exec-9] INFO  com.topcheer.ybt.filter.LoginFilter - 用户未登录
+19:30:55.513 [pool-2-thread-1] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+19:30:55.607 [pool-2-thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:30:56.264 [pool-2-thread-1] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be null
+19:30:56.661 [pool-2-thread-1] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.1.2.Final
+19:31:15.186 [http-bio-9999-exec-3] INFO  com.topcheer.ybt.filter.LoginFilter - 用户未登录
+19:36:28.216 [pool-2-thread-1] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+19:36:28.310 [pool-2-thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+19:36:28.958 [pool-2-thread-1] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be null
+19:36:29.344 [pool-2-thread-1] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.1.2.Final
+19:36:53.117 [http-bio-9999-exec-5] INFO  com.topcheer.ybt.filter.LoginFilter - 用户未登录
+19:49:53.641 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+19:55:19.260 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+19:57:09.833 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+20:04:17.315 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+20:04:51.269 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+20:20:30.426 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+20:20:30.527 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+20:20:31.113 [main] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be null
+20:20:31.216 [main] DEBUG c.t.y.d.s.TopBankinfoMapper.insert - ==>  Preparing: INSERT INTO TOP_BANKINFO ( BANK_CODE, BANK_NAME, BANK_LEVEL, UP_BANKCODE, ADMIN_FLAG, ADDRESS, POSTCODE, PHONE, FAX, STATUS, OPERATOR_BANKCODE, OPERATOR_CODE, UPDATEDATE, UPDATETIME, CERTNO, CERTENDDATE, CERTSTARTDATE )VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+20:20:31.248 [main] DEBUG c.t.y.d.s.TopBankinfoMapper.insert - ==> Parameters: 23(String), 静海支行(String), 3(String), 1(String), 0(String), null, null, null, null, null, 000000(String), 000000(String), 20160824(String), 202031(String), null, null, null
+20:20:31.297 [main] DEBUG c.t.y.d.s.TopBankinfoMapper.insert - <==    Updates: 1
+20:20:31.297 [main] DEBUG c.t.y.d.s.T.getTopBankinfo - ==>  Preparing: select * from TOP_BANKINFO where BANK_CODE = ? 
+20:20:31.297 [main] DEBUG c.t.y.d.s.T.getTopBankinfo - ==> Parameters: 23(String)
+20:20:31.313 [main] DEBUG c.t.y.d.s.T.getTopBankinfo - <==      Total: 1
+20:20:31.328 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+20:27:28.014 [main] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+20:27:28.117 [main] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+20:27:28.703 [main] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be null
+20:27:28.808 [main] DEBUG c.t.y.d.s.TopBankinfoMapper.insert - ==>  Preparing: INSERT INTO TOP_BANKINFO ( BANK_CODE, BANK_NAME, BANK_LEVEL, UP_BANKCODE, ADMIN_FLAG, ADDRESS, POSTCODE, PHONE, FAX, STATUS, OPERATOR_BANKCODE, OPERATOR_CODE, UPDATEDATE, UPDATETIME, CERTNO, CERTENDDATE, CERTSTARTDATE )VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ) 
+20:27:28.848 [main] DEBUG c.t.y.d.s.TopBankinfoMapper.insert - ==> Parameters: 23(String), 静海支行(String), 3(String), 1(String), 0(String), null, null, null, null, null, 000000(String), 000000(String), 20160824(String), 202728(String), null, null, null
+20:27:28.848 [main] DEBUG c.t.y.d.s.TopBankinfoMapper.insert - <==    Updates: 1
+20:27:28.848 [main] DEBUG c.t.y.d.s.T.getTopBankinfo - ==>  Preparing: select * from TOP_BANKINFO where BANK_CODE = ? 
+20:27:28.848 [main] DEBUG c.t.y.d.s.T.getTopBankinfo - ==> Parameters: 23(String)
+20:27:28.864 [main] DEBUG c.t.y.d.s.T.getTopBankinfo - <==      Total: 1
+20:27:28.880 [Thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+20:27:56.822 [pool-2-thread-1] ERROR c.a.d.pool.DruidAbstractDataSource - maxIdle is deprecated
+20:27:56.906 [pool-2-thread-1] INFO  c.alibaba.druid.pool.DruidDataSource - {dataSource-1} inited
+20:27:57.538 [pool-2-thread-1] INFO  org.apache.cxf.endpoint.ServerImpl - Setting the server's publish address to be null
+20:27:58.155 [pool-2-thread-1] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 5.1.2.Final
+20:28:06.047 [http-bio-9999-exec-3] INFO  com.topcheer.ybt.filter.LoginFilter - 用户未登录
