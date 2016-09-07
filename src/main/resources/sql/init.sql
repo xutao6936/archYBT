@@ -2,6 +2,9 @@
 insert into TOP_BANKINFO (bank_id, bank_code, bank_name, bank_level, up_bank_code, address, postcode, phone, fax, status, create_date, update_date, update_time, cert_no, cert_start_date, cert_end_date, remark1, remark2, remark3, remark4)
 values ('260da8853a234662a07ab71a3eb51665', '9901', '总行', '0', null, '上海', '210000', null, null, null, '20160906', '20160906', '103223', null, null, null, null, null, null, null);
 commit;
+insert into TOP_BANKINFO (bank_id, bank_code, bank_name, bank_level, up_bank_code, address, postcode, phone, fax, status, create_date, update_date, update_time, cert_no, cert_start_date, cert_end_date, remark1, remark2, remark3, remark4)
+values ('260da8853b234662a07ab71a3eb51665', '9801', '南京分行', '1', null, '南京', '210000', null, null, null, '20160906', '20160906', '103223', null, null, null, null, null, null, null);
+commit;
 ----prompt 1 records loaded
 ----prompt Loading TOP_MENUINFO...
 insert into TOP_MENUINFO (menu_id, menu_code, menu_name, up_menu_code, menu_url, status, create_date, update_date, update_time, update_operator, icon, remark1, remark2, remark3, remark4)

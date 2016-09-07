@@ -368,7 +368,7 @@
 		</manifest> </archive> </configuration> </execution> </executions> </plugin> 
 		</plugins> </build> </profile> </profiles> -->
 	<profiles>
-		<!-- 刷新开发环境数据库 -->
+		<!-- 刷新开发环境数据库    mvn antrun:run -Prefresh-db-->
 		<profile>
 			<id>refresh-db</id>
 			<build>
@@ -376,15 +376,18 @@
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-antrun-plugin</artifactId>
+						<version>1.7</version>
 						<configuration>
 							<target>
-								<property file="src/main/resources/application.local.properties" />
+								<echo message="start init..."/>
+								<!-- <property file="src/main/resources/application.local.properties" /> -->
 								<property file="src/main/resources/application.properties" />
-								<sql driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}" password="${jdbc.password}" onerror="continue"  encoding="${project.build.sourceEncoding}">
+								<sql driver="${jdbc.driver}" url="${jdbc.url}" userid="${jdbc.username}" password="${jdbc.password}" 
+								onerror="continue"  encoding="${project.build.sourceEncoding}" print="yes">
 									<classpath refid="maven.test.classpath" />
 									<transaction src="src/main/resources/sql/drop.sql"/>
 									<transaction src="src/main/resources/sql/create.sql"/>
-									<transaction src="src/test/resources/sql/init.sql"/>
+									<transaction src="src/main/resources/sql/init.sql"/>
 								</sql>
 								<!-- <sql driver="${quartz.jdbc.driver}" url="${quartz.jdbc.url}" userid="${quartz.jdbc.username}" password="${quartz.jdbc.password}"  encoding="${project.build.sourceEncoding}"
 									src="src/main/resources/sql/h2/quartz.sql" onerror="continue">
