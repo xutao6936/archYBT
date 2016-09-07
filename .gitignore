@@ -3,3 +3,4 @@
 /.settings
 /.externalToolBuilders
 .project
+/src/main/resources/application.local.properties
