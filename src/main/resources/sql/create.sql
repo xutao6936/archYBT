@@ -372,3 +372,425 @@ alter table TOP_USER_ROLE
 alter table TOP_USER_ROLE
    add constraint FK_TOP_USER_REFERENCE_TOP_USER foreign key (USER_ID)
       references TOP_USERINFO (USER_ID);
+	  
+	  
+	  
+	  
+/*==============================================================*/
+/* Table: TOP_AGENTRATE                                         */
+/*==============================================================*/
+create table TOP_AGENTRATE  (
+   ID                   VARCHAR2(40)                    not null,
+   INSPRD_CODE          VARCHAR2(40)                    not null,
+   ADMIN_BANK           VARCHAR2(30),
+   TRANS_TYPE           VARCHAR2(10),
+   PAY_TYPE             VARCHAR2(10),
+   PAY_PERIOD           VARCHAR2(10),
+   PAY_PERIOD_TYPE      VARCHAR2(10),
+   RATE_TYPE            VARCHAR2(2),
+   ONCE_AMT             VARCHAR2(30),
+   PERCENT_AMT          VARCHAR2(10),
+   INS_PERIOD           VARCHAR2(10),
+   INS_PERIOD_TYPE      VARCHAR2(10),
+   OPERATOR             VARCHAR2(30),
+   OPERATOR_BANK        VARCHAR2(30),
+   UPDATE_DATE          VARCHAR2(10),
+   UPDATE_TIME          VARCHAR2(10),
+   constraint PK_TOP_AGENTRATE primary key (ID)
+);
+
+comment on table TOP_AGENTRATE is
+'代理费率表';
+
+comment on column TOP_AGENTRATE.ID is
+'ID';
+
+comment on column TOP_AGENTRATE.INSPRD_CODE is
+'产品编码';
+
+comment on column TOP_AGENTRATE.ADMIN_BANK is
+'机构';
+
+comment on column TOP_AGENTRATE.TRANS_TYPE is
+'交易类型(1:实时 2:非实时)';
+
+comment on column TOP_AGENTRATE.PAY_TYPE is
+'缴费类型(1:趸缴    2:月缴  3:季缴  4:半年缴    5:年缴)';
+
+comment on column TOP_AGENTRATE.PAY_PERIOD is
+'缴费年期';
+
+comment on column TOP_AGENTRATE.PAY_PERIOD_TYPE is
+'缴费年期单位(0:年1:周岁 2:终身)';
+
+comment on column TOP_AGENTRATE.RATE_TYPE is
+'收费方式(1:一次性2:百分比)';
+
+comment on column TOP_AGENTRATE.ONCE_AMT is
+'一次性金额';
+
+comment on column TOP_AGENTRATE.PERCENT_AMT is
+'百分比';
+
+comment on column TOP_AGENTRATE.INS_PERIOD is
+'保障年期';
+
+comment on column TOP_AGENTRATE.INS_PERIOD_TYPE is
+'保障年期单位(0:年1:周岁2:保终身)';
+
+comment on column TOP_AGENTRATE.OPERATOR is
+'柜员号';
+
+comment on column TOP_AGENTRATE.OPERATOR_BANK is
+'机构';
+
+comment on column TOP_AGENTRATE.UPDATE_DATE is
+'更新日期';
+
+comment on column TOP_AGENTRATE.UPDATE_TIME is
+'更新时间';
+
+/*==============================================================*/
+/* Table: TOP_BANKINS                                           */
+/*==============================================================*/
+create table TOP_BANKINS  (
+   ID                   VARCHAR2(40)                    not null,
+   INSCORP_CODE         VARCHAR2(30)                    not null,
+   INSPRD_CODE          VARCHAR2(30)                    not null,
+   BANK_CODE            VARCHAR2(20)                    not null,
+   ORG_CODE             VARCHAR2(20)                    not null,
+   CHANNEL              VARCHAR2(4)                     not null,
+   OPERATOR             VARCHAR2(30)                    not null,
+   UPDATE_DATE          VARCHAR2(10)                    not null,
+   UPDATE_TIME          VARCHAR2(10)                    not null,
+   constraint PK_TOP_BANKINS primary key (ID)
+);
+
+comment on table TOP_BANKINS is
+'产品与机构签约表';
+
+comment on column TOP_BANKINS.ID is
+'ID';
+
+comment on column TOP_BANKINS.INSCORP_CODE is
+'公司编码';
+
+comment on column TOP_BANKINS.INSPRD_CODE is
+'产品编码';
+
+comment on column TOP_BANKINS.BANK_CODE is
+'机构号';
+
+comment on column TOP_BANKINS.ORG_CODE is
+'上级机构号';
+
+comment on column TOP_BANKINS.CHANNEL is
+'渠道(01:柜面02:网银03:手机04:直销05:自助)';
+
+comment on column TOP_BANKINS.OPERATOR is
+'操作柜员';
+
+comment on column TOP_BANKINS.UPDATE_DATE is
+'更新日期';
+
+comment on column TOP_BANKINS.UPDATE_TIME is
+'更新时间';
+
+/*==============================================================*/
+/* Table: TOP_BASICKIND                                         */
+/*==============================================================*/
+create table TOP_BASICKIND  (
+   ID                   VARCHAR2(40)                    not null,
+   CODE                 VARCHAR2(40)                    not null,
+   VALUE                VARCHAR2(40)                    not null,
+   KIND_CODE            VARCHAR2(40)                    not null,
+   KIND_VALUE           VARCHAR2(40)                    not null,
+   UPDATE_DATE          VARCHAR2(10)                    not null,
+   OPERATOR             VARCHAR2(40)                    not null,
+   UPDATE_TIME          VARCHAR2(10)                    not null,
+   constraint PK_TOP_BASICKIND primary key (ID)
+);
+
+comment on table TOP_BASICKIND is
+'数据字典表';
+
+/*==============================================================*/
+/* Table: TOP_INSCORPINFO                                       */
+/*==============================================================*/
+create table TOP_INSCORPINFO  (
+   ID                   VARCHAR2(40)                    not null,
+   INSCORP_CODE         VARCHAR2(10)                    not null,
+   INSCORP_NAME         VARCHAR2(60)                    not null,
+   INS_SIMPLE_NAME      VARCHAR2(40)                    not null,
+   INSCORP_LEVEL        VARCHAR2(2)                     not null,
+   UPCORP_CODE          VARCHAR2(10),
+   INSCORP_EN_NAME      VARCHAR2(60),
+   ADDRESS              VARCHAR2(80),
+   POSTCODE             VARCHAR2(20),
+   PHONE                VARCHAR2(20),
+   FAX                  VARCHAR2(20),
+   EMAIL                VARCHAR2(2),
+   STATUS               VARCHAR2(40),
+   OPERATOR_CODE        VARCHAR2(40),
+   OPERATOR_BANK        VARCHAR2(40),
+   CREATE_DATE          VARCHAR2(8),
+   UPDATE_DATE          VARCHAR2(8),
+   UPDATE_TIME          VARCHAR2(10),
+   COMMON_COUNTER_FLAG  VARCHAR2(2)                    default '0',
+   COMMON_NET_FLAG      VARCHAR2(2)                    default '0',
+   COMMON_CHECK_FLAG    VARCHAR2(2)                    default '0',
+   COMMON_NOSSDCHECK_FLAG VARCHAR2(2)                    default '0',
+   COMMON_SYSTB_FLAG    VARCHAR2(2)                    default '0',
+   CHANNEL_FLAG         VARCHAR2(20),
+   constraint PK_TOP_INSCORPINFO primary key (ID),
+   constraint AK_KEY_2_TOP_INSC unique (INSCORP_CODE)
+);
+
+comment on table TOP_INSCORPINFO is
+'保险公司信息表';
+
+comment on column TOP_INSCORPINFO.ID is
+'ID';
+
+comment on column TOP_INSCORPINFO.INSCORP_CODE is
+'保险公司编码';
+
+comment on column TOP_INSCORPINFO.INSCORP_NAME is
+'保险公司名称';
+
+comment on column TOP_INSCORPINFO.INS_SIMPLE_NAME is
+'保险公司简称(4或5位)';
+
+comment on column TOP_INSCORPINFO.INSCORP_LEVEL is
+'保险公司等级(0:总公司 1:分公司)';
+
+comment on column TOP_INSCORPINFO.UPCORP_CODE is
+'上级公司代码';
+
+comment on column TOP_INSCORPINFO.INSCORP_EN_NAME is
+'保险公司英文名称';
+
+comment on column TOP_INSCORPINFO.ADDRESS is
+'地址';
+
+comment on column TOP_INSCORPINFO.POSTCODE is
+'邮编';
+
+comment on column TOP_INSCORPINFO.PHONE is
+'联系电话';
+
+comment on column TOP_INSCORPINFO.FAX is
+'传真';
+
+comment on column TOP_INSCORPINFO.EMAIL is
+'EMAIL';
+
+comment on column TOP_INSCORPINFO.STATUS is
+'状态(0:有效1:无效)';
+
+comment on column TOP_INSCORPINFO.OPERATOR_CODE is
+'操作员';
+
+comment on column TOP_INSCORPINFO.OPERATOR_BANK is
+'操作机构';
+
+comment on column TOP_INSCORPINFO.CREATE_DATE is
+'创建日期';
+
+comment on column TOP_INSCORPINFO.UPDATE_DATE is
+'更新日期';
+
+comment on column TOP_INSCORPINFO.UPDATE_TIME is
+'更新时间';
+
+comment on column TOP_INSCORPINFO.COMMON_COUNTER_FLAG is
+'统一柜面接口(0:是 1:否)';
+
+comment on column TOP_INSCORPINFO.COMMON_NET_FLAG is
+'统一网销接口(0:是 1:否)';
+
+comment on column TOP_INSCORPINFO.COMMON_CHECK_FLAG is
+'统一对账接口(0:是 1:否)';
+
+comment on column TOP_INSCORPINFO.COMMON_NOSSDCHECK_FLAG is
+'统一非实时对账接口(0:是 1:否)';
+
+comment on column TOP_INSCORPINFO.COMMON_SYSTB_FLAG is
+'统一退保接口(0:是 1:否)';
+
+comment on column TOP_INSCORPINFO.CHANNEL_FLAG is
+'开通渠道(01:柜面02:网银03:手机04:直销05:自助)';
+
+/*==============================================================*/
+/* Table: TOP_INSPRDINFO                                        */
+/*==============================================================*/
+create table TOP_INSPRDINFO  (
+   ID                   VARCHAR2(40)                    not null,
+   INSPRD_CODE          VARCHAR2(30)                    not null,
+   INSPRD_TRUE_CODE     VARCHAR2(30)                    not null,
+   INSCORP_CODE         VARCHAR2(30)                    not null,
+   INSPRD_CNNAME        VARCHAR2(60)                    not null,
+   INSPRD_SIMNAME       VARCHAR2(30),
+   ASSURANCE_TYPE       VARCHAR2(2)                     not null,
+   BUY_UNIT             VARCHAR2(2),
+   INSPRD_TYPE          VARCHAR2(2),
+   INSBENGIN_DATE       VARCHAR2(10),
+   INSEND_DATE          VARCHAR2(10),
+   START_AMT            VARCHAR2(30),
+   END_AMT              VARCHAR2(30),
+   INCREASE_AMT         VARCHAR2(30),
+   STATUS               VARCHAR2(2),
+   IMPAWN_FLAG          VARCHAR2(2),
+   TRANS_TYPE           VARCHAR2(2),
+   CHANNEL_TYPE         VARCHAR2(20),
+   CREATE_DATE          VARCHAR2(10),
+   UPDATE_DATE          VARCHAR2(10),
+   UPDATE_TIME          VARCHAR2(10),
+   OPERATOR             VARCHAR2(40),
+   constraint PK_TOP_INSPRDINFO primary key (ID)
+);
+
+comment on table TOP_INSPRDINFO is
+'保险产品信息表';
+
+comment on column TOP_INSPRDINFO.ID is
+'ID';
+
+comment on column TOP_INSPRDINFO.INSPRD_CODE is
+'产品代码';
+
+comment on column TOP_INSPRDINFO.INSPRD_TRUE_CODE is
+'产品真实代码';
+
+comment on column TOP_INSPRDINFO.INSCORP_CODE is
+'公司编码';
+
+comment on column TOP_INSPRDINFO.INSPRD_CNNAME is
+'产品名称';
+
+comment on column TOP_INSPRDINFO.INSPRD_SIMNAME is
+'产品简称';
+
+comment on column TOP_INSPRDINFO.ASSURANCE_TYPE is
+'主附险标志(0:主险 1:附加险)';
+
+comment on column TOP_INSPRDINFO.BUY_UNIT is
+'购买单位(0:份数 1:保费 2:保额)';
+
+comment on column TOP_INSPRDINFO.INSPRD_TYPE is
+'产品类型';
+
+comment on column TOP_INSPRDINFO.INSBENGIN_DATE is
+'代理开始日期';
+
+comment on column TOP_INSPRDINFO.INSEND_DATE is
+'代理结束日期';
+
+comment on column TOP_INSPRDINFO.START_AMT is
+'起购金额/数量';
+
+comment on column TOP_INSPRDINFO.END_AMT is
+'最高金额/数量';
+
+comment on column TOP_INSPRDINFO.INCREASE_AMT is
+'递增金额/数量';
+
+comment on column TOP_INSPRDINFO.STATUS is
+'状态(0:有效 1:无效)';
+
+comment on column TOP_INSPRDINFO.IMPAWN_FLAG is
+'是否可质押(0:是 1:否)';
+
+comment on column TOP_INSPRDINFO.TRANS_TYPE is
+'交易类型(0:全部1:实时2:非实时)';
+
+comment on column TOP_INSPRDINFO.CHANNEL_TYPE is
+'交易渠道(01:柜面02:网银03:手机04:直销05:自助)';
+
+comment on column TOP_INSPRDINFO.CREATE_DATE is
+'创建日期';
+
+comment on column TOP_INSPRDINFO.UPDATE_DATE is
+'更新日期';
+
+comment on column TOP_INSPRDINFO.UPDATE_TIME is
+'更新时间';
+
+comment on column TOP_INSPRDINFO.OPERATOR is
+'操作员';
+
+/*==============================================================*/
+/* Table: TOP_INSPRDPERIOD                                      */
+/*==============================================================*/
+create table TOP_INSPRDPERIOD  (
+   ID                   VARCHAR2(40)                    not null,
+   INSPRD_CODE          VARCHAR2(20)                    not null,
+   KEY                  VARCHAR2(4),
+   UNIT                 VARCHAR2(4)
+);
+
+comment on table TOP_INSPRDPERIOD is
+'保障年期表';
+
+comment on column TOP_INSPRDPERIOD.ID is
+'ID';
+
+comment on column TOP_INSPRDPERIOD.INSPRD_CODE is
+'产品编码';
+
+comment on column TOP_INSPRDPERIOD.KEY is
+'值(如单位为终身, 则值为2)';
+
+comment on column TOP_INSPRDPERIOD.UNIT is
+'单位(0-年   1-周岁   2-保终身 )';
+
+/*==============================================================*/
+/* Table: TOP_PAYPERIOD                                         */
+/*==============================================================*/
+create table TOP_PAYPERIOD  (
+   ID                   VARCHAR2(40)                    not null,
+   INSPRD_CODE          VARCHAR2(20)                    not null,
+   KEY                  VARCHAR2(4),
+   UNIT                 VARCHAR2(4)
+);
+
+comment on table TOP_PAYPERIOD is
+'缴费年期表';
+
+comment on column TOP_PAYPERIOD.ID is
+'ID';
+
+comment on column TOP_PAYPERIOD.INSPRD_CODE is
+'产品编码';
+
+comment on column TOP_PAYPERIOD.KEY is
+'值(如单位为终身, 则值为2)';
+
+comment on column TOP_PAYPERIOD.UNIT is
+'单位(0-年   1-周岁   2-终身 )';
+
+/*==============================================================*/
+/* Table: TOP_PAYTYPE                                           */
+/*==============================================================*/
+create table TOP_PAYTYPE  (
+   ID                   VARCHAR2(40)                    not null,
+   INSPRD_CODE          VARCHAR2(20)                    not null,
+   KEY                  VARCHAR2(4),
+   VALUE                VARCHAR2(4),
+   constraint PK_TOP_PAYTYPE primary key (ID)
+);
+
+comment on table TOP_PAYTYPE is
+'缴费类型表';
+
+comment on column TOP_PAYTYPE.ID is
+'ID';
+
+comment on column TOP_PAYTYPE.INSPRD_CODE is
+'产品编码';
+
+comment on column TOP_PAYTYPE.KEY is
+'键(1:趸缴    2:月缴  3:季缴  4:半年缴    5:年缴)';
+
+comment on column TOP_PAYTYPE.VALUE is
+'值(1:趸缴    2:月缴  3:季缴  4:半年缴    5:年缴)';

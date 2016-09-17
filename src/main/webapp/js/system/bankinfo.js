@@ -53,8 +53,8 @@ function init() {
 						}
 					}
 				},  {
-					name : 'upBankcode',
-					index : 'upBankcode',
+					name : 'upBankCode',
+					index : 'upBankCode',
 					width : 90,
 					editable : true
 					//sorttype : "date",
@@ -211,7 +211,17 @@ function init() {
 			},{},{},{}).navSeparatorAdd(pager_selector,{
 			sepclass : "ui-separator",
 			sepcontent: ''
-		});  
+		}).navButtonAdd(pager_selector,{  
+			   caption:"导入",   
+			   buttonicon:"icon-trash red",   
+			   onClickButton: function(){},   
+			   position:"last"  
+			}).navButtonAdd(pager_selector,{  
+				   caption:"下载",   
+				   buttonicon:"icon-trash red",   
+				   onClickButton: function(){},   
+				   position:"last"  
+				});  
 	// switch element when editing inline
 	function aceSwitch(cellvalue, options, cell) {
 		setTimeout(function() {

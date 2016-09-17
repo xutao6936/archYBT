@@ -33,7 +33,7 @@ public class UserServiceTest {
 	@Test
 	public void testInsert(){
 		TopBankinfo t =  new TopBankinfo();
-		t.setBankCode("23");
+		/*t.setBankCode("23");
 		t.setBankName("静海支行");
 		t.setBankLevel("3");
 		t.setUpBankcode("1");
@@ -41,7 +41,7 @@ public class UserServiceTest {
 		t.setUpdatetime(DateUtil.getCurrentTime());
 		t.setOperatorBankcode("000000");
 		t.setOperatorCode("000000");
-		t.setAdminFlag("0");
+		t.setAdminFlag("0");*/
 		service.insert(t);
 		TopBankinfo t1 = service.getTopBankinfo("23");
 		assertEquals(t.getBankName(),t1.getBankName());

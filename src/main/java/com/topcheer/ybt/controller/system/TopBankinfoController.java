@@ -16,10 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Maps;
+import com.topcheer.ybt.biz.system.ITopBankinfoBiz;
 import com.topcheer.ybt.entity.system.TopBankinfo;
-import com.topcheer.ybt.entity.system.TopUserinfo;
-import com.topcheer.ybt.service.system.ITopBankinfoService;
-import com.topcheer.ybt.util.DateUtil;
 import com.topcheer.ybt.util.ResultHelper;
 
 
@@ -29,20 +27,19 @@ import com.topcheer.ybt.util.ResultHelper;
 public class TopBankinfoController {
 	private static Logger log = LoggerFactory.getLogger(TopBankinfoController.class);
 	@Autowired
-	private ITopBankinfoService topBankinfoService;
+	private ITopBankinfoBiz topBankinfoBiz;
 	
 	
 	
 	@RequestMapping("/getTopBankinfoList.do")
 	@ResponseBody
-	public PageInfo<TopBankinfo> getTopBankinfoList(String rows,
+	public PageInfo getTopBankinfoList(String rows,
 			String page, TopBankinfo topBankinfo) {
 		Map<String, Object> map = Maps.newHashMap();
 		map.put("topBankinfo", topBankinfo);
 		map.put("pageSize", rows);
 		map.put("pageNo", page);
-		log.info("map ： {}", map);
-		PageInfo<TopBankinfo> searchTopBankinfo = topBankinfoService
+		PageInfo<TopBankinfo> searchTopBankinfo = topBankinfoBiz
 				.searchTopBankinfo(map);
 		return searchTopBankinfo;
 		
@@ -54,13 +51,7 @@ public class TopBankinfoController {
 		if (result.hasErrors()) {
 			return ResultHelper.analyzeError(result);
 		}
-		TopUserinfo userinfo = (TopUserinfo) request.getSession().getAttribute("userinfo");
-		topBankinfo.setUpdatedate(DateUtil.getCurrentDate());
-		topBankinfo.setUpdatetime(DateUtil.getCurrentTime());
-		topBankinfo.setOperatorBankcode(userinfo.getUserDept());
-		topBankinfo.setOperatorCode(userinfo.getLoginAccount());
-		topBankinfo.setAdminFlag("0");
-		topBankinfoService.insert(topBankinfo);
+		topBankinfoBiz.insert(topBankinfo);
 		return ResultHelper.getResultMap();
 	}
 	
@@ -70,13 +61,7 @@ public class TopBankinfoController {
 		if (result.hasErrors()) {
 			return ResultHelper.analyzeError(result);
 		}
-		TopUserinfo userinfo = (TopUserinfo) request.getSession().getAttribute("userinfo");
-		topBankinfo.setUpdatedate(DateUtil.getCurrentDate());
-		topBankinfo.setUpdatetime(DateUtil.getCurrentTime());
-		topBankinfo.setOperatorBankcode(userinfo.getUserDept());
-		topBankinfo.setOperatorCode(userinfo.getLoginAccount());
-		topBankinfo.setAdminFlag("0");
-		topBankinfoService.update(topBankinfo);
+		topBankinfoBiz.update(topBankinfo);
 		return ResultHelper.getResultMap();
 	}
 	
@@ -86,13 +71,13 @@ public class TopBankinfoController {
 		String[] ids = request.getParameterValues("ids[]");
 		if(ids!=null){
 		  for (String string : ids) {
-			  topBankinfoService.delete(string);
+			  topBankinfoBiz.delete(string);
 		  }
 		}
 		  return ResultHelper.getResultMap();
 		  
 	}
-	
+
 	@RequestMapping(value="/oper.do")
 	@ResponseBody
 	public Map<String,Object> oper(@Valid TopBankinfo topBankinfo,BindingResult result,HttpServletRequest request){
@@ -106,6 +91,5 @@ public class TopBankinfoController {
 		}
 		return null;
 	}
-
 
 }
