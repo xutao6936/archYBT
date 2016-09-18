@@ -3,4 +3,5 @@
 /.settings
 /.externalToolBuilders
 .project
+.classpth
 /src/main/resources/application.local.properties

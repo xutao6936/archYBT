@@ -77,13 +77,13 @@
 												<label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
 														id="loginAccount" name="loginAccount" type="text"
-														class="form-control" placeholder="请输入柜员号" /> <i
+														class="form-control" placeholder="请输入柜员号" maxlength="8"/> <i
 														class="icon-user"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
 														id="pwd" name="pwd" type="password" class="form-control"
-														placeholder="密码" /> <i class="icon-lock"></i>
+														placeholder="密码" maxlength="8"/> <i class="icon-lock"></i>
 												</span>
 												</label>
 
@@ -161,11 +161,13 @@
 					focusInvalid: false,
 					rules: {
 						loginAccount: {
-							required: true
+							required: true,
+							maxlength:8
 						},
 						pwd: {
 							required: true,
-							minlength: 5
+							minlength: 5,
+							maxlength:8
 						}
 						
 					}

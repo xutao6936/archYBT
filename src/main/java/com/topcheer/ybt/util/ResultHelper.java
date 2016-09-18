@@ -27,6 +27,7 @@ public class ResultHelper {
 	
 	public static String FA_MENU_CODE="YBT";
 	public static String YD_FA_MENU_CODE="YBT_YD";
+	public static String BANK_TEMPLATE="机构导入模板.xls";
 	
 	public static String YES = "0";
 	public static String NO = "1";
@@ -34,6 +35,12 @@ public class ResultHelper {
 	public static Map<String,Object> getResultMap(){
 		Map<String,Object> result = new HashMap<String, Object>();
 		result.put(RESULT, ResultHelper.RESULT_SUCC);
+		return result;
+	}
+	
+	public static Map<String,Object> getErrResultMap(){
+		Map<String,Object> result = new HashMap<String, Object>();
+		result.put(RESULT, ResultHelper.RESULT_ERROR);
 		return result;
 	}
 	

@@ -173,7 +173,6 @@
 			<artifactId>poi</artifactId>
 			<version>3.12</version>
 		</dependency>
-
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -185,7 +184,11 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
 		</dependency>
-
+		<dependency>
+		  <groupId>javax.annotation</groupId>
+		  <artifactId>jsr250-api</artifactId>
+		  <version>1.0</version>
+		</dependency>
 
 		<!-- util end -->
 
@@ -250,6 +253,7 @@
 			<artifactId>jsr311-api</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+		
 		<dependency>
 			<groupId>org.apache.cxf</groupId>
 			<artifactId>cxf-rt-transports-http</artifactId>
@@ -288,11 +292,7 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-		    <groupId>javax.annotation</groupId>
-		    <artifactId>jsr250-api</artifactId>
-		    <version>1.0</version>
-		</dependency>
+		
 		
 		<!-- gson -->
 		<dependency>

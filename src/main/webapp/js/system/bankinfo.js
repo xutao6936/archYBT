@@ -13,9 +13,15 @@ function init() {
 				datatype : "json",
 				height : 330,
 				mtype : "post",
-				colNames : [ '机构编号','机构名称', '机构等级', '上级机构编码', '状态',  '更新日期',
-						'更新时间', '操作用户' ],
+				colNames : [ '机构ID','机构编号','机构名称', '机构等级', '上级机构编码', '状态',  '更新日期',
+						'更新时间'],
 				colModel : [{
+					name : 'bankId',
+					index : 'bankId',
+					hidden:true,
+					width : 90,
+					editable : true
+				},{
 					name : 'bankCode',
 					index : 'bankCode',
 					//hidden:true,
@@ -90,12 +96,6 @@ function init() {
 					editable : false,
 					sorttype : "date",
 					unformat : pickDate
-				}, {
-					name : 'operatorCode',
-					index : 'operatorCode',
-					width : 150,
-					sortable : false,
-					editable : true
 				} ],
 				//sortname : 'userId',
 				viewrecords : true,// 是否在浏览导航栏显示记录总数
@@ -163,7 +163,7 @@ function init() {
 					   var params = new Array();
 					   $.each(cells,function(i,v){
 						   var ret = $(grid_selector).jqGrid('getRowData', v);
-						   params.push(ret.bankCode);
+						   params.push(ret.bankId);
 					   });
 					   $.ajax({
 						   url:ctx+'/topBankinfo/delete.do',
@@ -213,13 +213,15 @@ function init() {
 			sepcontent: ''
 		}).navButtonAdd(pager_selector,{  
 			   caption:"导入",   
-			   buttonicon:"icon-trash red",   
+			   buttonicon:"icon-upload green",   
 			   onClickButton: function(){},   
 			   position:"last"  
 			}).navButtonAdd(pager_selector,{  
 				   caption:"下载",   
-				   buttonicon:"icon-trash red",   
-				   onClickButton: function(){},   
+				   buttonicon:"icon-download green",   
+				   onClickButton: function(){
+					   location.href=ctx+'/topBankinfo/download.do';
+				   },   
 				   position:"last"  
 				});  
 	// switch element when editing inline

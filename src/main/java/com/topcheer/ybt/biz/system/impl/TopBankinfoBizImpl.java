@@ -3,6 +3,8 @@ package com.topcheer.ybt.biz.system.impl;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
@@ -18,8 +20,7 @@ import com.topcheer.ybt.service.system.ITopBankinfoService;
 @Service(value="topBankinfoBizImpl")
 public class TopBankinfoBizImpl implements ITopBankinfoBiz{
 	
-	@Autowired
-	@Qualifier("topBankinfoService")
+	@Resource(name="topBankinfoService")
 	ITopBankinfoService service;
 	public PageInfo<TopBankinfo> searchTopBankinfo(Map searchMap) throws DataAccessException{
 		return service.searchTopBankinfo(searchMap);

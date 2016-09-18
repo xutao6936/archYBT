@@ -17,10 +17,9 @@ public class TopBankinfo {
 	@Size(max=40,message="机构名称不能大于20")
 	private String bankName;
 	// 机构级别(0:总行 1:分行 2:支行 3:网点 )
-	@NotBlank(message="机构编号不能为空")
+	@NotBlank(message="机构等级不能为空")
 	private String bankLevel;
 	// 上级机构编号
-	@NotBlank(message="机构编号不能为空")
 	private String upBankCode;
 	// 机构地址
 

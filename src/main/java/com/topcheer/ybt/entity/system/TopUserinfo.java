@@ -196,6 +196,20 @@ public class TopUserinfo {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
+
+	@Override
+	public String toString() {
+		return "TopUserinfo [userId=" + userId + ", loginAccount="
+				+ loginAccount + ", loginPwd=" + loginPwd + ", userName="
+				+ userName + ", userLevel=" + userLevel + ", userDept="
+				+ userDept + ", userStatus=" + userStatus + ", isreview="
+				+ isreview + ", createDate=" + createDate + ", updateDate="
+				+ updateDate + ", updateTime=" + updateTime
+				+ ", updateOperator=" + updateOperator + ", salt=" + salt
+				+ ", filePath=" + filePath + ", remark1=" + remark1
+				+ ", remark2=" + remark2 + ", remark3=" + remark3
+				+ ", remark4=" + remark4 + ", remark5=" + remark5 + "]";
+	}
 	
 	
 }
