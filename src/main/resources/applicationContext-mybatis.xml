@@ -12,7 +12,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="mapperLocations"
-			value="classpath:com/topcheer/ybt/dao/mapping/**/*.xml" />
+			value="classpath:com/topcheer/ybt/**/dao/mapping/*.xml" />
 		<property name="plugins">
 			<ref bean="pageInterceptor" />
 		</property>
@@ -35,7 +35,7 @@
 
 	<!--<bean id="pageInterceptor" class="com.topcheer.ybt.util.PageInterceptor"/> -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.topcheer.ybt.dao" />
+		<property name="basePackage" value="com.topcheer.ybt" />
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
 	<!--开发环境 -->
