@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -12,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,7 +34,7 @@ import com.topcheer.ybt.util.ResultHelper;
 @Controller
 @RequestMapping("/topUserRole")
 public class TopUserRoleController {
-	private static Logger log = LoggerFactory.getLogger(TopUserRoleController.class);
+	private static Logger logger = LoggerFactory.getLogger(TopUserRoleController.class);
 	@Autowired
 	private ITopUserRoleService topUserRoleService;
 	
@@ -43,14 +45,13 @@ public class TopUserRoleController {
 	
 	@RequestMapping("/getTopUserRoleList.do")
 	@ResponseBody
-	public PageInfo getTopUserRoleList(String rows,
+	public PageInfo<TopUserRole> getTopUserRoleList(String rows,
 			String page, TopUserRole topUserRole) {
 		Map<String, Object> map = Maps.newHashMap();
 		map.put("topUserRole", topUserRole);
 		map.put("pageSize", rows);
 		map.put("pageNo", page);
-		PageInfo<TopUserRole> searchTopUserRole = topUserRoleService
-				.searchTopUserRole(map);
+		PageInfo<TopUserRole> searchTopUserRole = topUserRoleService.searchTopUserRole(map);
 		return searchTopUserRole;
 		
 	}
@@ -131,21 +132,29 @@ public class TopUserRoleController {
 	}
 	
 	
+	@Transactional
 	@ResponseBody
 	@RequestMapping(value = "/updateUserRole.do", method = RequestMethod.POST)
-	public  Map<String, Object> updaterolemenu(TopUserRole topUserRole) {
+	public Map<String, Object> updaterolemenu(TopUserRole topUserRole) {
 		String userId = topUserRole.getUserId();//用户编码
-//		
-		topUserRoleService.delete(userId);
-		String ids = topUserRole.getRoleId();//菜单id
-		String[] strs = ids.split("\\,");
-		for (String str : strs) {
-			TopUserRole userRole = new TopUserRole();
-			userRole.setRoleId(str);
-			userRole.setUserId(userId);
-			userRole.setCreateDate(DateUtil.getCurrentDate());//创建时间
-			userRole.setUpdateOperator(DateUtil.getCurrentDate());//更新时间
+		
+		try {
+			topUserRoleService.deleteByUserId(userId);
+			String ids = topUserRole.getRoleId();//菜单id
+			String[] strs = ids.split("\\,");
+			for (String str : strs) {
+				TopUserRole userRole = new TopUserRole();
+				userRole.setId(UUID.randomUUID().toString().replaceAll("-",""));
+				userRole.setRoleId(str);
+				userRole.setUserId(userId);
+				userRole.setCreateDate(DateUtil.getCurrentDate());//创建时间
+				userRole.setUpdateDate(DateUtil.getCurrentDate());//更新时间
 				topUserRoleService.insert(userRole);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+			throw new RuntimeException("执行菜单更新操作出现异常");
 		}
 		return ResultHelper.getResultMap();
 	}

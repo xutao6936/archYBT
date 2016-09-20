@@ -1,7 +1,6 @@
 package com.topcheer.ybt.controller.system;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -32,15 +31,12 @@ import com.topcheer.ybt.util.ResultHelper;
 
 @Controller
 @RequestMapping(value = "/user")
-public class UserController {
+public class TopUserController {
 	private static Logger logger = LoggerFactory
-			.getLogger(UserController.class);
+			.getLogger(TopUserController.class);
 
 	@Autowired
 	private ITopUserinfoService iTopUserinfoService;
-	
-	
-	
 
 	@RequestMapping("/userList")
 	public String userList(HttpServletRequest request) {
@@ -59,14 +55,13 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/getUserList.do", method = RequestMethod.POST)
-	public PageInfo getUserList(HttpServletRequest request, String rows,
+	public PageInfo<TopUserinfo> getUserList(HttpServletRequest request, String rows,
 			String page, TopUserinfo userInfo) {
 		Map<String, Object> map = Maps.newHashMap();
 		map.put("userInfo", userInfo);
 		map.put("pageSize", rows);
 		map.put("pageNo", page);
-		PageInfo<TopUserinfo> searchTopUserinfo = iTopUserinfoService
-				.searchTopUserinfo(map);
+		PageInfo<TopUserinfo> searchTopUserinfo = iTopUserinfoService.searchTopUserinfo(map);
 		return searchTopUserinfo;
 	}
 
@@ -88,7 +83,7 @@ public class UserController {
 		topUserinfo.setCreateDate(DateUtil.getCurrentDate());
 		topUserinfo.setUpdateDate(DateUtil.getCurrentDate());
 		topUserinfo.setUpdateTime(DateUtil.getCurrentTime());
-		topUserinfo.setIsreview(ResultHelper.YES);
+		topUserinfo.setUserStatus(ResultHelper.YES);
 		topUserinfo.setUserStatus(ResultHelper.YES);
 		iTopUserinfoService.insert(topUserinfo);
 		return ResultHelper.RESULT_SUCC;
@@ -98,21 +93,24 @@ public class UserController {
 	@RequestMapping(value = "/upload.do", method = RequestMethod.POST)
 	public Map<String,Object> upload(@RequestParam("filePath") CommonsMultipartFile[] files,HttpServletRequest request){
 		String userId = request.getParameter("userId");
+		String realPath = PropertyConfig.getContextProperty("user.path");
 		String filePath = "";
+		String dbfilepath = null;
 		for (MultipartFile myfile : files) {
 			if (myfile.isEmpty()) {
-				logger.info("�ļ�δ�ϴ�");
+				logger.info("没有上传的文件");
 			} else {
-				String realPath = PropertyConfig
-						.getContextProperty("user.path");
 				try {
-					filePath = realPath + myfile.getOriginalFilename();
-					myfile.transferTo(new File(realPath
-							+ myfile.getOriginalFilename()));
-				} catch (IllegalStateException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
+					System.out.println(request.getSession().getServletContext().getRealPath(File.separator));
+					String filedir = request.getSession().getServletContext().getRealPath(File.separator)+realPath;//文件夹路径
+					File fileDir = new File(filedir);
+					if (!fileDir.exists()) {
+						fileDir.mkdirs();
+					}
+					filePath = filedir + myfile.getOriginalFilename();
+					dbfilepath = realPath + myfile.getOriginalFilename();
+					myfile.transferTo(new File(filePath));
+				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -122,8 +120,13 @@ public class UserController {
 		}
 		TopUserinfo topUserinfo = new TopUserinfo();
 		topUserinfo.setUserId(userId);
-		topUserinfo.setFilePath(filePath);
-		iTopUserinfoService.uploadPath(topUserinfo);
+		topUserinfo.setFilePath(dbfilepath);
+		try {
+			iTopUserinfoService.uploadPath(topUserinfo);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Map<String,Object> result = Maps.newHashMap();
 		result.put("flag", ResultHelper.RESULT_SUCC);
 		return result;
@@ -142,24 +145,11 @@ public class UserController {
 		}
 		topUserinfo.setUpdateDate(DateUtil.getCurrentDate());
 		topUserinfo.setUpdateTime(DateUtil.getCurrentTime());
-		topUserinfo.setIsreview(ResultHelper.YES);
+		topUserinfo.setUserStatus(ResultHelper.YES);
 		topUserinfo.setUserStatus(ResultHelper.YES);
 		iTopUserinfoService.update(topUserinfo);
 		return ResultHelper.RESULT_SUCC;
 	}
 	
-	
-	
-	
 
-	public static void main(String[] args) {
-//		ApplicationContext context = new ClassPathXmlApplicationContext(
-//				"applicationContext.xml");
-//		UserController bean = context.getBean(UserController.class);
-
-		// Map<String, Object> map = bean.getUserList(null, null);
-		// System.out.println(map.toString());
-		
-		
-	}
 }

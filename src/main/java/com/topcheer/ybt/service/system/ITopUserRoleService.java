@@ -7,7 +7,7 @@ import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.entity.system.TopUserRole;
 public interface ITopUserRoleService {
 	
-	public PageInfo<TopUserRole> searchTopUserRole(Map searchMap);
+	public PageInfo<TopUserRole> searchTopUserRole(Map<String,Object> searchMap);
 	
 	public List<TopUserRole> getTopUserRoleList(String userId);
 	
@@ -20,5 +20,7 @@ public interface ITopUserRoleService {
 	public void update(TopUserRole topUserRole);
 	
 	public void delete(String id);
+	
+	public void deleteByUserId(String userId);
 
 }

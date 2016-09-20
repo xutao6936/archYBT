@@ -22,6 +22,7 @@ import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.topcheer.ybt.entity.system.TopMenuinfo;
+import com.topcheer.ybt.entity.system.TopUserinfo;
 import com.topcheer.ybt.service.system.ITopMenuinfoService;
 import com.topcheer.ybt.util.DateUtil;
 import com.topcheer.ybt.util.ResultHelper;
@@ -111,10 +112,11 @@ public class TopMenuinfoController {
 	@RequestMapping(value = "/returnTree", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	@ResponseBody
-	public String getMenu() {
+	public String getMenu(HttpServletRequest request) {
 
 		log.info("自动加载导航菜单。。。");
-		List<TopMenuinfo> menulist = topMenuinfoService.searchAll();// 所有菜单
+		TopUserinfo topUserinfo = (TopUserinfo)request.getSession().getAttribute("userinfo");
+		List<TopMenuinfo> menulist = topMenuinfoService.searchMenuByUserId(topUserinfo);//查询当前用户角色权限下的所有菜单
 		// List<TopTaskMenu> roleMenus =
 		// topTaskMenuService.searchByRoleId(topUserRole.getRoleId());//当前用户拥有的菜单
 		// for (TopTaskMenu topTaskMenu : roleMenus) {

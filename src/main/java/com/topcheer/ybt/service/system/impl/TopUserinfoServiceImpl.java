@@ -34,7 +34,7 @@ public class TopUserinfoServiceImpl implements ITopUserinfoService{
 	}
 	
 	public void uploadPath(TopUserinfo topUserinfo) {
-		topUserinfoMapper.uploadPath(topUserinfo);
+		topUserinfoMapper.updateByPrimaryKeySelective(topUserinfo);
 		
 	}
 	
@@ -59,6 +59,7 @@ public class TopUserinfoServiceImpl implements ITopUserinfoService{
 		TopUserinfo userInfo = (TopUserinfo) searchMap.get("userInfo");
 		return topUserinfoMapper.searchTopUserinfo(userInfo);
 	}
+	
 	public PageInfo<TopUserinfo> searchTopUserinfo(Map searchMap) {
 		TopUserinfo userInfo = (TopUserinfo) searchMap.get("userInfo");
 		int pageSize = Integer.parseInt(searchMap.get("pageSize").toString());
@@ -70,7 +71,7 @@ public class TopUserinfoServiceImpl implements ITopUserinfoService{
 	}
 
 	public void update(TopUserinfo TopUserinfo) {
-		topUserinfoMapper.update(TopUserinfo);
+		topUserinfoMapper.updateByPrimaryKeySelective(TopUserinfo);
 	}
 
 	public TopUserinfoMapper getTopUserinfoMapper() {
@@ -79,6 +80,12 @@ public class TopUserinfoServiceImpl implements ITopUserinfoService{
 
 	public void setTopUserinfoMapper(TopUserinfoMapper TopUserinfoMapper) {
 		this.topUserinfoMapper = TopUserinfoMapper;
+	}
+
+	@Override
+	public List<TopUserinfo> searchTopUserForLogin(Map searchMap) {
+		TopUserinfo userInfo = (TopUserinfo) searchMap.get("userInfo");
+		return topUserinfoMapper.searchTopUserinfoForLogin(userInfo);
 	}
 	
 	

@@ -1,7 +1,7 @@
 package com.topcheer.ybt.dao.system;
 
 import java.util.List;
-import java.util.Map;
+
 
 
 
@@ -14,6 +14,17 @@ public interface TopMenuinfoMapper {
 	public List<TopMenuinfo> searchTopMenuinfo(TopMenuinfo topMenuinfo);
 	
 	public List<TopMenuinfo> searchAll();
+	
+	
+	/** 
+	* @Title: searchMenuByRoleId 
+	* @Description: 根据用户编号查询用户菜单
+	* @param @param roleId
+	* @param @return
+	* @return List<TopMenuinfo>
+	* @throws 
+	*/
+	public List<TopMenuinfo> searchMenuByUserId(String userId);
 	
 	public List<TopMenuinfo> getTopMenuinfo(String menuId);
 	

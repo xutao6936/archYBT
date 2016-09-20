@@ -30,9 +30,9 @@ import com.topcheer.ybt.util.ResultHelper;
  */
 @Controller
 @RequestMapping(value="/login")
-public class LoginContorller {
+public class TopLoginContorller {
 	
-	private static Logger log = LoggerFactory.getLogger(LoginContorller.class);
+	private static Logger log = LoggerFactory.getLogger(TopLoginContorller.class);
 	@Autowired
 	ITopUserinfoService  service;
 	
@@ -58,7 +58,7 @@ public class LoginContorller {
 		userInfo.setLoginAccount(loginAccount);
 		userInfo.setLoginPwd(pwd);
 		map.put("userInfo", userInfo);
-		List<TopUserinfo> list = service.searchTopUser(map);
+		List<TopUserinfo> list = service.searchTopUserForLogin(map);
 		if(null != list && list.size()>0){
 			TopUserinfo userinfo = list.get(0);
 			request.getSession().setAttribute("userinfo", userinfo);

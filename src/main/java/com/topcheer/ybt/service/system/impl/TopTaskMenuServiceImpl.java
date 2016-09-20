@@ -75,6 +75,11 @@ public class TopTaskMenuServiceImpl implements ITopTaskMenuService{
 		
 		return topTaskMenuMapper.deleteByRoleId(roleId);
 	}
+
+	public List<TopTaskMenu> searchMenuByUserId(String roleId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

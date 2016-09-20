@@ -29,10 +29,6 @@ public class TopMenuinfo {
 	private String updateTime;
 
 	private String updateOperator;
-	
-	private List<TopMenuinfo> menulist;//子菜单
-	
-	private boolean checked;//权限标志
 
 	private String remark1;
 
@@ -42,8 +38,10 @@ public class TopMenuinfo {
 
 	private String remark4;
 
-	private String remark5;
-
+	private List<TopMenuinfo> menulist;//子菜单
+	
+	private boolean checked;//权限标志
+	
 	public String getMenuId() {
 		return menuId;
 	}
@@ -163,15 +161,6 @@ public class TopMenuinfo {
 	public void setRemark4(String remark4) {
 		this.remark4 = remark4;
 	}
-
-	public String getRemark5() {
-		return remark5;
-	}
-
-	public void setRemark5(String remark5) {
-		this.remark5 = remark5;
-	}
-
 	
 	public List<TopMenuinfo> getMenulist() {
 		return menulist;
@@ -208,12 +197,11 @@ public class TopMenuinfo {
 				+ ", icon=" + icon + ", menuUrl=" + menuUrl + ", status="
 				+ status + ", createDate=" + createDate + ", updateDate="
 				+ updateDate + ", updateTime=" + updateTime
-				+ ", updateOperator=" + updateOperator + ", menulist="
-				+ menulist + ", checked=" + checked + ", remark1=" + remark1
+				+ ", updateOperator=" + updateOperator + ", remark1=" + remark1
 				+ ", remark2=" + remark2 + ", remark3=" + remark3
-				+ ", remark4=" + remark4 + ", remark5=" + remark5 + "]";
+				+ ", remark4=" + remark4 + ", menulist=" + menulist
+				+ ", checked=" + checked + "]";
 	}
 
-	
 
 }

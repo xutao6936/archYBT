@@ -33,5 +33,7 @@ public interface ITopUserinfoService {
 	public void uploadPath(TopUserinfo topUserinfo);
 	
 	public List<TopUserinfo> searchTopUser(Map searchMap);
+	
+	public List<TopUserinfo> searchTopUserForLogin(Map searchMap);
 
 }

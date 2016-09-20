@@ -6,9 +6,9 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-
 import com.topcheer.ybt.dao.system.TopUserRoleMapper;
 import com.topcheer.ybt.entity.system.TopUserRole;
 import com.topcheer.ybt.service.system.ITopUserRoleService;
@@ -27,7 +27,9 @@ public class TopUserRoleServiceImpl implements ITopUserRoleService{
 	}
 
 	public List<TopUserRole> getTopUserRoleList(String userId) {
-		return topUserRoleMapper.getTopUserRole(userId);
+		TopUserRole role = new TopUserRole();
+		role.setUserId(userId);
+		return topUserRoleMapper.searchTopUserRole(role);
 	}
 	
 	public TopUserRole getTopUserRole(String userId) {
@@ -43,7 +45,7 @@ public class TopUserRoleServiceImpl implements ITopUserRoleService{
 		return topUserRoleMapper.searchAll();
 	}
 
-	public PageInfo<TopUserRole> searchTopUserRole(Map searchMap) {
+	public PageInfo<TopUserRole> searchTopUserRole(Map<String,Object> searchMap) {
 		TopUserRole topUserRole = (TopUserRole) searchMap.get("topUserRole");
 		int pageSize = Integer.parseInt(searchMap.get("pageSize").toString());
 		int pageNo = Integer.parseInt(searchMap.get("pageNo").toString());
@@ -63,6 +65,12 @@ public class TopUserRoleServiceImpl implements ITopUserRoleService{
 
 	public void setTopUserRoleMapper(TopUserRoleMapper TopUserRoleMapper) {
 		this.topUserRoleMapper = TopUserRoleMapper;
+	}
+
+	@Override
+	public void deleteByUserId(String userId) {
+		this.topUserRoleMapper.deleteByUserId(userId);
+		
 	}
 	
 	

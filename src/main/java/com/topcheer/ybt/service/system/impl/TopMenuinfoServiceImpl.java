@@ -12,6 +12,7 @@ import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.dao.system.TopMenuinfoMapper;
 import com.topcheer.ybt.data.MenuResult;
 import com.topcheer.ybt.entity.system.TopMenuinfo;
+import com.topcheer.ybt.entity.system.TopUserinfo;
 import com.topcheer.ybt.service.system.ITopMenuinfoService;
 
 
@@ -40,8 +41,8 @@ public class TopMenuinfoServiceImpl implements ITopMenuinfoService{
 		 topMenuinfoMapper.insert(topMenuinfo);
 	}
 
-	public List<TopMenuinfo> searchAll() {
-		return topMenuinfoMapper.searchAll();
+	public List<TopMenuinfo> searchAll(TopUserinfo topUserinfo) {
+		return topMenuinfoMapper.searchMenuByUserId(topUserinfo.getUserId());
 	}
 
 	public PageInfo<TopMenuinfo> searchTopMenuinfo(Map searchMap) {
@@ -69,6 +70,17 @@ public class TopMenuinfoServiceImpl implements ITopMenuinfoService{
 	public List<MenuResult> getTopMenusByUserId(String loginAccount) {
 		List<MenuResult> list = topMenuinfoMapper.getTopMenusByUserId(loginAccount);
 		return list;
+	}
+
+	@Override
+	public List<TopMenuinfo> searchAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<TopMenuinfo> searchMenuByUserId(TopUserinfo topUserinfo) {
+		return topMenuinfoMapper.searchMenuByUserId(topUserinfo.getUserId());
 	}
 
 }

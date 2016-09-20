@@ -21,4 +21,6 @@ public interface TopUserRoleMapper {
 	
 	public void delete(String userId);
 	
+	public void deleteByUserId(String userId);
+	
 }

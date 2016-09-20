@@ -1,7 +1,6 @@
 package com.topcheer.ybt.dao.system;
 
 import java.util.List;
-import java.util.Map;
 
 import com.topcheer.ybt.entity.system.TopUserinfo;
 
@@ -18,13 +17,15 @@ public interface TopUserinfoMapper {
 	
 	public List<TopUserinfo> searchTopUserinfo(TopUserinfo userInfo);
 	
+	public List<TopUserinfo> searchTopUserinfoForLogin(TopUserinfo userInfo);
+	
 	public List<TopUserinfo> searchAll();
 	
 	public List<TopUserinfo> getTopUserinfo(String userId);
 	
 	public void insert(TopUserinfo topUserinfo);
 	
-	public void update(TopUserinfo topUserinfo);
+	public void updateByPrimaryKeySelective(TopUserinfo topUserinfo);
 	
 	public void delete(String userId);
 	

@@ -1,197 +1,232 @@
 <?xml version="1.0" encoding="GBK" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.topcheer.ybt.dao.system.TopUserinfoMapper">
-	<resultMap id="TopUserinfoResultMap" type="com.topcheer.ybt.entity.system.TopUserinfo">
-		<result property="userId" column="USER_ID" jdbcType="VARCHAR" />
-		<result property="loginAccount" column="LOGIN_ACCOUNT"
-			jdbcType="VARCHAR" />
-		<result property="loginPwd" column="LOGIN_PWD" jdbcType="VARCHAR" />
-		<result property="userName" column="USER_NAME" jdbcType="VARCHAR" />
-		<result property="userLevel" column="USER_LEVEL" jdbcType="VARCHAR" />
-		<result property="userDept" column="USER_DEPT" jdbcType="VARCHAR" />
-		<result property="userStatus" column="USER_STATUS" jdbcType="CHAR" />
-		<result property="isreview" column="ISREVIEW" jdbcType="CHAR" />
-		<result property="createDate" column="CREATE_DATE" jdbcType="VARCHAR" />
-		<result property="updateDate" column="UPDATE_DATE" jdbcType="VARCHAR" />
-		<result property="updateTime" column="UPDATE_TIME" jdbcType="VARCHAR" />
-		<result property="updateOperator" column="UPDATE_OPERATOR"
-			jdbcType="VARCHAR" />
-		<result property="salt" column="SALT" jdbcType="VARCHAR" />
-		<result property="filePath" column="FILE_PATH" jdbcType="VARCHAR" />
-		<result property="remark1" column="REMARK1" jdbcType="VARCHAR" />
-		<result property="remark2" column="REMARK2" jdbcType="VARCHAR" />
-		<result property="remark3" column="REMARK3" jdbcType="VARCHAR" />
-		<result property="remark4" column="REMARK4" jdbcType="VARCHAR" />
-		<result property="remark5" column="REMARK5" jdbcType="VARCHAR" />
+<mapper namespace="com.topcheer.ybt.dao.system.TopUserinfoMapper" >
+	<resultMap id="TopUserinfoResultMap" type="com.topcheer.ybt.entity.system.TopUserinfo" >
+       		<result property="userId"    column="USER_ID" jdbcType="VARCHAR" />
+       		<result property="loginAccount"    column="LOGIN_ACCOUNT" jdbcType="VARCHAR" />
+       		<result property="loginPwd"    column="LOGIN_PWD" jdbcType="VARCHAR" />
+       		<result property="userName"    column="USER_NAME" jdbcType="VARCHAR" />
+       		<result property="userStatus"    column="USER_STATUS" jdbcType="VARCHAR" />
+       		<result property="userDept"    column="USER_DEPT" jdbcType="VARCHAR" />
+       		<result property="createDate"    column="CREATE_DATE" jdbcType="VARCHAR" />
+       		<result property="operatorPhone"    column="OPERATOR_PHONE" jdbcType="VARCHAR" />
+       		<result property="updateDate"    column="UPDATE_DATE" jdbcType="VARCHAR" />
+       		<result property="updateTime"    column="UPDATE_TIME" jdbcType="VARCHAR" />
+       		<result property="updateOperator"    column="UPDATE_OPERATOR" jdbcType="VARCHAR" />
+       		<result property="filePath"    column="FILE_PATH" jdbcType="VARCHAR" />
+       		<result property="remark1"    column="REMARK1" jdbcType="VARCHAR" />
+       		<result property="remark2"    column="REMARK2" jdbcType="VARCHAR" />
+       		<result property="remark3"    column="REMARK3" jdbcType="VARCHAR" />
+       		<result property="remark4"    column="REMARK4" jdbcType="VARCHAR" />
 	</resultMap>
-	<sql id="TopUserinfoColumnList">
-		USER_ID,
-		LOGIN_ACCOUNT,
-		LOGIN_PWD,
-		USER_NAME,
-		USER_LEVEL,
-		USER_DEPT,
-		USER_STATUS,
-		ISREVIEW,
-		CREATE_DATE,
-		UPDATE_DATE,
-		UPDATE_TIME,
-		UPDATE_OPERATOR,
-		SALT,
-		FILE_PATH,
-		REMARK1,
-		REMARK2,
-		REMARK3,
-		REMARK4,
-		REMARK5
-	</sql>
-	<select id="searchTopUserinfo" resultMap="TopUserinfoResultMap"
-		parameterType="com.topcheer.ybt.entity.system.TopUserinfo">
-		select * from TOP_USERINFO
+    <sql id="TopUserinfoColumnList" >
+    		USER_ID,
+    		LOGIN_ACCOUNT,
+    		LOGIN_PWD,
+    		USER_NAME,
+    		USER_STATUS,
+    		USER_DEPT,
+    		CREATE_DATE,
+    		OPERATOR_PHONE,
+    		UPDATE_DATE,
+    		UPDATE_TIME,
+    		UPDATE_OPERATOR,
+    		FILE_PATH,
+    		REMARK1,
+    		REMARK2,
+    		REMARK3,
+    		REMARK4
+    </sql>
+    <select id="searchTopUserinfoForLogin" resultMap="TopUserinfoResultMap" parameterType="com.topcheer.ybt.entity.system.TopUserinfo">
+    	select  * from TOP_USERINFO
 		where 1=1
-		<if test="userId !=null and userId != '' ">
-			and USER_ID = #{userId,jdbcType=VARCHAR}
-		</if>
-		<if test="loginAccount !=null and loginAccount != '' ">
-			and LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR}
-		</if>
-		<if test="loginPwd !=null and loginPwd != '' ">
-			and LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR}
-		</if>
-		<if test="userName !=null and userName != '' ">
-			and USER_NAME = #{userName,jdbcType=VARCHAR}
-		</if>
-		<if test="userLevel !=null and userLevel != '' ">
-			and USER_LEVEL = #{userLevel,jdbcType=VARCHAR}
-		</if>
-		<if test="userDept !=null and userDept != '' ">
-			and USER_DEPT = #{userDept,jdbcType=VARCHAR}
-		</if>
-		<if test="userStatus !=null and userStatus != '' ">
-			and USER_STATUS = #{userStatus,jdbcType=CHAR}
-		</if>
-		<if test="isreview !=null and isreview != '' ">
-			and ISREVIEW = #{isreview,jdbcType=CHAR}
-		</if>
-		<if test="createDate !=null and createDate != '' ">
-			and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
-		</if>
-		<if test="updateDate !=null and updateDate != '' ">
-			and UPDATE_DATE = #{updateDate,jdbcType=VARCHAR}
-		</if>
-		<if test="updateTime !=null and updateTime != '' ">
-			and UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
-		</if>
-		<if test="updateOperator !=null and updateOperator != '' ">
-			and UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR}
-		</if>
-		<if test="salt !=null and salt != '' ">
-			and SALT = #{salt,jdbcType=VARCHAR}
-		</if>
-		<if test="filePath !=null and filePath != '' ">
-			and FILE_PATH = #{filePath,jdbcType=VARCHAR}
-		</if>
-		<if test="remark1 !=null and remark1 != '' ">
-			and REMARK1 = #{remark1,jdbcType=VARCHAR}
-		</if>
-		<if test="remark2 !=null and remark2 != '' ">
-			and REMARK2 = #{remark2,jdbcType=VARCHAR}
-		</if>
-		<if test="remark3 !=null and remark3 != '' ">
-			and REMARK3 = #{remark3,jdbcType=VARCHAR}
-		</if>
-		<if test="remark4 !=null and remark4 != '' ">
-			and REMARK4 = #{remark4,jdbcType=VARCHAR}
-		</if>
-		<if test="remark5 !=null and remark5 != '' ">
-			and REMARK5 = #{remark5,jdbcType=VARCHAR}
-		</if>
-	</select>
-
-	<select id="searchAll" resultMap="TopUserinfoResultMap"
-		parameterType="HashMap">
-		select * from TOP_USERINFO
-	</select>
-
-	<insert id="insert" parameterType="com.topcheer.ybt.entity.system.TopUserinfo">
-		INSERT INTO TOP_USERINFO (
-		USER_ID,
-		LOGIN_ACCOUNT,
-		LOGIN_PWD,
-		USER_NAME,
-		USER_LEVEL,
-		USER_DEPT,
-		USER_STATUS,
-		ISREVIEW,
-		CREATE_DATE,
-		UPDATE_DATE,
-		UPDATE_TIME,
-		UPDATE_OPERATOR,
-		SALT,
-		FILE_PATH,
-		REMARK1,
-		REMARK2,
-		REMARK3,
-		REMARK4,
-		REMARK5
-		)VALUES (
-		#{userId,jdbcType=VARCHAR},
-		#{loginAccount,jdbcType=VARCHAR},
-		#{loginPwd,jdbcType=VARCHAR},
-		#{userName,jdbcType=VARCHAR},
-		#{userLevel,jdbcType=VARCHAR},
-		#{userDept,jdbcType=VARCHAR},
-		#{userStatus,jdbcType=CHAR},
-		#{isreview,jdbcType=CHAR},
-		#{createDate,jdbcType=VARCHAR},
-		#{updateDate,jdbcType=VARCHAR},
-		#{updateTime,jdbcType=VARCHAR},
-		#{updateOperator,jdbcType=VARCHAR},
-		#{salt,jdbcType=VARCHAR},
-		#{filePath,jdbcType=VARCHAR},
-		#{remark1,jdbcType=VARCHAR},
-		#{remark2,jdbcType=VARCHAR},
-		#{remark3,jdbcType=VARCHAR},
-		#{remark4,jdbcType=VARCHAR},
-		#{remark5,jdbcType=VARCHAR}
-		)
-	</insert>
-
-	<insert id="update" parameterType="com.topcheer.ybt.entity.system.TopUserinfo">
-		update TOP_USERINFO set
-		LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR} ,
-		LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR} ,
-		USER_NAME = #{userName,jdbcType=VARCHAR} ,
-		USER_LEVEL = #{userLevel,jdbcType=VARCHAR} ,
-		USER_DEPT = #{userDept,jdbcType=VARCHAR} ,
-		USER_STATUS = #{userStatus,jdbcType=CHAR} ,
-		ISREVIEW = #{isreview,jdbcType=CHAR} ,
-		CREATE_DATE = #{createDate,jdbcType=VARCHAR} ,
-		UPDATE_DATE = #{updateDate,jdbcType=VARCHAR} ,
-		UPDATE_TIME = #{updateTime,jdbcType=VARCHAR} ,
-		UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR} ,
-		SALT = #{salt,jdbcType=VARCHAR} ,
-		REMARK1 = #{remark1,jdbcType=VARCHAR} ,
-		REMARK2 = #{remark2,jdbcType=VARCHAR} ,
-		REMARK3 = #{remark3,jdbcType=VARCHAR} ,
-		REMARK4 = #{remark4,jdbcType=VARCHAR} ,
-		REMARK5 = #{remark5,jdbcType=VARCHAR}
-		where USER_ID = #{userId,jdbcType=VARCHAR}
-	</insert>
-
-	<insert id="uploadPath" parameterType="com.topcheer.ybt.entity.system.TopUserinfo">
-		update TOP_USERINFO set
-		FILE_PATH = #{filePath,jdbcType=VARCHAR}
-		where USER_ID = #{userId,jdbcType=VARCHAR}
-	</insert>
-
-	<delete id="delete" parameterType="String">
-		delete from TOP_USERINFO where USER_ID = #{userId,jdbcType=VARCHAR}
-	</delete>
-
-	<select id="getTopUserinfo" resultMap="TopUserinfoResultMap"
-		parameterType="String">
-		select * from TOP_USERINFO where USER_ID = #{userId,jdbcType=VARCHAR}
-	</select>
+    		
+    		<if test="loginAccount !=null and loginAccount != '' ">
+		    	and LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR}
+			</if>
+    		<if test="loginPwd !=null and loginPwd != '' ">
+		    	and LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR}
+			</if>
+    		
+    		<if test="userDept !=null and userDept != '' ">
+		    	and USER_DEPT = #{userDept,jdbcType=VARCHAR}
+			</if>
+    		
+  	</select> 
+    
+    <select id="searchTopUserinfo" resultMap="TopUserinfoResultMap" parameterType="com.topcheer.ybt.entity.system.TopUserinfo">
+    	select  * from TOP_USERINFO
+		where 1=1
+    		<if test="userId !=null and userId != '' ">
+		    	and USER_ID = #{userId,jdbcType=VARCHAR}
+			</if>
+    		<if test="loginAccount !=null and loginAccount != '' ">
+		    	and LOGIN_ACCOUNT like '%${loginAccount}%'
+			</if>
+    		<if test="loginPwd !=null and loginPwd != '' ">
+		    	and LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR}
+			</if>
+    		<if test="userName !=null and userName != '' ">
+		    	and USER_NAME = #{userName,jdbcType=VARCHAR}
+			</if>
+    		<if test="userStatus !=null and userStatus != '' ">
+		    	and USER_STATUS = #{userStatus,jdbcType=VARCHAR}
+			</if>
+    		<if test="userDept !=null and userDept != '' ">
+		    	and USER_DEPT = #{userDept,jdbcType=VARCHAR}
+			</if>
+    		<if test="createDate !=null and createDate != '' ">
+		    	and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="operatorPhone !=null and operatorPhone != '' ">
+		    	and OPERATOR_PHONE = #{operatorPhone,jdbcType=VARCHAR}
+			</if>
+    		<if test="updateDate !=null and updateDate != '' ">
+		    	and UPDATE_DATE = #{updateDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="updateTime !=null and updateTime != '' ">
+		    	and UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+    		<if test="updateOperator !=null and updateOperator != '' ">
+		    	and UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR}
+			</if>
+    		<if test="filePath !=null and filePath != '' ">
+		    	and FILE_PATH = #{filePath,jdbcType=VARCHAR}
+			</if>
+    		<if test="remark1 !=null and remark1 != '' ">
+		    	and REMARK1 = #{remark1,jdbcType=VARCHAR}
+			</if>
+    		<if test="remark2 !=null and remark2 != '' ">
+		    	and REMARK2 = #{remark2,jdbcType=VARCHAR}
+			</if>
+    		<if test="remark3 !=null and remark3 != '' ">
+		    	and REMARK3 = #{remark3,jdbcType=VARCHAR}
+			</if>
+    		<if test="remark4 !=null and remark4 != '' ">
+		    	and REMARK4 = #{remark4,jdbcType=VARCHAR}
+			</if>
+  	</select> 
+  	
+  	<select id="searchAll" resultMap="TopUserinfoResultMap" parameterType="HashMap">
+    	select * from TOP_USERINFO 
+  	</select> 
+  	
+  	<insert id="insert" parameterType="com.topcheer.ybt.entity.system.TopUserinfo">
+  		INSERT INTO TOP_USERINFO (
+    			USER_ID,
+    			LOGIN_ACCOUNT,
+    			LOGIN_PWD,
+    			USER_NAME,
+    			USER_STATUS,
+    			USER_DEPT,
+    			CREATE_DATE,
+    			OPERATOR_PHONE,
+    			UPDATE_DATE,
+    			UPDATE_TIME,
+    			UPDATE_OPERATOR,
+    			FILE_PATH,
+    			REMARK1,
+    			REMARK2,
+    			REMARK3,
+    			REMARK4
+  		)VALUES (
+    		#{userId,jdbcType=VARCHAR},
+    		#{loginAccount,jdbcType=VARCHAR},
+    		#{loginPwd,jdbcType=VARCHAR},
+    		#{userName,jdbcType=VARCHAR},
+    		#{userStatus,jdbcType=VARCHAR},
+    		#{userDept,jdbcType=VARCHAR},
+    		#{createDate,jdbcType=VARCHAR},
+    		#{operatorPhone,jdbcType=VARCHAR},
+    		#{updateDate,jdbcType=VARCHAR},
+    		#{updateTime,jdbcType=VARCHAR},
+    		#{updateOperator,jdbcType=VARCHAR},
+    		#{filePath,jdbcType=VARCHAR},
+    		#{remark1,jdbcType=VARCHAR},
+    		#{remark2,jdbcType=VARCHAR},
+    		#{remark3,jdbcType=VARCHAR},
+    		#{remark4,jdbcType=VARCHAR}
+  		)
+  	</insert>
+  	
+  	<insert id="update" parameterType="com.topcheer.ybt.entity.system.TopUserinfo">
+  		update TOP_USERINFO set  
+	      		LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR}  ,
+	      		LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR}  ,
+	      		USER_NAME = #{userName,jdbcType=VARCHAR}  ,
+	      		USER_STATUS = #{userStatus,jdbcType=VARCHAR}  ,
+	      		USER_DEPT = #{userDept,jdbcType=VARCHAR}  ,
+	      		CREATE_DATE = #{createDate,jdbcType=VARCHAR}  ,
+	      		OPERATOR_PHONE = #{operatorPhone,jdbcType=VARCHAR}  ,
+	      		UPDATE_DATE = #{updateDate,jdbcType=VARCHAR}  ,
+	      		UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}  ,
+	      		UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR}  ,
+	      		FILE_PATH = #{filePath,jdbcType=VARCHAR}  ,
+	      		REMARK1 = #{remark1,jdbcType=VARCHAR}  ,
+	      		REMARK2 = #{remark2,jdbcType=VARCHAR}  ,
+	      		REMARK3 = #{remark3,jdbcType=VARCHAR}  ,
+	      		REMARK4 = #{remark4,jdbcType=VARCHAR}  
+  		where USER_ID = #{userId,jdbcType=VARCHAR}
+  	</insert>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete from TOP_USERINFO where USER_ID = #{userId,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<select id="getTopUserinfo" resultMap="TopUserinfoResultMap" parameterType="String">
+  		select * from TOP_USERINFO  where USER_ID = #{userId,jdbcType=VARCHAR}
+  	</select>
+  	
+  	<update id="updateByPrimaryKeySelective" parameterType="com.topcheer.ybt.entity.system.TopUserinfo" >
+    update TOP_USERINFO
+    <set >
+      <if test="loginAccount != null" >
+        LOGIN_ACCOUNT = #{loginAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPwd != null" >
+        LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null" >
+        USER_STATUS = #{userStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="userDept != null" >
+        USER_DEPT = #{userDept,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+      </if>
+      <if test="operatorPhone != null" >
+        OPERATOR_PHONE = #{operatorPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null" >
+        UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateOperator != null" >
+        UPDATE_OPERATOR = #{updateOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null" >
+        FILE_PATH = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="remark1 != null" >
+        REMARK1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        REMARK2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="remark3 != null" >
+        REMARK3 = #{remark3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark4 != null" >
+        REMARK4 = #{remark4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where USER_ID = #{userId,jdbcType=VARCHAR}
+  </update>
 </mapper>

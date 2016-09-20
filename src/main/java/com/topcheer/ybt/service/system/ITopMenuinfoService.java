@@ -2,10 +2,11 @@ package com.topcheer.ybt.service.system;
 
 import java.util.List;
 import java.util.Map;
-import com.github.pagehelper.PageInfo;
 
+import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.data.MenuResult;
 import com.topcheer.ybt.entity.system.TopMenuinfo;
+import com.topcheer.ybt.entity.system.TopUserinfo;
 public interface ITopMenuinfoService {
 	
 	public PageInfo<TopMenuinfo> searchTopMenuinfo(Map searchMap);
@@ -13,6 +14,8 @@ public interface ITopMenuinfoService {
 	public List<TopMenuinfo> getTopMenuinfoList(String menuId);
 	
 	public TopMenuinfo getTopMenuinfo(String menuId);
+	
+	public List<TopMenuinfo> searchMenuByUserId(TopUserinfo topUserinfo);
 	
 	public List<TopMenuinfo> searchAll();
 	
