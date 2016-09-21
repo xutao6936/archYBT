@@ -1,123 +1,92 @@
 $(function() {
 	init();
+	
 	//validate();	
+	
+	$("#searchFilter").unbind('click').click(function(){
+		 var nm_mask = jQuery("#insPrdCode").val()||"";
+		  jQuery("#grid-table").jqGrid('setGridParam', {
+		    url : ctx+'/topInsprdInfo/getInsprdByInsPrdCode.do?insPrdCode=' + nm_mask,
+		    page : 1
+		  }).trigger("reloadGrid");
+	});
+	
 });
 
-function validate(){
-	$('#validation-form').validate({
-		errorElement: 'div',
-		errorClass: 'help-block',
-		focusInvalid: false,
-		rules: {
-			loginAccount: {
-				required: true
-			},
-			loginPwd: {
-				required: true,
-				minlength: 5
-			},
-			confirm_password:{
-				required: true,
-				minlength: 5,
-				equalTo:'#loginPwd'
-			},
-			userName:{
-				required: true
-			}
-			
-		}
-});
-}
 function init() {
-
 	var grid_selector = "#grid-table";
 	var pager_selector = "#grid-pager";
 		jQuery(grid_selector).jqGrid(
 			{
-				url : ctx+'/topRoleinfo/getTopRoleinfoList.do',
+				url : ctx+'/topInsprdInfo/getTopInsPrdInfoList.do',
 				datatype : "json",
 				height : 330,
 				mtype : "post",
-				colNames : [ '','角色编号', '角色名称', '状态', '创建日期',  '更新日期',
-						'更新时间', '操作用户' ],
+				colNames : [  '保险产品编码','保险公司编码','保险产品中文名称', '保险产品中文简称','币种','保险产品种类'
+				              , '保险产品状态','可否质押','发布状态','更新日期','更新时间'],
 				colModel : [{
-					name : 'roleId',
-					index : 'roleId',
+					name : 'insPrdCode',
+					index : 'insPrdCode',
+					//隐藏该列
 					hidden:true,
-					width : 90,
+					//可编辑列  editable与editrules同时为true的时候可编辑隐藏列
+					editable : true,
+					//可编辑隐藏列
+					editrules:{edithidden:true}
+				},{
+					name : 'insCorpCode',
+					index : 'insCorpCode',
+					width : 120,
 					editable : true
 				},{
-					name : 'roleCode',
-					index : 'roleCode',
-					width : 90,
-					editable : true,
-					editrules:{
-						required:true
-					}
-				}, {
-					name : 'roleName',
-					index : 'roleName',
+					name : 'insPrdCnName',
+					index : 'insPrdCnName',
 					width : 150,
-					editable : true,
-					editoptions : {
-						size : "20",
-						maxlength : "30"
-					},
-					editrules:{
-						required:true
-					}
+					editable : true
+				},{
+					name : 'insPrdEnName',
+					index : 'insPrdEnName',
+					width : 150,
+					editable : true
 				}, {
-					name : 'status',
-					index : 'status',
-					width : 70,
+					name : 'insCurrency',
+					index : 'insCurrency',
+					width : 50,
 					editable : true,
-					edittype : "select",
-					editoptions : {
-						value : "0:有效;1:无效"
-					},
-					formatter:function(cellValue){
-						if(cellValue=='0'){
-							return "有效";
-						}else if(cellValue=='1'){
-							return "无效";
-						}
-					},
-					unformat : aceSwitch,
-					editrules:{
-						required:true
-					}
 				},  {
-					name : 'createDate',
-					index : 'createDate',
+					name : 'insPrdType',
+					index : 'insPrdType',
 					width : 90,
 					editable : true,
-					sorttype : "date",
-					unformat : pickDate,
-					editoptions: { readonly: 'readonly'},
-					editrules:{
-						//edithidden:true
-						//required:true
-					}
-				}, {
-					name : 'updateDate',
-					index : 'updateDate',
+				},    {
+					name : 'bandFlag',
+					index : 'bandFlag',
 					width : 90,
-					editable : false,
-					sorttype : "date",
-					unformat : pickDate
-				}, {
+					editable : true,
+				},   {
+					name : 'impawnFlag',
+					index : 'impawnFlag',
+					width : 90,
+					editable : true,
+				},    {
+					name : 'deployFlag',
+					index : 'deployFlag',
+					width : 90,
+					editable : true,
+				},   {
 					name : 'updateTime',
 					index : 'updateTime',
 					width : 90,
 					editable : false,
 					sorttype : "date",
 					unformat : pickDate
-				}, {
-					name : 'updateOperator',
-					index : 'updateOperator',
-					width : 150,
-					sortable : false,
-					editable : true
+				},  {
+					name : 'updateDate',
+					index : 'updateDate',
+					width : 90,
+					editable : false,
+					sorttype : "date",
+					unformat : pickDate
 				} ],
 				//sortname : 'userId',
 				viewrecords : true,// 是否在浏览导航栏显示记录总数
@@ -126,11 +95,11 @@ function init() {
 				pager : pager_selector,
 				altRows : true,// 设置为交替行表格,默认为false
 				// toppager: true,
-
+				editurl:ctx+'/topInsprdInfo/oper.do',
 				multiselect : true,
 				// multikey: "ctrlKey",
 				multiboxonly : true,
-				editurl:ctx+'/topRoleinfo/oper.do',
+				
 				jsonReader : {  
 				    root: "list",   // json中代表实际模型数据的入口  
 				    page: "pageNum",   // json中代表当前页码的数据  
@@ -148,17 +117,10 @@ function init() {
 						enableTooltips(table);
 					}, 0);
 				},
-				// editurl: $path_base+"/dummy.html",//nothing is saved
-				caption : "角色信息列表",
-				//toolbar: [true, 'top'],
+				caption : "保险产品基本信息表",
 				autowidth : true
-				
 
 			});
-		//$("#t_grid-table").append("<table><tr><td>用户名：</td><td><input/></td></tr></table>");
-	// enable search/filter toolbar
-	// jQuery(grid_selector).jqGrid('filterToolbar',{searchOperators :true});
-		
 		jQuery(grid_selector).navGrid(pager_selector,{
 			edit:true,
 			edittext:'编辑',
@@ -180,29 +142,56 @@ function init() {
 			view:true,
 			viewtext:'查看',
 			viewtitle:'查看',
+
 			delfunc:function(){
 				 var cells = $(grid_selector).jqGrid("getGridParam","selarrrow");
 				   if(cells.length>0){
 					   var params = new Array();
 					   $.each(cells,function(i,v){
 						   var ret = $(grid_selector).jqGrid('getRowData', v);
-						   params.push(ret.bankCode);
+						   params.push(ret.insPrdCode);
 					   });
-					   $.ajax({
-						   url:ctx+'/topRoleinfo/delete.do',
+					   
+					   layer.confirm("确认删除吗？", { btn : ['确定','取消']},//按钮
+
+					       function(index){      //确认后执行的操作  
+						   if(index){
+							   $.ajax({
+								   url:ctx+'/topInsprdInfo/deleteTopInsPrdInfo.do',
+								   type: "POST",
+								   dataType:'json',
+								   data:{"ids[]":params},
+							       success:function(msg){
+							    	   if('SUCC'==msg.result){
+							    		   layer.alert('删除成功',{icon:1});  
+							    		   $(grid_selector).trigger("reloadGrid");
+							    		   layer.close(index);
+							    	   }else {
+							    		   layer.alert('删除失败',{icon:2});  
+							    	   }
+							       }	   
+							   }); 
+						   }
+					       },  
+					       function(){      //取消后执行的操作  
+					    	  return;
+					       }); 
+					   /*$.ajax({
+						   url:ctx+'/topInsprdInfo/deleteTopInsPrdInfo.do',
 						   type: "POST",
 						   dataType:'json',
 						   data:{"ids[]":params},
 					       success:function(msg){
 					    	   if('SUCC'==msg.result){
+					    		   layer.alert('删除成功',{icon:1});  
 					    		   $(grid_selector).trigger("reloadGrid");
 					    	   }else {
 					    		   layer.alert('删除失败',{icon:2});  
 					    	   }
-					       }	   
-					   });
+					       }	  
+					   });*/
 				   }else{
-					   layer.alert('请选中一行!',{icon:2});  
+					   layer.alert('请选中一行!',{icon:2}); 
 				   }
 			}
 			},{
@@ -215,6 +204,7 @@ function init() {
 					if(data['result']=='ERROR'){
 						layer.alert(data['errInfo'],{icon:2});  
 					}else {
+						layer.alert('修改成功',{icon:1});  
 						return true;
 					}
 				}
@@ -228,18 +218,26 @@ function init() {
 					if(data['result']=='ERROR'){
 						layer.alert(data['errInfo'],{icon:2});  
 					}else {
+						 layer.alert('添加成功',{icon:1});  
 						return true;
 					}
 				}
-			},{},{},{}).navButtonAdd(pager_selector,{  
-				   caption:"菜单管理",   
-				   buttonicon:"icon-list green",   
-				   onClickButton: function(){glmenu();},   
-				   position:"last"  
-				}).navSeparatorAdd(pager_selector,{
+			},{},{},{}).navSeparatorAdd(pager_selector,{
 			sepclass : "ui-separator",
 			sepcontent: ''
-		});  
+		}).navButtonAdd(pager_selector,{  
+			   caption:"导入",   
+			   buttonicon:"icon-upload green",   
+			   onClickButton: function(){},   
+			   position:"last"  
+			}).navButtonAdd(pager_selector,{  
+				   caption:"下载",   
+				   buttonicon:"icon-download green",   
+				   onClickButton: function(){
+					   location.href=ctx+'/topInsprdInfo/download.do';
+				   },   
+				   position:"last"  
+				});  
 	// switch element when editing inline
 	function aceSwitch(cellvalue, options, cell) {
 		setTimeout(function() {
@@ -259,7 +257,18 @@ function init() {
 		}, 0);
 	}
 
-	
+	function validate(cell){
+		 if(cells.length>0){
+			   var params = new Array();
+			   $.each(cells,function(i,v){
+				   var ret = $(grid_selector).jqGrid('getRowData', v);
+				   if(ret.insCorpCode==null || ret.insCorp ==""){
+					   layer.alert(data['errInfo'],{icon:2});  
+					}
+				   });
+		 }
+	}
+
 	function style_edit_form(form) {
 		// enable datepicker on "sdate" field and switches for "stock" field
 		form.find('input[name=sdate]').datepicker({
@@ -275,7 +284,7 @@ function init() {
 																			// s-icon
 		buttons.eq(0).addClass('btn-primary')
 				.prepend('<i class="icon-ok"></i>');
-		buttons.eq(1).prepend('<i class="icon-remove"></i>')
+		buttons.eq(1).prepend('<i class="icon-remove"></i>');
 
 		buttons = form.next().find('.navButton a');
 		buttons.find('.ui-icon').remove();
@@ -289,7 +298,7 @@ function init() {
 																			// s-icon
 		buttons.eq(0).addClass('btn-danger').prepend(
 				'<i class="icon-trash"></i>');
-		buttons.eq(1).prepend('<i class="icon-remove"></i>')
+		buttons.eq(1).prepend('<i class="icon-remove"></i>');
 	}
 
 	function style_search_filters(form) {
@@ -300,7 +309,7 @@ function init() {
 	}
 	function style_search_form(form) {
 		var dialog = form.closest('.ui-jqdialog');
-		var buttons = dialog.find('.EditTable')
+		var buttons = dialog.find('.EditTable');
 		buttons.find('.EditButton a[id*="_reset"]').addClass(
 				'btn btn-sm btn-info').find('.ui-icon').attr('class',
 				'icon-retweet');
@@ -318,7 +327,7 @@ function init() {
 			return false;
 
 		form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner(
-				'<div class="widget-header" />')
+				'<div class="widget-header" />');
 		style_delete_form(form);
 
 		form.data('styled', true);
@@ -327,7 +336,7 @@ function init() {
 	function beforeEditCallback(e) {
 		var form = $(e[0]);
 		form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner(
-				'<div class="widget-header" />')
+				'<div class="widget-header" />');
 		style_edit_form(form);
 	}
 
@@ -378,7 +387,7 @@ function init() {
 							if ($class in replacement)
 								icon.attr('class', 'ui-icon '
 										+ replacement[$class]);
-						})
+						});
 	}
 
 	function enableTooltips(table) {
@@ -390,96 +399,10 @@ function init() {
 		});
 	}
 	
-	//菜单管理方法
-	function glmenu(){
-		var cell = $(grid_selector).jqGrid("getGridParam","selrow");
-		if(null == cell || 0 == cell.length){
-			layer.alert('请选中一行!',{icon:2}); 
-		}else{
-			var ret = $(grid_selector).jqGrid('getRowData', cell);
-			var roleId = ret.roleId;
-			$.ajax({
-			  	  url:ctx+'/topTaskMenu/rolemenu.do',
-				  type: "POST",
-				  data:{"roleId":roleId},
-				  dataType:'json',
-				  error:function(msg){
-					  if('SUCC'==msg.responseText){
-						  $("#menu-dialog").dialog('close');
-						  $(grid_selector).trigger("reloadGrid");
-					  }else{
-						  layer.alert(msg.responseText,{icon:2}); 
-					  }
-				  },
-				  success:function(data){
-					  
-					  var setting = {
-							    showLine: true,
-							    checkable: true
-							};
-					  
-					  var zTreeNodes = eval(data.menulist);
-					  
-					  zTree = $("#menuTree").zTree(setting,zTreeNodes);
-					  $("#roleId").empty().val(roleId);
-					  $("#menu-dialog").dialog({
-						  title:"菜单管理",
-					      height: 450,
-					      width: 400,
-					      modal: true,
-					      buttons:{
-					    	  "提交":function(){
-					    		  savemenu();
-					    	  },
-					    	  "关闭":function(){
-					    		  $(this).dialog('close');
-					    	  }
-					      }
 
-					   });
-					  
-					  
-				  }
-			  });
-			
-			
-		}
-		
-	}
-
-	function savemenu(){
-	     nodes = zTree.getCheckedNodes(true);
-		 
-		 var tmpNode;
-			var ids = "";
-			for(var i=0; i<nodes.length; i++){
-				tmpNode = nodes[i];
-				if(i!=nodes.length-1){
-					ids += tmpNode.menuCode+",";
-				}else{
-					ids += tmpNode.menuCode;
-				}
-			}
-			$.ajax({
-			  url:ctx+'/topTaskMenu/updaterolemenu.do',
-			  type: "POST",
-			  data:{"menuId":ids,"roleId":$("#roleId").val()},
-			  dataType:'json',
-			  success:function(data){
-				  if("success" == data.flag){
-					  $("#menu-dialog").dialog('close');
-					  layer.alert("保存成功",{icon:2});
-					  //$(grid_selector).trigger("reloadGrid");
-				  }else{
-					  layer.alert(msg.responseText,{icon:2}); 
-				  }
-			  }
-		  });
-	}
+	
 }
 
 
 
-
-// var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
 
