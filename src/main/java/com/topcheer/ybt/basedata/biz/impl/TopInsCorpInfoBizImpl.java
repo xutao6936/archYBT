@@ -1,6 +1,7 @@
 package com.topcheer.ybt.basedata.biz.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -8,12 +9,14 @@ import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.biz.ITopInsCorpInfoBiz;
 import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
 import com.topcheer.ybt.basedata.service.ITopInsCorpInfoService;
+
 @Component
-@Service(value="topInsCorpInfoBizImpl")
+@Service(value = "topInsCorpInfoBizImpl")
 public class TopInsCorpInfoBizImpl implements ITopInsCorpInfoBiz {
-	
-   @Autowired
+
+	@Resource(name = "topInsCorpInfoService")
 	ITopInsCorpInfoService topInsCorpInfoService;
+
 	@Override
 	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoList() {
 		// TODO Auto-generated method stub

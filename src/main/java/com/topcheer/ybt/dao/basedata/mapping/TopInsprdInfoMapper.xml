@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.topcheer.ybt.dao.basedata.TopInsprdInfoMapper">
-<resultMap id="forTopInsprdInfo" type="com.topcheer.ybt.entity.basedata.TopInsprdInfo">
+<mapper namespace="com.topcheer.ybt.basedata.dao.TopInsprdInfoMapper">
+<resultMap id="forTopInsprdInfo" type="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
 		<result property="insPrdCode" column="INSPRDCODE" jdbcType="VARCHAR" />
 		<result property="insCorpCode" column="INSCORPCODE" jdbcType="VARCHAR" />
 		<result property="insPrdCnName" column="INSPRDCHNAME" jdbcType="VARCHAR" />
@@ -35,7 +35,7 @@
 	<select id="searchTopInsPrdInfoByInsPrdCode"  resultMap="forTopInsprdInfo"  parameterType="String">
 		select * from top_insprdInfo where where  INSPRDCODE = #{insPrdCode,jdbcType=VARCHAR}
 	</select>
-	<insert id="insertTopInsPrdInfo"   parameterType="com.topcheer.ybt.entity.basedata.TopInsprdInfo">
+	<insert id="insertTopInsPrdInfo"   parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
 		insert into  top_insprdInfo (
 		INSPRDCODE,
 		INSCORPCODE,
@@ -90,7 +90,7 @@
 	</insert>
 	
 	
-	<update id="updateTopInsPrdInfo"    parameterType="com.topcheer.ybt.entity.basedata.TopInsprdInfo">
+	<update id="updateTopInsPrdInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
 	update TOP_INSPRDINFO
     set INSPRDCODE = #{insPrdCode,jdbcType=VARCHAR},
       INSCORPCODE = #{insCorpCode,jdbcType=VARCHAR},

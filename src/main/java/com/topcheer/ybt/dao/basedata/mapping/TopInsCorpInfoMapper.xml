@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.topcheer.ybt.dao.basedata.TopInsCorpInfoMapper">
-<resultMap id="ForTopInsCorpInfo" type="com.topcheer.ybt.entity.basedata.TopInsCorpInfo">
+<mapper namespace="com.topcheer.ybt.basedata.dao.TopInsCorpInfoMapper">
+<resultMap id="ForTopInsCorpInfo" type="com.topcheer.ybt.basedata.entity.TopInsCorpInfo">
 		<result property="id" column="ID" jdbcType="VARCHAR" />
 		<result property="insCorpCode" column="INSCORP_CODE" jdbcType="VARCHAR" />
 		<result property="insCorpName" column="INSCORP_NAME" jdbcType="VARCHAR" />
@@ -40,7 +40,7 @@
 		</if> 
 	</select>  
 	
-	<insert id="insertTopInsCorpInfo"  parameterType="com.topcheer.ybt.entity.basedata.TopInsCorpInfo">
+	<insert id="insertTopInsCorpInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsCorpInfo">
 		INSERT INTO top_inscorpinfo (
 		ID,
 		INSCORP_CODE,
@@ -94,7 +94,7 @@
 		)
 	</insert>
 	
-	<update id="updateTopInsCorpInfo"    parameterType="com.topcheer.ybt.entity.basedata.TopInsCorpInfo">
+	<update id="updateTopInsCorpInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopInsCorpInfo">
 		UPDATE top_inscorpinfo SET
 		INSCORP_CODE =  #{insCorpCode,jdbcType=VARCHAR},
 		INSCORP_NAME = #{insCorpName,jdbcType=VARCHAR},

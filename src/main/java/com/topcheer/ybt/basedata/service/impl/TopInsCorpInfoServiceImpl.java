@@ -13,11 +13,12 @@ import com.topcheer.ybt.basedata.service.ITopInsCorpInfoService;
 
 @Service("topInsCorpInfoService")
 @Transactional
-public class TopInsCorpInfoServiceImpl implements ITopInsCorpInfoService{
-	
+public class TopInsCorpInfoServiceImpl implements ITopInsCorpInfoService {
+
 	@Autowired
 	protected TopInsCorpInfoMapper topInsCorpinfoMapper;
-	
+
+	@Override
 	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoList() {
 		// TODO Auto-generated method stub
 		List<TopInsCorpInfo> list = topInsCorpinfoMapper.searchAll();
@@ -25,21 +26,25 @@ public class TopInsCorpInfoServiceImpl implements ITopInsCorpInfoService{
 		return pageinfo;
 	}
 
+	@Override
 	public int insertTopInsCorpInfo(TopInsCorpInfo topInsCorpInfo) {
 		// TODO Auto-generated method stub
 		return topInsCorpinfoMapper.insertTopInsCorpInfo(topInsCorpInfo);
 	}
 
+	@Override
 	public int updateTopInsCorpInfo(TopInsCorpInfo topInsCorpInfo) {
 		// TODO Auto-generated method stub
 		return topInsCorpinfoMapper.updateTopInsCorpInfo(topInsCorpInfo);
 	}
 
-	public int deletetTopInsCorpInfo(String  topInsCorpInfoCode) {
+	@Override
+	public int deletetTopInsCorpInfo(String topInsCorpInfoCode) {
 		// TODO Auto-generated method stub
 		return topInsCorpinfoMapper.deleteTopInsCorpInfo(topInsCorpInfoCode);
 	}
 
+	@Override
 	public PageInfo<TopInsCorpInfo> getInsCorpByinsCorpCode(String insCorpCode) {
 		// TODO Auto-generated method stub
 		List<TopInsCorpInfo> list = topInsCorpinfoMapper.searchByinsCorpCode(insCorpCode);

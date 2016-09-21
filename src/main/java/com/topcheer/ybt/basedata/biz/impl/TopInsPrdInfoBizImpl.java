@@ -1,6 +1,7 @@
 package com.topcheer.ybt.basedata.biz.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +11,10 @@ import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.basedata.service.ITopInsprdInfoService;
 
 @Component
-@Service(value="topInsPrdInfoBizImpl")
-public class TopInsPrdInfoBizImpl implements ITopInsPrdInfoBiz{
-	
-	@Autowired
+@Service(value = "topInsPrdInfoBizImpl")
+public class TopInsPrdInfoBizImpl implements ITopInsPrdInfoBiz {
+
+	@Resource(name = "topInsprdInfoService")
 	ITopInsprdInfoService topInsprdInfoService;
 
 	@Override
@@ -23,8 +24,7 @@ public class TopInsPrdInfoBizImpl implements ITopInsPrdInfoBiz{
 	}
 
 	@Override
-	public PageInfo<TopInsprdInfo> getTopInsPrdInfoByInsPrdCode(
-			String insPrdCode) {
+	public PageInfo<TopInsprdInfo> getTopInsPrdInfoByInsPrdCode(String insPrdCode) {
 		// TODO Auto-generated method stub
 		return topInsprdInfoService.getTopInsPrdInfoByInsPrdCode(insPrdCode);
 	}
