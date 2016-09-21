@@ -1,6 +1,7 @@
 package com.topcheer.ybt.filter;
 
 import java.io.IOException;
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -13,25 +14,24 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Strings;
-import com.topcheer.ybt.entity.system.TopUserinfo;
+import com.topcheer.ybt.system.entity.TopUserinfo;
 
-
-/** 
-* @ClassName: LoginFilter 
-* @Description: 登录filter
-* @author XUTAO 
-* @date 2016-6-17 上午09:21:14 
-*  
-*/
+/**
+ * @ClassName: LoginFilter
+ * @Description: 登录filter
+ * @author XUTAO
+ * @date 2016-6-17 上午09:21:14
+ * 
+ */
 public class LoginFilter implements Filter {
 	private static Logger log = LoggerFactory.getLogger(LoginFilter.class);
 	private static String allowUrl;
-    /**
-     * Default constructor. 
-     */
-    public LoginFilter() {
-    }
+
+	/**
+	 * Default constructor.
+	 */
+	public LoginFilter() {
+	}
 
 	/**
 	 * @see Filter#destroy()
@@ -42,38 +42,39 @@ public class LoginFilter implements Filter {
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
-	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest)arg0;
-		HttpServletResponse response = (HttpServletResponse)arg1;
+	public void doFilter(ServletRequest arg0, ServletResponse arg1, FilterChain chain) throws IOException,
+			ServletException {
+		HttpServletRequest request = (HttpServletRequest) arg0;
+		HttpServletResponse response = (HttpServletResponse) arg1;
 		String URI = request.getRequestURI();
-		if(validateUrl(URI)){
+		if (validateUrl(URI)) {
 			chain.doFilter(request, response);
-			
-		}else{
-			TopUserinfo userinfo =  (TopUserinfo) request.getSession().getAttribute("userinfo");
-			if(null ==userinfo){
+
+		} else {
+			TopUserinfo userinfo = (TopUserinfo) request.getSession().getAttribute("userinfo");
+			if (null == userinfo) {
 				log.info("用户未登录");
 				response.sendRedirect(request.getContextPath() + "/login.jsp");
-//				request.getRequestDispatcher(request.getContextPath() + "/login.jsp").forward(request, response);  
-//				response.setHeader("Cache-Control", "no-store");  
-//	            response.setDateHeader("Expires", 0);  
-//	            response.setHeader("Pragma", "no-cache");  
+				// request.getRequestDispatcher(request.getContextPath() + "/login.jsp").forward(request, response);
+				// response.setHeader("Cache-Control", "no-store");
+				// response.setDateHeader("Expires", 0);
+				// response.setHeader("Pragma", "no-cache");
 				return;
-			}else{
-				log.info("登录账户为{}",userinfo.getLoginAccount());
+			} else {
+				log.info("登录账户为{}", userinfo.getLoginAccount());
 				chain.doFilter(request, response);
 			}
 		}
-			
-			
+
 	}
-	
-	private static boolean validateUrl(String URI){
-		if(URI.indexOf(allowUrl)!=-1){
+
+	private static boolean validateUrl(String URI) {
+		if (URI.indexOf(allowUrl) != -1) {
 			return true;
 		}
 		return false;
 	}
+
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */

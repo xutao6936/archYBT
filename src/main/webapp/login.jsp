@@ -77,13 +77,13 @@
 												<label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
 														id="loginAccount" name="loginAccount" type="text"
-														class="form-control" placeholder="请输入柜员号" maxlength="8"/> <i
-														class="icon-user"></i>
+														class="form-control" placeholder="请输入柜员号" maxlength="8" />
+														<i class="icon-user"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
 														id="pwd" name="pwd" type="password" class="form-control"
-														placeholder="密码" maxlength="8"/> <i class="icon-lock"></i>
+														placeholder="密码" maxlength="8" /> <i class="icon-lock"></i>
 												</span>
 												</label>
 
@@ -131,8 +131,11 @@
 	<!--[if !IE]> -->
 
 	<script type="text/javascript">
-			window.jQuery || document.write("<script src='assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-		</script>
+		window.jQuery
+				|| document
+						.write("<script src='assets/js/jquery-2.0.3.min.js'>"
+								+ "<"+"/script>");
+	</script>
 
 	<!-- <![endif]-->
 
@@ -143,37 +146,40 @@
 <![endif]-->
 
 	<script type="text/javascript">
-			if("ontouchend" in document) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
-		</script>
+		if ("ontouchend" in document)
+			document
+					.write("<script src='assets/js/jquery.mobile.custom.min.js'>"
+							+ "<"+"/script>");
+	</script>
 
 	<!-- inline scripts related to this page -->
 
 	<script type="text/javascript">
-			function show_box(id) {
-			 jQuery('.widget-box.visible').removeClass('visible');
-			 jQuery('#'+id).addClass('visible');
-			}
-			
-			$(function(){
-				$('#validation-form').validate({
-					errorElement: 'div',
-					errorClass: 'help-block',
-					focusInvalid: false,
-					rules: {
-						loginAccount: {
-							required: true,
-							maxlength:8
-						},
-						pwd: {
-							required: true,
-							minlength: 5,
-							maxlength:8
-						}
-						
+		function show_box(id) {
+			jQuery('.widget-box.visible').removeClass('visible');
+			jQuery('#' + id).addClass('visible');
+		}
+
+		$(function() {
+			$('#validation-form').validate({
+				errorElement : 'div',
+				errorClass : 'help-block',
+				focusInvalid : false,
+				rules : {
+					loginAccount : {
+						required : true,
+						maxlength : 8
+					},
+					pwd : {
+						required : true,
+						minlength : 5,
+						maxlength : 8
 					}
-				});
+
+				}
 			});
-		</script>
+		});
+	</script>
 
 
 </body>

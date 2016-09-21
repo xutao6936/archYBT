@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.system.dao.TopUserRoleMapper" >
+	<resultMap id="TopUserRoleResultMap" type="com.topcheer.ybt.system.entity.TopUserRole" >
+       		<result property="id"    column="ID" jdbcType="VARCHAR" />
+       		<result property="roleId"    column="ROLE_ID" jdbcType="VARCHAR" />
+       		<result property="userId"    column="USER_ID" jdbcType="VARCHAR" />
+       		<result property="createDate"    column="CREATE_DATE" jdbcType="VARCHAR" />
+       		<result property="updateDate"    column="UPDATE_DATE" jdbcType="VARCHAR" />
+	</resultMap>
+    <sql id="TopUserRoleColumnList" >
+    		ID,
+    		ROLE_ID,
+    		USER_ID,
+    		CREATE_DATE,
+    		UPDATE_DATE
+    </sql>
+    <select id="searchTopUserRole" resultMap="TopUserRoleResultMap" parameterType="com.topcheer.ybt.system.entity.TopUserRole">
+    	select  * from TOP_USER_ROLE
+		where 1=1
+    		<if test="id !=null and id != '' ">
+		    	and ID = #{id,jdbcType=VARCHAR}
+			</if>
+    		<if test="roleId !=null and roleId != '' ">
+		    	and ROLE_ID = #{roleId,jdbcType=VARCHAR}
+			</if>
+    		<if test="userId !=null and userId != '' ">
+		    	and USER_ID = #{userId,jdbcType=VARCHAR}
+			</if>
+    		<if test="createDate !=null and createDate != '' ">
+		    	and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="updateDate !=null and updateDate != '' ">
+		    	and UPDATE_DATE = #{updateDate,jdbcType=VARCHAR}
+			</if>
+  	</select> 
+  	
+  	<select id="searchAll" resultMap="TopUserRoleResultMap" parameterType="HashMap">
+    	select * from TOP_USER_ROLE 
+  	</select> 
+  	
+  	<insert id="insert" parameterType="com.topcheer.ybt.system.entity.TopUserRole">
+  		INSERT INTO TOP_USER_ROLE (
+    			ID,
+    			ROLE_ID,
+    			USER_ID,
+    			CREATE_DATE,
+    			UPDATE_DATE
+  		)VALUES (
+    		#{id,jdbcType=VARCHAR},
+    		#{roleId,jdbcType=VARCHAR},
+    		#{userId,jdbcType=VARCHAR},
+    		#{createDate,jdbcType=VARCHAR},
+    		#{updateDate,jdbcType=VARCHAR}
+  		)
+  	</insert>
+  	
+  	<insert id="update" parameterType="com.topcheer.ybt.system.entity.TopUserRole">
+  		update TOP_USER_ROLE set  
+	      		ROLE_ID = #{roleId,jdbcType=VARCHAR}  ,
+	      		USER_ID = #{userId,jdbcType=VARCHAR}  ,
+	      		CREATE_DATE = #{createDate,jdbcType=VARCHAR}  ,
+	      		UPDATE_DATE = #{updateDate,jdbcType=VARCHAR}  
+  		where ID = #{id,jdbcType=VARCHAR}
+  	</insert>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete from TOP_USER_ROLE where ID = #{id,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<delete id="deleteByUserId" parameterType="String">
+  		delete from TOP_USER_ROLE where USER_ID = #{userId,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<select id="getTopUserRole" resultMap="TopUserRoleResultMap" parameterType="String">
+  		select * from TOP_USER_ROLE  where ID = #{id,jdbcType=VARCHAR}
+  	</select>
+</mapper>

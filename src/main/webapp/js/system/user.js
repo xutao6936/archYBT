@@ -162,65 +162,7 @@ function init() {
 				caption : "用户信息列表",
 				//toolbar: [true, 'top'],
 				autowidth : true,
-				subGrid: true,
-				subGridOptions:{
-					plusicon : 'icon-plus purple',
-					minusicon : 'icon-minus',
-					openicon:'ui-icon-carat-1-sw', 
-					//expandOnLoad: false, 
-					selectOnExpand : true, 
-					reloadOnExpand : true
-				},
-				subGridRowExpanded:function (subgrid_id, row_id){
-					var subgrid_table_id;  
-				    subgrid_table_id = subgrid_id + "_t";   //   
-				    var rowData = $(grid_selector).getRowData(row_id);
-				    var user_id=rowData['userId'];
-				    var subgrid_pager_id;  
-				    subgrid_pager_id = subgrid_id + "_pgr" ; //   
-				//(4)根据subgrid_id定义对应的子表格的pager的id  
-				      
-				    // (5)动态添加子报表的table和pager  
-				    $("#" + subgrid_id).html("<table id='"+subgrid_table_id+"'class='scroll'></table><div id='"+subgrid_pager_id+"'class='scroll'></div>");  
-				      
-				    // (6)创建jqGrid对象  
-				    $("#" + subgrid_table_id).jqGrid({  
-				        url : ctx+'/topUserRole/getTopUserRoleList.do?userId='+user_id,
-				//(7)子表格数据对应的url，注意传入的contact.id参数  
-				        datatype: "json",  
-				        colNames: ['角色编号','用户编号','创建时间'],  
-				        colModel: [  
-				            {name:"roleId",index:"roleId",width:130,key:true},  
-				            {name:"userId",index:"userId",width:130,params:['userId']},  
-				            {name:"createDate",index:"createDate",width:130,align:"right"}
-				        ],  
-				        jsonReader: {   // (8)针对子表格的jsonReader设置  
-				        	root: "list",   // json中代表实际模型数据的入口  
-						    page: "pageNum",   // json中代表当前页码的数据  
-						    total: "pages", // json中代表页码总数的数据  
-						    records: "total", // json中代表数据行总数的数据  
-						    repeatitems: true // 如果设为false，则jqGrid在解析json时，会根据name来搜索对应的数据元素（即可以json中元素可以不按顺序）；而所使用的name是来自于colModel中的name设定。  
-				        },  
-				        caption : "用户角色绑定列表",
-				        //prmNames: {search: "search"},  
-				        pager: subgrid_pager_id,  
-				        rowNum : 5,// 每页显示记录数
-						rowList : [ 5, 10, 15 ],// 用于改变显示行数的下拉列表框的元素数组。
-				        viewrecords: true,  
-				        height: "100%",
-				        width:500,
-				        loadComplete : function(data) {
-							var table = this;
-							setTimeout(function() {
-								//styleCheckbox(table);
-								updateActionIcons(table);
-								updatePagerIcons(table);
-								enableTooltips(table);
-							}, 0);
-						},
-				        altRows: true
-				   }); 
-				}
+				
 
 			});
 	// enable search/filter toolbar
@@ -229,13 +171,20 @@ function init() {
 		jQuery(grid_selector).navGrid(pager_selector,{edit:false,add:false,del:false,search:false}).navButtonAdd(pager_selector,{  
 		   caption:"新增",   
 		   buttonicon:"icon-plus-sign purple",   
-		   onClickButton: function(){ 
+		   onClickButton: function(){
+			   $("#loginAccount_userName").val("");
+			   $("#loginPwd").val("");
+			   $("#confirm_password").val("");
+			   $("#userName").val("");
+			   $("#userDept").val("");
+			   
 			   $("#dialog-form").dialog({
-				  title:"<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-ok'></i>新增用户</h4></div>",
-				  //autoOpen: false,
-				  title_html: true,
-			      height: 450,
-			      width: 400,
+				   
+				   title:"<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-plus'></i>新增用户</h4></div>",
+				   title_html: true,
+				   autoOpen: true,
+				   height: 400,
+				   width: 350,
 			      modal: true,
 //			      open:
 			      buttons:[{
@@ -274,18 +223,22 @@ function init() {
 			   buttonicon:"icon-pencil blue",   
 			   onClickButton: function(){   
 				   var cell = $(grid_selector).jqGrid("getGridParam","selrow");
-				   if(cell!=null && cell.length==1){ 
+				   if(cell!=null && cell.length>0){ 
 					   $("#dialog-form").dialog({
-							  title:"编辑用户",
-							  autoOpen: false,
-						      height: 450,
+						      title:"<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-edit'></i>更新用户</h4></div>",
+							  title_html: true,
+							  autoOpen:true,
+							  height: 400,
+						      width: 350,
 						      open:function(){
 						    	  $(grid_selector).jqGrid('GridToForm',cell, '#dialog-form');
 						      },
 						      width: 400,
 						      modal: true,
-						      buttons:{
-						    	  "提交":function(){
+						      buttons:[{
+						    	  text:'提交',
+						    	  "class" : "btn btn-primary btn-xs",
+						    	  click:function(){
 						    		  $.ajax({
 						    			  url:ctx+'/user/update.do',
 										  type: "POST",
@@ -301,11 +254,14 @@ function init() {
 											  }
 										  }
 						    		  });
-						    	  },
-						    	  "关闭":function(){
-						    		  $(this).dialog('close');
-						    	  }
-						      }
+						    	  }},{
+						    		  text:"关闭",
+							    	  "class" : "btn btn-xs",
+						    		  click:function(){
+						    			  $(this).dialog('close');
+						    			  $(this).dialog('destroy');					    			  
+						    		  }
+						    	  }]
 
 						   }); 
 					   }else {
@@ -326,18 +282,27 @@ function init() {
 					   var ret = $(grid_selector).jqGrid('getRowData', v);
 					   params.push(ret.userId);
 				   });
-				   $.ajax({
-					   url:ctx+'/user/deleteUser.do',
-					   type: "POST",
-					   data:{"ids[]":params},
-				       success:function(msg){
-				    	   if('SUCC'==msg){
-				    		   $(grid_selector).trigger("reloadGrid");
-				    	   }else {
-				    		   layer.alert('删除失败',{icon:2});  
-				    	   }
-				       }	   
-				   });
+				   layer.confirm("确定删除吗？",{
+					   btn: ['确定','取消'] //按钮
+				   },function(r){
+					   if(r){					   
+						   $.ajax({
+							   url:ctx+'/user/deleteUser.do',
+							   type: "POST",
+							   data:{"ids[]":params},
+							   success:function(msg){
+								   if('SUCC'==msg){
+									   $(grid_selector).trigger("reloadGrid");
+									   layer.close(r);
+								   }else {
+									   layer.alert('删除失败',{icon:2});  
+								   }
+							   }	   
+						   });
+					   }
+				   },function(){
+			            return;
+			       });
 			   }else{
 				   layer.alert('请选中一行!',{icon:2}); 
 			   }
@@ -352,12 +317,12 @@ function init() {
 			   position:"last"  
 			}).navButtonAdd(pager_selector,{  
 				   caption:"上传",   
-				   buttonicon:"icon-refresh green",   
+				   buttonicon:"icon-upload green",   
 				   onClickButton: uploadPath,   
 				   position:"last"  
 				}).navButtonAdd(pager_selector,{  
 					   caption:"角色设置",   
-					   buttonicon:"icon-refresh green",   
+					   buttonicon:"icon-user green",   
 					   onClickButton: function(){glmenu();},   
 					   position:"last"  
 					}).navSeparatorAdd(pager_selector,{
@@ -386,38 +351,31 @@ function init() {
 	
 function uploadPath(){
 	var cell = $(grid_selector).jqGrid("getGridParam","selrow");
-	   if(cell !=null && cell.length==1){ 
+	   if(cell !=null && cell.length > 0){ 
 		   $("#userFile-dialog").dialog({
-				  title:"上传头像",
+			      title:"<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-upload'></i>上传图片</h4></div>",
+				  title_html: true,
 				  //autoOpen: false,
 			      height: 450,
+			      width: 400,
 			      open:function(){
 			    	  $(grid_selector).jqGrid('GridToForm',cell, '#upload-form');
 			      },
 			      width: 400,
 			      modal: true,
-			      buttons:{
-			    	  "提交":function(){
-			    		  $('#upload-form').ajaxSubmit({
-			    			  url:ctx+'/user/upload.do',
-							  type: "POST",
-							  data:$('#upload-form').serialize(),
-							  dataType:'json',
-							  //beforeSend:validate(),
-							  success:function(msg){
-								  if('SUCC'==msg.flag){
-									  $("#userFile-dialog").dialog('close');
-									  $(grid_selector).trigger("reloadGrid");
-								  }else{
-									  alert(msg.flag);
-								  }
-							  }
-			    		  });
-			    	  },
-			    	  "关闭":function(){
+			      buttons:[{
+			    	  text:"提交",
+			    	  "class" : "btn btn-primary btn-xs",
+			    	  click:function(){
+			    		  $("#img_file").fileinput('upload');
+			    	  }
+			      },{
+			    	  text:"关闭",
+			    	  "class" : "btn btn-xs",
+			    	  click:function(){
 			    		  $(this).dialog('close');
 			    	  }
-			      }
+			      }]
 
 			   }); 
 		   }else {
@@ -592,18 +550,24 @@ function uploadPath(){
 					  zTree = $("#menuTree").zTree(setting,zTreeNodes);
 					  $("#userId").empty().val(userId);
 					  $("#menu-dialog").dialog({
-						  title:"角色信息",
-					      height: 450,
-					      width: 400,
+						  title:"<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-user'></i>角色设置 </h4></div>",
+						  title_html: true,
+					      height: 400,
+					      width: 350,
 					      modal: true,
-					      buttons:{
-					    	  "提交":function(){
-					    		  savemenu();
-					    	  },
-					    	  "关闭":function(){
-					    		  $(this).dialog('close');
-					    	  }
-					      }
+					      buttons:[{
+						    	  text:"提交",
+						    	  "class" : "btn btn-primary btn-xs",
+						    	  click:function(){
+						    		  savemenu();
+						    	  }
+						      },{
+						    	  text:"关闭",
+						    	  "class" : "btn btn-xs",
+						    	  click:function(){
+						    		  $(this).dialog('close');
+						    	  }
+						      }]
 
 					   });
 					  
@@ -637,7 +601,7 @@ function uploadPath(){
 			  success:function(data){
 				  if("SUCC" == data.result){
 					  $("#menu-dialog").dialog('close');
-					  layer.alert("保存成功",{icon:2});
+					  layer.alert("保存成功",{icon:1});
 					  //$(grid_selector).trigger("reloadGrid");
 				  }else{
 					  layer.alert(msg.responseText,{icon:2}); 
