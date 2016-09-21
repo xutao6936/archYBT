@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.biz.ITopInsCorpInfoBiz;
 import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
-import com.topcheer.ybt.entity.system.TopUserinfo;
+import com.topcheer.ybt.system.entity.TopUserinfo;
 import com.topcheer.ybt.util.DateUtil;
 import com.topcheer.ybt.util.ResultHelper;
 
