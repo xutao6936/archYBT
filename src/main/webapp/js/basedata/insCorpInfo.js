@@ -51,12 +51,21 @@ function init() {
 					name : 'insCorpLevel',
 					index : 'insCorpLevel',
 					width : 100,
-					editable : true,
+					/*editable : true,
 					edittype : "select",
 					editoptions : {
 						value : "0:总公司;1:分公司"
+					},*/
+					unformat:function(cellValue, options, rowObject){
+						if(cellValue=='总公司'){
+							return "0";
+						}else if(cellValue=='分公司'){
+							return "1";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
 					},
-					formatter:function(cellValue){
+					formatter:function(cellValue, options, rowObject){
 						if(cellValue=='0'){
 							return "总公司";
 						}else if(cellValue=='1'){
@@ -65,6 +74,7 @@ function init() {
 							return "";
 						}
 					}
+					
 				},{
 					name : 'upCorpCode',
 					index : 'upCorpCode',
