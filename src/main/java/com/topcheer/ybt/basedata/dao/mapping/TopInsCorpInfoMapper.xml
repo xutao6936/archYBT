@@ -32,12 +32,42 @@
 		select * from top_inscorpInfo
 	</select>  
 	
-	<select id="searchByinsCorpCode" resultMap="ForTopInsCorpInfo"   parameterType="String">
+	<select id="searchByinsCorpCode" resultMap="ForTopInsCorpInfo"   parameterType="com.topcheer.ybt.basedata.entity.TopInsCorpInfo">
 		select * from top_inscorpInfo
 		where 1=1
 		<if test="insCorpCode !=null and insCorpCode != '' ">
-			and  INSCORPCODE = #{insCorpCode,jdbcType=VARCHAR}
+			and  INSCORP_CODE = #{insCorpCode,jdbcType=VARCHAR}
 		</if> 
+		<if test="insCorpName !=null and insCorpName != '' ">
+			and  INSCORP_NAME = #{insCorpName,jdbcType=VARCHAR}
+		</if>
+		<if test="insCorpLevel !=null and insCorpLevel != '' ">
+			and  INSCORP_LEVEL = #{insCorpLevel,jdbcType=VARCHAR}
+		</if>
+		<if test="upCorpCode !=null and upCorpCode != '' ">
+			and  UPCORP_CODE = #{upCorpCode,jdbcType=VARCHAR}
+		</if>
+		<if test="status !=null and status != '' ">
+			and  STATUS = #{status,jdbcType=VARCHAR}
+		</if>
+		<if test="commonCountFlag !=null and commonCountFlag != '' ">
+			and  COMMON_COUNTER_FLAG = #{commonCountFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="commonNetFlag !=null and commonNetFlag != '' ">
+			and  COMMON_NET_FLAG = #{commonNetFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="commonCheckFlag !=null and commonCheckFlag != '' ">
+			and  COMMON_CHECK_FLAG = #{commonCheckFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="commonNossdcheckFlag !=null and commonNossdcheckFlag != '' ">
+			and  COMMON_NOSSDCHECK_FLAG = #{commonNossdcheckFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="commonSystbFlag !=null and commonSystbFlag != '' ">
+			and  COMMON_SYSTB_FLAG = #{commonSystbFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="channelFlag !=null and channelFlag != '' ">
+			and  CHANNEL_FLAG = #{channelFlag,jdbcType=VARCHAR}
+		</if>
 	</select>  
 	
 	<insert id="insertTopInsCorpInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsCorpInfo">

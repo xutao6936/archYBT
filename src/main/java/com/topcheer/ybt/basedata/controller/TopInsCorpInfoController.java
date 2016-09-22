@@ -62,18 +62,25 @@ public class TopInsCorpInfoController {
 	 */
 	@RequestMapping(value = "/getInsCorpByInsCorpCode.do", method = RequestMethod.POST)
 	@ResponseBody
-	public PageInfo<TopInsCorpInfo> getInsCorpByInsCorpCode(HttpServletRequest request) {
-		String insCorpCode = request.getParameter("insCorpInfoCode");
-		log.info("进入getInsCorpByInsCorpCode  insCorpInfoCode==" + insCorpCode);
+	public PageInfo<TopInsCorpInfo> getInsCorpByInsCorpCode(@Valid TopInsCorpInfo topInsCorpInfo, BindingResult result,
+			HttpServletRequest request) {
+		log.info("进入getInsCorpByInsCorpCode " );
 		PageInfo<TopInsCorpInfo> searchTopInsCorpInfo = null;
-		if ((insCorpCode != null) && !"".equals(insCorpCode)) {
-			searchTopInsCorpInfo = topInsCorpInfoBiz.getInsCorpByinsCorpCode(insCorpCode);
-		} else {
-			searchTopInsCorpInfo = topInsCorpInfoBiz.getTopInsCorpInfoList();
-		}
+		//if ((insCorpCode != null) && !"".equals(insCorpCode)) {
+			searchTopInsCorpInfo = topInsCorpInfoBiz.getInsCorpByinsCorpCode(topInsCorpInfo);
+		//} else {
+		//	searchTopInsCorpInfo = topInsCorpInfoBiz.getTopInsCorpInfoList();
+		//}
 
 		return searchTopInsCorpInfo;
 	}
+/*	public Map<String, Object> getInsCorpByInsCorpCode(@Valid TopInsCorpInfo topInsCorpInfo, BindingResult result,
+			HttpServletRequest request) {
+		log.info("进入getInsCorpByInsCorpCode  topInsCorpInfo.getInsCorpCode=="+topInsCorpInfo.getInsCorpCode() );
+			 topInsCorpInfoBiz.getInsCorpByinsCorpCode(topInsCorpInfo);
+
+			return ResultHelper.getResultMap();
+	}*/
 
 	/**
 	 * 判断新增还是编辑操作

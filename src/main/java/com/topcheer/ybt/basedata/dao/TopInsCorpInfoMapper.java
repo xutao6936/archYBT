@@ -9,7 +9,8 @@ import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
 public interface TopInsCorpInfoMapper {
 	public List<TopInsCorpInfo> searchAll();
 	
-	public List<TopInsCorpInfo> searchByinsCorpCode(String  insCorpCode);
+	//public List<TopInsCorpInfo> searchByinsCorpCode(String  insCorpCode);
+	public List<TopInsCorpInfo> searchByinsCorpCode(TopInsCorpInfo topInsCorpInfo);
 	
 	public int  insertTopInsCorpInfo(TopInsCorpInfo topInsCorpInfo);
 	

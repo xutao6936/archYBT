@@ -7,7 +7,8 @@ public interface ITopInsCorpInfoService {
 	//查询保险公司信息
 	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoList();
 	//根据保险公司编码查询保险公司信息
-	public PageInfo<TopInsCorpInfo> getInsCorpByinsCorpCode(String insCorpCode);
+	//public PageInfo<TopInsCorpInfo> getInsCorpByinsCorpCode(String insCorpCode);
+	public PageInfo<TopInsCorpInfo> getInsCorpByinsCorpCode(TopInsCorpInfo topInsCorpInfo);
 	//添加保险公司信息
 	public int insertTopInsCorpInfo(TopInsCorpInfo topInsCorpInfo);
 	//更新保险公司信息

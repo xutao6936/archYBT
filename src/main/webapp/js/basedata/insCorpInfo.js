@@ -2,13 +2,24 @@ $(function() {
 	init();
 	
 	//validate();	
-	
 	$("#searchFilter").unbind('click').click(function(){
-		 var nm_mask = jQuery("#insCorpInfoCode").val()||"";
-		  jQuery("#grid-table").jqGrid('setGridParam', {
-		    url : ctx+'/topInsCorpInfo/getInsCorpByInsCorpCode.do?insCorpInfoCode=' + nm_mask,
-		    page : 1
-		  }).trigger("reloadGrid");
+	//	var param = $('#searchForm').serialize();
+//		console.info(param);
+		 $.ajax({
+			   url:ctx+'/topInsCorpInfo/getInsCorpByInsCorpCode.do',
+			   type: "POST",
+			   data:$('#searchForm').serialize(),
+			   dataType:'json',
+			   async: false,
+		       success:function(msg){
+		    	   if('SUCC'==msg.result){
+		    		   layer.alert('条件查询',{icon:1});  
+		    		   $(grid_selector).trigger("reloadGrid");
+		    	   }else {
+		    		   layer.alert('查询失败',{icon:2});  
+		    	   }
+		       }	   
+		   });
 	});
 	
 });
@@ -321,7 +332,7 @@ function init() {
 								  type: "POST",
 								  data:$('#validation-form').serialize(),
 								  dataType:'json',
-								 // beforeSend:validate(),
+								  beforeSend:validate(),
 								  success:function(msg){
 									  if('SUCC'==msg.result){
 										  layer.alert('添加成功',{icon:1});  
@@ -350,7 +361,7 @@ function init() {
 				   onClickButton: function(){   
 					   var cell = $(grid_selector).jqGrid("getGridParam","selrow");
 					   if(cell.length>0){ 
-						  var rowData = $(grid_selector).jqGrid("getRowData",cell);
+						//  var rowData = $(grid_selector).jqGrid("getRowData",cell);
 						   $("#dialog-form").dialog({
 								  title:"编辑用户",
 								//  autoOpen: false,
@@ -715,6 +726,35 @@ function init() {
 			container : 'body'
 		});
 	}
+}
+
+function validate(){
+	$('#validation-form').validate({
+		errorElement: 'div',
+		errorClass: 'help-block',
+		focusInvalid: false,
+		rules: {
+			insCorpCode: {
+				required: true
+				
+			},
+			insCorpName: {
+				required: true,
+			},
+			insSimpName:{
+				required: true,
+				minlength: 5,
+				//equalTo:'#loginPwd'
+			},
+			insCorpEnName:{
+				required: true
+			}
+			
+		},
+	 messages: {
+		 insCorpCode: { required: "保险公司编码不能为空" }
+	 }
+});
 }
 
 
