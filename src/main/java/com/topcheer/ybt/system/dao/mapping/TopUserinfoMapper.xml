@@ -68,7 +68,7 @@
 		    	and LOGIN_PWD = #{loginPwd,jdbcType=VARCHAR}
 			</if>
     		<if test="userName !=null and userName != '' ">
-		    	and USER_NAME = #{userName,jdbcType=VARCHAR}
+		    	and USER_NAME like '%${userName}%'
 			</if>
     		<if test="userStatus !=null and userStatus != '' ">
 		    	and USER_STATUS = #{userStatus,jdbcType=VARCHAR}

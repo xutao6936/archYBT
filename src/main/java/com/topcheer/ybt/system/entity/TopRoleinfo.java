@@ -5,40 +5,46 @@ import org.hibernate.validator.constraints.NotBlank;
 
 public class TopRoleinfo {
 
+	// 角色ID
 	private String roleId;
-	
-	@NotBlank(message="角色代码不能为空")
+	// 角色编号
 	private String roleCode;
-	
-	@NotBlank(message="角色代码不能为空")
+	// 角色名称
+	@NotBlank(message="角色名称不能为空")
 	private String roleName;
+	// 状态(0:有效1:无效)
+
+	private String status;
+	// 描述
 
 	private String description;
-
-	private String isreview;
-	
-	@NotBlank(message="状态不能为空")
-	private String status;
+	// 创建日期
 
 	private String createDate;
+	// 更新日期
 
 	private String updateDate;
+	// 更新时间
 
 	private String updateTime;
+	// 更新账号
 
 	private String updateOperator;
 
+	private boolean checked;//权限标志
+
+	// 备用字段1
+
 	private String remark1;
+	// 备用字段2
 
 	private String remark2;
+	// 备用字段3
 
 	private String remark3;
+	// 备用字段4
 
 	private String remark4;
-
-	private String remark5;
-	
-	private boolean checked;
 
 	public String getRoleId() {
 		return roleId;
@@ -64,28 +70,20 @@ public class TopRoleinfo {
 		this.roleName = roleName;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getIsreview() {
-		return isreview;
-	}
-
-	public void setIsreview(String isreview) {
-		this.isreview = isreview;
-	}
-
 	public String getStatus() {
 		return status;
 	}
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public String getCreateDate() {
@@ -102,6 +100,14 @@ public class TopRoleinfo {
 
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public boolean isChecked() {
+		return checked;
+	}
+
+	public void setChecked(boolean checked) {
+		this.checked = checked;
 	}
 
 	public String getUpdateTime() {
@@ -152,22 +158,4 @@ public class TopRoleinfo {
 		this.remark4 = remark4;
 	}
 
-	public String getRemark5() {
-		return remark5;
-	}
-
-	public void setRemark5(String remark5) {
-		this.remark5 = remark5;
-	}
-
-	public boolean isChecked() {
-		return checked;
-	}
-
-	public void setChecked(boolean checked) {
-		this.checked = checked;
-	}
-	
-	
-	
 }

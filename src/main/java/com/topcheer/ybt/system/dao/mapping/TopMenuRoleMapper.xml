@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.system.dao.TopMenuRoleMapper" >
+	<resultMap id="TopMenuRoleResultMap" type="com.topcheer.ybt.system.entity.TopMenuRole" >
+       		<result property="id"    column="ID" jdbcType="VARCHAR" />
+       		<result property="roleId"    column="ROLE_ID" jdbcType="VARCHAR" />
+       		<result property="menuId"    column="MENU_ID" jdbcType="VARCHAR" />
+	</resultMap>
+    <sql id="TopMenuRoleColumnList" >
+    		ID,
+    		ROLE_ID,
+    		MENU_ID
+    </sql>
+    <select id="searchTopMenuRole" resultMap="TopMenuRoleResultMap" parameterType="com.topcheer.ybt.system.entity.TopMenuRole">
+    	select  * from TOP_MENU_ROLE
+		where 1=1
+    		<if test="id !=null and id != '' ">
+		    	and ID = #{id,jdbcType=VARCHAR}
+			</if>
+    		<if test="roleId !=null and roleId != '' ">
+		    	and ROLE_ID = #{roleId,jdbcType=VARCHAR}
+			</if>
+    		<if test="menuId !=null and menuId != '' ">
+		    	and MENU_ID = #{menuId,jdbcType=VARCHAR}
+			</if>
+  	</select> 
+  	
+  	<select id="searchAll" resultMap="TopMenuRoleResultMap" parameterType="HashMap">
+    	select * from TOP_MENU_ROLE 
+  	</select> 
+  	
+  	<insert id="insert" parameterType="com.topcheer.ybt.system.entity.TopMenuRole">
+  		INSERT INTO TOP_MENU_ROLE (
+    			ID,
+    			ROLE_ID,
+    			MENU_ID
+  		)VALUES (
+    		#{id,jdbcType=VARCHAR},
+    		#{roleId,jdbcType=VARCHAR},
+    		#{menuId,jdbcType=VARCHAR}
+  		)
+  	</insert>
+  	
+  	<insert id="update" parameterType="com.topcheer.ybt.system.entity.TopMenuRole">
+  		update TOP_MENU_ROLE set  
+	      		ROLE_ID = #{roleId,jdbcType=VARCHAR}  ,
+	      		MENU_ID = #{menuId,jdbcType=VARCHAR}  
+  		where ID = #{id,jdbcType=VARCHAR}
+  	</insert>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete from TOP_MENU_ROLE where ID = #{id,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<delete id="deleteByRoleId" parameterType="String">
+  		delete from TOP_MENU_ROLE where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<delete id="deleteByMenuId" parameterType="String">
+  		delete from TOP_MENU_ROLE where MENU_ID = #{menuId,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<select id="getTopMenuRole" resultMap="TopMenuRoleResultMap" parameterType="String">
+  		select * from TOP_MENU_ROLE  where ID = #{id,jdbcType=VARCHAR}
+  	</select>
+  	
+  	<select id="searchMenuByRoleId" resultMap="TopMenuRoleResultMap" parameterType="String">
+  		select * from TOP_MENU_ROLE  where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  	</select>
+</mapper>

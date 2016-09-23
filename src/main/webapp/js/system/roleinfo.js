@@ -1,7 +1,18 @@
 $(function() {
+	$.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
+		_title: function(title) {
+			var $title = this.options.title || '&nbsp;';
+			if( ("title_html" in this.options) && this.options.title_html == true )
+				title.html($title);
+			else title.text($title);
+		}
+	}));
+	
 	init();
 	//validate();	
 });
+
+var zTree;
 
 function validate(){
 	$('#validation-form').validate({
@@ -50,10 +61,8 @@ function init() {
 					name : 'roleCode',
 					index : 'roleCode',
 					width : 90,
-					editable : true,
-					editrules:{
-						required:true
-					}
+					editoptions: { readonly: 'readonly'},
+					editable : true
 				}, {
 					name : 'roleName',
 					index : 'roleName',
@@ -186,21 +195,32 @@ function init() {
 					   var params = new Array();
 					   $.each(cells,function(i,v){
 						   var ret = $(grid_selector).jqGrid('getRowData', v);
-						   params.push(ret.bankCode);
+						   params.push(ret.roleId);
 					   });
-					   $.ajax({
-						   url:ctx+'/topRoleinfo/delete.do',
-						   type: "POST",
-						   dataType:'json',
-						   data:{"ids[]":params},
-					       success:function(msg){
-					    	   if('SUCC'==msg.result){
-					    		   $(grid_selector).trigger("reloadGrid");
-					    	   }else {
-					    		   layer.alert('删除失败',{icon:2});  
-					    	   }
-					       }	   
-					   });
+					   
+					   layer.confirm("确定删除吗？",{
+						   btn: ['确定','取消'] //按钮
+					   },function(r){
+						   if(r){					   
+							   $.ajax({
+								   url:ctx+'/topRoleinfo/delete.do',
+								   type: "POST",
+								   dataType:'json',
+								   data:{"ids[]":params},
+							       success:function(msg){
+							    	   if('SUCC'==msg.result){
+							    		   $(grid_selector).trigger("reloadGrid");
+							    		   layer.close(r);
+							    	   }else {
+							    		   layer.alert('删除失败',{icon:2});  
+							    	   }
+							       }	   
+							   });
+						   }
+					   },function(){
+				            return;
+				       });
+					   
 				   }else{
 					   layer.alert('请选中一行!',{icon:2});  
 				   }
@@ -233,7 +253,7 @@ function init() {
 				}
 			},{},{},{}).navButtonAdd(pager_selector,{  
 				   caption:"菜单管理",   
-				   buttonicon:"icon-refresh green",   
+				   buttonicon:"icon-list green",   
 				   onClickButton: function(){glmenu();},   
 				   position:"last"  
 				}).navSeparatorAdd(pager_selector,{
@@ -399,7 +419,7 @@ function init() {
 			var ret = $(grid_selector).jqGrid('getRowData', cell);
 			var roleId = ret.roleId;
 			$.ajax({
-			  	  url:ctx+'/topTaskMenu/rolemenu.do',
+			  	  url:ctx+'/topMenuRole/menuRole.do',
 				  type: "POST",
 				  data:{"roleId":roleId},
 				  dataType:'json',
@@ -412,7 +432,6 @@ function init() {
 					  }
 				  },
 				  success:function(data){
-					  
 					  var setting = {
 							    showLine: true,
 							    checkable: true
@@ -423,19 +442,25 @@ function init() {
 					  zTree = $("#menuTree").zTree(setting,zTreeNodes);
 					  $("#roleId").empty().val(roleId);
 					  $("#menu-dialog").dialog({
-						  title:"菜单管理",
-					      height: 450,
-					      width: 400,
+						  title:"<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-th-list'></i>菜单管理</h4></div>",
+						  title_html: true,
+					      height: 400,
+					      width: 350,
 					      modal: true,
-					      buttons:{
-					    	  "提交":function(){
+						  buttons:[{
+					    	  text:"提交",
+					    	  "class" : "btn btn-primary btn-xs",
+					    	  click:function(){
 					    		  savemenu();
-					    	  },
-					    	  "关闭":function(){
+					    	  }
+					      },{
+					    	  text:"关闭",
+					    	  "class" : "btn btn-xs",
+					    	  click:function(){
 					    		  $(this).dialog('close');
 					    	  }
-					      }
-
+					      }]
+					  
 					   });
 					  
 					  
@@ -455,20 +480,20 @@ function init() {
 			for(var i=0; i<nodes.length; i++){
 				tmpNode = nodes[i];
 				if(i!=nodes.length-1){
-					ids += tmpNode.menuCode+",";
+					ids += tmpNode.id+",";
 				}else{
-					ids += tmpNode.menuCode;
+					ids += tmpNode.id;
 				}
 			}
 			$.ajax({
-			  url:ctx+'/topTaskMenu/updaterolemenu.do',
+			  url:ctx+'/topMenuRole/updaterolemenu.do',
 			  type: "POST",
 			  data:{"menuId":ids,"roleId":$("#roleId").val()},
 			  dataType:'json',
 			  success:function(data){
 				  if("success" == data.flag){
 					  $("#menu-dialog").dialog('close');
-					  layer.alert("保存成功",{icon:2});
+					  layer.alert("保存成功",{icon:1});
 					  //$(grid_selector).trigger("reloadGrid");
 				  }else{
 					  layer.alert(msg.responseText,{icon:2}); 

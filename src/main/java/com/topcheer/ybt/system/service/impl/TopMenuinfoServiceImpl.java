@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.data.MenuResult;
+import com.topcheer.ybt.system.dao.TopMenuRoleMapper;
 import com.topcheer.ybt.system.dao.TopMenuinfoMapper;
 import com.topcheer.ybt.system.entity.TopMenuinfo;
 import com.topcheer.ybt.system.entity.TopUserinfo;
@@ -21,10 +22,16 @@ public class TopMenuinfoServiceImpl implements ITopMenuinfoService {
 
 	@Autowired
 	protected TopMenuinfoMapper topMenuinfoMapper;
+	
+	@Autowired
+	protected TopMenuRoleMapper topMenuRoleMapper;
 
+	@Transactional
 	public void delete(String id) {
+		//从角色菜单中删除拥有当前菜单的角色记录
+		topMenuRoleMapper.deleteByMenuId(id);
+		//从菜单表中删除当前菜单
 		topMenuinfoMapper.delete(id);
-
 	}
 
 	public List<TopMenuinfo> getTopMenuinfoList(String menuId) {
@@ -44,7 +51,7 @@ public class TopMenuinfoServiceImpl implements ITopMenuinfoService {
 		return topMenuinfoMapper.searchMenuByUserId(topUserinfo.getUserId());
 	}
 
-	public PageInfo<TopMenuinfo> searchTopMenuinfo(Map searchMap) {
+	public PageInfo<TopMenuinfo> searchTopMenuinfo(Map<String,Object> searchMap) {
 		TopMenuinfo topMenuinfo = (TopMenuinfo) searchMap.get("topMenuinfo");
 		int pageSize = Integer.parseInt(searchMap.get("pageSize").toString());
 		int pageNo = Integer.parseInt(searchMap.get("pageNo").toString());
@@ -72,8 +79,7 @@ public class TopMenuinfoServiceImpl implements ITopMenuinfoService {
 	}
 
 	public List<TopMenuinfo> searchAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return topMenuinfoMapper.searchAll();
 	}
 
 	public List<TopMenuinfo> searchMenuByUserId(TopUserinfo topUserinfo) {

@@ -3,18 +3,19 @@ $(function() {
 	//validate();
 	
 	$("#searchFilter").unbind('click').click(function(){
-		 var nm_mask = jQuery("#loginAccount").val()||"";
-		  //var cd_mask = jQuery("#search_cd").val()||"";
+		 var loginAccount = jQuery("#loginAccount").val()||"";
+		 var userName = jQuery("#searchuserName").val()||"";
 		  jQuery("#grid-table").jqGrid('setGridParam', {
-		    url : ctx+'/user/getUserList.do?loginAccount=' + nm_mask,
-		    page : 1
+		    url : ctx+'/user/getUserList.do',
+		    page : 1,
+		    postData:{'loginAccount':loginAccount,"userName":userName}
 		  }).trigger("reloadGrid");
 	});
 	
 	
 	$.widget("ui.dialog", $.extend({}, $.ui.dialog.prototype, {
 		_title: function(title) {
-			var $title = this.options.title || '&nbsp;'
+			var $title = this.options.title || '&nbsp;';
 			if( ("title_html" in this.options) && this.options.title_html == true )
 				title.html($title);
 			else title.text($title);
@@ -173,20 +174,18 @@ function init() {
 		   buttonicon:"icon-plus-sign purple",   
 		   onClickButton: function(){
 			   $("#loginAccount_userName").val("");
-			   $("#loginPwd").val("");
-			   $("#confirm_password").val("");
+			   /*$("#loginPwd").val("");
+			   $("#confirm_password").val("");*/
 			   $("#userName").val("");
 			   $("#userDept").val("");
 			   
 			   $("#dialog-form").dialog({
-				   
 				   title:"<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-plus'></i>新增用户</h4></div>",
 				   title_html: true,
 				   autoOpen: true,
 				   height: 400,
 				   width: 350,
-			      modal: true,
-//			      open:
+			       modal: true,
 			      buttons:[{
 			    	  text:'提交',
 			    	  "class" : "btn btn-primary btn-xs",
@@ -233,7 +232,6 @@ function init() {
 						      open:function(){
 						    	  $(grid_selector).jqGrid('GridToForm',cell, '#dialog-form');
 						      },
-						      width: 400,
 						      modal: true,
 						      buttons:[{
 						    	  text:'提交',
@@ -325,10 +323,7 @@ function init() {
 					   buttonicon:"icon-user green",   
 					   onClickButton: function(){glmenu();},   
 					   position:"last"  
-					}).navSeparatorAdd(pager_selector,{
-			sepclass : "ui-separator",
-			sepcontent: ''
-		});  
+					});  
 	// switch element when editing inline
 	function aceSwitch(cellvalue, options, cell) {
 		setTimeout(function() {
@@ -351,8 +346,10 @@ function init() {
 	
 function uploadPath(){
 	var cell = $(grid_selector).jqGrid("getGridParam","selrow");
-	   if(cell !=null && cell.length > 0){ 
+	   if(cell !=null && cell.length > 0){
+		   $("#img_file").attr("value","");
 		   $("#userFile-dialog").dialog({
+			   
 			      title:"<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-upload'></i>上传图片</h4></div>",
 				  title_html: true,
 				  //autoOpen: false,
@@ -367,7 +364,13 @@ function uploadPath(){
 			    	  text:"提交",
 			    	  "class" : "btn btn-primary btn-xs",
 			    	  click:function(){
-			    		  $("#img_file").fileinput('upload');
+			    		  var selectedFile = $('#img_file').get(0).files[0];
+			    		  if(null==selectedFile){
+			    			  layer.alert("请选择文件，或者不要重复提交！",{icon:2});
+			    			  return;
+			    		  }else{
+			    			  $("#img_file").fileinput('upload');
+			    		  }
 			    	  }
 			      },{
 			    	  text:"关闭",
@@ -581,27 +584,30 @@ function uploadPath(){
 	}
 
 	function savemenu(){
-	     nodes = zTree.getCheckedNodes(true);
+	     	nodes = zTree.getCheckedNodes(true);
 		 
-		 var tmpNode;
+		 	var tmpNode;
 			var ids = "";
+			var param = new Array();
 			for(var i=0; i<nodes.length; i++){
 				tmpNode = nodes[i];
 				if(i!=nodes.length-1){
 					ids += tmpNode.id+",";
+					param.push(tmpNode.id);
 				}else{
 					ids += tmpNode.id;
+					param.push(tmpNode.id);
 				}
 			}
 			$.ajax({
 			  url:ctx+'/topUserRole/updateUserRole.do',
 			  type: "POST",
-			  data:{"roleId":ids,"userId":$("#userId").val()},
+			  data:{"roleId":ids,"userId":$("#userId").val(),"idstrs":param},
 			  dataType:'json',
 			  success:function(data){
 				  if("SUCC" == data.result){
 					  $("#menu-dialog").dialog('close');
-					  layer.alert("保存成功",{icon:1});
+					  layer.alert("设置成功！",{icon:1});
 					  //$(grid_selector).trigger("reloadGrid");
 				  }else{
 					  layer.alert(msg.responseText,{icon:2}); 

@@ -54,7 +54,7 @@ public class TopMenuinfoController {
 		if (result.hasErrors()) {
 			return ResultHelper.analyzeError(result);
 		}
-		topMenuinfo.setMenuId(UUID.randomUUID().toString().replaceAll("-", ""));
+		//topMenuinfo.setMenuId(UUID.randomUUID().toString().replaceAll("-", ""));
 		topMenuinfo.setCreateDate(DateUtil.getCurrentDate());
 		topMenuinfo.setUpdateDate(DateUtil.getCurrentDate());
 		topMenuinfo.setUpdateTime(DateUtil.getCurrentTime());
@@ -124,7 +124,7 @@ public class TopMenuinfoController {
 
 		List<TopMenuinfo> list = new ArrayList<TopMenuinfo>();// 经过处理后的菜单
 		for (TopMenuinfo topMenuinfo : menulist) {
-			if ("YBT".equals(topMenuinfo.getFaMenuCode())) {// 一级菜单
+			if ("YBT".equals(topMenuinfo.getUpMenuCode())) {// 一级菜单
 				List<TopMenuinfo> lists = iteratorMenus(menulist, topMenuinfo.getMenuCode());
 				topMenuinfo.setMenulist(lists);// 将子菜单放入到当前的一级菜单中
 				list.add(topMenuinfo);
@@ -151,7 +151,7 @@ public class TopMenuinfoController {
 		List<TopMenuinfo> result = new ArrayList<TopMenuinfo>();
 		for (TopMenuinfo menuVo : menuList) {
 			String menuid = menuVo.getMenuCode();// 获取菜单的id
-			String parentid = menuVo.getFaMenuCode();// 获取菜单的父id
+			String parentid = menuVo.getUpMenuCode();// 获取菜单的父id
 			if (StringUtils.isNotBlank(parentid) && !"YBT".equals(parentid)) {
 				if (parentid.equals(pid)) {
 					List<TopMenuinfo> iterateMenu = iteratorMenus(menuList, menuid);

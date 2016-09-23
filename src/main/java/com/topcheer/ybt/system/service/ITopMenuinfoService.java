@@ -10,7 +10,7 @@ import com.topcheer.ybt.system.entity.TopUserinfo;
 
 public interface ITopMenuinfoService {
 
-	public PageInfo<TopMenuinfo> searchTopMenuinfo(Map searchMap);
+	public PageInfo<TopMenuinfo> searchTopMenuinfo(Map<String,Object> searchMap);
 
 	public List<TopMenuinfo> getTopMenuinfoList(String menuId);
 

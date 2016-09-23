@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.topcheer.ybt.system.dao.TopUserRoleMapper;
 import com.topcheer.ybt.system.dao.TopUserinfoMapper;
 import com.topcheer.ybt.system.entity.TopUserinfo;
 import com.topcheer.ybt.system.service.ITopUserinfoService;
@@ -21,14 +22,23 @@ import com.topcheer.ybt.system.service.ITopUserinfoService;
  * 
  */
 @Service("topUserinfoService")
-@Transactional
 public class TopUserinfoServiceImpl implements ITopUserinfoService {
 
 	@Autowired
 	protected TopUserinfoMapper topUserinfoMapper;
+	
+	@Autowired
+	private TopUserRoleMapper topUserRoleMapper;
 
+	@Transactional
 	public void delete(String id) {
-		topUserinfoMapper.delete(id);
+		try {
+			topUserRoleMapper.deleteByUserId(id);
+			topUserinfoMapper.delete(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException("删除用户数据库出现异常，事务回滚...",e.getCause());
+		}
 
 	}
 
@@ -54,12 +64,12 @@ public class TopUserinfoServiceImpl implements ITopUserinfoService {
 		return topUserinfoMapper.searchAll();
 	}
 
-	public List<TopUserinfo> searchTopUser(Map searchMap) {
+	public List<TopUserinfo> searchTopUser(Map<String,Object> searchMap) {
 		TopUserinfo userInfo = (TopUserinfo) searchMap.get("userInfo");
 		return topUserinfoMapper.searchTopUserinfo(userInfo);
 	}
 
-	public PageInfo<TopUserinfo> searchTopUserinfo(Map searchMap) {
+	public PageInfo<TopUserinfo> searchTopUserinfo(Map<String,Object> searchMap) {
 		TopUserinfo userInfo = (TopUserinfo) searchMap.get("userInfo");
 		int pageSize = Integer.parseInt(searchMap.get("pageSize").toString());
 		int pageNo = Integer.parseInt(searchMap.get("pageNo").toString());

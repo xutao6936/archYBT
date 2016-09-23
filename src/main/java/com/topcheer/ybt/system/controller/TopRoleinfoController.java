@@ -25,13 +25,14 @@ import com.topcheer.ybt.util.ResultHelper;
 @Controller
 @RequestMapping("/topRoleinfo")
 public class TopRoleinfoController {
-	private static Logger log = LoggerFactory.getLogger(TopRoleinfoController.class);
+	private static Logger logger = LoggerFactory.getLogger(TopRoleinfoController.class);
+	
 	@Resource(name = "topRoleinfoService")
 	private ITopRoleinfoService topRoleinfoService;
 
 	@RequestMapping("/getTopRoleinfoList.do")
 	@ResponseBody
-	public PageInfo getTopRoleinfoList(String rows, String page, TopRoleinfo topRoleinfo) {
+	public PageInfo<TopRoleinfo> getTopRoleinfoList(String rows, String page, TopRoleinfo topRoleinfo) {
 		Map<String, Object> map = Maps.newHashMap();
 		map.put("topRoleinfo", topRoleinfo);
 		map.put("pageSize", rows);
@@ -51,7 +52,7 @@ public class TopRoleinfoController {
 		topRoleinfo.setUpdateDate(DateUtil.getCurrentDate());
 		topRoleinfo.setUpdateTime(DateUtil.getCurrentTime());
 		topRoleinfo.setCreateDate(DateUtil.getCurrentDate());
-		topRoleinfo.setIsreview("0");
+		topRoleinfo.setStatus("0");
 		topRoleinfoService.insert(topRoleinfo);
 		return ResultHelper.getResultMap();
 	}
@@ -64,7 +65,7 @@ public class TopRoleinfoController {
 		}
 		topRoleinfo.setUpdateDate(DateUtil.getCurrentDate());
 		topRoleinfo.setUpdateTime(DateUtil.getCurrentTime());
-		topRoleinfo.setIsreview("0");
+		topRoleinfo.setStatus("0");
 		topRoleinfoService.update(topRoleinfo);
 		return ResultHelper.getResultMap();
 	}
@@ -95,5 +96,7 @@ public class TopRoleinfoController {
 		}
 		return null;
 	}
+	
+	
 
 }
