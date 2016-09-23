@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.basedata.dao.TopInsCorpInfoMapper">
+<resultMap id="ForTopInsCorpInfo" type="com.topcheer.ybt.basedata.entity.TopInsCorpInfo">
+		<result property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="insCorpCode" column="INSCORP_CODE" jdbcType="VARCHAR" />
+		<result property="insCorpName" column="INSCORP_NAME" jdbcType="VARCHAR" />
+		<result property="insSimpName" column="INS_SIMPLE_NAME" jdbcType="VARCHAR" />
+		<result property="insCorpLevel" column="INSCORP_LEVEL" jdbcType="VARCHAR" />
+		<result property="upCorpCode" column="UPCORP_CODE" jdbcType="VARCHAR" />
+		<result property="insCorpEnName" column="INSCORP_EN_NAME" jdbcType="VARCHAR" />
+		<result property="address" column="ADDRESS" jdbcType="VARCHAR" />
+		<result property="postCode" column="POSTCODE" jdbcType="VARCHAR" />
+		<result property="phone" column="PHONE" jdbcType="VARCHAR" />
+		<result property="fax" column="FAX" jdbcType="VARCHAR" />
+		<result property="email" column="EMAIL" jdbcType="VARCHAR" />
+		<result property="status" column="STATUS" jdbcType="VARCHAR" />
+		<result property="operatorCode" column="OPERATOR_CODE" jdbcType="VARCHAR" />
+		<result property="operatorBank" column="OPERATOR_BANK" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATE_DATE" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATE_DATE" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATE_TIME" jdbcType="VARCHAR" />
+		<result property="commonCountFlag" column="COMMON_COUNTER_FLAG" jdbcType="VARCHAR" />
+		<result property="commonNetFlag" column="COMMON_NET_FLAG" jdbcType="VARCHAR" />
+		<result property="commonCheckFlag" column="UPDATEDCOMMON_CHECK_FLAGATE" jdbcType="VARCHAR" />
+		<result property="commonNossdcheckFlag" column="COMMON_NOSSDCHECK_FLAG" jdbcType="VARCHAR" />
+		<result property="commonSystbFlag" column="COMMON_SYSTB_FLAG" jdbcType="VARCHAR" />
+		<result property="channelFlag" column="CHANNEL_FLAG" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="searchAll" resultMap="ForTopInsCorpInfo" >
+		select * from top_inscorpInfo
+	</select>  
+	
+	<select id="searchByinsCorpCode" resultMap="ForTopInsCorpInfo"   parameterType="com.topcheer.ybt.basedata.entity.TopInsCorpInfo">
+		select * from top_inscorpInfo
+		where 1=1
+		<if test="insCorpCode !=null and insCorpCode != '' ">
+			and  INSCORP_CODE = #{insCorpCode,jdbcType=VARCHAR}
+		</if> 
+		<if test="insCorpName !=null and insCorpName != '' ">
+			and  INSCORP_NAME = #{insCorpName,jdbcType=VARCHAR}
+		</if>
+		<if test="insCorpLevel !=null and insCorpLevel != '' ">
+			and  INSCORP_LEVEL = #{insCorpLevel,jdbcType=VARCHAR}
+		</if>
+		<if test="upCorpCode !=null and upCorpCode != '' ">
+			and  UPCORP_CODE = #{upCorpCode,jdbcType=VARCHAR}
+		</if>
+		<if test="status !=null and status != '' ">
+			and  STATUS = #{status,jdbcType=VARCHAR}
+		</if>
+		<if test="commonCountFlag !=null and commonCountFlag != '' ">
+			and  COMMON_COUNTER_FLAG = #{commonCountFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="commonNetFlag !=null and commonNetFlag != '' ">
+			and  COMMON_NET_FLAG = #{commonNetFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="commonCheckFlag !=null and commonCheckFlag != '' ">
+			and  COMMON_CHECK_FLAG = #{commonCheckFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="commonNossdcheckFlag !=null and commonNossdcheckFlag != '' ">
+			and  COMMON_NOSSDCHECK_FLAG = #{commonNossdcheckFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="commonSystbFlag !=null and commonSystbFlag != '' ">
+			and  COMMON_SYSTB_FLAG = #{commonSystbFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="channelFlag !=null and channelFlag != '' ">
+			and  CHANNEL_FLAG = #{channelFlag,jdbcType=VARCHAR}
+		</if>
+	</select>  
+	
+	<insert id="insertTopInsCorpInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsCorpInfo">
+		INSERT INTO top_inscorpinfo (
+		ID,
+		INSCORP_CODE,
+		INSCORP_NAME,
+		INS_SIMPLE_NAME,
+		INSCORP_LEVEL,
+		UPCORP_CODE,
+		INSCORP_EN_NAME,
+		ADDRESS,
+		POSTCODE,
+		PHONE,
+		FAX,
+		EMAIL,
+		STATUS,
+		OPERATOR_CODE,
+		OPERATOR_BANK,
+		CREATE_DATE,
+		UPDATE_DATE,
+		UPDATE_TIME,
+		COMMON_COUNTER_FLAG,
+		COMMON_NET_FLAG,
+		COMMON_CHECK_FLAG,
+		COMMON_NOSSDCHECK_FLAG,
+		COMMON_SYSTB_FLAG,
+		CHANNEL_FLAG
+		)VALUES (
+		#{id,jdbcType=VARCHAR},
+		#{insCorpCode,jdbcType=VARCHAR},
+		#{insCorpName,jdbcType=VARCHAR},
+		#{insSimpName,jdbcType=VARCHAR},
+		#{insCorpLevel,jdbcType=VARCHAR},
+		#{upCorpCode,jdbcType=VARCHAR},
+		#{insCorpEnName,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR},
+		#{postCode,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{fax,jdbcType=VARCHAR},
+		#{email,jdbcType=VARCHAR},
+		#{status,jdbcType=VARCHAR},
+		#{operatorCode,jdbcType=VARCHAR},
+		#{operatorBank,jdbcType=VARCHAR},
+		#{createDate,jdbcType=VARCHAR},
+		#{updateDate,jdbcType=VARCHAR},
+		#{updateTime,jdbcType=VARCHAR},
+		#{commonCountFlag,jdbcType=VARCHAR},
+		#{commonNetFlag,jdbcType=VARCHAR},
+		#{commonCheckFlag,jdbcType=VARCHAR},
+		#{commonNossdcheckFlag,jdbcType=VARCHAR},
+		#{commonSystbFlag,jdbcType=VARCHAR},
+		#{channelFlag,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<update id="updateTopInsCorpInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopInsCorpInfo">
+		UPDATE top_inscorpinfo SET
+		INSCORP_CODE =  #{insCorpCode,jdbcType=VARCHAR},
+		INSCORP_NAME = #{insCorpName,jdbcType=VARCHAR},
+		INS_SIMPLE_NAME =#{insSimpName,jdbcType=VARCHAR},
+		INSCORP_LEVEL=#{insCorpLevel,jdbcType=VARCHAR},
+		UPCORP_CODE = #{upCorpCode,jdbcType=VARCHAR},
+		INSCORP_EN_NAME = #{insCorpEnName,jdbcType=VARCHAR},
+		ADDRESS = #{address,jdbcType=VARCHAR},
+		POSTCODE = #{postCode,jdbcType=VARCHAR},
+		PHONE =#{phone,jdbcType=VARCHAR},
+		FAX = #{fax,jdbcType=VARCHAR},
+		EMAIL = #{email,jdbcType=VARCHAR},
+		STATUS = #{status,jdbcType=VARCHAR},
+		OPERATOR_CODE =#{operatorCode,jdbcType=VARCHAR},
+		OPERATOR_BANK = #{operatorBank,jdbcType=VARCHAR},
+		CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+		UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
+		UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+		COMMON_COUNTER_FLAG = #{commonCountFlag,jdbcType=VARCHAR},
+		COMMON_NET_FLAG = #{commonNetFlag,jdbcType=VARCHAR},
+		COMMON_CHECK_FLAG = #{commonCheckFlag,jdbcType=VARCHAR},
+		COMMON_NOSSDCHECK_FLAG = #{commonNossdcheckFlag,jdbcType=VARCHAR},
+		COMMON_SYSTB_FLAG = #{commonSystbFlag,jdbcType=VARCHAR},
+		CHANNEL_FLAG = #{channelFlag,jdbcType=VARCHAR}
+		WHERE ID = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	<delete id="deleteTopInsCorpInfo" parameterType="String">
+		delete from top_inscorpinfo where  ID = #{id,jdbcType=VARCHAR}
+	</delete>
+</mapper>
+

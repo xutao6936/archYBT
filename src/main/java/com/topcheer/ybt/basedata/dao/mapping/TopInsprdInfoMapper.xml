@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.basedata.dao.TopInsprdInfoMapper">
+<resultMap id="forTopInsprdInfo" type="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
+		<result property="insPrdCode" column="INSPRDCODE" jdbcType="VARCHAR" />
+		<result property="insCorpCode" column="INSCORPCODE" jdbcType="VARCHAR" />
+		<result property="insPrdCnName" column="INSPRDCHNAME" jdbcType="VARCHAR" />
+		<result property="insPrdEnName" column="INSPRDENNAME" jdbcType="VARCHAR" />
+		<result property="statisticType" column="STATISTICTYPE" jdbcType="VARCHAR" />
+		<result property="agentType" column="AGENTTYPE" jdbcType="VARCHAR" />
+		<result property="assuranceType" column="ASSURANCETYPE" jdbcType="VARCHAR" />
+		<result property="insprdkind" column="INSPRDKIND" jdbcType="VARCHAR" />
+		<result property="transtype" column="TRANSTYPE" jdbcType="VARCHAR" />
+		<result property="insCurrency" column="INSCURRENCY" jdbcType="VARCHAR" />
+		<result property="insPrdType" column="INSPRDTYPE" jdbcType="VARCHAR" />
+		<result property="insBeginDate" column="INSBEGINTIME" jdbcType="VARCHAR" />
+		<result property="insEndDate" column="INSENDTIME" jdbcType="VARCHAR" />
+		<result property="totalDeal" column="TOTALDEAL" jdbcType="VARCHAR" />
+		<result property="totalAmt" column="TOTALAMT" jdbcType="VARCHAR" />
+		<result property="startAmt" column="STARTAMT" jdbcType="VARCHAR" />
+		<result property="prdDescribe" column="PRDDESCRIPT" jdbcType="VARCHAR" />
+		<result property="bandFlag" column="BANDFLAG" jdbcType="VARCHAR" />
+		<result property="impawnFlag" column="IMPAWNFLAG" jdbcType="VARCHAR" />
+		<result property="deployFlag" column="DEPLOYFLAG" jdbcType="VARCHAR" />
+		<result property="operatorBankCode" column="OPERATORBANKCODE" jdbcType="VARCHAR" />
+		<result property="operatorCode" column="OPERATORCODE" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATETIME" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATEDATE" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="searchAllTopInsprdInfo" resultMap="forTopInsprdInfo" >
+		select * from top_insprdInfo
+	</select>  
+	
+	<select id="searchTopInsPrdInfoByInsPrdCode"  resultMap="forTopInsprdInfo"  parameterType="String">
+		select * from top_insprdInfo where where  INSPRDCODE = #{insPrdCode,jdbcType=VARCHAR}
+	</select>
+	<insert id="insertTopInsPrdInfo"   parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
+		insert into  top_insprdInfo (
+		INSPRDCODE,
+		INSCORPCODE,
+		INSPRDCHNAME,
+		INSPRDENNAME,
+		STATISTICTYPE,
+		AGENTTYPE,
+		ASSURANCETYPE,
+		INSPRDKIND,
+		TRANSTYPE,
+		INSCURRENCY,
+		INSPRDTYPE,
+		INSBEGINTIME,
+		INSENDTIME,
+		TOTALDEAL,
+		TOTALAMT,
+		STARTAMT,
+		PRDDESCRIPT,
+		BANDFLAG,
+		IMPAWNFLAG,
+		DEPLOYFLAG,
+		OPERATORBANKCODE,
+		OPERATORCODE,
+		UPDATETIME,
+		UPDATEDATE
+		)values(
+		 #{insPrdCode,jdbcType=VARCHAR},
+		 #{insCorpCode,jdbcType=VARCHAR}, 
+		 #{insPrdCnName,jdbcType=VARCHAR}, 
+     	 #{insPrdEnName,jdbcType=VARCHAR}, 
+     	 #{statisticType,jdbcType=VARCHAR}, 
+     	 #{agentType,jdbcType=VARCHAR}, 
+         #{assuranceType,jdbcType=VARCHAR}, 
+         #{insprdKind,jdbcType=VARCHAR},
+         #{transType,jdbcType=VARCHAR}, 
+         #{insCurrency,jdbcType=VARCHAR}, 
+         #{insPrdType,jdbcType=VARCHAR},
+         #{insBeginDate,jdbcType=VARCHAR}, 
+         #{insEndDate,jdbcType=VARCHAR}, 
+         #{totalDeal,jdbcType=DECIMAL}, 
+         #{totalAmt,jdbcType=DECIMAL}, 
+         #{startAmt,jdbcType=DECIMAL}, 
+         #{prdDescribe,jdbcType=VARCHAR}, 
+         #{bandFlag,jdbcType=VARCHAR}, 
+         #{impawnFlag,jdbcType=VARCHAR}, 
+         #{deployFlag,jdbcType=VARCHAR}, 
+         #{operatorBankCode,jdbcType=VARCHAR}, 
+         #{operatorCode,jdbcType=VARCHAR}, 
+         #{updateTime,jdbcType=VARCHAR},
+         #{updateDate,jdbcType=VARCHAR}
+      )
+	</insert>
+	
+	
+	<update id="updateTopInsPrdInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
+	update TOP_INSPRDINFO
+    set INSPRDCODE = #{insPrdCode,jdbcType=VARCHAR},
+      INSCORPCODE = #{insCorpCode,jdbcType=VARCHAR},
+      INSPRDCHNAME = #{insPrdCnName,jdbcType=VARCHAR},
+      INSPRDENNAME = #{insPrdEnName,jdbcType=VARCHAR},
+      STATISTICTYPE = #{statisticType,jdbcType=VARCHAR},
+      AGENTTYPE = #{agentType,jdbcType=VARCHAR},
+      ASSURANCETYPE = #{assuranceType,jdbcType=VARCHAR},
+      INSPRDKIND = #{insprdKind,jdbcType=VARCHAR},
+      TRANSTYPE = #{transType,jdbcType=VARCHAR},
+      INSCURRENCY = #{insCurrency,jdbcType=VARCHAR},
+      INSPRDTYPE = #{insPrdType,jdbcType=VARCHAR},
+      INSBEGINTIME = #{insBeginDate,jdbcType=VARCHAR},
+      INSENDTIME = #{insEndDate,jdbcType=VARCHAR},
+      TOTALDEAL = #{totalDeal,jdbcType=DECIMAL},
+      TOTALAMT = #{totalAmt,jdbcType=DECIMAL},
+      STARTAMT = #{startAmt,jdbcType=DECIMAL},
+      PRDDESCRIPT = #{prdDescribe,jdbcType=VARCHAR},
+      BANDFLAG = #{bandFlag,jdbcType=VARCHAR},
+      IMPAWNFLAG = #{impawnFlag,jdbcType=VARCHAR},
+      DEPLOYFLAG = #{deployFlag,jdbcType=VARCHAR},
+      OPERATORBANKCODE = #{operatorBankCode,jdbcType=VARCHAR},
+      OPERATORCODE = #{operatorCode,jdbcType=VARCHAR},
+      UPDATETIME = #{updateTime,jdbcType=VARCHAR},
+      UPDATEDATE = #{updateDate,jdbcType=VARCHAR}
+      where  INSPRDCODE =  #{insPrdCode,jdbcType=VARCHAR}
+	</update>
+	
+	<delete id="deleteTopInsPrdInfo" parameterType="String">
+		delete from top_insprdInfo where  INSPRDCODE = #{insPrdCode,jdbcType=VARCHAR}
+	</delete>
+	
+	
+</mapper>

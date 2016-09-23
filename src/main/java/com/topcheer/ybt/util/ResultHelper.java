@@ -29,6 +29,10 @@ public class ResultHelper {
 	public static String YD_FA_MENU_CODE="YBT_YD";
 	public static String BANK_TEMPLATE="机构导入模板.xls";
 	
+	public static String INSCORP_TEMPLATE="保险公司导入模板.xls";
+	
+	public static String INSPRD_TEMPLATE="保险产品导入模板.xls";
+	
 	public static String YES = "0";
 	public static String NO = "1";
 	
