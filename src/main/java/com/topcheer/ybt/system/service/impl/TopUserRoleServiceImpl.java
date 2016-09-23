@@ -5,8 +5,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.system.dao.TopUserRoleMapper;
@@ -14,7 +12,6 @@ import com.topcheer.ybt.system.entity.TopUserRole;
 import com.topcheer.ybt.system.service.ITopUserRoleService;
 
 @Service("topUserRoleService")
-@Transactional
 public class TopUserRoleServiceImpl implements ITopUserRoleService {
 
 	@Autowired

@@ -2,46 +2,42 @@ package com.topcheer.ybt.system.entity;
 
 import java.util.List;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 public class TopMenuinfo {
-	
-	//@NotBlank(message="ID不能为空")
+	// 菜单ID
 	private String menuId;
-	
-	@NotBlank(message="菜单编号不能为空")
+	// 菜单编号
 	private String menuCode;
-	@NotBlank(message="父菜单不能为空")
-	private String faMenuCode;
-	@NotBlank(message="菜单名称不能为空")
+	// 菜单名称
 	private String menuName;
-	
-	private String icon;
-	
+	// 上级菜单编号
+	private String upMenuCode;
+	// URL
 	private String menuUrl;
-
+	// 状态(0:有效 1:无效)
 	private String status;
-
+	// 创建日期
 	private String createDate;
-
+	// 更新日期
 	private String updateDate;
-
+	// 更新时间
 	private String updateTime;
-
+	// 更新账号
 	private String updateOperator;
-
+	// 图标
+	private String icon;
+	//子菜单
+	private List<TopMenuinfo> menulist;
+	//权限标志
+	private boolean checked;
+	// 备用字段1
 	private String remark1;
-
+	// 备用字段2
 	private String remark2;
-
+	// 备用字段3
 	private String remark3;
-
+	// 备用字段4
 	private String remark4;
 
-	private List<TopMenuinfo> menulist;//子菜单
-	
-	private boolean checked;//权限标志
-	
 	public String getMenuId() {
 		return menuId;
 	}
@@ -58,14 +54,6 @@ public class TopMenuinfo {
 		this.menuCode = menuCode;
 	}
 
-	public String getFaMenuCode() {
-		return faMenuCode;
-	}
-
-	public void setFaMenuCode(String faMenuCode) {
-		this.faMenuCode = faMenuCode;
-	}
-
 	public String getMenuName() {
 		return menuName;
 	}
@@ -74,12 +62,12 @@ public class TopMenuinfo {
 		this.menuName = menuName;
 	}
 
-	public String getIcon() {
-		return icon;
+	public String getUpMenuCode() {
+		return upMenuCode;
 	}
 
-	public void setIcon(String icon) {
-		this.icon = icon;
+	public void setUpMenuCode(String upMenuCode) {
+		this.upMenuCode = upMenuCode;
 	}
 
 	public String getMenuUrl() {
@@ -130,6 +118,14 @@ public class TopMenuinfo {
 		this.updateOperator = updateOperator;
 	}
 
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
+
 	public String getRemark1() {
 		return remark1;
 	}
@@ -161,7 +157,7 @@ public class TopMenuinfo {
 	public void setRemark4(String remark4) {
 		this.remark4 = remark4;
 	}
-	
+
 	public List<TopMenuinfo> getMenulist() {
 		return menulist;
 	}
@@ -177,31 +173,5 @@ public class TopMenuinfo {
 	public void setChecked(boolean checked) {
 		this.checked = checked;
 	}
-
-	public TopMenuinfo(String menuCode, String faMenuCode, String menuName) {
-		super();
-		this.menuCode = menuCode;
-		this.faMenuCode = faMenuCode;
-		this.menuName = menuName;
-	}
-
-	public TopMenuinfo() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	@Override
-	public String toString() {
-		return "TopMenuinfo [menuId=" + menuId + ", menuCode=" + menuCode
-				+ ", faMenuCode=" + faMenuCode + ", menuName=" + menuName
-				+ ", icon=" + icon + ", menuUrl=" + menuUrl + ", status="
-				+ status + ", createDate=" + createDate + ", updateDate="
-				+ updateDate + ", updateTime=" + updateTime
-				+ ", updateOperator=" + updateOperator + ", remark1=" + remark1
-				+ ", remark2=" + remark2 + ", remark3=" + remark3
-				+ ", remark4=" + remark4 + ", menulist=" + menulist
-				+ ", checked=" + checked + "]";
-	}
-
 
 }

@@ -30,8 +30,8 @@ function init() {
 						required:true
 					}
 				}, {
-					name : 'faMenuCode',
-					index : 'faMenuCode',
+					name : 'upMenuCode',
+					index : 'upMenuCode',
 					width : 150,
 					editable : true,
 					editoptions : {
@@ -178,19 +178,29 @@ function init() {
 						   var ret = $(grid_selector).jqGrid('getRowData', v);
 						   params.push(ret.menuId);
 					   });
-					   $.ajax({
-						   url:ctx+'/topMenuinfo/delete.do',
-						   type: "POST",
-						   dataType:'json',
-						   data:{"ids[]":params},
-					       success:function(msg){
-					    	   if('SUCC'==msg.result){
-					    		   $(grid_selector).trigger("reloadGrid");
-					    	   }else {
-					    		   layer.alert('删除失败',{icon:2});  
-					    	   }
-					       }	   
-					   });
+					   layer.confirm("确定删除吗？",{
+						   btn: ['确定','取消'] //按钮
+					   },function(r){
+						   if(r){					   
+							   $.ajax({
+								   url:ctx+'/topMenuinfo/delete.do',
+								   type: "POST",
+								   dataType:'json',
+								   data:{"ids[]":params},
+							       success:function(msg){
+							    	   if('SUCC'==msg.result){
+							    		   $(grid_selector).trigger("reloadGrid");
+							    		   layer.close(r);
+							    	   }else {
+							    		   layer.alert('删除失败',{icon:2});  
+							    	   }
+							       }	   
+							   });
+						   }
+					   },function(){
+				            return;
+				       });
+					   
 				   }else{
 					   layer.alert('请选中一行!',{icon:2});  
 				   }

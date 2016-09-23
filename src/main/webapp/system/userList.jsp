@@ -31,11 +31,14 @@
 				<div class="rows" id='mysearch'>
 					<label>用户名：</label> 
 					<input type="text" class="search-query input-medium" placeholder="Search"
-						id="loginAccount" name="loginAccount" value="" />
+						id="loginAccount" name="loginAccount" value="" />&nbsp;&nbsp;&nbsp;
+					<label>真实姓名：</label> 
+					<input type="text" class="search-query input-medium" placeholder="Search"
+						id="searchuserName" name="userName" value="" />
 					<button id="searchFilter" class="btn btn-primary btn-xs">查询</button>
 				</div>
 				<!-- /.page-header -->
-
+				<div style="margin:2px 10px;"></div>
 				<table style="height: 100%;" id="grid-table"></table>
 
 				<div id="grid-pager"></div>
@@ -73,7 +76,7 @@
 
 				<div class="col-xs-12 col-sm-9">
 					<div class="clearfix">
-						<input type="password" name="loginPwd" id="loginPwd" width="200px" />
+						<input type="password" name="loginPwd" id="loginPwd" value="111111" width="200px" />
 					</div>
 				</div>
 			</div>
@@ -85,7 +88,7 @@
 
 				<div class="col-xs-12 col-sm-9">
 					<div class="clearfix">
-						<input type="password" name="confirm_password"
+						<input type="password" name="confirm_password" value="111111"
 							id="confirm_password" width="200px" />
 					</div>
 				</div>
@@ -110,7 +113,7 @@
 					for="userDept">部门：</label>
 
 				<div class="col-xs-12 col-sm-9">
-					<select id="userDept" name=userDept class="select2"
+					<select id="userDept" name=userDept class="select2" style="width:158px;"
 						data-placeholder="Click to Choose...">
 						<option value="">&nbsp;</option>
 						<option value="AL">Alabama</option>
@@ -119,8 +122,17 @@
 				</div>
 			</div>
 			<div class="space-2"></div>
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name">状态:</label>
 
-
+				<div class="col-xs-12 col-sm-9">
+					<select id="userDept" name=userDept class="select2" style="width:158px;"
+						data-placeholder="Click to Choose...">
+						<option value="0">有效</option>
+						<option value="1">无效</option>
+					</select>
+				</div>
+			</div>
 		</form>
 
 	</div>

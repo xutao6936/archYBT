@@ -15,7 +15,7 @@ import com.topcheer.ybt.system.entity.TopUserinfo;
  */
 public interface ITopUserinfoService {
 
-	public PageInfo<TopUserinfo> searchTopUserinfo(Map searchMap);
+	public PageInfo<TopUserinfo> searchTopUserinfo(Map<String,Object> searchMap);
 
 	public List<TopUserinfo> getTopUserinfoList(String userId);
 
@@ -31,7 +31,7 @@ public interface ITopUserinfoService {
 
 	public void uploadPath(TopUserinfo topUserinfo);
 
-	public List<TopUserinfo> searchTopUser(Map searchMap);
+	public List<TopUserinfo> searchTopUser(Map<String,Object> searchMap);
 
 	public List<TopUserinfo> searchTopUserForLogin(Map searchMap);
 

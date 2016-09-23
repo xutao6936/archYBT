@@ -73,6 +73,10 @@
   		delete from TOP_USER_ROLE where USER_ID = #{userId,jdbcType=VARCHAR}
   	</delete>
   	
+  	<delete id="deleteByRoleId" parameterType="String">
+  		delete from TOP_USER_ROLE where ROLE_ID = #{roleId,jdbcType=VARCHAR}
+  	</delete>
+  	
   	<select id="getTopUserRole" resultMap="TopUserRoleResultMap" parameterType="String">
   		select * from TOP_USER_ROLE  where ID = #{id,jdbcType=VARCHAR}
   	</select>

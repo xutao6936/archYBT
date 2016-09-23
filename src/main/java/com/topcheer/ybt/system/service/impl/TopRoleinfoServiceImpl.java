@@ -9,20 +9,33 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.topcheer.ybt.system.dao.TopMenuRoleMapper;
 import com.topcheer.ybt.system.dao.TopRoleinfoMapper;
+import com.topcheer.ybt.system.dao.TopUserRoleMapper;
 import com.topcheer.ybt.system.entity.TopRoleinfo;
 import com.topcheer.ybt.system.service.ITopRoleinfoService;
 
 @Service("topRoleinfoService")
-@Transactional
+
 public class TopRoleinfoServiceImpl implements ITopRoleinfoService {
 
 	@Autowired
 	protected TopRoleinfoMapper topRoleinfoMapper;
+	
+	@Autowired
+	protected TopMenuRoleMapper topMenuRoleMapper;
+	
+	@Autowired
+	protected TopUserRoleMapper topUserRoleMapper;
 
+	@Transactional
 	public void delete(String id) {
+		//从用户角色表中删除当前角色的用户
+		topUserRoleMapper.deleteByRoleId(id);
+		//先从角色菜单表中删除当前角色的菜单
+		topMenuRoleMapper.deleteByRoleId(id);
+		//从角色表中删除角色信息
 		topRoleinfoMapper.delete(id);
-
 	}
 
 	public List<TopRoleinfo> getTopRoleinfoList(String roleId) {

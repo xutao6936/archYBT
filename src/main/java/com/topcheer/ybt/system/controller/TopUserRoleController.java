@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
@@ -125,22 +126,25 @@ public class TopUserRoleController {
 	@Transactional
 	@ResponseBody
 	@RequestMapping(value = "/updateUserRole.do", method = RequestMethod.POST)
-	public Map<String, Object> updaterolemenu(TopUserRole topUserRole) {
+	public Map<String, Object> updateUserRole(TopUserRole topUserRole) {
+		
 		String userId = topUserRole.getUserId();// 用户编码
-
 		try {
 			topUserRoleService.deleteByUserId(userId);
-			String ids = topUserRole.getRoleId();// 菜单id
-			String[] strs = ids.split("\\,");
-			for (String str : strs) {
-				TopUserRole userRole = new TopUserRole();
-				userRole.setId(UUID.randomUUID().toString().replaceAll("-", ""));
-				userRole.setRoleId(str);
-				userRole.setUserId(userId);
-				userRole.setCreateDate(DateUtil.getCurrentDate());// 创建时间
-				userRole.setUpdateDate(DateUtil.getCurrentDate());// 更新时间
-				topUserRoleService.insert(userRole);
+			String ids = "".equals(topUserRole.getRoleId())?null:topUserRole.getRoleId();// 菜单id
+			if (null != ids) {
+				String[] strs = ids.split("\\,");
+				for (String str : strs) {
+					TopUserRole userRole = new TopUserRole();
+					userRole.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+					userRole.setRoleId(str);
+					userRole.setUserId(userId);
+					userRole.setCreateDate(DateUtil.getCurrentDate());// 创建时间
+					userRole.setUpdateDate(DateUtil.getCurrentDate());// 更新时间
+					topUserRoleService.insert(userRole);
+				}
 			}
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(e.getMessage());

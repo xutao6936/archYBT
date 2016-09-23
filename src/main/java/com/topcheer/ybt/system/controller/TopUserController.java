@@ -53,7 +53,7 @@ public class TopUserController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/getUserList.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/getUserList.do")
 	public PageInfo<TopUserinfo> getUserList(HttpServletRequest request, String rows, String page, TopUserinfo userInfo) {
 		Map<String, Object> map = Maps.newHashMap();
 		map.put("userInfo", userInfo);
