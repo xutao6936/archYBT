@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageInfo;
-import com.topcheer.ybt.basedata.biz.impl.TopInsCorpInfoBizImpl;
 import com.topcheer.ybt.basedata.dao.TopInsCorpInfoMapper;
 import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
 import com.topcheer.ybt.basedata.service.ITopInsCorpInfoService;
@@ -43,17 +42,9 @@ public class TopInsCorpInfoServiceImpl implements ITopInsCorpInfoService {
 
 	@Override
 	public int deletetTopInsCorpInfo(String topInsCorpInfoCode) {
-		// TODO Auto-generated method stub
 		return topInsCorpinfoMapper.deleteTopInsCorpInfo(topInsCorpInfoCode);
 	}
 
-	
-	/*public PageInfo<TopInsCorpInfo> getInsCorpByinsCorpCode(String insCorpCode) {
-		// TODO Auto-generated method stub
-		List<TopInsCorpInfo> list = topInsCorpinfoMapper.searchByinsCorpCode(insCorpCode);
-		PageInfo<TopInsCorpInfo> pageinfo = new PageInfo<TopInsCorpInfo>(list);
-		return pageinfo;
-	}*/
 	@Override
 	public PageInfo<TopInsCorpInfo> getInsCorpByinsCorpCode(TopInsCorpInfo topInsCorpInfo) {
 		// TODO Auto-generated method stub

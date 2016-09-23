@@ -60,27 +60,14 @@ public class TopInsCorpInfoController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value = "/getInsCorpByInsCorpCode.do", method = RequestMethod.POST)
+	@RequestMapping(value = "/getInsCorpByInsCorpCode.do")
 	@ResponseBody
 	public PageInfo<TopInsCorpInfo> getInsCorpByInsCorpCode(@Valid TopInsCorpInfo topInsCorpInfo, BindingResult result,
 			HttpServletRequest request) {
 		log.info("进入getInsCorpByInsCorpCode " );
-		PageInfo<TopInsCorpInfo> searchTopInsCorpInfo = null;
-		//if ((insCorpCode != null) && !"".equals(insCorpCode)) {
-			searchTopInsCorpInfo = topInsCorpInfoBiz.getInsCorpByinsCorpCode(topInsCorpInfo);
-		//} else {
-		//	searchTopInsCorpInfo = topInsCorpInfoBiz.getTopInsCorpInfoList();
-		//}
-
-		return searchTopInsCorpInfo;
+		PageInfo<TopInsCorpInfo> pageinfo = topInsCorpInfoBiz.getInsCorpByinsCorpCode(topInsCorpInfo);
+		return pageinfo;
 	}
-/*	public Map<String, Object> getInsCorpByInsCorpCode(@Valid TopInsCorpInfo topInsCorpInfo, BindingResult result,
-			HttpServletRequest request) {
-		log.info("进入getInsCorpByInsCorpCode  topInsCorpInfo.getInsCorpCode=="+topInsCorpInfo.getInsCorpCode() );
-			 topInsCorpInfoBiz.getInsCorpByinsCorpCode(topInsCorpInfo);
-
-			return ResultHelper.getResultMap();
-	}*/
 
 	/**
 	 * 判断新增还是编辑操作
