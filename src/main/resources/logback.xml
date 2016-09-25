@@ -8,7 +8,7 @@
 
 	<appender name="rollingFile"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>/logs/arch.log</file>
+		<file>/home/weblogic/logs/arch.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>logs/arch.%d{yyyy-MM-dd}.log</fileNamePattern>
 		</rollingPolicy>
