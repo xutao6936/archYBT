@@ -26,10 +26,12 @@
 	</mvc:annotation-driven>
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/" />
+		<property name="prefix" value="/WEB-INF/content/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-
+	<!-- 定义无需Controller的url<->view直接映射 -->
+	<mvc:view-controller path="/" view-name="default"/>
+	<mvc:view-controller path="/login.do" view-name="login"/>
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="defaultEncoding" value="utf-8"></property>
 		<property name="maxUploadSize" value="10485760000"></property>

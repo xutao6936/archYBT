@@ -41,7 +41,8 @@
           li.append(menus);
         }
         else {
-          var href = 'javascript:addTabs({id:\''+ item.id + '\',title: \''+ item.text + '\',close: true,url: \''+ item.url + '\'});';
+          var menuUrl = ctx+item.url;
+          var href = 'javascript:addTabs({id:\''+ item.id + '\',title: \''+ item.text + '\',close: true,url: \''+ menuUrl + '\'});';
           a.attr('href', href);
           //if (item.istab)
           //  a.attr('href', href);

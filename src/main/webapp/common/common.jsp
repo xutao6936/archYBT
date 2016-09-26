@@ -3,7 +3,7 @@
 <%@ page isELIgnored="false"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%-- <link href="${ctx }/assets/css/bootstrap.min.css" rel="stylesheet" /> --%>
-<link href="${ctx }/bootstrap-fileinput/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="${ctx }/js/common/bootstrap-fileinput/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="${ctx }/assets/css/font-awesome.min.css" />
 <!-- page specific plugin styles -->
 <link rel="stylesheet" href="${ctx }/assets/css/jquery-ui-1.10.3.full.min.css" />
@@ -13,9 +13,7 @@
 <link rel="stylesheet" href="${ctx }/assets/css/ace.min.css" />
 <link rel="stylesheet" href="${ctx }/assets/css/ace-rtl.min.css" />
 <link rel="stylesheet" href="${ctx }/assets/css/ace-skins.min.css" />
-<link rel="stylesheet" href="${ctx }/zTree/2.6/zTreeStyle.css" />
-<%-- <link rel="stylesheet" href="${ctx }/zTree/zTree_v3-master/css/metroStyle/metroStyle.css" /> --%>
-<%-- <link rel="stylesheet" href="${ctx }/css/zTreeStyle3.5/zTreeStyle.css" /> --%>
+<link rel="stylesheet" href="${ctx }/js/common/zTree/2.6/zTreeStyle.css" />
 <style type="text/css">
 #footer {
 	margin-top: 1px;
@@ -46,8 +44,7 @@
 
 <script src="${ctx }/assets/js/ace-elements.min.js"></script>
 <script src="${ctx }/assets/js/jquery-form.js"></script>
-<script src="${ctx }/zTree/2.6/jquery.ztree-2.6.min.js"></script>
-<%-- <script src="${ctx }/zTree/3.5/jquery.ztree.all-3.5.min.js"></script> --%>
+<script src="${ctx }/js/common/zTree/2.6/jquery.ztree-2.6.min.js"></script>
 <script type="text/javascript" src="${ctx }/assets/js/jquery.validate.min.js"></script>
 
 <script type="text/javascript" src="${ctx }/assets/js/validate_messages_cn.js"></script>

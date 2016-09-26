@@ -8,11 +8,10 @@
 <meta charset="utf-8" />
 <title>银保通</title>
 <!-- basic styles -->
-<jsp:include page="common.jsp"></jsp:include>
-<!-- <script src="< %=basePath %>js/system/user.js"></script> -->
+<%@ include file="/common/common.jsp" %>
 </head>
-<script type="text/javascript" src="${ctx }/js/sidebar-menu.js"></script>
-<script type="text/javascript" src="${ctx }/js/bootstrap-tab.js"></script>
+<script type="text/javascript" src="${ctx }/js/common/sidebar-menu.js"></script>
+<script type="text/javascript" src="${ctx }/js/common/bootstrap-tab.js"></script>
 
 <script type="text/javascript">
   $(function () {
@@ -43,7 +42,7 @@
 		<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
-		<jsp:include page="head.jsp"></jsp:include>
+		<%@ include file="/common/head.jsp" %>
 
 	</div>
 

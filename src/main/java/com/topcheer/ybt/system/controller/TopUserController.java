@@ -37,9 +37,9 @@ public class TopUserController {
 	@Resource(name = "topUserinfoService")
 	private ITopUserinfoService iTopUserinfoService;
 
-	@RequestMapping("/userList")
-	public String userList(HttpServletRequest request) {
-		return "/system/userList";
+	@RequestMapping(method = RequestMethod.GET)
+	public String userList() {
+		return "system/userList";
 	}
 
 	@ResponseBody

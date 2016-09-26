@@ -9,8 +9,8 @@
 <meta charset="utf-8" />
 <title>银保通</title>
 <!-- basic styles -->
-<jsp:include page="../common.jsp"></jsp:include>
-<script src="${ctx }/js/system/menuinfo.js"></script>
+<%@ include file="/common/common.jsp" %>
+<script src="${ctx }/js/module/system/menuinfo.js"></script>
 </head>
 
 <body>
