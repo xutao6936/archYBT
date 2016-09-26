@@ -41,7 +41,12 @@
           li.append(menus);
         }
         else {
+<<<<<<< HEAD:src/main/webapp/js/sidebar-menu.js
           var href = 'javascript:addTabs({id:\''+ item.id + '\',title: \''+ item.text + '\',close: true,url: \''+ ctx+'/'+item.url + '\'});';
+=======
+          var menuUrl = ctx+item.url;
+          var href = 'javascript:addTabs({id:\''+ item.id + '\',title: \''+ item.text + '\',close: true,url: \''+ menuUrl + '\'});';
+>>>>>>> b851a2d3ae7daa423258b279bf3c501bbaad64aa:src/main/webapp/js/common/sidebar-menu.js
           a.attr('href', href);
           //if (item.istab)
           //  a.attr('href', href);

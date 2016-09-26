@@ -10,14 +10,14 @@
 <meta charset="utf-8" />
 <title>银保通</title>
 <!-- basic styles -->
-<jsp:include page="../common.jsp"></jsp:include>
+<%@ include file="/common/common.jsp" %>
 
 <!-- 文件上传 -->
-<link rel="stylesheet" href="${ctx }/bootstrap-fileinput/css/fileinput.css" />
-<script type="text/javascript" src="${ctx }/bootstrap-fileinput/js/fileinput.js"></script>
-<script type="text/javascript" src="${ctx }/bootstrap-fileinput/js/locales/zh.js"></script>
+<link rel="stylesheet" href="${ctx }/js/common/bootstrap-fileinput/css/fileinput.css" />
+<script type="text/javascript" src="${ctx }/js/common/bootstrap-fileinput/js/fileinput.js"></script>
+<script type="text/javascript" src="${ctx }/js/common/bootstrap-fileinput/js/locales/zh.js"></script>
 
-<script src="${ctx }/js/system/user.js"></script>
+<script src="${ctx }/js/module/system/user.js"></script>
 
 </head>
 
