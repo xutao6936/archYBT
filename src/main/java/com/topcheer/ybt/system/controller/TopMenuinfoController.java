@@ -36,7 +36,7 @@ public class TopMenuinfoController {
 
 	private String resultTree;// 我要返回给页面的List
 	
-	@RequestMapping("/turnToMenuInfoList")
+	@RequestMapping(value="turnToMenuInfoList",method=RequestMethod.GET)
 	public String userList() {
 		return "system/menuinfo";
 	}

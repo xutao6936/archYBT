@@ -30,7 +30,7 @@ public class TopRoleinfoController {
 	@Resource(name = "topRoleinfoService")
 	private ITopRoleinfoService topRoleinfoService;
 	
-	@RequestMapping("/turnToRoleInfoList")
+	@RequestMapping(value="turnToRoleInfoList",method=RequestMethod.GET)
 	public String userList() {
 		return "system/roleinfo";
 	}
