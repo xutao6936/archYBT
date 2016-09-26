@@ -2,53 +2,57 @@ package com.topcheer.ybt.basedata.entity;
 
 public class TopInsprdInfo {
 	
-	private String insPrdCode;//保险产品编码
-
-	private String insCorpCode;//保险公司编码
+	private String id;
 	
-	private String insPrdCnName;//保险产品中文名称
+	private String insPrdCode;//产品代码
 	
-	private String insPrdEnName;//保险产品中文简称
+	private String insPrdTrueCode;//产品真实代码
 	
-	private String statisticType;//统计方式
+	private String insCorpCode;//公司编码
 	
-	private String agentType;//代理方式
+	private String insPrdCnName;//产品名称
 	
-	private String assuranceType;//主附险
+	private String insPrdSimName;//产品简称
 	
-	private String  insprdKind;//险种类型
+	private String assuranceType;//主附险标志(0:主险 1:附加险)
 	
-	private String transType;//交易种类
+	private String buyUnit;//购买单位(0:份数 1:保费 2:保额)
 	
-	private String insCurrency;//币种
+	private String  insPrdType; //产品类型
 	
-	private String insPrdType;//保险产品种类
-	
-	private String insBeginDate;//代理开始日期
+	private String insBeginDate; //代理开始日期
 	
 	private String insEndDate;//代理结束日期
 	
-	private String totalDeal;//总份数
+	private String startAMT;//起购金额/数量
 	
-	private String totalAmt;//总金额
+	private String entAMT;//最高金额/数量
 	
-	private String startAmt;//最低起售金额
+	private String inCreaseAMT;//递增金额/数量
 	
-	private String prdDescribe;//产品介绍备注
+	private String status;//状态(0:有效 1:无效)
 	
-	private String bandFlag;//保险产品状态
+	private String impawnFlag;//是否可质押(0:是 1:否)
 	
-	private String impawnFlag;//可否质押
+	private String transType;//交易类型(0:全部1:实时2:非实时)
 	
-	private String deployFlag;//发布状态
+	private String channelType;//交易渠道(01:柜面02:网银03:手机04:直销05:自助)
 	
-	private String operatorBankCode;//操作机构
+	private String createDate;//创建日期
 	
-	private String operatorCode;//操作人员
+	private String updateDate;//更新日期
 	
-	private String updateTime;	//操作时间
+	private String updateTime;//更新时间
 	
-	private String updateDate;//操作日期
+	private String operator;//操作员
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getInsPrdCode() {
 		return insPrdCode;
@@ -56,6 +60,14 @@ public class TopInsprdInfo {
 
 	public void setInsPrdCode(String insPrdCode) {
 		this.insPrdCode = insPrdCode;
+	}
+
+	public String getInsPrdTrueCode() {
+		return insPrdTrueCode;
+	}
+
+	public void setInsPrdTrueCode(String insPrdTrueCode) {
+		this.insPrdTrueCode = insPrdTrueCode;
 	}
 
 	public String getInsCorpCode() {
@@ -74,28 +86,12 @@ public class TopInsprdInfo {
 		this.insPrdCnName = insPrdCnName;
 	}
 
-	public String getInsPrdEnName() {
-		return insPrdEnName;
+	public String getInsPrdSimName() {
+		return insPrdSimName;
 	}
 
-	public void setInsPrdEnName(String insPrdEnName) {
-		this.insPrdEnName = insPrdEnName;
-	}
-
-	public String getStatisticType() {
-		return statisticType;
-	}
-
-	public void setStatisticType(String statisticType) {
-		this.statisticType = statisticType;
-	}
-
-	public String getAgentType() {
-		return agentType;
-	}
-
-	public void setAgentType(String agentType) {
-		this.agentType = agentType;
+	public void setInsPrdSimName(String insPrdSimName) {
+		this.insPrdSimName = insPrdSimName;
 	}
 
 	public String getAssuranceType() {
@@ -106,28 +102,12 @@ public class TopInsprdInfo {
 		this.assuranceType = assuranceType;
 	}
 
-	public String getInsprdKind() {
-		return insprdKind;
+	public String getBuyUnit() {
+		return buyUnit;
 	}
 
-	public void setInsprdKind(String insprdKind) {
-		this.insprdKind = insprdKind;
-	}
-
-	public String getTransType() {
-		return transType;
-	}
-
-	public void setTransType(String transType) {
-		this.transType = transType;
-	}
-
-	public String getInsCurrency() {
-		return insCurrency;
-	}
-
-	public void setInsCurrency(String insCurrency) {
-		this.insCurrency = insCurrency;
+	public void setBuyUnit(String buyUnit) {
+		this.buyUnit = buyUnit;
 	}
 
 	public String getInsPrdType() {
@@ -154,44 +134,36 @@ public class TopInsprdInfo {
 		this.insEndDate = insEndDate;
 	}
 
-	public String getTotalDeal() {
-		return totalDeal;
+	public String getStartAMT() {
+		return startAMT;
 	}
 
-	public void setTotalDeal(String totalDeal) {
-		this.totalDeal = totalDeal;
+	public void setStartAMT(String startAMT) {
+		this.startAMT = startAMT;
 	}
 
-	public String getTotalAmt() {
-		return totalAmt;
+	public String getEntAMT() {
+		return entAMT;
 	}
 
-	public void setTotalAmt(String totalAmt) {
-		this.totalAmt = totalAmt;
+	public void setEntAMT(String entAMT) {
+		this.entAMT = entAMT;
 	}
 
-	public String getStartAmt() {
-		return startAmt;
+	public String getInCreaseAMT() {
+		return inCreaseAMT;
 	}
 
-	public void setStartAmt(String startAmt) {
-		this.startAmt = startAmt;
+	public void setInCreaseAMT(String inCreaseAMT) {
+		this.inCreaseAMT = inCreaseAMT;
 	}
 
-	public String getPrdDescribe() {
-		return prdDescribe;
+	public String getStatus() {
+		return status;
 	}
 
-	public void setPrdDescribe(String prdDescribe) {
-		this.prdDescribe = prdDescribe;
-	}
-
-	public String getBandFlag() {
-		return bandFlag;
-	}
-
-	public void setBandFlag(String bandFlag) {
-		this.bandFlag = bandFlag;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public String getImpawnFlag() {
@@ -202,28 +174,36 @@ public class TopInsprdInfo {
 		this.impawnFlag = impawnFlag;
 	}
 
-	public String getDeployFlag() {
-		return deployFlag;
+	public String getTransType() {
+		return transType;
 	}
 
-	public void setDeployFlag(String deployFlag) {
-		this.deployFlag = deployFlag;
+	public void setTransType(String transType) {
+		this.transType = transType;
 	}
 
-	public String getOperatorBankCode() {
-		return operatorBankCode;
+	public String getChannelType() {
+		return channelType;
 	}
 
-	public void setOperatorBankCode(String operatorBankCode) {
-		this.operatorBankCode = operatorBankCode;
+	public void setChannelType(String channelType) {
+		this.channelType = channelType;
 	}
 
-	public String getOperatorCode() {
-		return operatorCode;
+	public String getCreateDate() {
+		return createDate;
 	}
 
-	public void setOperatorCode(String operatorCode) {
-		this.operatorCode = operatorCode;
+	public void setCreateDate(String createDate) {
+		this.createDate = createDate;
+	}
+
+	public String getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
 
 	public String getUpdateTime() {
@@ -234,12 +214,12 @@ public class TopInsprdInfo {
 		this.updateTime = updateTime;
 	}
 
-	public String getUpdateDate() {
-		return updateDate;
+	public String getOperator() {
+		return operator;
 	}
 
-	public void setUpdateDate(String updateDate) {
-		this.updateDate = updateDate;
+	public void setOperator(String operator) {
+		this.operator = operator;
 	}
-	
+
 }
