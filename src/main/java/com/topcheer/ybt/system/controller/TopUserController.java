@@ -37,7 +37,7 @@ public class TopUserController {
 	@Resource(name = "topUserinfoService")
 	private ITopUserinfoService iTopUserinfoService;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping("/turnToUserList")
 	public String userList() {
 		return "system/userList";
 	}

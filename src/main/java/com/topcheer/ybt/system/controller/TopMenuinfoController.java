@@ -35,6 +35,11 @@ public class TopMenuinfoController {
 	private ITopMenuinfoService topMenuinfoService;
 
 	private String resultTree;// 我要返回给页面的List
+	
+	@RequestMapping("/turnToMenuInfoList")
+	public String userList() {
+		return "system/menuinfo";
+	}
 
 	@RequestMapping("/getTopMenuinfoList.do")
 	@ResponseBody
