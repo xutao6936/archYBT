@@ -1,20 +1,18 @@
 package com.topcheer.ybt.basedata.entity;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 public class TopInsCorpInfo {
 	private String id;
-	@NotBlank(message="保险公司编码不能为空")
+	//@NotBlank(message="保险公司编码不能为空")
 	private String insCorpCode;
-	@NotBlank(message="保险公司名称不能为空")
+//	@NotBlank(message="保险公司名称不能为空")
 	private String insCorpName;
 	//保险公司中文简称
 	private String insSimpName;
 	//级别 0-总公司  1-分公司
-	@NotBlank(message="保险公司级别设置不能为空")
+	//@NotBlank(message="保险公司级别设置不能为空")
 	private String insCorpLevel;
 	//总公司编码  如果是总公司  值为-1
-	@NotBlank(message="总公司编码设置不能为空")
+//	@NotBlank(message="总公司编码设置不能为空")
 	private String upCorpCode;
 	//保险公司英文名称
 	private String insCorpEnName;

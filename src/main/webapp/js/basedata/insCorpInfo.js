@@ -1,28 +1,19 @@
 $(function() {
 	init();
-	
-	//validate();	
-	$("#searchFilter").unbind('click').click(function(){
-	//	var param = $('#searchForm').serialize();
-//		console.info(param);
-		 $.ajax({
-			   url:ctx+'/topInsCorpInfo/getInsCorpByInsCorpCode.do',
-			   type: "POST",
-			   data:$('#searchForm').serialize(),
-			   dataType:'json',
-			   async: false,
-		       success:function(msg){
-		    	   if('SUCC'==msg.result){
-		    		   layer.alert('条件查询',{icon:1});  
-		    		   $(grid_selector).trigger("reloadGrid");
-		    	   }else {
-		    		   layer.alert('查询失败',{icon:2});  
-		    	   }
-		       }	   
-		   });
-	});
-	
+	//validate();
 });
+
+function resetSearchForm(){
+	document.searchForm.reset();
+}
+
+function submitSearchForm(){
+	 jQuery("#grid-table").jqGrid('setGridParam', {
+		   url:ctx+'/topInsCorpInfo/getInsCorpByInsCorpCode.do',
+		   type: "POST",
+		   postData:$('#searchForm').serialize()
+}).trigger("reloadGrid");
+}
 
 function init() {
 	var grid_selector = "#grid-table";
@@ -31,7 +22,7 @@ function init() {
 			{
 				url : ctx+'/topInsCorpInfo/getTopInsCorpInfoList.do',
 				datatype : "json",
-				height : 330,
+				height : 200,
 				mtype : "post",
 				colNames : [ 'ID','保险公司编码','保险公司名称','简称', '保险公司级别','上级公司代码','保险公司英文名称',
 				             '地址','邮编','联系电话','传真','邮箱','状态','操作员','操作机构','创建日期','更新日期', '更新时间',
@@ -62,11 +53,6 @@ function init() {
 					name : 'insCorpLevel',
 					index : 'insCorpLevel',
 					width : 100,
-					/*editable : true,
-					edittype : "select",
-					editoptions : {
-						value : "0:总公司;1:分公司"
-					},*/
 					unformat:function(cellValue, options, rowObject){
 						if(cellValue=='总公司'){
 							return "0";
@@ -172,7 +158,6 @@ function init() {
 					index : 'updateTime',
 					width : 70,
 					hidden:true,
-					//editable : false,
 					sorttype : "date",
 					unformat : pickDate
 				},{
@@ -290,16 +275,14 @@ function init() {
 						}
 					}
 				}],
-				//sortname : 'userId',
+				//sortname : 'id',
 				viewrecords : true,// 是否在浏览导航栏显示记录总数
 				rowNum : 10,// 每页显示记录数
 				rowList : [ 10, 20, 30 ],// 用于改变显示行数的下拉列表框的元素数组。
 				pager : pager_selector,
 				altRows : true,// 设置为交替行表格,默认为false
-				// toppager: true,
 				editurl:ctx+'/topInsCorpInfo/oper.do',
 				multiselect : true,
-				// multikey: "ctrlKey",
 				multiboxonly : true,
 				
 				jsonReader : {  
@@ -327,6 +310,7 @@ function init() {
 			   caption:"新增",   
 			   buttonicon:"icon-plus-sign purple",   
 			   onClickButton: function(){ 
+			      // $("#validation-form").clearForm();
 				   $("#dialog-form").dialog({
 					  title:"新增用户",
 					  title_html: true,
@@ -342,15 +326,15 @@ function init() {
 								  type: "POST",
 								  data:$('#validation-form').serialize(),
 								  dataType:'json',
-								  beforeSend:validate(),
+								 // beforeSend:validate(),
 								  success:function(msg){
 									  if('SUCC'==msg.result){
 										  layer.alert('添加成功',{icon:1});  
+										
 										  $("#dialog-form").dialog('close');
 										  $(grid_selector).trigger("reloadGrid");
 									  }else{
 										  layer.alert('添加失败',{icon:2});  
-										  layer.alert(msg.responseText,{icon:2}); 
 									  }
 								  }
 				    		  });
@@ -362,25 +346,20 @@ function init() {
 				    		  $(this).dialog('close');
 				    	  }
 				      }]
+			            
 				   }); 
 			   },   
 			//   position:"last"  
 			}).navButtonAdd(pager_selector,{  
 				   caption:"编辑",   
 				   buttonicon:"icon-pencil blue",   
-				   onClickButton: function(){   
-					   var cell = $(grid_selector).jqGrid("getGridParam","selrow");
-					   if(cell.length>0){ 
-						//  var rowData = $(grid_selector).jqGrid("getRowData",cell);
+				   onClickButton: function(){  
+					   $("#validation-form")[0].reset();
+					   var cell = $(grid_selector).jqGrid("getGridParam","selarrrow");
+					   if(cell.length >0){ 
 						   $("#dialog-form").dialog({
 								  title:"编辑用户",
-								//  autoOpen: false,
 							      height: 550,
-							    /*  beforeShowForm: function(rowData) {
-							    	  if(rowData.insCorpLevel=="总公司"){
-							    		  form.insCorpLevel ="总公司";
-							    	  }
-							      },*/
 							      open:function(){
 							    	  $(grid_selector).jqGrid('GridToForm',cell, '#dialog-form');
 							      },
@@ -415,8 +394,8 @@ function init() {
 						   }else {
 							  layer.alert('请选中一行!',{icon:2}); 
 					   }
-				   },   
-				   position:"last"  
+				   } 
+				   //position:"last"  
 				}).navButtonAdd(pager_selector,{  
 			   caption:"删除",   
 			   buttonicon:"icon-trash red",   
@@ -477,115 +456,6 @@ function init() {
 						   position:"last"  
 						});  
 		
-		
-		/*jQuery(grid_selector).navGrid(pager_selector,{
-			edit:false,
-			edittext:'编辑',
-			edittitle:'编辑数据',
-			add:false,
-			addtext:'新增',
-			addicon:'icon-plus-sign purple',
-			addtitle:'新增一条数据',
-			alerttext:'请选择一条数据',
-			deltitle:'删除一条数据',
-			del:false,
-			deltext:'删除',
-			search:false,
-			refresh:false,
-			refreshicon:'icon-refresh green',
-			viewicon:'ui-icon icon-zoom-in grey',
-			refreshtext:'刷新',
-			refreshtitle:'刷新数据',
-			view:false,
-			viewtext:'查看',
-			viewtitle:'查看',
-			addfunc:function(){
-				var addParams = {
-                    url : "add"
-				};
-				$(grid_selector).jqGrid("editGridRow","new",addParams);
-			},
-			delfunc:function(){
-				 var cells = $(grid_selector).jqGrid("getGridParam","selarrrow");
-				   if(cells.length>0){
-					   var params = new Array();
-					   $.each(cells,function(i,v){
-						   var ret = $(grid_selector).jqGrid('getRowData', v);
-						   params.push(ret.id);
-					   });
-					   
-					   layer.confirm("确认删除吗？", { btn : ['确定','取消']},//按钮
-
-						       function(index){      //确认后执行的操作  
-							   if(index){
-								   $.ajax({
-									   url:ctx+'/topInsCorpInfo/deleteTopInsCorpInfo.do',
-									   type: "POST",
-									   dataType:'json',
-									   data:{"ids[]":params},
-								       success:function(msg){
-								    	   if('SUCC'==msg.result){
-								    		   layer.alert('删除成功',{icon:1});  
-								    		   $(grid_selector).trigger("reloadGrid");
-								    	   }else {
-								    		   layer.alert('删除失败',{icon:2});  
-								    	   }
-								       }	   
-								   });
-							   }
-						       },  
-						       function(){      //取消后执行的操作  
-						    	  return;
-						       }); 
-					   
-				   }else{
-					   layer.alert('请选中一行!',{icon:2}); 
-				   }
-			}
-			},{
-				//edit_options
-				closeAfterEdit:true,
-				closeOnEscape:true,
-				afterSubmit:function(response, postdata) {
-					var data = response.responseText;
-					data = $.parseJSON(data);
-					if(data['result']=='ERROR'){
-						layer.alert(data['errInfo'],{icon:2});  
-					}else {
-						layer.alert('修改成功',{icon:1});  
-						return true;
-					}
-				}
-			},{
-				//add_options
-				closeAfterAdd:true,
-				closeOnEscape:true,
-				afterSubmit:function(response, postdata) {
-					var data = response.responseText;
-					data = $.parseJSON(data);
-					if(data['result']=='ERROR'){
-						layer.alert(data['errInfo'],{icon:2});  
-					}else {
-						 layer.alert('添加成功',{icon:1});  
-						return true;
-					}
-				}
-			},{},{},{}).navSeparatorAdd(pager_selector,{
-			sepclass : "ui-separator",
-			sepcontent: ''
-		}).navButtonAdd(pager_selector,{  
-			   caption:"导入",   
-			   buttonicon:"icon-upload green",   
-			   onClickButton: function(){},   
-			   position:"last"  
-			}).navButtonAdd(pager_selector,{  
-				   caption:"下载",   
-				   buttonicon:"icon-download green",   
-				   onClickButton: function(){
-					   location.href=ctx+'/topInsCorpInfo/download.do';
-				   },   
-				   position:"last"  
-				});  ;  */
 	// switch element when editing inline
 	function aceSwitch(cellvalue, options, cell) {
 		setTimeout(function() {
@@ -604,8 +474,6 @@ function init() {
 			});
 		}, 0);
 	}
-
-	
 
 	function style_edit_form(form) {
 		// enable datepicker on "sdate" field and switches for "stock" field
@@ -663,11 +531,9 @@ function init() {
 		var form = $(e[0]);
 		if (form.data('styled'))
 			return false;
-
 		form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner(
 				'<div class="widget-header" />');
 		style_delete_form(form);
-
 		form.data('styled', true);
 	}
 
@@ -740,29 +606,13 @@ function init() {
 
 function validate(){
 	$('#validation-form').validate({
-		errorElement: 'div',
-		errorClass: 'help-block',
-		focusInvalid: false,
 		rules: {
-			insCorpCode: {
-				required: true
-				
-			},
-			insCorpName: {
-				required: true,
-			},
-			insSimpName:{
-				required: true,
-				minlength: 5,
-				//equalTo:'#loginPwd'
-			},
-			insCorpEnName:{
-				required: true
-			}
-			
+			insCorpCode:" required"
 		},
 	 messages: {
-		 insCorpCode: { required: "保险公司编码不能为空" }
+		 insCorpCode: {
+		        required: "请输入保险公司编码"
+		      }
 	 }
 });
 }
