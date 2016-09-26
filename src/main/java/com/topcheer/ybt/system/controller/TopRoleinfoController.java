@@ -29,6 +29,11 @@ public class TopRoleinfoController {
 	
 	@Resource(name = "topRoleinfoService")
 	private ITopRoleinfoService topRoleinfoService;
+	
+	@RequestMapping("/turnToRoleInfoList")
+	public String userList() {
+		return "system/roleinfo";
+	}
 
 	@RequestMapping("/getTopRoleinfoList.do")
 	@ResponseBody
