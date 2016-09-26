@@ -87,8 +87,7 @@ public class TopInsPrdInfoController {
 		}
 		log.info("进入insertTopInsprdInfo");
 		TopUserinfo userinfo = (TopUserinfo) request.getSession().getAttribute("userinfo");
-		topInsprdInfo.setOperatorBankCode(userinfo.getUserDept());
-		topInsprdInfo.setOperatorCode(userinfo.getLoginAccount());
+		topInsprdInfo.setOperator(userinfo.getLoginAccount());
 		topInsprdInfo.setUpdateTime(DateUtil.getCurrentTime());
 		topInsprdInfo.setUpdateDate(DateUtil.getCurrentDate());
 
@@ -112,8 +111,7 @@ public class TopInsPrdInfoController {
 		}
 		log.info("进入insertTopInsprdInfo");
 		TopUserinfo userinfo = (TopUserinfo) request.getSession().getAttribute("userinfo");
-		topInsprdInfo.setOperatorBankCode(userinfo.getUserDept());
-		topInsprdInfo.setOperatorCode(userinfo.getLoginAccount());
+		topInsprdInfo.setOperator(userinfo.getLoginAccount());
 		topInsprdInfo.setUpdateTime(DateUtil.getCurrentTime());
 		topInsprdInfo.setUpdateDate(DateUtil.getCurrentDate());
 		try {

@@ -3,124 +3,155 @@
 
 <mapper namespace="com.topcheer.ybt.basedata.dao.TopInsprdInfoMapper">
 <resultMap id="forTopInsprdInfo" type="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
-		<result property="insPrdCode" column="INSPRDCODE" jdbcType="VARCHAR" />
-		<result property="insCorpCode" column="INSCORPCODE" jdbcType="VARCHAR" />
-		<result property="insPrdCnName" column="INSPRDCHNAME" jdbcType="VARCHAR" />
-		<result property="insPrdEnName" column="INSPRDENNAME" jdbcType="VARCHAR" />
-		<result property="statisticType" column="STATISTICTYPE" jdbcType="VARCHAR" />
-		<result property="agentType" column="AGENTTYPE" jdbcType="VARCHAR" />
-		<result property="assuranceType" column="ASSURANCETYPE" jdbcType="VARCHAR" />
-		<result property="insprdkind" column="INSPRDKIND" jdbcType="VARCHAR" />
-		<result property="transtype" column="TRANSTYPE" jdbcType="VARCHAR" />
-		<result property="insCurrency" column="INSCURRENCY" jdbcType="VARCHAR" />
-		<result property="insPrdType" column="INSPRDTYPE" jdbcType="VARCHAR" />
-		<result property="insBeginDate" column="INSBEGINTIME" jdbcType="VARCHAR" />
-		<result property="insEndDate" column="INSENDTIME" jdbcType="VARCHAR" />
-		<result property="totalDeal" column="TOTALDEAL" jdbcType="VARCHAR" />
-		<result property="totalAmt" column="TOTALAMT" jdbcType="VARCHAR" />
-		<result property="startAmt" column="STARTAMT" jdbcType="VARCHAR" />
-		<result property="prdDescribe" column="PRDDESCRIPT" jdbcType="VARCHAR" />
-		<result property="bandFlag" column="BANDFLAG" jdbcType="VARCHAR" />
-		<result property="impawnFlag" column="IMPAWNFLAG" jdbcType="VARCHAR" />
-		<result property="deployFlag" column="DEPLOYFLAG" jdbcType="VARCHAR" />
-		<result property="operatorBankCode" column="OPERATORBANKCODE" jdbcType="VARCHAR" />
-		<result property="operatorCode" column="OPERATORCODE" jdbcType="VARCHAR" />
-		<result property="updateTime" column="UPDATETIME" jdbcType="VARCHAR" />
-		<result property="updateDate" column="UPDATEDATE" jdbcType="VARCHAR" />
+		<result property="id" column="ID" jdbcType="VARCHAR" />
+		<result property="insPrdCode" column="INSPRD_CODE" jdbcType="VARCHAR" />
+		<result property="insPrdTrueCode" column="INSPRD_TRUE_CODE" jdbcType="VARCHAR" />
+		<result property="insCorpCode" column="INSCORP_CODE" jdbcType="VARCHAR" />
+		<result property="insPrdCnName" column="INSPRD_CNNAME" jdbcType="VARCHAR" />
+		<result property="insPrdSimName" column="INSPRD_SIMNAME" jdbcType="VARCHAR" />
+		<result property="assuranceType" column="ASSURANCE_TYPE" jdbcType="VARCHAR" />
+		<result property="buyUnit" column="BUY_UNIT" jdbcType="VARCHAR" />
+		<result property="insPrdType" column="INSPRD_TYPE" jdbcType="VARCHAR" />
+		<result property="insBeginDate" column="INSBENGIN_DATE" jdbcType="VARCHAR" />
+		<result property="insEndDate" column="INSEND_DATE" jdbcType="VARCHAR" />
+		<result property="startAMT" column="START_AMT" jdbcType="VARCHAR" />
+		<result property="entAMT" column="END_AMT" jdbcType="VARCHAR" />
+		<result property="inCreaseAMT" column="INCREASE_AMT" jdbcType="VARCHAR" />
+		<result property="status" column="STATUS" jdbcType="VARCHAR" />
+		<result property="impawnFlag" column="IMPAWN_FLAG" jdbcType="VARCHAR" />
+		<result property="transType" column="TRANS_TYPE" jdbcType="VARCHAR" />
+		<result property="channelType" column="CHANNEL_TYPE" jdbcType="VARCHAR" />
+		<result property="createDate" column="CREATE_DATE" jdbcType="VARCHAR" />
+		<result property="updateDate" column="UPDATE_DATE" jdbcType="VARCHAR" />
+		<result property="updateTime" column="UPDATE_TIME" jdbcType="VARCHAR" />
+		<result property="operator" column="OPERATOR" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="searchAllTopInsprdInfo" resultMap="forTopInsprdInfo" >
 		select * from top_insprdInfo
 	</select>  
 	
-	<select id="searchTopInsPrdInfoByInsPrdCode"  resultMap="forTopInsprdInfo"  parameterType="String">
-		select * from top_insprdInfo where where  INSPRDCODE = #{insPrdCode,jdbcType=VARCHAR}
+	<select id="searchTopInsPrdInfoByInsPrdCode"  resultMap="forTopInsprdInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
+		select * from top_insprdInfo where 1=1
+		<if test="insPrdCode !=null and insPrdCode != '' ">
+			and  INSPRD_CODE = #{insPrdCode,jdbcType=VARCHAR}
+		</if> 
+		<if test="insPrdTrueCode !=null and insPrdTrueCode != '' ">
+			and  INSPRD_TRUE_CODE = #{insPrdTrueCode,jdbcType=VARCHAR}
+		</if>
+		<if test="insCorpCode !=null and insCorpCode != '' ">
+			and  INSCORP_CODE = #{insCorpLevel,jdbcType=VARCHAR}
+		</if>
+		<if test="insPrdCnName !=null and insPrdCnName != '' ">
+			and  INSPRD_CNNAME = #{insPrdCnName,jdbcType=VARCHAR}
+		</if>
+		<if test="insPrdSimName !=null and insPrdSimName != '' ">
+			and  INSPRD_SIMNAME = #{status,jdbcType=VARCHAR}
+		</if>
+		<if test="assuranceType !=null and assuranceType != '' ">
+			and  ASSURANCE_TYPE = #{assuranceType,jdbcType=VARCHAR}
+		</if>
+		<if test="insPrdType !=null and insPrdType != '' ">
+			and  INSPRD_TYPE = #{insPrdType,jdbcType=VARCHAR}
+		</if>
+		<if test="insBeginDate !=null and insBeginDate != '' ">
+			and  INSBENGIN_DATE = #{insBeginDate,jdbcType=VARCHAR}
+		</if>
+		<if test="insEndDate !=null and insEndDate != '' ">
+			and  INSEND_DATE = #{commonNossdcheckFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="status !=null and status != '' ">
+			and  STATUS = #{status,jdbcType=VARCHAR}
+		</if>
+		<if test="impawnFlag !=null and impawnFlag != '' ">
+			and  IMPAWN_FLAG = #{impawnFlag,jdbcType=VARCHAR}
+		</if>
+		<if test="transType !=null and transType != '' ">
+			and  TRANS_TYPE = #{transType,jdbcType=VARCHAR}
+		</if>
+		<if test="channelType !=null and channelType != '' ">
+			and  CHANNEL_TYPE = #{channelType,jdbcType=VARCHAR}
+		</if>
+		
 	</select>
 	<insert id="insertTopInsPrdInfo"   parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
 		insert into  top_insprdInfo (
-		INSPRDCODE,
-		INSCORPCODE,
-		INSPRDCHNAME,
-		INSPRDENNAME,
-		STATISTICTYPE,
-		AGENTTYPE,
-		ASSURANCETYPE,
-		INSPRDKIND,
-		TRANSTYPE,
-		INSCURRENCY,
-		INSPRDTYPE,
-		INSBEGINTIME,
-		INSENDTIME,
-		TOTALDEAL,
-		TOTALAMT,
-		STARTAMT,
-		PRDDESCRIPT,
-		BANDFLAG,
-		IMPAWNFLAG,
-		DEPLOYFLAG,
-		OPERATORBANKCODE,
-		OPERATORCODE,
-		UPDATETIME,
-		UPDATEDATE
+		ID,
+		INSPRD_CODE,
+		INSPRD_TRUE_CODE,
+		INSCORP_CODE,
+		INSPRD_CNNAME,
+		INSPRD_SIMNAME,
+		ASSURANCE_TYPE,
+		BUY_UNIT,
+		INSPRD_TYPE,
+		INSBENGIN_DATE,
+		INSEND_DATE,
+		START_AMT,
+		END_AMT,
+		INCREASE_AMT,
+		STATUS,
+		IMPAWN_FLAG,
+		TRANS_TYPE,
+		CHANNEL_TYPE,
+		CREATE_DATE,
+		UPDATE_DATE,
+		UPDATE_TIME,
+		OPERATOR
 		)values(
-		 #{insPrdCode,jdbcType=VARCHAR},
-		 #{insCorpCode,jdbcType=VARCHAR}, 
-		 #{insPrdCnName,jdbcType=VARCHAR}, 
-     	 #{insPrdEnName,jdbcType=VARCHAR}, 
-     	 #{statisticType,jdbcType=VARCHAR}, 
-     	 #{agentType,jdbcType=VARCHAR}, 
+		 #{id,jdbcType=VARCHAR},
+		 #{insPrdCode,jdbcType=VARCHAR}, 
+		 #{insPrdTrueCode,jdbcType=VARCHAR}, 
+     	 #{insCorpCode,jdbcType=VARCHAR}, 
+     	 #{insPrdCnName,jdbcType=VARCHAR}, 
+     	 #{insPrdSimName,jdbcType=VARCHAR}, 
          #{assuranceType,jdbcType=VARCHAR}, 
-         #{insprdKind,jdbcType=VARCHAR},
-         #{transType,jdbcType=VARCHAR}, 
-         #{insCurrency,jdbcType=VARCHAR}, 
-         #{insPrdType,jdbcType=VARCHAR},
+         #{buyUnit,jdbcType=VARCHAR},
+         #{insPrdType,jdbcType=VARCHAR}, 
          #{insBeginDate,jdbcType=VARCHAR}, 
-         #{insEndDate,jdbcType=VARCHAR}, 
-         #{totalDeal,jdbcType=DECIMAL}, 
-         #{totalAmt,jdbcType=DECIMAL}, 
-         #{startAmt,jdbcType=DECIMAL}, 
-         #{prdDescribe,jdbcType=VARCHAR}, 
-         #{bandFlag,jdbcType=VARCHAR}, 
-         #{impawnFlag,jdbcType=VARCHAR}, 
-         #{deployFlag,jdbcType=VARCHAR}, 
-         #{operatorBankCode,jdbcType=VARCHAR}, 
-         #{operatorCode,jdbcType=VARCHAR}, 
-         #{updateTime,jdbcType=VARCHAR},
-         #{updateDate,jdbcType=VARCHAR}
-      )
+         #{insEndDate,jdbcType=VARCHAR},
+         #{startAMT,jdbcType=VARCHAR}, 
+         #{entAMT,jdbcType=VARCHAR}, 
+         #{inCreaseAMT,jdbcType=DECIMAL}, 
+         #{status,jdbcType=DECIMAL}, 
+         #{impawnFlag,jdbcType=DECIMAL}, 
+         #{transType,jdbcType=VARCHAR}, 
+         #{channelType,jdbcType=VARCHAR}, 
+         #{createDate,jdbcType=VARCHAR}, 
+         #{updateDate,jdbcType=VARCHAR}, 
+         #{updateTime,jdbcType=VARCHAR}, 
+         #{operator,jdbcType=VARCHAR}
+          )
 	</insert>
 	
 	
 	<update id="updateTopInsPrdInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
 	update TOP_INSPRDINFO
-    set INSPRDCODE = #{insPrdCode,jdbcType=VARCHAR},
-      INSCORPCODE = #{insCorpCode,jdbcType=VARCHAR},
-      INSPRDCHNAME = #{insPrdCnName,jdbcType=VARCHAR},
-      INSPRDENNAME = #{insPrdEnName,jdbcType=VARCHAR},
-      STATISTICTYPE = #{statisticType,jdbcType=VARCHAR},
-      AGENTTYPE = #{agentType,jdbcType=VARCHAR},
-      ASSURANCETYPE = #{assuranceType,jdbcType=VARCHAR},
-      INSPRDKIND = #{insprdKind,jdbcType=VARCHAR},
-      TRANSTYPE = #{transType,jdbcType=VARCHAR},
-      INSCURRENCY = #{insCurrency,jdbcType=VARCHAR},
-      INSPRDTYPE = #{insPrdType,jdbcType=VARCHAR},
-      INSBEGINTIME = #{insBeginDate,jdbcType=VARCHAR},
-      INSENDTIME = #{insEndDate,jdbcType=VARCHAR},
-      TOTALDEAL = #{totalDeal,jdbcType=DECIMAL},
-      TOTALAMT = #{totalAmt,jdbcType=DECIMAL},
-      STARTAMT = #{startAmt,jdbcType=DECIMAL},
-      PRDDESCRIPT = #{prdDescribe,jdbcType=VARCHAR},
-      BANDFLAG = #{bandFlag,jdbcType=VARCHAR},
-      IMPAWNFLAG = #{impawnFlag,jdbcType=VARCHAR},
-      DEPLOYFLAG = #{deployFlag,jdbcType=VARCHAR},
-      OPERATORBANKCODE = #{operatorBankCode,jdbcType=VARCHAR},
-      OPERATORCODE = #{operatorCode,jdbcType=VARCHAR},
-      UPDATETIME = #{updateTime,jdbcType=VARCHAR},
-      UPDATEDATE = #{updateDate,jdbcType=VARCHAR}
-      where  INSPRDCODE =  #{insPrdCode,jdbcType=VARCHAR}
+    set INSPRD_CODE = #{insPrdCode,jdbcType=VARCHAR},
+      INSPRD_TRUE_CODE = #{insPrdTrueCode,jdbcType=VARCHAR},
+      INSCORP_CODE = #{insCorpCode,jdbcType=VARCHAR},
+      INSPRD_CNNAME = #{insPrdCnName,jdbcType=VARCHAR},
+      INSPRD_SIMNAME = #{insPrdSimName,jdbcType=VARCHAR},
+      ASSURANCE_TYPE = #{assuranceType,jdbcType=VARCHAR},
+      BUY_UNIT = #{buyUnit,jdbcType=VARCHAR},
+      INSPRD_TYPE = #{insPrdType,jdbcType=VARCHAR},
+      INSBENGIN_DATE = #{insBeginDate,jdbcType=VARCHAR},
+      INSEND_DATE = #{insEndDate,jdbcType=VARCHAR},
+      START_AMT = #{startAMT,jdbcType=VARCHAR},
+      END_AMT = #{entAMT,jdbcType=VARCHAR},
+      INCREASE_AMT = #{inCreaseAMT,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=DECIMAL},
+      IMPAWN_FLAG = #{impawnFlag,jdbcType=DECIMAL},
+      TRANS_TYPE = #{transType,jdbcType=DECIMAL},
+      CHANNEL_TYPE = #{channelType,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
+      UPDATE_DATE = #{updateTime,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR},
+      where  ID =  #{id,jdbcType=VARCHAR}
 	</update>
 	
 	<delete id="deleteTopInsPrdInfo" parameterType="String">
-		delete from top_insprdInfo where  INSPRDCODE = #{insPrdCode,jdbcType=VARCHAR}
+		delete from top_insprdInfo where  ID = #{id,jdbcType=VARCHAR}
 	</delete>
 	
 	
