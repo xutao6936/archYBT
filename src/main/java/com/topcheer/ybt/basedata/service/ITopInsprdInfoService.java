@@ -1,5 +1,7 @@
 package com.topcheer.ybt.basedata.service;
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 
@@ -18,5 +20,8 @@ public interface ITopInsprdInfoService {
 	
 	//删除产品基本信息表
 	public  void  deleteTopInsPrdInfo(String  insPrdCode);
+	
+	//根据保险公司代码查询出该保险公司下所有的保险产品
+	public List <TopInsprdInfo> getTopInsPrdInfoListByInsPrdCode(String insCorpCode);
 
 }

@@ -1,5 +1,7 @@
 package com.topcheer.ybt.basedata.service;
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
 
@@ -15,5 +17,7 @@ public interface ITopInsCorpInfoService {
 	public int updateTopInsCorpInfo(TopInsCorpInfo topInsCorpInfo);
 	//删除保险公司基本信息
 	public int deletetTopInsCorpInfo(String  topInsCorpInfoCode);
+	
+	public List<TopInsCorpInfo> searchAll();
 
 }

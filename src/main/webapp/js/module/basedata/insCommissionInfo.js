@@ -9,7 +9,7 @@ function resetSearchForm(){
 
 function submitSearchForm(){
 	 jQuery("#grid-table").jqGrid('setGridParam', {
-		   url:ctx+'/topInsCorpinfo/getInsCorpByInsCorpCode.do',
+		   url:ctx+'/topInsCorpInfo/getInsCorpByInsCorpCode.do',
 		   type: "POST",
 		   postData:$('#searchForm').serialize()
 }).trigger("reloadGrid");
@@ -20,7 +20,7 @@ function init() {
 	var pager_selector = "#grid-pager";
 		jQuery(grid_selector).jqGrid(
 			{
-				url : ctx+'/topInsCorpinfo/getTopInsCorpInfoList.do',
+				url : ctx+'/topInsCorpInfo/getTopInsCorpInfoList.do',
 				datatype : "json",
 				height : 200,
 				mtype : "post",
@@ -32,7 +32,8 @@ function init() {
 					index : 'id',
 					//隐藏该列
 					hidden:true,
-					editable:true
+					editable:true,
+					edittype:'text',editrules:{required:true}
 				},{
 					name : 'insCorpCode',
 					index : 'insCorpCode',
@@ -281,7 +282,7 @@ function init() {
 				rowList : [ 10, 20, 30 ],// 用于改变显示行数的下拉列表框的元素数组。
 				pager : pager_selector,
 				altRows : true,// 设置为交替行表格,默认为false
-				editurl:ctx+'/topInsCorpinfo/oper.do',
+				editurl:ctx+'/topInsCorpInfo/oper.do',
 				multiselect : true,
 				multiboxonly : true,
 				
@@ -322,7 +323,7 @@ function init() {
 				    	  "class" : "btn btn-primary btn-xs",
 				    	  click:function(){
 				    		  $.ajax({
-				    			  url:ctx+'/topInsCorpinfo/insertTopInsCorpInfo.do',
+				    			  url:ctx+'/topInsCorpInfo/insertTopInsCorpInfo.do',
 								  type: "POST",
 								  data:$('#validation-form').serialize(),
 								  dataType:'json',
@@ -368,7 +369,7 @@ function init() {
 							      buttons:{
 							    	  "提交":function(){
 							    		  $.ajax({
-							    			  url:ctx+'/topInsCorpinfo/updateTopInsCorpInfo.do',
+							    			  url:ctx+'/topInsCorpInfo/updateTopInsCorpInfo.do',
 											  type: "POST",
 											  data:$('#validation-form').serialize(),
 											  dataType:'json',
@@ -412,7 +413,7 @@ function init() {
 					       function(index){      //确认后执行的操作  
 							   if(index){
 								   $.ajax({
-									   url:ctx+'/topInsCorpinfo/deleteTopInsCorpInfo.do',
+									   url:ctx+'/topInsCorpInfo/deleteTopInsCorpInfo.do',
 									   type: "POST",
 									   dataType:'json',
 									   data:{"ids[]":params},
@@ -451,7 +452,7 @@ function init() {
 						   caption:"下载",   
 						   buttonicon:"icon-download green",   
 						   onClickButton: function(){
-							   location.href=ctx+'/topInsCorpinfo/download.do';
+							   location.href=ctx+'/topInsCorpInfo/download.do';
 						   },   
 						   position:"last"  
 						});  
@@ -604,17 +605,5 @@ function init() {
 	}
 }
 
-function validate(){
-	$('#validation-form').validate({
-		rules: {
-			insCorpCode:" required"
-		},
-	 messages: {
-		 insCorpCode: {
-		        required: "请输入保险公司编码"
-		      }
-	 }
-});
-}
 
 
