@@ -1,5 +1,7 @@
 package com.topcheer.ybt.basedata.biz.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.slf4j.Logger;
@@ -54,6 +56,11 @@ public class TopInsCorpInfoBizImpl implements ITopInsCorpInfoBiz {
 	public int deletetTopInsCorpInfo(String topInsCorpInfoCode) {
 		// TODO Auto-generated method stub
 		return topInsCorpInfoService.deletetTopInsCorpInfo(topInsCorpInfoCode);
+	}
+
+	@Override
+	public List<TopInsCorpInfo> searchAll() {
+		return topInsCorpInfoService.searchAll();
 	}
 
 }

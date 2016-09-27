@@ -33,7 +33,7 @@
 	</select>  
 	
 	<select id="searchTopInsPrdInfoByInsPrdCode"  resultMap="forTopInsprdInfo"  parameterType="String">
-		select * from top_insprdInfo where where  INSPRDCODE = #{insPrdCode,jdbcType=VARCHAR}
+		select * from top_insprdInfo where  INSPRDCODE = #{insPrdCode,jdbcType=VARCHAR}
 	</select>
 	<insert id="insertTopInsPrdInfo"   parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
 		insert into  top_insprdInfo (
@@ -123,5 +123,8 @@
 		delete from top_insprdInfo where  INSPRDCODE = #{insPrdCode,jdbcType=VARCHAR}
 	</delete>
 	
+	<select id="getTopInsPrdInfoListByInsPrdCode" resultMap="forTopInsprdInfo" parameterType="String">
+		select * from top_insprdInfo  where  INSCORP_CODE = #{insCorpCode,jdbcType=VARCHAR}
+	</select>
 	
 </mapper>

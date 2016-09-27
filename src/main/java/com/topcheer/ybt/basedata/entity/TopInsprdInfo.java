@@ -1,7 +1,7 @@
 package com.topcheer.ybt.basedata.entity;
 
 public class TopInsprdInfo {
-	
+
 	private String insPrdCode;//保险产品编码
 
 	private String insCorpCode;//保险公司编码
@@ -242,4 +242,22 @@ public class TopInsprdInfo {
 		this.updateDate = updateDate;
 	}
 	
+	@Override
+	public String toString() {
+		return "TopInsprdInfo [insPrdCode=" + insPrdCode + ", insCorpCode="
+				+ insCorpCode + ", insPrdCnName=" + insPrdCnName
+				+ ", insPrdEnName=" + insPrdEnName + ", statisticType="
+				+ statisticType + ", agentType=" + agentType
+				+ ", assuranceType=" + assuranceType + ", insprdKind="
+				+ insprdKind + ", transType=" + transType + ", insCurrency="
+				+ insCurrency + ", insPrdType=" + insPrdType
+				+ ", insBeginDate=" + insBeginDate + ", insEndDate="
+				+ insEndDate + ", totalDeal=" + totalDeal + ", totalAmt="
+				+ totalAmt + ", startAmt=" + startAmt + ", prdDescribe="
+				+ prdDescribe + ", bandFlag=" + bandFlag + ", impawnFlag="
+				+ impawnFlag + ", deployFlag=" + deployFlag
+				+ ", operatorBankCode=" + operatorBankCode + ", operatorCode="
+				+ operatorCode + ", updateTime=" + updateTime + ", updateDate="
+				+ updateDate + "]";
+	}
 }

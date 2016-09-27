@@ -1,5 +1,7 @@
 package com.topcheer.ybt.basedata.biz.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
@@ -45,6 +47,13 @@ public class TopInsPrdInfoBizImpl implements ITopInsPrdInfoBiz {
 	public void deleteTopInsPrdInfo(String topInsPrdInfo) {
 		// TODO Auto-generated method stub
 		topInsprdInfoService.deleteTopInsPrdInfo(topInsPrdInfo);
+	}
+
+	@Override
+	public List<TopInsprdInfo> getTopInsPrdInfoListByInsPrdCode(
+			String insCorpCode) {
+		List<TopInsprdInfo> list = topInsprdInfoService.getTopInsPrdInfoListByInsPrdCode(insCorpCode);
+		return list;
 	}
 
 }

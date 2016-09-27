@@ -1,5 +1,7 @@
 package com.topcheer.ybt.basedata.biz;
 
+import java.util.List;
+
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 
@@ -19,5 +21,8 @@ public interface ITopInsPrdInfoBiz {
 		
 		//删除产品基本信息表
 		public  void  deleteTopInsPrdInfo(String   insPrdCode);
+
+		public List<TopInsprdInfo> getTopInsPrdInfoListByInsPrdCode(
+				String insCorpCode);
 
 }
