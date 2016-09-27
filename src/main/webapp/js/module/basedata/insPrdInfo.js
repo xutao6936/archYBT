@@ -2,7 +2,6 @@ $(function() {
 	init();
 	
 	//validate();	
-	
 	$("#searchFilter").unbind('click').click(function(){
 		 var nm_mask = jQuery("#insPrdCode").val()||"";
 		  jQuery("#grid-table").jqGrid('setGridParam', {
@@ -10,7 +9,7 @@ $(function() {
 		    page : 1
 		  }).trigger("reloadGrid");
 	});
-	
+	enableDate();
 });
 
 function init() {
@@ -20,74 +19,268 @@ function init() {
 			{
 				url : ctx+'/topInsprdInfo/getTopInsPrdInfoList.do',
 				datatype : "json",
-				height : 330,
+				height : 200,
 				mtype : "post",
-				colNames : [  '保险产品编码','保险公司编码','保险产品中文名称', '保险产品中文简称','币种','保险产品种类'
-				              , '保险产品状态','可否质押','发布状态','更新日期','更新时间'],
-				colModel : [{
+				colNames : [ 'ID', '产品代码','产品真实代码','公司编码', '产品名称','产品简称', '主附险标志','购买单位','产品类型','代理开始日期',
+				              '代理结束日期','起购金额/数量','最高金额/数量','递增金额/数量','状态','是否可质押','交易类型','交易渠道','创建日期'
+				              ,'更新日期','更新时间','操作员'],
+				colModel : [ {
+					name : 'id',
+					index : 'id',
+					hidden:true,
+					editable : false
+				}, {
 					name : 'insPrdCode',
 					index : 'insPrdCode',
-					//隐藏该列
-					hidden:true,
-					//可编辑列  editable与editrules同时为true的时候可编辑隐藏列
 					editable : true,
-					//可编辑隐藏列
-					editrules:{edithidden:true}
+				},{
+					name : 'insPrdTrueCode',
+					index : 'insPrdTrueCode',
+					width : 120,
+					editable : true
 				},{
 					name : 'insCorpCode',
 					index : 'insCorpCode',
-					width : 120,
+					width : 150,
 					editable : true
 				},{
 					name : 'insPrdCnName',
 					index : 'insPrdCnName',
 					width : 150,
 					editable : true
-				},{
-					name : 'insPrdEnName',
-					index : 'insPrdEnName',
-					width : 150,
-					editable : true
 				}, {
-					name : 'insCurrency',
-					index : 'insCurrency',
+					name : 'insPrdSimName',
+					index : 'insPrdSimName',
 					width : 50,
 					editable : true,
 				},  {
+					name : 'assuranceType',
+					index : 'assuranceType',
+					width : 90,
+					editable : true,
+					unformat:function(cellValue, options, rowObject){
+						if(cellValue=='主险'){
+							return "0";
+						}else if(cellValue=='附加险'){
+							return "1";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					},
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue=='0'){
+							return "主险";
+						}else if(cellValue=='1'){
+							return "附加险";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					}
+				},  {
+					name : 'buyUnit',
+					index : 'buyUnit',
+					width : 90,
+					editable : true,
+					unformat:function(cellValue, options, rowObject){
+						if(cellValue=='份数'){
+							return "0";
+						}else if(cellValue=='保费'){
+							return "1";
+						}else if(cellValue=='保额'){
+							return "2";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					},
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue=='0'){
+							return "份数";
+						}else if(cellValue=='1'){
+							return "保费";
+						}else if(cellValue=='2'){
+							return "保额";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					}
+				},   {
 					name : 'insPrdType',
 					index : 'insPrdType',
 					width : 90,
 					editable : true,
 				},    {
-					name : 'bandFlag',
-					index : 'bandFlag',
+					name : 'insBeginDate',
+					index : 'insBeginDate',
 					width : 90,
 					editable : true,
+					formatter:function(cellValue, options, rowObject){
+						//enableDate();
+						 if(cellValue=='' || cellValue==null){
+							return "";
+						 }
+						},
+					sorttype : "date"
 				},   {
-					name : 'impawnFlag',
-					index : 'impawnFlag',
+					name : 'insEndDate',
+					index : 'insEndDate',
 					width : 90,
 					editable : true,
-				},    {
-					name : 'deployFlag',
-					index : 'deployFlag',
-					width : 90,
-					editable : true,
-				},   {
-					name : 'updateTime',
-					index : 'updateTime',
-					width : 90,
-					editable : false,
 					sorttype : "date",
 					unformat : pickDate
 				},  {
+					name : 'startAMT',
+					index : 'startAMT',
+					width : 90,
+					editable : false,
+				} ,  {
+					name : 'entAMT',
+					index : 'entAMT',
+					width : 90,
+					editable : false,
+				} ,  {
+					name : 'inCreaseAMT',
+					index : 'inCreaseAMT',
+					width : 90,
+					editable : false,
+				} ,  {
+					name : 'status',
+					index : 'status',
+					width : 90,
+					editable : false,
+					unformat:function(cellValue, options, rowObject){
+						if(cellValue=='有效'){
+							return "0";
+						}else if(cellValue=='无效'){
+							return "1";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					},
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue=='0'){
+							return "有效";
+						}else if(cellValue=='1'){
+							return "无效";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					}
+				} ,  {
+					name : 'impawnFlag',
+					index : 'impawnFlag',
+					width : 90,
+					editable : false,
+					unformat:function(cellValue, options, rowObject){
+						if(cellValue=='是'){
+							return "0";
+						}else if(cellValue=='否'){
+							return "1";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					},
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue=='0'){
+							return "是";
+						}else if(cellValue=='1'){
+							return "否";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					}
+				} ,  {
+					name : 'transType',
+					index : 'transType',
+					width : 90,
+					editable : false,
+					unformat:function(cellValue, options, rowObject){
+						if(cellValue=='全部'){
+							return "0";
+						}else if(cellValue=='实时'){
+							return "1";
+						}else if(cellValue=='非实时'){
+							return "2";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					},
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue=='0'){
+							return "全部";
+						}else if(cellValue=='1'){
+							return "实时";
+						}else if(cellValue=='2'){
+							return "非实时";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					}
+				} ,  {
+					name : 'channelType',
+					index : 'channelType',
+					width : 90,
+					editable : false,
+					unformat:function(cellValue, options, rowObject){
+						if(cellValue=='柜面'){
+							return "01";
+						}else if(cellValue=='网上银行'){
+							return "02";
+						}else if(cellValue=='手机银行'){
+							return "03";
+						}else if(cellValue=='直销银行'){
+							return "04";
+						}else if(cellValue=='自助终端'){
+							return "05";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					},
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue=='01'){
+							return "柜面";
+						}else if(cellValue=='02'){
+							return "网上银行";
+						}else if(cellValue=='03'){
+							return "手机银行";
+						}else if(cellValue=='04'){
+							return "直销银行";
+						}else if(cellValue=='05'){
+							return "自助终端";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					}
+				} ,  {
+					name : 'createDate',
+					index : 'createDate',
+					width : 90,
+					editable : false,
+					hidden:true,
+					sorttype : "date",
+					unformat : pickDate
+				} ,  {
 					name : 'updateDate',
 					index : 'updateDate',
 					width : 90,
+					hidden:true,
 					editable : false,
 					sorttype : "date",
 					unformat : pickDate
-				} ],
+				} ,  {
+					name : 'updateTime',
+					index : 'updateTime',
+					width : 90,
+					hidden:true,
+					editable : false,
+					sorttype : "date",
+					unformat : pickDate
+				} ,  {
+					name : 'operator',
+					index : 'operator',
+					width : 90,
+					hidden:true,
+					editable : false
+				}],
 				//sortname : 'userId',
 				viewrecords : true,// 是否在浏览导航栏显示记录总数
 				rowNum : 10,// 每页显示记录数
@@ -121,7 +314,154 @@ function init() {
 				autowidth : true
 
 			});
-		jQuery(grid_selector).navGrid(pager_selector,{
+		jQuery(grid_selector).navGrid(pager_selector,{edit:false,add:false,del:false,search:false}).navButtonAdd(pager_selector,{  
+			   caption:"新增",   
+			   buttonicon:"icon-plus-sign purple",   
+			   onClickButton: function(){ 
+			      // $("#validation-form").clearForm();
+				   $("#dialog-form").dialog({
+					  title:"新增用户",
+					  title_html: true,
+				      height: 550,
+				      width: 1000,
+				      modal: true,
+				      buttons:[{
+				    	  text:'提交',
+				    	  "class" : "btn btn-primary btn-xs",
+				    	  click:function(){
+				    		  $.ajax({
+				    			  url:ctx+'/topInsprdInfo/insertTopInsPrdInfo.do',
+								  type: "POST",
+								  data:$('#validation-form').serialize(),
+								  dataType:'json',
+								 // beforeSend:validate(),
+								  success:function(msg){
+									  if('SUCC'==msg.result){
+										  layer.alert('添加成功',{icon:1});  
+										  $("#dialog-form").dialog('close');
+										  $(grid_selector).trigger("reloadGrid");
+									  }else{
+										  layer.alert('添加失败',{icon:2});  
+									  }
+								  }
+				    		  });
+				    	  }
+				      },{
+				    	  text:"关闭",
+				    	  "class" : "btn btn-xs",
+				    	  click:function(){
+				    		  $(this).dialog('close');
+				    	  }
+				      }]
+			            
+				   }); 
+			   },   
+			//   position:"last"  
+			}).navButtonAdd(pager_selector,{  
+				   caption:"编辑",   
+				   buttonicon:"icon-pencil blue",   
+				   onClickButton: function(){  
+					   $("#validation-form")[0].reset();
+					   var cell = $(grid_selector).jqGrid("getGridParam","selarrrow");
+					   if(cell.length >0){ 
+						   $("#dialog-form").dialog({
+								  title:"编辑用户",
+							      height: 550,
+							      open:function(){
+							    	  $(grid_selector).jqGrid('GridToForm',cell, '#dialog-form');
+							      },
+							      width: 1000,
+							      modal: true,
+							      buttons:{
+							    	  "提交":function(){
+							    		  $.ajax({
+							    			  url:ctx+'/topInsprdInfo/updateTopInsPrdInfo.do',
+											  type: "POST",
+											  data:$('#validation-form').serialize(),
+											  dataType:'json',
+											//  beforeSend:validate(),
+											  success:function(msg){
+												  if('SUCC'==msg.result){
+													  layer.alert('修改成功',{icon:1});  
+													  $("#dialog-form").dialog('close');
+													  $(grid_selector).trigger("reloadGrid");
+												  }else{
+													  layer.alert('修改失败',{icon:2});  
+												  }
+											  }
+							    		  });
+							    	  },
+							    	  "关闭":function(){
+							    		  $(this).dialog('close');
+							    	  }
+							      }
+
+							   }); 
+						   }else {
+							  layer.alert('请选中一行!',{icon:2}); 
+					   }
+				   } 
+				   //position:"last"  
+				}).navButtonAdd(pager_selector,{  
+			   caption:"删除",   
+			   buttonicon:"icon-trash red",   
+			   onClickButton: function(){   
+				   var cells = $(grid_selector).jqGrid("getGridParam","selarrrow");
+				   if(cells.length>0){
+					   var params = new Array();
+					   $.each(cells,function(i,v){
+						   var ret = $(grid_selector).jqGrid('getRowData', v);
+						   params.push(ret.id);
+					   });
+					   layer.confirm("确认删除吗？",  {icon: 3, title:'提示'},
+							   //{ btn : ['确定','取消']},//按钮
+					       function(index){      //确认后执行的操作  
+							   if(index){
+								   $.ajax({
+									   url:ctx+'/topInsprdInfo/deleteTopInsPrdInfo.do',
+									   type: "POST",
+									   dataType:'json',
+									   data:{"ids[]":params},
+								       success:function(msg){
+								    	   if('SUCC'==msg.result){
+								    		   layer.alert('删除成功',{icon:1});  
+								    		   $(grid_selector).trigger("reloadGrid");
+								    	   }else {
+								    		   layer.alert('删除失败',{icon:2});  
+								    	   }
+								       }	   
+								   });
+							   }
+					       },  
+					       function(){      //取消后执行的操作  
+					    	  return;
+					       }); 
+				   }else{
+					   layer.alert('请选中一行!',{icon:2}); 
+				   }
+			   }, 
+			   position:"last"  
+			}).navButtonAdd(pager_selector,{   
+				   caption:"刷新",   
+				   buttonicon:"icon-refresh green",   
+				   onClickButton: function(){   
+					   $(grid_selector).trigger("reloadGrid");
+				   },   
+				   position:"last"  
+				}).navButtonAdd(pager_selector,{  
+					   caption:"导入",   
+					   buttonicon:"icon-upload green",   
+					   onClickButton: function(){},   
+					   position:"last"  
+					}).navButtonAdd(pager_selector,{  
+						   caption:"下载",   
+						   buttonicon:"icon-download green",   
+						   onClickButton: function(){
+							   location.href=ctx+'/topInsprdInfo/download.do';
+						   },   
+						   position:"last"  
+						});  
+	/*	jQuery(grid_selector).navGrid(pager_selector,{
 			edit:true,
 			edittext:'编辑',
 			edittitle:'编辑数据',
@@ -176,7 +516,7 @@ function init() {
 					       function(){      //取消后执行的操作  
 					    	  return;
 					       }); 
-					   /*$.ajax({
+					   $.ajax({
 						   url:ctx+'/topInsprdInfo/deleteTopInsPrdInfo.do',
 						   type: "POST",
 						   dataType:'json',
@@ -189,7 +529,7 @@ function init() {
 					    		   layer.alert('删除失败',{icon:2});  
 					    	   }
 					       }	  
-					   });*/
+					   });
 				   }else{
 					   layer.alert('请选中一行!',{icon:2}); 
 				   }
@@ -237,7 +577,7 @@ function init() {
 					   location.href=ctx+'/topInsprdInfo/download.do';
 				   },   
 				   position:"last"  
-				});  
+				});  */
 	// switch element when editing inline
 	function aceSwitch(cellvalue, options, cell) {
 		setTimeout(function() {
@@ -259,7 +599,6 @@ function init() {
 
 	function validate(cell){
 		 if(cells.length>0){
-			   var params = new Array();
 			   $.each(cells,function(i,v){
 				   var ret = $(grid_selector).jqGrid('getRowData', v);
 				   if(ret.insCorpCode==null || ret.insCorp ==""){
@@ -398,11 +737,56 @@ function init() {
 			container : 'body'
 		});
 	}
-	
-
+   
 	
 }
 
+function enableDate(){
+	alert("11111");
+	   $('#insBeginDate').datepicker({
+			  format: 'yyyy/mm/dd',
+			        weekStart: 1,
+			        autoclose: true,
+			        todayBtn: 'linked',
+			        language: 'zh-CN'
+			 }).on('changeDate',function(ev){
+			  var startTime = ev.date.valueOf();
+			  start =startTime;
+			  if(start<teach){
+			   alert("“代理开始日期 ”不能早于“代理结束日期” ！");
+			   $("#insBeginDate").focus();
+			  }
+			   });
+	   
+		$('#insEndDate').datepicker({
+			  format: 'yyyy/mm/dd',
+			        weekStart: 1,
+			        autoclose: true,
+			        todayBtn: 'linked',
+			        language: 'zh-CN'
+			 }).on('changeDate',function(ev){
+			  var endTime = ev.date.valueOf();
+			  end = endTime;
+			  if(end<start){
+			   alert("“代理结束日期 ”不能早于“代理开始日期 ” ！");
+			  }
+			 });
+		
+		$('#insBeginDate1').datepicker({
+			format: 'yyyy/mm/dd',
+			weekStart: 1,
+			autoclose: true,
+			todayBtn: 'linked',
+			language: 'zh-CN'
+		}).on('changeDate',function(ev){
+			var startTime = ev.date.valueOf();
+			start =startTime;
+			if(start<teach){
+				alert("“代理开始日期 ”不能早于“代理结束日期” ！");
+				$("#insBeginDate1").focus();
+			}
+		});
+}
 
 
 

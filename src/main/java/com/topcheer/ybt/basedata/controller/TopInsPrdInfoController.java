@@ -5,6 +5,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
@@ -27,12 +29,17 @@ import com.topcheer.ybt.util.DateUtil;
 import com.topcheer.ybt.util.ResultHelper;
 
 @Controller
-@RequestMapping("topInsprdInfo")
+@RequestMapping("/topInsprdInfo")
 public class TopInsPrdInfoController {
 	private static Logger log = LoggerFactory.getLogger(TopInsPrdInfoController.class);
 
 	@Resource(name = "topInsPrdInfoBizImpl")
 	private ITopInsPrdInfoBiz topInsPrdInfoBiz;
+	
+	@RequestMapping("/insPrdInfo.do")
+	public String turnToJsp() {
+		return "basedata/insPrdInfo";
+	}
 
 	/**
 	 * 查询保险产品信息
@@ -68,9 +75,9 @@ public class TopInsPrdInfoController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping("oper.do")
-	@ResponseBody
-	public Map<String, Object> oper(@Valid TopInsprdInfo TopInsprdInfo, BindingResult result, HttpServletRequest request) {
+	//@RequestMapping("oper.do")
+//	@ResponseBody
+/*	public Map<String, Object> oper(@Valid TopInsprdInfo TopInsprdInfo, BindingResult result, HttpServletRequest request) {
 		String oper = request.getParameter("oper");
 		if ("add".equals(oper)) {
 			return this.insertTopInsPrdInfoList(TopInsprdInfo, result, request);
@@ -78,8 +85,10 @@ public class TopInsPrdInfoController {
 			return this.updateTopInsPrdInfoList(TopInsprdInfo, result, request);
 		}
 		return null;
-	}
-
+	}*/
+	
+	@RequestMapping(value = "/insertTopInsPrdInfo.do", method = RequestMethod.POST)
+	@ResponseBody
 	public Map<String, Object> insertTopInsPrdInfoList(@Valid TopInsprdInfo topInsprdInfo, BindingResult result,
 			HttpServletRequest request) {
 		if (result.hasErrors()) {
@@ -87,11 +96,9 @@ public class TopInsPrdInfoController {
 		}
 		log.info("进入insertTopInsprdInfo");
 		TopUserinfo userinfo = (TopUserinfo) request.getSession().getAttribute("userinfo");
-		topInsprdInfo.setOperatorBankCode(userinfo.getUserDept());
-		topInsprdInfo.setOperatorCode(userinfo.getLoginAccount());
-		topInsprdInfo.setUpdateTime(DateUtil.getCurrentTime());
-		topInsprdInfo.setUpdateDate(DateUtil.getCurrentDate());
-
+		topInsprdInfo.setId(UUID.randomUUID().toString().replaceAll("-", ""));
+		topInsprdInfo.setOperator(userinfo.getLoginAccount());
+		topInsprdInfo.setCreateDate(DateUtil.getCurrentDate());
 		try {
 			topInsPrdInfoBiz.insertTopInsPrdInfo(topInsprdInfo);
 			return ResultHelper.getResultMap();
@@ -104,16 +111,16 @@ public class TopInsPrdInfoController {
 			return resultMap;
 		}
 	}
-
+	@RequestMapping(value = "/updateTopInsPrdInfo.do", method = RequestMethod.POST)
+	@ResponseBody
 	public Map<String, Object> updateTopInsPrdInfoList(@Valid TopInsprdInfo topInsprdInfo, BindingResult result,
 			HttpServletRequest request) {
 		if (result.hasErrors()) {
 			return ResultHelper.analyzeError(result);
 		}
-		log.info("进入insertTopInsprdInfo");
+		log.info("进入insertTopInsprdInfo"+topInsprdInfo.getInsCorpCode()+"**********"+topInsprdInfo.getId());
 		TopUserinfo userinfo = (TopUserinfo) request.getSession().getAttribute("userinfo");
-		topInsprdInfo.setOperatorBankCode(userinfo.getUserDept());
-		topInsprdInfo.setOperatorCode(userinfo.getLoginAccount());
+		topInsprdInfo.setOperator(userinfo.getLoginAccount());
 		topInsprdInfo.setUpdateTime(DateUtil.getCurrentTime());
 		topInsprdInfo.setUpdateDate(DateUtil.getCurrentDate());
 		try {
