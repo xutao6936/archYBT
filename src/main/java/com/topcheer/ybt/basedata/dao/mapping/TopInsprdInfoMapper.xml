@@ -57,7 +57,7 @@
 			and  INSBENGIN_DATE = #{insBeginDate,jdbcType=VARCHAR}
 		</if>
 		<if test="insEndDate !=null and insEndDate != '' ">
-			and  INSEND_DATE = #{commonNossdcheckFlag,jdbcType=VARCHAR}
+			and  INSEND_DATE = #{insEndDate,jdbcType=VARCHAR}
 		</if>
 		<if test="status !=null and status != '' ">
 			and  STATUS = #{status,jdbcType=VARCHAR}
@@ -145,8 +145,8 @@
       CHANNEL_TYPE = #{channelType,jdbcType=VARCHAR},
       CREATE_DATE = #{createDate,jdbcType=VARCHAR},
       UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
-      UPDATE_DATE = #{updateTime,jdbcType=VARCHAR},
-      OPERATOR = #{operator,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+      OPERATOR = #{operator,jdbcType=VARCHAR}
       where  ID =  #{id,jdbcType=VARCHAR}
 	</update>
 	

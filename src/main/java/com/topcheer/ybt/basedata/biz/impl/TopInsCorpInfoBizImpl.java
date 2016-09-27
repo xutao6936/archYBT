@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.biz.ITopInsCorpInfoBiz;
-import com.topcheer.ybt.basedata.controller.TopInsCorpInfoController;
 import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
 import com.topcheer.ybt.basedata.service.ITopInsCorpInfoService;
 
