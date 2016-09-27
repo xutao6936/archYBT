@@ -44,7 +44,6 @@
 
           var href = 'javascript:addTabs({id:\''+ item.id + '\',title: \''+ item.text + '\',close: true,url: \''+ ctx+'/'+item.url + '\'});';
 
-
           a.attr('href', href);
           //if (item.istab)
           //  a.attr('href', href);

@@ -62,7 +62,20 @@ function init() {
 					name : 'upBankCode',
 					index : 'upBankCode',
 					width : 90,
-					editable : true
+					editable : true,
+					edittype : 'custom',
+					editoptions:{
+						custom_element: function myelem(value, options){
+							var $ac = $('<input type="text" id="'+options.id+'" name="'+options.name+'"></input>');
+					        $ac.val(value);
+					        $ac.autocomplete({source: ["Test 1", "Test 2", "Test 3", "Test 4"]});
+							return $ac;
+						}, 
+						custom_value:function myvalue(elem,op,value){
+							$(elem).val(value);
+							return $(elem).val();
+						}
+					} 
 					//sorttype : "date",
 					//unformat : pickDate
 				}, {
