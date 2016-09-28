@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<mapper namespace="com.topcheer.ybt.basedata.dao.TopInsPeriodInfoMapper">
-<resultMap id="forTopInsprdPeriodInfo" type="com.topcheer.ybt.basedata.entity.TopPrdPeriodInfo">
+<mapper namespace="com.topcheer.ybt.basedata.dao.TopInsPrdPeriodInfoMapper">
+<resultMap id="forTopInsprdPeriodInfo" type="com.topcheer.ybt.basedata.entity.TopInsPrdPeriodInfo">
 		<result property="id" column="ID" jdbcType="VARCHAR" />
-		<result property="insPrdCode" column="INSPRD_CODE" jdbcType="VARCHAR" />
+		<result property="insPrdcode" column="INSPRD_CODE" jdbcType="VARCHAR" />
 		<result property="key" column="KEY" jdbcType="VARCHAR" />
 		<result property="unit" column="UNIT" jdbcType="VARCHAR" />
 		
@@ -12,3 +12,4 @@
 	<select id="searchAllTopInsPeriodInfo" resultMap="forTopInsprdPeriodInfo" >
 		select * from top_insprdperiod
 	</select>  
+</mapper>

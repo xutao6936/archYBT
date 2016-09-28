@@ -18,6 +18,9 @@ public class TopInsPrdPeriodInfoServiceimpl implements ITopInsPrdPeriodInfoServi
 	@Autowired
 	protected TopInsPrdPeriodInfoMapper topInsPrdPeriodInfoMapper;
 
+	/**
+	 * 查询保障年期信息
+	 */
 	@Override
 	public PageInfo<TopInsPrdPeriodInfo> getInsPrdPeriodAllList() {
 		// TODO Auto-generated method stub

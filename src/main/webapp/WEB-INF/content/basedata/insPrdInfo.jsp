@@ -10,8 +10,9 @@
 <title>银保通</title>
 <!-- basic styles -->
 <%@ include file="/common/common.jsp" %>
-<script src="${ctx }/js/common/datepicker/css/datepicker.css"></script>
-<script src="${ctx }/js/common/datepicker/js/bootstrap-datepicker.js"></script>
+<!-- <script src="${ctx }/js/common/datepicker/css/datepicker.css"></script> -->
+<script src="${ctx }/js/common/datepicker/js/bootstrap-datepicker.js"></script> 
+<script src="${ctx }/js/module/basedata/insPrdInfo.js"></script>
 
 </head>
 
@@ -145,7 +146,7 @@
 
 </div>
 
-<input id="insBeginDate1" name="insBeginDate"  type="text"  placeholder="请选择日期">
+<!--  <input id="insBeginDate1" name="insBeginDate1"  type="text"  placeholder="请选择日期"> -->
 
 	<!-- 新增界面    action="${ctx }/topInsPrdInfo/insertTopInsPrdInfo.do"-->
 		<div id="dialog-form" style="display: none">
@@ -154,7 +155,7 @@
 			<div class="form-group">
 					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insPrdCode" >产品代码:</label>
 				   <div class="col-xs-12 col-sm-3" style="float:left">	
-				  	 <input type="text" name="insPrdCode" id="insPrdCode"  class="col-xs-12 col-sm-10" />
+				  	 <input type="text" name="insPrdCode" id="insPrdCode1"  class="col-xs-12 col-sm-10" />
 				  	 <font color="red">*</font>
 				   </div>
 				   
@@ -217,9 +218,9 @@
 			<div class="space-2"></div>
 		
 			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insBeginDate">代理开始日期:</label>
+				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insBeginDate12">代理开始日期:</label>
 				<div class="col-xs-12 col-sm-3" style="float:left">
-					<input id="insBeginDate12" name="insBeginDate"  type="text"  placeholder="请选择日期">
+					<input id="insBeginDate1" name="insBeginDate" class="col-xs-12 col-sm-10"  type="text"  placeholder="请选择日期">
 					<!--  <input type="text" id="insBeginDate" name="insBeginDate"  class="col-xs-12 col-sm-10" />-->
 				</div>
 				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insEndDate">代理结束日期:</label>
@@ -299,6 +300,15 @@
 			<div class="space-2"></div>
 			</form>
 		</div>
-<script src="${ctx }/js/module/basedata/insPrdInfo.js"></script>
+		
+		<!-- 	保障年期  -->
+		<div id="dialog-insPrdPeriodform" style="display: none">
+		<form class="form-horizontal" id="insPrdPeriodForm" method="post" >
+			<input type="hidden" name="id"  id="id"> 
+				<table style="height: 100%;" id="grid-insPrdPeriodtable"></table>
+				
+				<div id="grid-insPrdPeriodPager"></div>
+		</form>
+		</div>
 </body>
 </html>
