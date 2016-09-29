@@ -179,6 +179,8 @@ function init() {
 			   $("#userName").val("");
 			   $("#userDept").val("");
 			   
+			   
+			   
 			   $("#dialog-form").dialog({
 				   title:"<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-plus'></i>新增用户</h4></div>",
 				   title_html: true,
@@ -186,6 +188,25 @@ function init() {
 				   height: 400,
 				   width: 350,
 			       modal: true,
+			       open:function(){
+			    	 
+			    	 $("#dept321").autocomplete({
+			    		 delay:1000,
+			    		 source:function(query,process){
+			    			 $.post(ctx+'/topBankinfo/getTopBankinfoList.do',{"bankCode":query,"page":1,"rows":10},function(data){
+			    				 var respdata = $.parseJSON(data);
+				        	     return process(respdata.list);
+				        			
+				        		}); 
+			    		 },
+			    		 formatItem:function(item){
+			    	            return item["bankName"]+"("+item["bankName"]+"，"+item["bankCode"]+")";
+			    	     },
+			    	     setValue:function(item){
+			    	            return {'data-value':item["bankName"],'real-value':item["bankCode"]};
+			    	     }
+			    	 });
+			       },
 			      buttons:[{
 			    	  text:'提交',
 			    	  "class" : "btn btn-primary btn-xs",
