@@ -63,17 +63,13 @@ function init() {
 					index : 'upBankCode',
 					width : 90,
 					editable : true,
-					edittype : 'custom',
+					edittype : 'text',
 					editoptions:{
 						custom_element: function myelem(value, options){
 							var $ac = $('<input type="text" id="'+options.id+'" name="'+options.name+'"></input>');
-							
-					        /*$ac.val(value);
-					        $ac.autocomplete({source: ["Test 1", "Test 2", "Test 3", "Test 4"]});*/
 					        
 							$ac.autocomplete({
 					        	source:function(query,process){
-					        		//var matchCount = this.options.items;//返回结果集最大数
 					        		$.post(ctx+'/topBankinfo/getTopBankinfoList.do',{"bankCode":query,"page":1,"rows":10},function(data){
 						        	    return process(data.list);
 					        		},"json");
@@ -82,7 +78,7 @@ function init() {
 					                return item["bankName"]+"("+item["bankCode"]+"，"+item["bankName"]+") - "+item["bankLevel"];
 					            },
 					            setValue:function(item){
-					                return {'data-value':item["bankName"],'real-value':item["bankCode"]};
+					                return {'data-value':item["bankCode"],'real-value':item["bankCode"]};
 					            }
 					        });
 					        
@@ -406,10 +402,6 @@ function init() {
 	}
 }
 
-function getBankinfo(){
-	
-	return "abc";
-}
 
 // var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
 
