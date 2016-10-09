@@ -76,6 +76,50 @@ function init() {
 							return $(elem).val();
 						}
 					} 
+					/*edittype:'text',
+					editoptions:{
+						dataInit:function(e){
+							$(e).autocomplete({
+								source:  function(request, response,term) {
+				                    var param = request.term; //values we enter to filter autocomplete
+				                    $.ajax({
+				                        url: "myurl",
+				                        dataType: "json",
+				                        type:"GET",
+				                        success: function (data) {
+				                             response($.map(data, function(item) {
+				                                 return { 
+				                                 //can add number of attributes here 
+				                                     id: item.id,
+				                                     shform: item.shortform, 
+				                                     value: item.name, 
+				                                     clr : item.color, //here apart from name and id i am adding other values too
+				                                     size: item.size,
+				                                     remar:item.remarks,
+				                                     subs: item.subs,
+				                                     selec:item.selec ,
+				                                     };
+				                                 }));//END Response
+
+				                        },//END Success
+				                    });//END AJAX
+				                },
+				                select: function( event, ui ) {
+				                    // setting values to textbox in jqgrid edit form based on selected values                               
+				                     $('#textbox1').val(ui.item.id);
+				                     $('#textbox2').val(ui.item.shform);
+				                     $('#textbox3').val(ui.item.clr);
+				                     $('#textbox4').val(ui.item.size);
+				                     $('#textbox5').val(ui.item.sizeremar);
+				                     $('#textbox6').val(ui.item.subs);
+				                     $('#textbox7').val(ui.item.selec);
+				                     $('#textbox8').val(ui.item.selp);
+
+				                } 
+				            });
+							$('.ui-autocomplete').css('zIndex',1000);
+						}
+					}*/
 					//sorttype : "date",
 					//unformat : pickDate
 				}, {
@@ -198,7 +242,10 @@ function init() {
 			},{
 				//edit_options
 				closeAfterEdit:true,
+				modal:true,
 				closeOnEscape:true,
+				//top
+				left:150,
 				afterSubmit:function(response, postdata) {
 					var data = response.responseText;
 					data = $.parseJSON(data);
@@ -207,9 +254,16 @@ function init() {
 					}else {
 						return true;
 					}
+				},
+				recreateForm: true,
+				beforeShowForm : function(e) {
+					var form = $(e[0]);
+					form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />');
+					style_edit_form(form);
 				}
 			},{
 				//add_options
+				recreateForm: true,
 				closeAfterAdd:true,
 				closeOnEscape:true,
 				afterSubmit:function(response, postdata) {
@@ -220,8 +274,19 @@ function init() {
 					}else {
 						return true;
 					}
+				},
+				beforeShowForm : function(e) {
+					var form = $(e[0]);
+					form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+					style_edit_form(form);
 				}
-			},{},{},{}).navSeparatorAdd(pager_selector,{
+			},{
+				//delete record form
+			},{
+				//search form
+			},{
+				//view record form
+			}).navSeparatorAdd(pager_selector,{
 			sepclass : "ui-separator",
 			sepcontent: ''
 		}).navButtonAdd(pager_selector,{  
