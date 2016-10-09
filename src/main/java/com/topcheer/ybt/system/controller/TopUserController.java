@@ -79,8 +79,7 @@ public class TopUserController {
 		topUserinfo.setCreateDate(DateUtil.getCurrentDate());
 		topUserinfo.setUpdateDate(DateUtil.getCurrentDate());
 		topUserinfo.setUpdateTime(DateUtil.getCurrentTime());
-		topUserinfo.setUserStatus(ResultHelper.YES);
-		topUserinfo.setUserStatus(ResultHelper.YES);
+		//topUserinfo.setUserStatus(ResultHelper.YES);
 		iTopUserinfoService.insert(topUserinfo);
 		return ResultHelper.RESULT_SUCC;
 	}
@@ -141,8 +140,7 @@ public class TopUserController {
 		}
 		topUserinfo.setUpdateDate(DateUtil.getCurrentDate());
 		topUserinfo.setUpdateTime(DateUtil.getCurrentTime());
-		topUserinfo.setUserStatus(ResultHelper.YES);
-		topUserinfo.setUserStatus(ResultHelper.YES);
+		//topUserinfo.setUserStatus(ResultHelper.YES);
 		iTopUserinfoService.update(topUserinfo);
 		return ResultHelper.RESULT_SUCC;
 	}

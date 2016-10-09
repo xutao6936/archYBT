@@ -114,25 +114,17 @@
 					
 				<div class="col-xs-12 col-sm-9">
 					<div class="clearfix">
-						<input type="text" id="dept321" name="userN4ame" width="200px" />
+						<input type="text" id="userDept" name="userDept" width="200px" />
 					</div>
 				</div>
 
-				<!-- <div class="col-xs-12 col-sm-9">
-					<select id="userDept" name=userDept class="select2" style="width:158px;"
-						data-placeholder="Click to Choose...">
-						<option value="">&nbsp;</option>
-						<option value="AL">Alabama</option>
-						<option value="AK">Alaska</option>
-					</select>
-				</div> -->
 			</div>
 			<div class="space-2"></div>
 			<div class="form-group">
 				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name">状态:</label>
 
 				<div class="col-xs-12 col-sm-9">
-					<select id="userDept" name=userDept class="select2" style="width:158px;"
+					<select id="userStatus" name="userStatus" class="select2" style="width:158px;"
 						data-placeholder="Click to Choose...">
 						<option value="0">有效</option>
 						<option value="1">无效</option>
