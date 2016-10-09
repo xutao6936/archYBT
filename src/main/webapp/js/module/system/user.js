@@ -194,10 +194,9 @@ function init() {
 			    		 delay:1000,
 			    		 source:function(query,process){
 			    			 $.post(ctx+'/topBankinfo/getTopBankinfoList.do',{"bankCode":query,"page":1,"rows":10},function(data){
-			    				 var respdata = $.parseJSON(data);
-				        	     return process(respdata.list);
+				        	     return process(data.list);
 				        			
-				        		}); 
+				        		},"json"); 
 			    		 },
 			    		 formatItem:function(item){
 			    	            return item["bankName"]+"("+item["bankName"]+"，"+item["bankCode"]+")";

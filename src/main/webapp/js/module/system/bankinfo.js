@@ -75,9 +75,8 @@ function init() {
 					        	source:function(query,process){
 					        		//var matchCount = this.options.items;//返回结果集最大数
 					        		$.post(ctx+'/topBankinfo/getTopBankinfoList.do',{"bankCode":query,"page":1,"rows":10},function(data){
-					        			var respdata = $.parseJSON(data);
-						        	    return process(respdata.list);
-					        		});
+						        	    return process(data.list);
+					        		},"json");
 					        	},
 					        	formatItem:function(item){
 					                return item["bankName"]+"("+item["bankCode"]+"，"+item["bankName"]+") - "+item["bankLevel"];
