@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.basedata.dao.TopAgentrateMapper" >
+	<resultMap id="TopAgentrateResultMap" type="com.topcheer.ybt.basedata.entity.TopAgentrate" >
+       		<result property="id"    column="ID" jdbcType="VARCHAR" />
+       		<result property="insprdCode"    column="INSPRD_CODE" jdbcType="VARCHAR" />
+       		<result property="adminBank"    column="ADMIN_BANK" jdbcType="VARCHAR" />
+       		<result property="transType"    column="TRANS_TYPE" jdbcType="VARCHAR" />
+       		<result property="payType"    column="PAY_TYPE" jdbcType="VARCHAR" />
+       		<result property="payPeriod"    column="PAY_PERIOD" jdbcType="VARCHAR" />
+       		<result property="payPeriodType"    column="PAY_PERIOD_TYPE" jdbcType="VARCHAR" />
+       		<result property="rateType"    column="RATE_TYPE" jdbcType="VARCHAR" />
+       		<result property="onceAmt"    column="ONCE_AMT" jdbcType="VARCHAR" />
+       		<result property="percentAmt"    column="PERCENT_AMT" jdbcType="VARCHAR" />
+       		<result property="insPeriod"    column="INS_PERIOD" jdbcType="VARCHAR" />
+       		<result property="insPeriodType"    column="INS_PERIOD_TYPE" jdbcType="VARCHAR" />
+       		<result property="operator"    column="OPERATOR" jdbcType="VARCHAR" />
+       		<result property="operatorBank"    column="OPERATOR_BANK" jdbcType="VARCHAR" />
+       		<result property="updateDate"    column="UPDATE_DATE" jdbcType="VARCHAR" />
+       		<result property="updateTime"    column="UPDATE_TIME" jdbcType="VARCHAR" />
+	</resultMap>
+    <sql id="TopAgentrateColumnList" >
+    		ID,
+    		INSPRD_CODE,
+    		ADMIN_BANK,
+    		TRANS_TYPE,
+    		PAY_TYPE,
+    		PAY_PERIOD,
+    		PAY_PERIOD_TYPE,
+    		RATE_TYPE,
+    		ONCE_AMT,
+    		PERCENT_AMT,
+    		INS_PERIOD,
+    		INS_PERIOD_TYPE,
+    		OPERATOR,
+    		OPERATOR_BANK,
+    		UPDATE_DATE,
+    		UPDATE_TIME
+    </sql>
+    <select id="searchTopAgentrate" resultMap="TopAgentrateResultMap" parameterType="com.topcheer.ybt.basedata.entity.TopAgentrate">
+    	select  * from TOP_AGENTRATE
+		where 1=1
+    		<if test="id !=null and id != '' ">
+		    	and ID = #{id,jdbcType=VARCHAR}
+			</if>
+    		<if test="insprdCode !=null and insprdCode != '' ">
+		    	and INSPRD_CODE = #{insprdCode,jdbcType=VARCHAR}
+			</if>
+    		<if test="adminBank !=null and adminBank != '' ">
+		    	and ADMIN_BANK = #{adminBank,jdbcType=VARCHAR}
+			</if>
+    		<if test="transType !=null and transType != '' ">
+		    	and TRANS_TYPE = #{transType,jdbcType=VARCHAR}
+			</if>
+    		<if test="payType !=null and payType != '' ">
+		    	and PAY_TYPE = #{payType,jdbcType=VARCHAR}
+			</if>
+    		<if test="payPeriod !=null and payPeriod != '' ">
+		    	and PAY_PERIOD = #{payPeriod,jdbcType=VARCHAR}
+			</if>
+    		<if test="payPeriodType !=null and payPeriodType != '' ">
+		    	and PAY_PERIOD_TYPE = #{payPeriodType,jdbcType=VARCHAR}
+			</if>
+    		<if test="rateType !=null and rateType != '' ">
+		    	and RATE_TYPE = #{rateType,jdbcType=VARCHAR}
+			</if>
+    		<if test="onceAmt !=null and onceAmt != '' ">
+		    	and ONCE_AMT = #{onceAmt,jdbcType=VARCHAR}
+			</if>
+    		<if test="percentAmt !=null and percentAmt != '' ">
+		    	and PERCENT_AMT = #{percentAmt,jdbcType=VARCHAR}
+			</if>
+    		<if test="insPeriod !=null and insPeriod != '' ">
+		    	and INS_PERIOD = #{insPeriod,jdbcType=VARCHAR}
+			</if>
+    		<if test="insPeriodType !=null and insPeriodType != '' ">
+		    	and INS_PERIOD_TYPE = #{insPeriodType,jdbcType=VARCHAR}
+			</if>
+    		<if test="operator !=null and operator != '' ">
+		    	and OPERATOR = #{operator,jdbcType=VARCHAR}
+			</if>
+    		<if test="operatorBank !=null and operatorBank != '' ">
+		    	and OPERATOR_BANK = #{operatorBank,jdbcType=VARCHAR}
+			</if>
+    		<if test="updateDate !=null and updateDate != '' ">
+		    	and UPDATE_DATE = #{updateDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="updateTime !=null and updateTime != '' ">
+		    	and UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+  	</select> 
+  	
+  	<select id="searchAll" resultMap="TopAgentrateResultMap" parameterType="HashMap">
+    	select * from TOP_AGENTRATE 
+  	</select> 
+  	
+  	<insert id="insert" parameterType="com.topcheer.ybt.basedata.entity.TopAgentrate">
+  		<selectKey resultType="String" keyProperty="id" order="BEFORE"> 
+	      SELECT CONVERT(NEXTVAL('sequence') , SIGNED   ) FROM DUAL; 
+	    </selectKey>
+  		INSERT INTO TOP_AGENTRATE (
+    			ID,
+    			INSPRD_CODE,
+    			ADMIN_BANK,
+    			TRANS_TYPE,
+    			PAY_TYPE,
+    			PAY_PERIOD,
+    			PAY_PERIOD_TYPE,
+    			RATE_TYPE,
+    			ONCE_AMT,
+    			PERCENT_AMT,
+    			INS_PERIOD,
+    			INS_PERIOD_TYPE,
+    			OPERATOR,
+    			OPERATOR_BANK,
+    			UPDATE_DATE,
+    			UPDATE_TIME
+  		)VALUES (
+    		#{id,jdbcType=VARCHAR},
+    		#{insprdCode,jdbcType=VARCHAR},
+    		#{adminBank,jdbcType=VARCHAR},
+    		#{transType,jdbcType=VARCHAR},
+    		#{payType,jdbcType=VARCHAR},
+    		#{payPeriod,jdbcType=VARCHAR},
+    		#{payPeriodType,jdbcType=VARCHAR},
+    		#{rateType,jdbcType=VARCHAR},
+    		#{onceAmt,jdbcType=VARCHAR},
+    		#{percentAmt,jdbcType=VARCHAR},
+    		#{insPeriod,jdbcType=VARCHAR},
+    		#{insPeriodType,jdbcType=VARCHAR},
+    		#{operator,jdbcType=VARCHAR},
+    		#{operatorBank,jdbcType=VARCHAR},
+    		#{updateDate,jdbcType=VARCHAR},
+    		#{updateTime,jdbcType=VARCHAR}
+  		)
+  	</insert>
+  	
+  	<insert id="update" parameterType="com.topcheer.ybt.basedata.entity.TopAgentrate">
+  		update TOP_AGENTRATE set  
+	      		INSPRD_CODE = #{insprdCode,jdbcType=VARCHAR}  ,
+	      		ADMIN_BANK = #{adminBank,jdbcType=VARCHAR}  ,
+	      		TRANS_TYPE = #{transType,jdbcType=VARCHAR}  ,
+	      		PAY_TYPE = #{payType,jdbcType=VARCHAR}  ,
+	      		PAY_PERIOD = #{payPeriod,jdbcType=VARCHAR}  ,
+	      		PAY_PERIOD_TYPE = #{payPeriodType,jdbcType=VARCHAR}  ,
+	      		RATE_TYPE = #{rateType,jdbcType=VARCHAR}  ,
+	      		ONCE_AMT = #{onceAmt,jdbcType=VARCHAR}  ,
+	      		PERCENT_AMT = #{percentAmt,jdbcType=VARCHAR}  ,
+	      		INS_PERIOD = #{insPeriod,jdbcType=VARCHAR}  ,
+	      		INS_PERIOD_TYPE = #{insPeriodType,jdbcType=VARCHAR}  ,
+	      		OPERATOR = #{operator,jdbcType=VARCHAR}  ,
+	      		OPERATOR_BANK = #{operatorBank,jdbcType=VARCHAR}  ,
+	      		UPDATE_DATE = #{updateDate,jdbcType=VARCHAR}  ,
+	      		UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}  
+  		where ID = #{id,jdbcType=VARCHAR}
+  	</insert>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete from TOP_AGENTRATE where ID = #{id,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<select id="getTopAgentrate" resultMap="TopAgentrateResultMap" parameterType="String">
+  		select * from TOP_AGENTRATE  where ID = #{id,jdbcType=VARCHAR}
+  	</select>
+  	
+  	<select id="getInsPrdByInsPrdCode" resultMap="TopAgentrateResultMap" parameterType="String">
+  		select * from TOP_AGENTRATE  where insPrd_Code = #{insPrdCode,jdbcType=VARCHAR}
+  	</select>
+  	
+  	<select id="getAgentrateByInsPrdCode" resultMap="TopAgentrateResultMap" parameterType="String">
+select a.key || (case a.unit
+         when '0' then
+          '年'
+         when '1' then
+          '周岁'
+         when '2' then
+          '终生'
+       end) payperiod,
+       b.key || (case b.unit
+         when '0' then
+          '年'
+         when '1' then
+          '周岁'
+         when '2' then
+          '终生'
+       end) insPeriod,
+       null as once_amt,
+       null as percent_amt
+  from TOP_PAYPERIOD a, top_insprdperiod b
+ where b.insprd_code = '28000001'
+union
+select pay_period || (case pay_period_type
+         when '0' then
+          '年'
+         when '1' then
+          '周岁'
+         when '2' then
+          '终生'
+       end) payperiod,
+       ins_period || (case ins_period_type
+         when '0' then
+          '年'
+         when '1' then
+          '周岁'
+         when '2' then
+          '终生'
+       end) insprdperiod,
+       once_amt,
+       percent_amt
+  from top_agentrate
+ where insprd_code = '28000001'
+minus
+select payperiod, insPeriod, once_amt, percent_amt
+  from (select a.key || (case a.unit
+                 when '0' then
+                  '年'
+                 when '1' then
+                  '周岁'
+                 when '2' then
+                  '终生'
+               end) payperiod,
+               b.key || (case b.unit
+                 when '0' then
+                  '年'
+                 when '1' then
+                  '周岁'
+                 when '2' then
+                  '终生'
+               end) insPeriod,
+               null as once_amt,
+               null as percent_amt
+          from TOP_PAYPERIOD a, top_insprdperiod b
+         where b.insprd_code = '28000001'
+        union
+        select pay_period || (case pay_period_type
+                 when '0' then
+                  '年'
+                 when '1' then
+                  '周岁'
+                 when '2' then
+                  '终生'
+               end) payperiod,
+               ins_period || (case ins_period_type
+                 when '0' then
+                  '年'
+                 when '1' then
+                  '周岁'
+                 when '2' then
+                  '终生'
+               end) insPeriod,
+               once_amt,
+               percent_amt
+          from top_agentrate
+         where insprd_code = '28000001') s
+ where ((select count(*)
+           from (select a.key || (case a.unit
+                          when '0' then
+                           '年'
+                          when '1' then
+                           '周岁'
+                          when '2' then
+                           '终生'
+                        end) payperiod,
+                        b.key || (case b.unit
+                          when '0' then
+                           '年'
+                          when '1' then
+                           '周岁'
+                          when '2' then
+                           '终生'
+                        end) insPeriod,
+                        null as once_amt,
+                        null as percent_amt
+                   from TOP_PAYPERIOD a, top_insprdperiod b
+                  where b.insprd_code = '28000001'
+                 union
+                 select pay_period || (case pay_period_type
+                          when '0' then
+                           '年'
+                          when '1' then
+                           '周岁'
+                          when '2' then
+                           '终生'
+                        end) payperiod,
+                        ins_period || (case ins_period_type
+                          when '0' then
+                           '年'
+                          when '1' then
+                           '周岁'
+                          when '2' then
+                           '终生'
+                        end) insPeriod,
+                        once_amt,
+                        percent_amt
+                   from top_agentrate
+                  where insprd_code = '28000001') y
+          where y.payperiod = s.payperiod
+            and y.insPeriod = s.insPeriod) > 1)
+   and once_amt is null
+   and percent_amt is null
+
+  	</select>
+</mapper>

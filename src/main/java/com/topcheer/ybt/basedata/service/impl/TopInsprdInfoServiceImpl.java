@@ -45,6 +45,13 @@ public class TopInsprdInfoServiceImpl implements ITopInsprdInfoService {
 		// TODO Auto-generated method stub
 		topInsprdInfoMapper.deleteTopInsPrdInfo(insPrdCode);
 	}
+
+	@Override
+	public List<TopInsprdInfo> getTopInsPrdInfoListByInsPrdCode(
+			String insCorpCode) {
+		List<TopInsprdInfo>  topInsprdInfoList = topInsprdInfoMapper.getTopInsPrdInfoListByInsPrdCode(insCorpCode);
+		return topInsprdInfoList;
+	}
 	
 
 }

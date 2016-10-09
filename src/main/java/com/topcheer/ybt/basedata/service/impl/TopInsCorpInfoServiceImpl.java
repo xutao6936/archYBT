@@ -54,4 +54,10 @@ public class TopInsCorpInfoServiceImpl implements ITopInsCorpInfoService {
 		return pageinfo;
 	}
 
+	@Override
+	public List <TopInsCorpInfo> searchAll() {
+		List <TopInsCorpInfo> list = topInsCorpinfoMapper.searchAll();
+		return list;
+	}
+
 }

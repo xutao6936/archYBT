@@ -37,7 +37,7 @@ public class TopBankinfoController {
 	@Resource(name = "topBankinfoBizImpl")
 	private ITopBankinfoBiz topBankinfoBiz;
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="turnToBankInfoList",method=RequestMethod.GET)
 	public String turnToJsp() {
 		return "system/bankinfo";
 	}

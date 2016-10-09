@@ -67,8 +67,26 @@ function init() {
 					editoptions:{
 						custom_element: function myelem(value, options){
 							var $ac = $('<input type="text" id="'+options.id+'" name="'+options.name+'"></input>');
-					        $ac.val(value);
-					        $ac.autocomplete({source: ["Test 1", "Test 2", "Test 3", "Test 4"]});
+							
+					        /*$ac.val(value);
+					        $ac.autocomplete({source: ["Test 1", "Test 2", "Test 3", "Test 4"]});*/
+					        
+							$ac.autocomplete({
+					        	source:function(query,process){
+					        		//var matchCount = this.options.items;//返回结果集最大数
+					        		$.post(ctx+'/topBankinfo/getTopBankinfoList.do',{"bankCode":query,"page":1,"rows":10},function(data){
+					        			var respdata = $.parseJSON(data);
+						        	    return process(respdata.list);
+					        		});
+					        	},
+					        	formatItem:function(item){
+					                return item["bankName"]+"("+item["bankCode"]+"，"+item["bankName"]+") - "+item["bankLevel"];
+					            },
+					            setValue:function(item){
+					                return {'data-value':item["bankName"],'real-value':item["bankCode"]};
+					            }
+					        });
+					        
 							return $ac;
 						}, 
 						custom_value:function myvalue(elem,op,value){
@@ -452,6 +470,11 @@ function init() {
 			container : 'body'
 		});
 	}
+}
+
+function getBankinfo(){
+	
+	return "abc";
 }
 
 // var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');

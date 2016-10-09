@@ -29,13 +29,13 @@ import com.topcheer.ybt.util.DateUtil;
 import com.topcheer.ybt.util.ResultHelper;
 
 @Controller
-@RequestMapping("/topInsCorpInfo")
+@RequestMapping("/topInsCorpinfo")
 public class TopInsCorpInfoController {
 	private static Logger log = LoggerFactory.getLogger(TopInsCorpInfoController.class);
 	@Resource(name = "topInsCorpInfoBizImpl")
 	private ITopInsCorpInfoBiz topInsCorpInfoBiz;
 
-	@RequestMapping("/turnToJsp.do")
+	@RequestMapping("/insCorpInfo.do")
 	public String turnToJsp() {
 		return "basedata/insCorpInfo";
 	}

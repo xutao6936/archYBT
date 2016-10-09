@@ -1,9 +1,9 @@
 package com.topcheer.ybt.basedata.entity;
 
 public class TopInsprdInfo {
-	
+
 	private String id;
-	
+
 	private String insPrdCode;//产品代码
 	
 	private String insPrdTrueCode;//产品真实代码
@@ -221,5 +221,6 @@ public class TopInsprdInfo {
 	public void setOperator(String operator) {
 		this.operator = operator;
 	}
+
 
 }

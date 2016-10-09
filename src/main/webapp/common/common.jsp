@@ -14,6 +14,11 @@
 <link rel="stylesheet" href="${ctx }/assets/css/ace-rtl.min.css" />
 <link rel="stylesheet" href="${ctx }/assets/css/ace-skins.min.css" />
 <link rel="stylesheet" href="${ctx }/js/common/zTree/2.6/zTreeStyle.css" />
+
+<link rel="stylesheet" href="${ctx }/assets/css/font-awesome-ie7.min.css" />
+<!-- ace styles -->
+<link rel="stylesheet" href="${ctx }/assets/css/select2.css" />
+<link rel="stylesheet" href="${ctx }/css/fullcalendar.css" />
 <style type="text/css">
 #footer {
 	margin-top: 1px;
@@ -33,6 +38,7 @@
 <script src="${ctx }/assets/js/ace-extra.min.js"></script>
 <script src="${ctx }/assets/js/bootstrap.min.js"></script>
 <script src="${ctx }/assets/js/typeahead-bs2.min.js"></script>
+<script src="${ctx }/assets/js/bootstrap.autocomplete.js"></script>
 <!-- page specific plugin scripts -->
 
 <script src="${ctx }/assets/js/date-time/bootstrap-datepicker.min.js"></script>
@@ -52,7 +58,9 @@
 <script src="${ctx }/assets/js/ace.min.js"></script>
 <script src="${ctx }/assets/js/acedialog.js"></script>
 <script src="${ctx }/assets/js/bootbox.min.js"></script>
-
+<script src="${ctx }/assets/js/select2.min.js"></script>
+<script src="${ctx }/js/common/select2_locale_zh-CN.js"></script>
+<script src="${ctx }/js/common/resize.js"></script>
 <script type="text/javascript">
 	var ctx = "${ctx}";
 </script>
