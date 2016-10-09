@@ -63,16 +63,11 @@ function init() {
 					index : 'upBankCode',
 					width : 90,
 					editable : true,
-					edittype : 'custom',
+					edittype:'text',
 					editoptions:{
-						custom_element: function myelem(value, options){
-							var $ac = $('<input type="text" id="'+options.id+'" name="'+options.name+'"></input>');
-							
-					        /*$ac.val(value);
-					        $ac.autocomplete({source: ["Test 1", "Test 2", "Test 3", "Test 4"]});*/
-					        
-							$ac.autocomplete({
-					        	source:function(query,process){
+						dataInit:function(e){
+							$(e).autocomplete({
+								source:function(query,process){
 					        		//var matchCount = this.options.items;//返回结果集最大数
 					        		$.post(ctx+'/topBankinfo/getTopBankinfoList.do',{"bankCode":query,"page":1,"rows":10},function(data){
 					        			var respdata = $.parseJSON(data);
@@ -83,61 +78,12 @@ function init() {
 					                return item["bankName"]+"("+item["bankCode"]+"，"+item["bankName"]+") - "+item["bankLevel"];
 					            },
 					            setValue:function(item){
-					                return {'data-value':item["bankName"],'real-value':item["bankCode"]};
+					                return {'data-value':item["bankCode"],'real-value':item["bankCode"]};
 					            }
-					        });
-					        
-							return $ac;
-						}, 
-						custom_value:function myvalue(elem,op,value){
-							$(elem).val(value);
-							return $(elem).val();
-						}
-					} 
-					/*edittype:'text',
-					editoptions:{
-						dataInit:function(e){
-							$(e).autocomplete({
-								source:  function(request, response,term) {
-				                    var param = request.term; //values we enter to filter autocomplete
-				                    $.ajax({
-				                        url: "myurl",
-				                        dataType: "json",
-				                        type:"GET",
-				                        success: function (data) {
-				                             response($.map(data, function(item) {
-				                                 return { 
-				                                 //can add number of attributes here 
-				                                     id: item.id,
-				                                     shform: item.shortform, 
-				                                     value: item.name, 
-				                                     clr : item.color, //here apart from name and id i am adding other values too
-				                                     size: item.size,
-				                                     remar:item.remarks,
-				                                     subs: item.subs,
-				                                     selec:item.selec ,
-				                                     };
-				                                 }));//END Response
-
-				                        },//END Success
-				                    });//END AJAX
-				                },
-				                select: function( event, ui ) {
-				                    // setting values to textbox in jqgrid edit form based on selected values                               
-				                     $('#textbox1').val(ui.item.id);
-				                     $('#textbox2').val(ui.item.shform);
-				                     $('#textbox3').val(ui.item.clr);
-				                     $('#textbox4').val(ui.item.size);
-				                     $('#textbox5').val(ui.item.sizeremar);
-				                     $('#textbox6').val(ui.item.subs);
-				                     $('#textbox7').val(ui.item.selec);
-				                     $('#textbox8').val(ui.item.selp);
-
-				                } 
+								
 				            });
-							$('.ui-autocomplete').css('zIndex',1000);
 						}
-					}*/
+					}
 					//sorttype : "date",
 					//unformat : pickDate
 				}, {
@@ -470,11 +416,6 @@ function init() {
 			container : 'body'
 		});
 	}
-}
-
-function getBankinfo(){
-	
-	return "abc";
 }
 
 // var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
