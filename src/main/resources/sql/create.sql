@@ -647,6 +647,7 @@ create table TOP_INSPRDINFO  (
    UPDATE_DATE          VARCHAR2(10),
    UPDATE_TIME          VARCHAR2(10),
    OPERATOR             VARCHAR2(40),
+   IS_OVER_RISK         VARCHAR2(2),
    constraint PK_TOP_INSPRDINFO primary key (ID)
 );
 
@@ -718,6 +719,9 @@ comment on column TOP_INSPRDINFO.UPDATE_TIME is
 
 comment on column TOP_INSPRDINFO.OPERATOR is
 '操作员';
+
+comment on column TOP_INSPRDINFO.IS_OVER_RISK is
+'是否允许超风险购买';
 
 /*==============================================================*/
 /* Table: TOP_INSPRDPERIOD                                      */

@@ -1,6 +1,5 @@
-$(function() {
+$(function () {
 	init();
-	//validate();
 });
 
 function resetSearchForm(){
@@ -9,7 +8,7 @@ function resetSearchForm(){
 
 function submitSearchForm(){
 	 jQuery("#grid-table").jqGrid('setGridParam', {
-		   url:ctx+'/topInsCorpInfo/getInsCorpByInsCorpCode.do',
+		   url:ctx+'/topAgentrate/getInsCorpByInsCorpCode.do',
 		   type: "POST",
 		   postData:$('#searchForm').serialize()
 }).trigger("reloadGrid");
@@ -20,133 +19,136 @@ function init() {
 	var pager_selector = "#grid-pager";
 		jQuery(grid_selector).jqGrid(
 			{
-				url : ctx+'/topInsCorpInfo/getTopInsCorpInfoList.do',
+				url : ctx+'/topAgentrate/getTopAgentrateList.do',
 				datatype : "json",
 				height : 200,
 				mtype : "post",
-				colNames : [ 'ID','保险公司编码','保险公司名称','简称', '保险公司级别','上级公司代码','保险公司英文名称',
-				             '地址','邮编','联系电话','传真','邮箱','状态','操作员','操作机构','创建日期','更新日期', '更新时间',
-				             '统一柜面接口','统一网销接口','统一对账接口','统一非实时对账接口','统一退保接口','开通渠道'],
+				colNames : [ '编号','保险产品编码','交易类型','机构','缴费年期','缴费年期单位','缴费类型','保障年期','保障年期单位', 
+				             '收费方式','一次性收费金额','百分比收费比例','操作机构','更新日期','更新时间'],
 				colModel : [{
 					name : 'id',
 					index : 'id',
-					//隐藏该列
 					hidden:true,
-					editable:true,
-					edittype:'text',editrules:{required:true}
+					width : 60,
+					sorttype : "int",
+					editable : false
 				},{
-					name : 'insCorpCode',
-					index : 'insCorpCode',
+					name : 'insprdCode',
+					index : 'insprdCode',
 					width : 90,
 					editable : true
 					
 				},{
-					name : 'insCorpName',
-					index : 'insCorpName',
-					width : 90,
-					editable : true
-				},{
-					name : 'insSimpName',
-					index : 'insSimpName',
-					width : 50,
-					editable : true
-				},{
-					name : 'insCorpLevel',
-					index : 'insCorpLevel',
+					name : 'transType',
+					index : 'transType',
 					width : 100,
-					unformat:function(cellValue, options, rowObject){
-						if(cellValue=='总公司'){
-							return "0";
-						}else if(cellValue=='分公司'){
-							return "1";
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue=='1'){
+							return "实时";
+						}else if(cellValue=='2'){
+							return "非实时";
 						}else if(cellValue=='' || cellValue==null){
 							return "";
 						}
-					},
+					}	
+				},{
+					name : 'adminBank',
+					index : 'adminBank',
+					width : 90,
+					editable : true
+					
+				}, {
+					name : 'payPeriod',
+					index : 'payPeriod',
+					width : 90,
+					editable : true
+				}, {
+					name : 'payPeriodType',
+					index : 'payPeriodType',
+					editable : true,
 					formatter:function(cellValue, options, rowObject){
 						if(cellValue=='0'){
-							return "总公司";
+							return "年";
 						}else if(cellValue=='1'){
-							return "分公司";
+							return "周岁";
+						}else if(cellValue=='2'){
+							return "终生";
 						}else if(cellValue=='' || cellValue==null){
 							return "";
 						}
-					}
-					
-				},{
-					name : 'upCorpCode',
-					index : 'upCorpCode',
-					width : 90,
-					editable : true
-					
+					}	
 				}, {
-					name : 'insCorpEnName',
-					index : 'insCorpEnName',
-					width : 120,
-					editable : true
-				}, {
-					name : 'address',
-					index : 'address',
-					hidden:true,
+					name : 'payType',
+					index : 'payType',
 					editable : true,
-					editrules:{edithidden:true}
-				}, {
-					name : 'postCode',
-					index : 'postCode',
-					hidden:true,
-					editable : true,
-					editrules:{edithidden:true}
-				},{
-					name : 'phone',
-					index : 'phone',
-					hidden:true,
-					editable : true,
-					editrules:{edithidden:true}
-				}, {
-					name : 'fax',
-					index : 'fax',
-					hidden:true,
-					editable : true,
-					editrules:{edithidden:true}
-				}, {
-					name : 'email',
-					index : 'email',
-					hidden:true,
-					editable : true,
-					editrules:{edithidden:true}
-				}, {
-					name : 'status',
-					index : 'status',
-					width : 50,
-					editable : true,
-					edittype : "select",
-					editoptions : {
-						value : "0:有效;1:无效"
-					},
-					formatter:function(cellValue){
-						if(cellValue=='0'){
-							return "有效";
-						}else if(cellValue=='1'){
-							return "无效";
-						}else if(cellValue=='' ||cellValue==null){
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue=='1'){
+							return "趸缴";
+						}else if(cellValue=='2'){
+							return "月缴";
+						}else if(cellValue=='3'){
+							return "季缴";
+						}else if(cellValue=='4'){
+							return "半年缴";
+						}else if(cellValue=='5'){
+							return "年缴";
+						}else if(cellValue=='' || cellValue==null){
 							return "";
 						}
-					}
+					}	
+				},{
+					name : 'insPeriod',
+					index : 'insPeriod',
+					editable : true,
+					editrules:{edithidden:true}
 				}, {
-					name : 'operatorCode',
-					index : 'operatorCode',
-					hidden:true
+					name : 'insPeriodType',
+					index : 'insPeriodType',
+					editable : true,
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue=='0'){
+							return "年";
+						}else if(cellValue=='1'){
+							return "周岁";
+						}else if(cellValue=='2'){
+							return "保终生";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					}	
+				}, {
+					name : 'rateType',
+					index : 'rateType',
+					width : 90,
+					editable : true,
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue=='1'){
+							return "一次性";
+						}else if(cellValue=='2'){
+							return "百分比";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					}	
+				}, {
+					name : 'onceAmt',
+					index : 'onceAmt',
+					width : 90,
+					editable : true
+				}, {
+					name : 'percentAmt',
+					index : 'percentAmt',
+					width : 90,
+					editable : true,
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue!= ""){
+							return cellValue+"%";
+						}
+					}
 				}, {
 					name : 'operatorBank',
 					index : 'operatorBank',
 					hidden:true
-				},{
-					name : 'createDate',
-					index : 'createDate',
-					width : 70,
-					editable : false,
-					sorttype : "date",
-					unformat : pickDate
 				},{
 					name : 'updateDate',
 					index : 'updateDate',
@@ -161,120 +163,6 @@ function init() {
 					hidden:true,
 					sorttype : "date",
 					unformat : pickDate
-				},{
-					name : 'commonCountFlag',
-					index : 'commonCountFlag',
-					width : 90,
-					editable : true,
-					edittype : "select",
-					editoptions : {
-						value : "0:是;1:否"
-					},
-					formatter:function(cellValue){
-						if(cellValue=='0'){
-							return "是";
-						}else if(cellValue=='1'){
-							return "否";
-						}else if(cellValue=='' || cellValue==null){
-							return "";
-						}
-					}
-				},{
-					name : 'commonNetFlag',
-					index : 'commonNetFlag',
-					width : 90,
-					editable : true,
-					edittype : "select",
-					editoptions : {
-						value : "0:是;1:否"
-					},
-					formatter:function(cellValue){
-						if(cellValue=='0'){
-							return "是";
-						}else if(cellValue=='1'){
-							return "否";
-						}else if(cellValue=='' || cellValue==null){
-							return "";
-						}
-					}
-				},{
-					name : 'commonCheckFlag',
-					index : 'commonCheckFlag',
-					width : 90,
-					editable : false,
-					edittype : "select",
-					editoptions : {
-						value : "0:是;1:否"
-					},
-					formatter:function(cellValue){
-						if(cellValue=='0'){
-							return "是";
-						}else if(cellValue=='1'){
-							return "否";
-						}else if(cellValue=='' || cellValue==null){
-							return "";
-						}
-					}
-				},{
-					name : 'commonNossdcheckFlag',
-					index : 'commonNossdcheckFlag',
-					width : 130,
-					editable : true,
-					edittype : "select",
-					editoptions : {
-						value : "0:是;1:否"
-					},
-					formatter:function(cellValue){
-						if(cellValue=='0'){
-							return "是";
-						}else if(cellValue=='1'){
-							return "否";
-						}else if(cellValue=='' || cellValue==null){
-							return "";
-						}
-					}
-				},{
-					name : 'commonSystbFlag',
-					index : 'commonSystbFlag',
-					width : 90,
-					editable : true,
-					edittype : "select",
-					editoptions : {
-						value : "0:是;1:否"
-					},
-					formatter:function(cellValue){
-						if(cellValue=='0'){
-							return "是";
-						}else if(cellValue=='1'){
-							return "否";
-						}else if(cellValue=='' || cellValue==null){
-							return "";
-						}
-					}
-				},{
-					name : 'channelFlag',
-					index : 'channelFlag',
-					width : 70,
-					editable : true,
-					edittype : "select",
-					editoptions : {
-						value : "01:柜面;02:网银;03:手机;04:直销;05:自助"
-					},
-					formatter:function(cellValue){
-						if(cellValue=='01'){
-							return "柜面";
-						}else if(cellValue=='02'){
-							return "网上银行";
-						}else if(cellValue=='03'){
-							return "手机银行";
-						}else if(cellValue=='04'){
-							return "直销银行";
-						}else if(cellValue=='05'){
-							return "自助终端";
-						}else if(cellValue=='' || cellValue==null){
-							return "";
-						}
-					}
 				}],
 				//sortname : 'id',
 				viewrecords : true,// 是否在浏览导航栏显示记录总数
@@ -303,7 +191,7 @@ function init() {
 						enableTooltips(table);
 					}, 0);
 				},
-				caption : "保险公司信息表",
+				caption : "手续费设置信息表",
 				autowidth : true
 
 			});
@@ -311,11 +199,12 @@ function init() {
 			   caption:"新增",   
 			   buttonicon:"icon-plus-sign purple",   
 			   onClickButton: function(){ 
-			      // $("#validation-form").clearForm();
+				   $("#insPrdCode").val($("#insProducts").val());
+				   initGridData();
 				   $("#dialog-form").dialog({
-					  title:"新增用户",
+					  title:"新增手续费",
 					  title_html: true,
-				      height: 550,
+				      height: 650,
 				      width: 1000,
 				      modal: true,
 				      buttons:[{
@@ -375,7 +264,6 @@ function init() {
 											  dataType:'json',
 											//  beforeSend:validate(),
 											  success:function(msg){
-												  alert(msg.result);
 												  if('SUCC'==msg.result){
 													  layer.alert('修改成功',{icon:1});  
 													  $("#dialog-form").dialog('close');
@@ -443,19 +331,7 @@ function init() {
 					   $(grid_selector).trigger("reloadGrid");
 				   },   
 				   position:"last"  
-				}).navButtonAdd(pager_selector,{  
-					   caption:"导入",   
-					   buttonicon:"icon-upload green",   
-					   onClickButton: function(){},   
-					   position:"last"  
-					}).navButtonAdd(pager_selector,{  
-						   caption:"下载",   
-						   buttonicon:"icon-download green",   
-						   onClickButton: function(){
-							   location.href=ctx+'/topInsCorpInfo/download.do';
-						   },   
-						   position:"last"  
-						});  
+				});  
 		
 	// switch element when editing inline
 	function aceSwitch(cellvalue, options, cell) {
@@ -602,6 +478,83 @@ function init() {
 		$(table).find('.ui-pg-div').tooltip({
 			container : 'body'
 		});
+	}
+	
+	
+	
+	
+	function initGridData() {
+		var grid_selector = "#gridData";
+			jQuery(grid_selector).jqGrid(
+				{
+					url : ctx+'/topAgentrate/getAgentrateByInsPrdCode.do',
+					datatype : "json",
+					height : 350,
+					 width: 1000,
+					mtype : "post",
+					colNames : [ '编号','缴费年期','保险年期','百分比收费比例(%)','一次性收费金额(元)'],
+					colModel : [{
+						name : 'id',
+						index : 'id',
+						hidden:true,
+						 width: 250,
+						sorttype : "int",
+						editable : false
+					},{
+						name : 'payPeriod',
+						index : 'payPeriod',
+						editable : false
+						
+					},{
+						name : 'insPeriod',
+						index : 'insPeriod',
+						 width: 250,
+						 formatter:function(cellValue, options, rowObject){
+								if(cellValue=='2终生'){
+									return "终生";
+								}else {
+									return cellValue;
+								}
+							}	
+					},{
+						name : 'percentAmt',
+						index : 'percentAmt',
+						width: 250,
+						editable : true
+						
+					}, {
+						name : 'onceAmt',
+						index : 'onceAmt',
+						width: 250,
+						editable : true
+					}],
+					//sortname : 'id',
+					viewrecords : true,// 是否在浏览导航栏显示记录总数
+					altRows : true,// 设置为交替行表格,默认为false
+					editurl:ctx+'/topInsCorpInfo/oper.do',
+					multiselect : false,
+					multiboxonly : true,
+					cellEdit : true,
+					jsonReader : {  
+					    root: "list",   // json中代表实际模型数据的入口  
+					    page: "pageNum",   // json中代表当前页码的数据  
+					    total: "pages", // json中代表页码总数的数据  
+					    records: "total", // json中代表数据行总数的数据  
+					    repeatitems: true // 如果设为false，则jqGrid在解析json时，会根据name来搜索对应的数据元素（即可以json中元素可以不按顺序）；而所使用的name是来自于colModel中的name设定。  
+					} , 
+
+					loadComplete : function(data) {
+						var table = this;
+						setTimeout(function() {
+							styleCheckbox(table);
+							updateActionIcons(table);
+							updatePagerIcons(table);
+							enableTooltips(table);
+						}, 0);
+					},
+					autowidth : true
+
+				});
 	}
 }
 

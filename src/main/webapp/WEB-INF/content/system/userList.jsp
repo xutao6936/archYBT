@@ -111,22 +111,20 @@
 			<div class="form-group">
 				<label class="control-label col-xs-12 col-sm-3 no-padding-right"
 					for="userDept">部门：</label>
-
+					
 				<div class="col-xs-12 col-sm-9">
-					<select id="userDept" name=userDept class="select2" style="width:158px;"
-						data-placeholder="Click to Choose...">
-						<option value="">&nbsp;</option>
-						<option value="AL">Alabama</option>
-						<option value="AK">Alaska</option>
-					</select>
+					<div class="clearfix">
+						<input type="text" id="userDept" name="userDept" width="200px" />
+					</div>
 				</div>
+
 			</div>
 			<div class="space-2"></div>
 			<div class="form-group">
 				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="name">状态:</label>
 
 				<div class="col-xs-12 col-sm-9">
-					<select id="userDept" name=userDept class="select2" style="width:158px;"
+					<select id="userStatus" name="userStatus" class="select2" style="width:158px;"
 						data-placeholder="Click to Choose...">
 						<option value="0">有效</option>
 						<option value="1">无效</option>
@@ -177,6 +175,8 @@ function initFileInput(ctrlName, uploadUrl) {
         }  
     });
 }
+
+
 
 </script>
 
