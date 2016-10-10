@@ -22,11 +22,31 @@ public class TopInsPrdPeriodInfoServiceimpl implements ITopInsPrdPeriodInfoServi
 	 * 查询保障年期信息
 	 */
 	@Override
-	public PageInfo<TopInsPrdPeriodInfo> getInsPrdPeriodAllList() {
+	public PageInfo<TopInsPrdPeriodInfo> getInsPrdPeriodAllList(
+			TopInsPrdPeriodInfo topInsPrdPeriodInfo) {
 		// TODO Auto-generated method stub
-		List<TopInsPrdPeriodInfo>  topInsPeriodInfoList =topInsPrdPeriodInfoMapper.searchAllTopInsPeriodInfo();
+		List<TopInsPrdPeriodInfo>  topInsPeriodInfoList =topInsPrdPeriodInfoMapper.searchAllTopInsPeriodInfo(topInsPrdPeriodInfo);
 		PageInfo<TopInsPrdPeriodInfo> pageinfo = new PageInfo<TopInsPrdPeriodInfo>(topInsPeriodInfoList);
 		return pageinfo;
 	}
+	/**
+	 * 插入保障年期基本信息
+	 */
+	@Override
+	public void insertInsPrdPeriod(TopInsPrdPeriodInfo topInsPrdPeriodInfo) {
+		// TODO Auto-generated method stub
+		topInsPrdPeriodInfoMapper.insertTopInsPeriodInfo(topInsPrdPeriodInfo);
+	}
+	@Override
+	public void updateInsPrdPeriod(TopInsPrdPeriodInfo topInsPrdPeriodInfo) {
+		// TODO Auto-generated method stub
+		topInsPrdPeriodInfoMapper.updateTopInsPeriodInfo(topInsPrdPeriodInfo);
+	}
+	@Override
+	public void deleteInsPrdPeriod(String insPrdCode) {
+		// TODO Auto-generated method stub
+		topInsPrdPeriodInfoMapper.deleteTopInsPeriodInfo(insPrdCode);
+	}
+	
 
 }

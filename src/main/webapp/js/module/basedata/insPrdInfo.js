@@ -451,18 +451,27 @@ function init() {
 					   caption:"保障年期设置",   
 					   buttonicon:"icon-upload green",   
 					   onClickButton: function(){
+						  // $("#validation-form")[0].reset();
+						  var cells = $(grid_selector).jqGrid("getGridParam","selarrrow");
+						  var params = new Array();
+						  if(cells.length>0){
+							   $.each(cells,function(i,v){
+								   var ret = $(grid_selector).jqGrid('getRowData', v);
+								   params.push(ret.insPrdCode);
+							   });
 						   $("#insPrdPeriodForm").dialog({
 							   title_html: true,
 							   height: 400,
 							   width:1000,
 							   modal: true,
 							   open:function(){
-								   alert("11111");
-								   setInsPrdPeriod();
+								   setInsPrdPeriod(params);
 							   },
 							   
 						   });
-						   
+				   }else {
+							  layer.alert('请选中一行!',{icon:2}); 
+					   }
 					   },   
 					   position:"last"  
 					}).navButtonAdd(pager_selector,{  
@@ -672,7 +681,6 @@ function enableDate(){
 			todayBtn: 'linked',
 			language: 'zh-CN'
 		}).on('changeDate',function(ev){
-			alert("！！！！");
 			var startTime = ev.date.valueOf();
 			start =startTime;
 			if(start<teach){
@@ -696,14 +704,15 @@ function enableDate(){
 }
 
 //保障年期设置方法
-function setInsPrdPeriod(){
+function setInsPrdPeriod(params){
 	   var grid_insPrdPeriodtable = "#grid-insPrdPeriodtable";
 	   var pager_insPrdPeriodPager = "#grid-insPrdPeriodPager";
 	   jQuery(grid_insPrdPeriodtable).jqGrid(
 			{
-				url : ctx+'/topInsPrdPeriodInfo/getTopInsPrdPeriodInfoList.do',
+				url : ctx+'/topInsPrdPeriodInfo/getTopInsPrdPeriodInfoList.do?insPrdCode='+params,
 				datatype : "json",
-				height : 200,
+				height: 200,
+			    width: 1000,
 				mtype : "post",
 				colNames : [ 'ID','产品编码','值','单位'],
 				colModel : [{
@@ -717,6 +726,7 @@ function setInsPrdPeriod(){
 					index : 'insPrdcode',
 					//隐藏该列
 					editable:true
+					
 				},{
 					name : 'key',
 					index : 'key',
@@ -724,14 +734,35 @@ function setInsPrdPeriod(){
 				},{
 					name : 'unit',
 					index : 'unit',
-					editable:true
+					editable:true,
+					unformat:function(cellValue, options, rowObject){
+						if(cellValue=='年'){
+							return "0";
+						}else if(cellValue=='周岁'){
+							return "1";
+						}else if(cellValue=='保终身'){
+							return "2";
+						}else if(cellValue=='' || cellValue==null){
+							return "";
+						}
+					},
+					formatter:function(cellValue, options, rowObject){
+						if(cellValue=='0'){
+							return "年";
+						}else if(cellValue=='1'){
+							return "周岁";
+						}else if(cellValue=='2'){
+							return "保终身";
+						}else if(cellValue=='' || cellValue==null){
+							return "";	
+						}
+					}
 				}],
 				viewrecords : true,// 是否在浏览导航栏显示记录总数
 				rowNum : 10,// 每页显示记录数
 				rowList : [ 10, 20, 30 ],// 用于改变显示行数的下拉列表框的元素数组。
 				pager : pager_insPrdPeriodPager,
 				altRows : true,// 设置为交替行表格,默认为false
-				editurl:ctx+'/topInsPrdPeriodInfo/oper.do',
 				multiselect : true,
 				multiboxonly : true,
 				jsonReader : {  
@@ -753,43 +784,105 @@ function setInsPrdPeriod(){
 				caption : "保障年期信息表",
 				autowidth : true
 			});
-	   jQuery(grid_insPrdPeriodtable).navGrid(pager_insPrdPeriodPager,{
-			edit:true,
-			edittext:'编辑',
-			edittitle:'编辑数据',
-			add:true,
-			addtext:'新增',
-			addicon:'icon-plus-sign purple',
-			addtitle:'新增一条数据',
-			alerttext:'请选择一条数据',
-			deltitle:'删除一条数据',
-			del:true,
-			deltext:'删除',
-			search:false,
-			refresh:true,
-			refreshicon:'icon-refresh green',
-			viewicon:'ui-icon icon-zoom-in grey',
-			refreshtext:'刷新',
-			refreshtitle:'刷新数据',
-			view:true,
-			viewtext:'查看',
-			viewtitle:'查看',
-
-			delfunc:function(){
-				 var cells = $(grid_insPrdPeriodtable).jqGrid("getGridParam","selarrrow");
-				   if(cells.length>0){
-					   var params = new Array();
-					   $.each(cells,function(i,v){
-						   var ret = $(grid_insPrdPeriodtable).jqGrid('getRowData', v);
-						   params.push(ret.insPrdCode);
-					   });
-					   
-					   layer.confirm("确认删除吗？", { btn : ['确定','取消']},//按钮
-
-					       function(index){      //确认后执行的操作  
+	   
+	   jQuery(grid_insPrdPeriodtable).navGrid(pager_insPrdPeriodPager,{edit:false,add:false,del:false,search:false}).navButtonAdd(pager_insPrdPeriodPager,{  
+		   caption:"新增",   
+		   buttonicon:"icon-plus-sign purple",   
+		   onClickButton: function(){ 
+			   $("#insPrdPeriodDialog-form").dialog({
+				  title:"新增保障年期信息",
+				  title_html: true,
+			      height: 300,
+			      width: 800,
+			      modal: true,
+			      buttons:[{
+			    	  text:'提交',
+			    	  "class" : "btn btn-primary btn-xs",
+			    	  click:function(){
+			    		  $.ajax({
+			    			  url:ctx+'/topInsPrdPeriodInfo/insertTopInsPrdPeriodInfo.do',
+							  type: "POST",
+							  data:$('#insPrdPeriod-form').serialize(),
+							  dataType:'json',
+							  success:function(msg){
+								  if('SUCC'==msg.result){
+									  layer.alert('添加成功',{icon:1});  
+									  $("#insPrdPeriodDialog-form").dialog('close');
+									  $(grid_insPrdPeriodtable).trigger("reloadGrid");
+								  }else{
+									  layer.alert('添加失败',{icon:2});  
+								  }
+							  }
+			    		  });
+			    	  }
+			      },{
+			    	  text:"关闭",
+			    	  "class" : "btn btn-xs",
+			    	  click:function(){
+			    		  $(this).dialog('close');
+			    	  }
+			      }]
+		            
+			   }); 
+		   },   
+		}).navButtonAdd(pager_insPrdPeriodPager,{  
+			   caption:"编辑",   
+			   buttonicon:"icon-pencil blue",   
+			   onClickButton: function(){  
+				   $("#validation-form")[0].reset();
+				   var cell = $(grid_insPrdPeriodtable).jqGrid("getGridParam","selarrrow");
+				   if(cell.length >0){ 
+					   $("#insPrdPeriodDialog-form").dialog({
+							  title:"编辑保障年期信息",
+						      height: 300,
+						      width: 800,
+						      open:function(){
+						    	  $(grid_insPrdPeriodtable).jqGrid('GridToForm',cell, '#insPrdPeriodDialog-form');
+						      },
+						      modal: true,
+						      buttons:{
+						    	  "提交":function(){
+						    		  $.ajax({
+						    			  url:ctx+'/topInsPrdPeriodInfo/updateTopInsPrdPeriodInfo.do',
+										  type: "POST",
+										  data:$('#insPrdPeriod-form').serialize(),
+										  dataType:'json',
+										  success:function(msg){
+											  if('SUCC'==msg.result){
+												  layer.alert('修改成功',{icon:1});  
+												  $("#insPrdPeriodDialog-form").dialog('close');
+												  $(grid_insPrdPeriodtable).trigger("reloadGrid");
+											  }else{
+												  layer.alert('修改失败',{icon:2});  
+											  }
+										  }
+						    		  });
+						    	  },
+						    	  "关闭":function(){
+						    		  $(this).dialog('close');
+						    	  }
+						      }
+						   }); 
+					   }else {
+						  layer.alert('请选中一行!',{icon:2}); 
+				   }
+			   } 
+			}).navButtonAdd(pager_insPrdPeriodPager,{  
+		   caption:"删除",   
+		   buttonicon:"icon-trash red",   
+		   onClickButton: function(){   
+			   var cells = $(grid_insPrdPeriodtable).jqGrid("getGridParam","selarrrow");
+			   if(cells.length>0){
+				   var params = new Array();
+				   $.each(cells,function(i,v){
+					   var ret = $(grid_insPrdPeriodtable).jqGrid('getRowData', v);
+					   params.push(ret.id);
+				   });
+				   layer.confirm("确认删除吗？",  {icon: 3, title:'提示'},
+				       function(index){      //确认后执行的操作  
 						   if(index){
 							   $.ajax({
-								   url:ctx+'/topInsPrdPeriodInfo/deleteTopInsPrdInfo.do',
+								   url:ctx+'/topInsPrdPeriodInfo/deleteTopInsPrdPeriodInfo.do',
 								   type: "POST",
 								   dataType:'json',
 								   data:{"ids[]":params},
@@ -797,54 +890,22 @@ function setInsPrdPeriod(){
 							    	   if('SUCC'==msg.result){
 							    		   layer.alert('删除成功',{icon:1});  
 							    		   $(grid_insPrdPeriodtable).trigger("reloadGrid");
-							    		   layer.close(index);
 							    	   }else {
 							    		   layer.alert('删除失败',{icon:2});  
 							    	   }
 							       }	   
-							   }); 
+							   });
 						   }
-					       },  
-					       function(){      //取消后执行的操作  
-					    	  return;
-					       }); 
-				   }else{
-					   layer.alert('请选中一行!',{icon:2}); 
-				   }
-			}
-			},{
-				//edit_options
-				closeAfterEdit:true,
-				closeOnEscape:true,
-				afterSubmit:function(response, postdata) {
-					var data = response.responseText;
-					data = $.parseJSON(data);
-					if(data['result']=='ERROR'){
-						layer.alert(data['errInfo'],{icon:2});  
-					}else {
-						layer.alert('修改成功',{icon:1});  
-						return true;
-					}
-				}
-			},{
-				//add_options
-				closeAfterAdd:true,
-				closeOnEscape:true,
-				afterSubmit:function(response, postdata) {
-					var data = response.responseText;
-					data = $.parseJSON(data);
-					if(data['result']=='ERROR'){
-						layer.alert(data['errInfo'],{icon:2});  
-					}else {
-						 layer.alert('添加成功',{icon:1});  
-						return true;
-					}
-				}
-			},{},{},{}).navSeparatorAdd(pager_selector,{
-			sepclass : "ui-separator",
-			sepcontent: ''
+				       },  
+				       function(){      //取消后执行的操作  
+				    	  return;
+				       }); 
+			   }else{
+				   layer.alert('请选中一行!',{icon:2}); 
+			   }
+		   }, 
+		   position:"last"  
 		});
-      
 }
 
 
