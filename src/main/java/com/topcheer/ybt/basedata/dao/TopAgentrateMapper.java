@@ -22,5 +22,7 @@ public interface TopAgentrateMapper {
 	public List<TopAgentrate> getInsPrdByInsPrdCode(String insPrdCode);
 
 	public List<TopAgentrate> getAgentrateByInsPrdCode(String insPrdCode);
+
+	public void deleteByInsprdCode(String insprdCode);
 	
 }

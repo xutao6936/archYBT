@@ -79,5 +79,10 @@ public class TopAgentrateServiceImpl implements ITopAgentrateService{
 		return pageinfo;
 	}
 
+	@Override
+	public void deleteByInsprdCode(String insprdCode) {
+		topAgentrateMapper.deleteByInsprdCode(insprdCode);
+	}
+
 
 }

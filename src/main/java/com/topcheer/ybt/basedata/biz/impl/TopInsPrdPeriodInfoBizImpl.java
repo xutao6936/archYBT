@@ -17,8 +17,23 @@ public class TopInsPrdPeriodInfoBizImpl implements ITopInsPrdPeriodInfoBiz{
 	@Resource(name = "topInsPrdPeriodInfoService")
 	ITopInsPrdPeriodInfoService  topInsPrdPeriodInfoService;
 	@Override
-	public PageInfo<TopInsPrdPeriodInfo> getInsPrdPeriodAllList() {
+	public PageInfo<TopInsPrdPeriodInfo> getInsPrdPeriodAllList(TopInsPrdPeriodInfo  topInsPrdPeriodInfo) {
 		// TODO Auto-generated method stub
-		return topInsPrdPeriodInfoService.getInsPrdPeriodAllList();
+		return topInsPrdPeriodInfoService.getInsPrdPeriodAllList(topInsPrdPeriodInfo);
+	}
+	@Override
+	public void insertInsPrdPeriod(TopInsPrdPeriodInfo topInsPrdPeriodInfo) {
+		// TODO Auto-generated method stub
+	      topInsPrdPeriodInfoService.insertInsPrdPeriod(topInsPrdPeriodInfo);
+	}
+	@Override
+	public void updateInsPrdPeriod(TopInsPrdPeriodInfo topInsPrdPeriodInfo) {
+		// TODO Auto-generated method stub
+		topInsPrdPeriodInfoService.updateInsPrdPeriod(topInsPrdPeriodInfo);
+	}
+	@Override
+	public void deleteInsPrdPeriod(String insPrdCode) {
+		// TODO Auto-generated method stub
+		topInsPrdPeriodInfoService.deleteInsPrdPeriod(insPrdCode);
 	}
 }

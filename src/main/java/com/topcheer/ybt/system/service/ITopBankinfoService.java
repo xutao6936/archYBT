@@ -24,4 +24,6 @@ public interface ITopBankinfoService {
 
 	public void delete(String id) throws DataAccessException;
 
+	public List<TopBankinfo> getBankInfoAjax();
+
 }

@@ -9,7 +9,34 @@
 		<result property="unit" column="UNIT" jdbcType="VARCHAR" />
 		
 	</resultMap>
-	<select id="searchAllTopInsPeriodInfo" resultMap="forTopInsprdPeriodInfo" >
-		select * from top_insprdperiod
+	<select id="searchAllTopInsPeriodInfo" resultMap="forTopInsprdPeriodInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsPrdPeriodInfo">
+		select * from top_insprdperiod  where INSPRD_CODE = #{insPrdcode,jdbcType=VARCHAR}
 	</select>  
+	
+	<insert id="insertTopInsPeriodInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsPrdPeriodInfo">
+		INSERT INTO top_insprdperiod (
+		ID,
+		INSPRD_CODE,
+		KEY,
+		UNIT
+		) VALUES (
+		#{id,jdbcType=VARCHAR},
+		#{insPrdcode,jdbcType=VARCHAR},
+		#{key,jdbcType=VARCHAR},
+		#{unit,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<update id="updateTopInsPeriodInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopInsPrdPeriodInfo">
+		UPDATE top_insprdperiod SET
+		INSPRD_CODE =  #{insPrdcode,jdbcType=VARCHAR},
+		KEY = #{key,jdbcType=VARCHAR},
+		UNIT =#{unit,jdbcType=VARCHAR}
+		WHERE ID = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	<delete id="deleteTopInsPeriodInfo" parameterType="String">
+		delete from top_insprdperiod where  ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	
 </mapper>
