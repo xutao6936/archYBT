@@ -350,7 +350,7 @@
 				<version>2.15</version> </dependency> <dependency> <groupId>org.apache.maven.surefire</groupId> 
 				<artifactId>surefire-booter</artifactId> <version>2.16</version> </dependency> 
 				</dependencies> </plugin> -->
-
+			<!-- mvn tomcat7:run -->
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
@@ -365,7 +365,15 @@
 					<warSourceDirectory>${basedir}/target/newybt</warSourceDirectory>
 				</configuration>
 			</plugin>
-
+			<!-- mvn javadoc:jar -->
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-javadoc-plugin</artifactId>
+			    <version>2.6.1</version>
+			    <configuration>
+			     <encoding>UTF-8</encoding>
+			    </configuration>
+			   </plugin>
 			<!-- jetty插件, 设定context path与spring profile <plugin> <groupId>org.mortbay.jetty</groupId> 
 				<artifactId>jetty-maven-plugin</artifactId> <version>7.6.11.v20130520</version> 
 				<configuration> <systemProperties> <systemProperty> <name>spring.profiles.active</name> 

@@ -63,37 +63,26 @@ function init() {
 					index : 'upBankCode',
 					width : 90,
 					editable : true,
-					edittype : 'custom',
+					edittype:'text',
 					editoptions:{
-						custom_element: function myelem(value, options){
-							var $ac = $('<input type="text" id="'+options.id+'" name="'+options.name+'"></input>');
-							
-					        /*$ac.val(value);
-					        $ac.autocomplete({source: ["Test 1", "Test 2", "Test 3", "Test 4"]});*/
-					        
-							$ac.autocomplete({
-					        	source:function(query,process){
-					        		//var matchCount = this.options.items;//返回结果集最大数
+						dataInit:function(e){
+							$(e).autocomplete({
+								delay:1000,
+								source:function(query,process){
 					        		$.post(ctx+'/topBankinfo/getTopBankinfoList.do',{"bankCode":query,"page":1,"rows":10},function(data){
-					        			var respdata = $.parseJSON(data);
-						        	    return process(respdata.list);
-					        		});
+						        	    return process(data.list);
+					        		},"json");
 					        	},
 					        	formatItem:function(item){
 					                return item["bankName"]+"("+item["bankCode"]+"，"+item["bankName"]+") - "+item["bankLevel"];
 					            },
 					            setValue:function(item){
-					                return {'data-value':item["bankName"],'real-value':item["bankCode"]};
+					                return {'data-value':item["bankCode"],'real-value':item["bankCode"]};
 					            }
-					        });
-					        
-							return $ac;
-						}, 
-						custom_value:function myvalue(elem,op,value){
-							$(elem).val(value);
-							return $(elem).val();
+								
+				            });
 						}
-					} 
+					}
 					//sorttype : "date",
 					//unformat : pickDate
 				}, {
@@ -216,7 +205,10 @@ function init() {
 			},{
 				//edit_options
 				closeAfterEdit:true,
+				modal:true,
 				closeOnEscape:true,
+				//top
+				left:150,
 				afterSubmit:function(response, postdata) {
 					var data = response.responseText;
 					data = $.parseJSON(data);
@@ -225,9 +217,16 @@ function init() {
 					}else {
 						return true;
 					}
+				},
+				recreateForm: true,
+				beforeShowForm : function(e) {
+					var form = $(e[0]);
+					form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />');
+					style_edit_form(form);
 				}
 			},{
 				//add_options
+				recreateForm: true,
 				closeAfterAdd:true,
 				closeOnEscape:true,
 				afterSubmit:function(response, postdata) {
@@ -238,8 +237,19 @@ function init() {
 					}else {
 						return true;
 					}
+				},
+				beforeShowForm : function(e) {
+					var form = $(e[0]);
+					form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+					style_edit_form(form);
 				}
-			},{},{},{}).navSeparatorAdd(pager_selector,{
+			},{
+				//delete record form
+			},{
+				//search form
+			},{
+				//view record form
+			}).navSeparatorAdd(pager_selector,{
 			sepclass : "ui-separator",
 			sepcontent: ''
 		}).navButtonAdd(pager_selector,{  
@@ -407,10 +417,6 @@ function init() {
 	}
 }
 
-function getBankinfo(){
-	
-	return "abc";
-}
 
 // var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
 

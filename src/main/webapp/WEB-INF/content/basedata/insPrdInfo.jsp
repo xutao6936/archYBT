@@ -310,5 +310,43 @@
 				<div id="grid-insPrdPeriodPager"></div>
 		</form>
 		</div>
+		
+		<!-- 保障年期dialog -->
+		<div id="insPrdPeriodDialog-form" style="display: none">
+		<form class="form-horizontal" id="insPrdPeriod-form" method="post" >
+			<input type="hidden" name="id"  id="id"> 
+			<div class="form-group">
+					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insPrdCode" >产品编码:</label>
+				   <div class="col-xs-12 col-sm-3" style="float:left">	
+				  	 <input type="text" name="insPrdcode" id="insPrdcode"  class="col-xs-12 col-sm-10" />
+				  	 <font color="red">*</font>
+				   </div>
+				   
+					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="key">值:</label>
+					<div class="col-xs-12 col-sm-3" style="float:left">	
+						<input type="text" name="key" id="key"  class="col-xs-12 col-sm-10" />
+						<font color="red">*</font>
+					</div>
+					<div class="space-2"></div>
+			</div>
+		
+			<div class="space-2"></div>
+		
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="unit">单位:</label>
+				<div class="col-xs-12 col-sm-3" style="float:left">
+					<select id="channelType" name="unit" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
+						<option value="">&nbsp;</option>
+						<option value="0">年</option>
+						<option value="1">周岁</option>
+						<option value="2">保终身</option>
+					</select>
+					<font color="red">*</font>
+				</div>
+				<div class="space-2"></div>
+				<div class="space-2"></div>
+			</div>
+			</form>
+		</div>
 </body>
 </html>

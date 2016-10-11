@@ -190,20 +190,18 @@ function init() {
 			       modal: true,
 			       open:function(){
 			    	 
-			    	 $("#dept321").autocomplete({
+			    	 $("#userDept").autocomplete({
 			    		 delay:1000,
 			    		 source:function(query,process){
 			    			 $.post(ctx+'/topBankinfo/getTopBankinfoList.do',{"bankCode":query,"page":1,"rows":10},function(data){
-			    				 var respdata = $.parseJSON(data);
-				        	     return process(respdata.list);
-				        			
-				        		}); 
+				        	     return process(data.list);
+				        		},"json"); 
 			    		 },
 			    		 formatItem:function(item){
 			    	            return item["bankName"]+"("+item["bankName"]+"，"+item["bankCode"]+")";
 			    	     },
 			    	     setValue:function(item){
-			    	            return {'data-value':item["bankName"],'real-value':item["bankCode"]};
+			    	            return {'data-value':item["bankCode"],'real-value':item["bankCode"]};
 			    	     }
 			    	 });
 			       },
@@ -252,6 +250,21 @@ function init() {
 						      width: 350,
 						      open:function(){
 						    	  $(grid_selector).jqGrid('GridToForm',cell, '#dialog-form');
+						    	  
+						    	  $("#userDept").autocomplete({
+							    		 delay:1000,
+							    		 source:function(query,process){
+							    			 $.post(ctx+'/topBankinfo/getTopBankinfoList.do',{"bankCode":query,"page":1,"rows":10},function(data){
+								        	     return process(data.list);
+								        		},"json"); 
+							    		 },
+							    		 formatItem:function(item){
+							    	            return item["bankName"]+"("+item["bankName"]+"，"+item["bankCode"]+")";
+							    	     },
+							    	     setValue:function(item){
+							    	            return {'data-value':item["bankCode"],'real-value':item["bankCode"]};
+							    	     }
+							    	 });
 						      },
 						      modal: true,
 						      buttons:[{
