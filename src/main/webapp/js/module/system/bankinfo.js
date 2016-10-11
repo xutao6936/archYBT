@@ -207,8 +207,10 @@ function init() {
 				closeAfterEdit:true,
 				modal:true,
 				closeOnEscape:true,
-				//top
-				left:150,
+				top:80,
+				left:250,
+				height:450,
+				dataheight:350,
 				afterSubmit:function(response, postdata) {
 					var data = response.responseText;
 					data = $.parseJSON(data);
@@ -226,6 +228,10 @@ function init() {
 				}
 			},{
 				//add_options
+				top:80,
+				left:250,
+				height:450,
+				dataheight:350,
 				recreateForm: true,
 				closeAfterAdd:true,
 				closeOnEscape:true,

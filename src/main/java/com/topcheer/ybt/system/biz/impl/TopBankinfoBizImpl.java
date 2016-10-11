@@ -50,4 +50,9 @@ public class TopBankinfoBizImpl implements ITopBankinfoBiz {
 		service.delete(id);
 	}
 
+	@Override
+	public List<TopBankinfo> getBankInfoAjax() {
+		return service.getBankInfoAjax();
+	}
+
 }

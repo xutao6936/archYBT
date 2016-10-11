@@ -25,4 +25,6 @@ public interface ITopInsprdInfoService {
 	//根据保险公司代码查询出该保险公司下所有的保险产品
 	public List <TopInsprdInfo> getTopInsPrdInfoListByInsPrdCode(String insCorpCode);
 
+	public List<TopInsprdInfo> getInsPrdInfoByInsPrdCode(String insPrdCode);
+
 }

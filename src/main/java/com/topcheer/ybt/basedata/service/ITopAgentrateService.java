@@ -25,5 +25,7 @@ public interface ITopAgentrateService {
 	public List<TopAgentrate> getInsPrdByInsPrdCode(String insPrdCode);
 
 	public PageInfo<TopAgentrate> getAgentrateByInsPrdCode(String insPrdCode);
+	
+	public void deleteByInsprdCode(String insprdCode);
 
 }

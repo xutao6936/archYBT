@@ -75,20 +75,19 @@
 		<form class="form-horizontal" id="validation-form" method="post" >
 			<input type="hidden" name="id"  id="id"> 
 			<div class="form-group">
-					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insCorpName">交易类型:</label>
+					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="transType">交易类型:</label>
 					<div class="col-xs-12 col-sm-3" style="float:left">	
-						<select id="insCompany" name="insCompany" class="select2" data-placeholder="Click to Choose...">
+						<select id="transType" name="transType" class="select2" data-placeholder="Click to Choose...">
 							<option value="">请选择</option>
-							<option value="">新保承保</option>
-							<option value="">代销保险</option>
+							<option value="1">新保承保</option>
+							<option value="2">代销保险</option>
 						</select>
 						<font color="red">*</font>
 					</div>
 					<div class="space-2"></div>
-					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insPrdCode" >续缴结算期数:</label>
+					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="numRenewalPeriod" >续缴结算期数:</label>
 				   <div class="col-xs-12 col-sm-3" style="float:left">	
-				  	 <input type="text" name="insPrdCode" id="insPrdCode"  class="col-xs-12 col-sm-10" />
-				  	 <font color="red">*</font>
+				  	 <input type="text" name="numRenewalPeriod" id="numRenewalPeriod"  class="col-xs-12 col-sm-10" />
 				   </div>
 				   
 					
@@ -97,37 +96,40 @@
 			<div class="space-2"></div>
 		
 			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insSimpName">保险产品:</label>
+				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insPrdName">保险产品:</label>
 				<div class="col-xs-12 col-sm-3" style="float:left">
-					<input type="text" name="insSimpName" 	id="insSimpName" class="col-xs-12 col-sm-10" />
+					<input type="text" name="insPrdName" id="insPrdName" class="col-xs-12 col-sm-10" readOnly="true" />
 					<font color="red">*</font>
 				</div>
 				<div class="space-2"></div>
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insCorpLevel">总公司/分行:</label>
+				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="bankcode">总公司/分行:</label>
 				<div class="col-xs-12 col-sm-3" style="float:left">	
-					<select id="insCompany" name="insCompany" class="select2" data-placeholder="Click to Choose...">
+					<select id="bankcode" name="bankcode" class="select2" data-placeholder="Click to Choose...">
 					</select>
+					<font color="red">*</font>
 				</div>
 			
 				
 			</div>
 		
 			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="upCorpCode">扣款方式:</label>
+				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="chargebacks">扣款方式:</label>
 				<div class="col-xs-12 col-sm-3" style="float:left">
-					<select id="insCompany" name="insCompany" class="select2" data-placeholder="Click to Choose...">
+					<select id="chargebacks" name="chargebacks" class="select2" data-placeholder="Click to Choose...">
 						<option value="">请选择</option>
 						<option value="1">1-内扣</option>
 						<option value="2">2-外扣</option>
 					</select>
+					<font color="red">*</font>
 				</div>
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="insCorpEnName">费率性质:</label>
+				<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="rateProperty">费率性质:</label>
 				<div class="col-xs-12 col-sm-3" style="float:left">
-					<select id="insCompany" name="insCompany" class="select2" data-placeholder="Click to Choose...">
+					<select id="rateProperty" name="rateProperty" class="select2" data-placeholder="Click to Choose...">
 						<option value="">请选择</option>
 						<option value="1">1-固定</option>
 						<option value="2">2-一次性</option>
 					</select>
+					<font color="red">*</font>
 				</div>
 			</div>
 		
@@ -135,14 +137,15 @@
 			<div class="form-group">
 				<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="postCode">收费方式:</label>
 				<div class="col-xs-12 col-sm-3" style="float:left">
-					<select id="insCompany" name="insCompany" class="select2" data-placeholder="Click to Choose...">
+					<select id="chargeMethod" name="chargeMethod" class="select2" data-placeholder="Click to Choose...">
 						<option value="">请选择</option>
 						<option value="1">1-一次性收费</option>
 						<option value="2">2-百分比收费</option>
 					</select>
+					<font color="red">*</font>
 				</div>
 			</div>
-		
+	
 			<div class="space-2"></div>
 		
 			<ul class="nav nav-list"> 
@@ -151,6 +154,10 @@
 			<br>
 			<div class="div">
 				<table style="height: 100%;" id="gridData" ></table>
+			</div>
+			
+			<div style="margin-left:20px">
+			    <table id="jqGrid"></table>
 			</div>
 			</form>
 		</div>
@@ -192,6 +199,8 @@
 				    	 layer.alert("保险公司数据加载出错",{icon:2});  
 				    }
 				});
+			  getCorpPrdInfoAjax();
+			  getBankInfoAjax();
 		});
 		
 		
@@ -224,9 +233,51 @@
 			 jQuery("#grid-table").jqGrid('setGridParam', {
 				   url:ctx+'/topAgentrate/getInsPrdByInsPrdCode.do?insPrdCode='+value,
 				   type: "POST",
-		}).trigger("reloadGrid");
+			}).trigger("reloadGrid");
 		}
 		
+		function getBankInfoAjax(){
+			$('#bankcode').empty();
+			var title	= ['请选择' , '请选择' ];
+			$.each(title , function(k , v) {
+				title[k]	= '<option value="">'+v+'</option>';
+			});	
+			$('#bankcode').append(title[1]);
+			$("#bankcode").select2();
+			 $.ajax({
+				  	url: ctx+"/topAgentrate/getBankInfoAjax.do",    //请求的url地址
+				    dataType: "json",   //返回格式为json
+				    async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+				    type: "post",   //请求方式
+				    success: function(req) {
+				        //请求成功时处理
+				    	 var control = $('#bankcode');
+				    	 for(var i=0;i<req.length;i++){
+				    		 control.append("<option value='" + req[i].bankCode + "'>&nbsp;" +req[i].bankCode+'-'+req[i].bankName + "</option>");
+				    	 }
+				    },
+				    error: function() {
+				    }
+				});
+		}
+		
+		
+		function getCorpPrdInfoAjax(){
+			 $.ajax({
+				  	url: ctx+"/topAgentrate/getCorpPrdInfoAjax.do?insPrdCode="+28000001,    //请求的url地址
+				    dataType: "json",   //返回格式为json
+				    async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+				    type: "post",   //请求方式
+				    success: function(req) {
+				        //请求成功时处理
+				    	for(var i=0;i<req.length;i++){
+				    		$("#insPrdName").val(req[i].insPrdCode+"-"+req[i].insPrdSimName);
+				    	 }
+				    },
+				    error: function() {
+				    }
+				});
+		}
 		</script>
 
 </body>

@@ -57,4 +57,10 @@ public class TopInsPrdInfoBizImpl implements ITopInsPrdInfoBiz {
 		return list;
 	}
 
+	@Override
+	public List<TopInsprdInfo> getInsPrdInfoByInsPrdCode(String insPrdCode) {
+		List<TopInsprdInfo> list = topInsprdInfoService.getInsPrdInfoByInsPrdCode(insPrdCode);
+		return list;
+	}
+
 }

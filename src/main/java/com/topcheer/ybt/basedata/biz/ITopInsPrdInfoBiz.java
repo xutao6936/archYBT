@@ -14,6 +14,9 @@ public interface ITopInsPrdInfoBiz {
 		//根据保险产品编码查询基本信息
 		public  PageInfo<TopInsprdInfo> getTopInsPrdInfoByInsPrdCode(String insPrdCode);
 		
+		//根据保险产品编码查询基本信息
+		public  List<TopInsprdInfo> getInsPrdInfoByInsPrdCode(String insPrdCode);
+		
 		//向保险产品基本信息表中插入数据
 		public void  insertTopInsPrdInfo(TopInsprdInfo topInsprdInfo);
 		

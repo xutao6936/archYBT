@@ -40,10 +40,10 @@
 	</bean>
 	<!--开发环境 -->
 	<beans profile="develop">
-		<context:property-placeholder
-			ignore-resource-not-found="true"
-			location="classpath*:/application.properties,
-				classpath*:/application.local.properties" />
+		<context:property-placeholder ignore-resource-not-found="true" ignore-unresolvable="true"
+			location="classpath*:/application.local.properties" order="0"/>
+		<context:property-placeholder ignore-resource-not-found="true"
+			location="classpath*:/application.properties" order="1"/>
 		<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 			destroy-method="close">
 			<!-- Connection Info -->

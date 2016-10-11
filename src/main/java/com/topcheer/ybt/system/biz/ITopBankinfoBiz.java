@@ -20,4 +20,6 @@ public interface ITopBankinfoBiz {
 	public void update(TopBankinfo topBankinfo);
 
 	public void delete(String id);
+
+	public List<TopBankinfo> getBankInfoAjax();
 }

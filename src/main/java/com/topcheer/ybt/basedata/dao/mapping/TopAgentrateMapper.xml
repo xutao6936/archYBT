@@ -96,9 +96,6 @@
   	</select> 
   	
   	<insert id="insert" parameterType="com.topcheer.ybt.basedata.entity.TopAgentrate">
-  		<selectKey resultType="String" keyProperty="id" order="BEFORE"> 
-	      SELECT CONVERT(NEXTVAL('sequence') , SIGNED   ) FROM DUAL; 
-	    </selectKey>
   		INSERT INTO TOP_AGENTRATE (
     			ID,
     			INSPRD_CODE,
@@ -169,136 +166,141 @@
   	</select>
   	
   	<select id="getAgentrateByInsPrdCode" resultMap="TopAgentrateResultMap" parameterType="String">
-select a.key || (case a.unit
-         when '0' then
-          '年'
-         when '1' then
-          '周岁'
-         when '2' then
-          '终生'
-       end) payperiod,
-       b.key || (case b.unit
-         when '0' then
-          '年'
-         when '1' then
-          '周岁'
-         when '2' then
-          '终生'
-       end) insPeriod,
-       null as once_amt,
-       null as percent_amt
-  from TOP_PAYPERIOD a, top_insprdperiod b
- where b.insprd_code = '28000001'
-union
-select pay_period || (case pay_period_type
-         when '0' then
-          '年'
-         when '1' then
-          '周岁'
-         when '2' then
-          '终生'
-       end) payperiod,
-       ins_period || (case ins_period_type
-         when '0' then
-          '年'
-         when '1' then
-          '周岁'
-         when '2' then
-          '终生'
-       end) insprdperiod,
-       once_amt,
-       percent_amt
-  from top_agentrate
- where insprd_code = '28000001'
-minus
-select payperiod, insPeriod, once_amt, percent_amt
-  from (select a.key || (case a.unit
-                 when '0' then
-                  '年'
-                 when '1' then
-                  '周岁'
-                 when '2' then
-                  '终生'
-               end) payperiod,
-               b.key || (case b.unit
-                 when '0' then
-                  '年'
-                 when '1' then
-                  '周岁'
-                 when '2' then
-                  '终生'
-               end) insPeriod,
-               null as once_amt,
-               null as percent_amt
-          from TOP_PAYPERIOD a, top_insprdperiod b
-         where b.insprd_code = '28000001'
-        union
-        select pay_period || (case pay_period_type
-                 when '0' then
-                  '年'
-                 when '1' then
-                  '周岁'
-                 when '2' then
-                  '终生'
-               end) payperiod,
-               ins_period || (case ins_period_type
-                 when '0' then
-                  '年'
-                 when '1' then
-                  '周岁'
-                 when '2' then
-                  '终生'
-               end) insPeriod,
-               once_amt,
-               percent_amt
-          from top_agentrate
-         where insprd_code = '28000001') s
- where ((select count(*)
-           from (select a.key || (case a.unit
-                          when '0' then
-                           '年'
-                          when '1' then
-                           '周岁'
-                          when '2' then
-                           '终生'
-                        end) payperiod,
-                        b.key || (case b.unit
-                          when '0' then
-                           '年'
-                          when '1' then
-                           '周岁'
-                          when '2' then
-                           '终生'
-                        end) insPeriod,
-                        null as once_amt,
-                        null as percent_amt
-                   from TOP_PAYPERIOD a, top_insprdperiod b
-                  where b.insprd_code = '28000001'
-                 union
-                 select pay_period || (case pay_period_type
-                          when '0' then
-                           '年'
-                          when '1' then
-                           '周岁'
-                          when '2' then
-                           '终生'
-                        end) payperiod,
-                        ins_period || (case ins_period_type
-                          when '0' then
-                           '年'
-                          when '1' then
-                           '周岁'
-                          when '2' then
-                           '终生'
-                        end) insPeriod,
-                        once_amt,
-                        percent_amt
-                   from top_agentrate
-                  where insprd_code = '28000001') y
-          where y.payperiod = s.payperiod
-            and y.insPeriod = s.insPeriod) > 1)
-   and once_amt is null
-   and percent_amt is null
-
-  	</select>
+  	select * from (
+		select a.id||b.id as id,a.key || (case a.unit
+		         when '0' then
+		          '年'
+		         when '1' then
+		          '周岁'
+		         when '2' then
+		          '终生'
+		       end) payperiod,
+		       b.key || (case b.unit
+		         when '0' then
+		          '年'
+		         when '1' then
+		          '周岁'
+		         when '2' then
+		          '终生'
+		       end) insPeriod,
+		       null as once_amt,
+		       null as percent_amt
+		  from TOP_PAYPERIOD a, top_insprdperiod b
+		 where b.insprd_code = '28000001'
+		 union 
+		 select id,pay_period || (case pay_period_type
+		         when '0' then
+		          '年'
+		         when '1' then
+		          '周岁'
+		         when '2' then
+		          '终生'
+		       end) payperiod,
+		       ins_period || (case ins_period_type
+		         when '0' then
+		          '年'
+		         when '1' then
+		          '周岁'
+		         when '2' then
+		          '终生'
+		       end) insprdperiod,
+		       once_amt,
+		       percent_amt
+		  from top_agentrate
+		 where insprd_code = '28000001'
+		 minus
+		 select id,payperiod, insPeriod, once_amt, percent_amt
+		  from (select a.id||b.id as id,a.key || (case a.unit
+		                 when '0' then
+		                  '年'
+		                 when '1' then
+		                  '周岁'
+		                 when '2' then
+		                  '终生'
+		               end) payperiod,
+		               b.key || (case b.unit
+		                 when '0' then
+		                  '年'
+		                 when '1' then
+		                  '周岁'
+		                 when '2' then
+		                  '终生'
+		               end) insPeriod,
+		               null as once_amt,
+		               null as percent_amt
+		          from TOP_PAYPERIOD a, top_insprdperiod b
+		         where b.insprd_code = '28000001'
+		           union
+		        select id,pay_period || (case pay_period_type
+		                 when '0' then
+		                  '年'
+		                 when '1' then
+		                  '周岁'
+		                 when '2' then
+		                  '终生'
+		               end) payperiod,
+		               ins_period || (case ins_period_type
+		                 when '0' then
+		                  '年'
+		                 when '1' then
+		                  '周岁'
+		                 when '2' then
+		                  '终生'
+		               end) insPeriod,
+		               once_amt,
+		               percent_amt
+		          from top_agentrate
+		         where insprd_code = '28000001') s
+		  where ((select count(*)
+		           from (select a.key || (case a.unit
+		                          when '0' then
+		                           '年'
+		                          when '1' then
+		                           '周岁'
+		                          when '2' then
+		                           '终生'
+		                        end) payperiod,
+		                        b.key || (case b.unit
+		                          when '0' then
+		                           '年'
+		                          when '1' then
+		                           '周岁'
+		                          when '2' then
+		                           '终生'
+		                        end) insPeriod,
+		                        null as once_amt,
+		                        null as percent_amt
+		                   from TOP_PAYPERIOD a, top_insprdperiod b
+		                  where b.insprd_code = '28000001'
+		                 union
+		                 select pay_period || (case pay_period_type
+		                          when '0' then
+		                           '年'
+		                          when '1' then
+		                           '周岁'
+		                          when '2' then
+		                           '终生'
+		                        end) payperiod,
+		                        ins_period || (case ins_period_type
+		                          when '0' then
+		                           '年'
+		                          when '1' then
+		                           '周岁'
+		                          when '2' then
+		                           '终生'
+		                        end) insPeriod,
+		                        once_amt,
+		                        percent_amt
+		                   from top_agentrate
+		                  where insprd_code = '28000001') y
+		          where y.payperiod = s.payperiod
+		            and y.insPeriod = s.insPeriod) > 1)
+		   and once_amt is null
+		   and percent_amt is null
+		   ) order by to_number(regexp_substr(payperiod,'[0-9]*[0-9]',1)) asc
+	  </select>
+	  
+	 <delete id="deleteByInsprdCode" parameterType="String">
+  		delete from TOP_AGENTRATE where insprd_code = #{insprdCode,jdbcType=VARCHAR}
+  	</delete>
 </mapper>

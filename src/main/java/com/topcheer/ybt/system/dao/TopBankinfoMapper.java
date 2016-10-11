@@ -20,4 +20,6 @@ public interface TopBankinfoMapper {
 
 	public void delete(String bankId) throws DataAccessException;
 
+	public List<TopBankinfo> getBankInfoAjax();
+
 }

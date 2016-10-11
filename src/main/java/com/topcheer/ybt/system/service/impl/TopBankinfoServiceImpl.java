@@ -67,4 +67,9 @@ public class TopBankinfoServiceImpl implements ITopBankinfoService {
 		this.topBankinfoMapper = TopBankinfoMapper;
 	}
 
+	@Override
+	public List<TopBankinfo> getBankInfoAjax() {
+		return topBankinfoMapper.getBankInfoAjax();
+	}
+
 }
