@@ -3,6 +3,10 @@
 <%@ page isELIgnored="false"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <%-- <link href="${ctx }/assets/css/bootstrap.min.css" rel="stylesheet" /> --%>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<meta http-equiv="Cache-Control" content="no-store"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
 <link href="${ctx }/js/common/bootstrap-fileinput/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="${ctx }/assets/css/font-awesome.min.css" />
 <!-- page specific plugin styles -->
@@ -49,7 +53,6 @@
 <!-- ace scripts -->
 
 <script src="${ctx }/assets/js/ace-elements.min.js"></script>
-<script src="${ctx }/assets/js/jquery-form.js"></script>
 <script src="${ctx }/js/common/zTree/2.6/jquery.ztree-2.6.min.js"></script>
 <script type="text/javascript" src="${ctx }/assets/js/jquery.validate.min.js"></script>
 

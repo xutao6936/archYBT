@@ -1,5 +1,46 @@
-(function(){
+(function($){
 	$.common = {};
+	
+	// -- 窗口工具//
+	
+	$.common.window={
+	        //-- 获得最上层的window对象 --//
+	        getTopWin: function() {
+	            if (parent) {
+	                var tempParent = parent;
+	                while (true) {
+	                    if (tempParent.parent) {
+	                        if (tempParent.parent == tempParent) {
+	                            break;
+	                        }
+	                        tempParent = tempParent.parent;
+	                    } else {
+	                        break;
+	                    }
+	                }
+	                return tempParent;
+	            } else {
+	                return window;
+	            }
+	        },
+	        // 获取可见区域的宽度
+	        getClientWidth: function() {
+	            return document.documentElement.clientWidth - 10;
+	        },
+	        // 获取可见区域的高度
+	        getClientHeight: function(options) {
+	            var defaults = {
+	                autoSuit: true, // 自动适应高度，因为在firefox下面不减10会出现滚动条
+	                autoSuitValue: -13
+	            };
+	            options = $.extend({}, defaults, options);
+	            if (options.autoSuit) {
+	                return document.documentElement.clientHeight + options.autoSuitValue;
+	            } else {
+	                return document.documentElement.clientHeight;
+	            }
+	        }
+	    };
 	
 	
 	
@@ -103,7 +144,7 @@
 	};
 	
 	
-})();
+})(jQuery);
 
 /*$(document).ready(function(){
 
