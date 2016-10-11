@@ -301,14 +301,14 @@
 			</form>
 		</div>
 		
-		<!-- 	保障年期  -->
+		<!-- 保障年期设置dialog  -->
 		<div id="dialog-insPrdPeriodform" style="display: none">
-		<form class="form-horizontal" id="insPrdPeriodForm" method="post" >
-			<input type="hidden" name="id"  id="id"> 
-				<table style="height: 100%;" id="grid-insPrdPeriodtable"></table>
+			<form class="form-horizontal" id="insPrdPeriodForm" method="post" >
+				<input type="hidden" name="id"  id="id"> 
+				<table style="" id="grid-insPrdPeriodtable"></table>
 				
 				<div id="grid-insPrdPeriodPager"></div>
-		</form>
+			</form>
 		</div>
 		
 		<!-- 保障年期dialog -->

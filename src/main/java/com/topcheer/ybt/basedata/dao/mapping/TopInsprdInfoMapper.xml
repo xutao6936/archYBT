@@ -30,7 +30,8 @@
 		select * from top_insprdInfo
 	</select>  
 	
-	<select id="searchTopInsPrdInfoByInsPrdCode"  resultMap="forTopInsprdInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
+	
+	<select id="searchTopInsPrdInfo"  resultMap="forTopInsprdInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
 		select * from top_insprdInfo where 1=1
 		<if test="insPrdCode !=null and insPrdCode != '' ">
 			and  INSPRD_CODE = #{insPrdCode,jdbcType=VARCHAR}

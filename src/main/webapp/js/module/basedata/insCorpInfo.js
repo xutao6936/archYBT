@@ -24,6 +24,9 @@ function init() {
 				datatype : "json",
 				height : 200,
 				mtype : "post",
+				shrinkToFit:false,  
+				autoScroll: true,
+				autoWidth:true,
 				colNames : [ 'ID','保险公司编码','保险公司名称','简称', '保险公司级别','上级公司代码','保险公司英文名称',
 				             '地址','邮编','联系电话','传真','邮箱','状态','操作员','操作机构','创建日期','更新日期', '更新时间',
 				             '统一柜面接口','统一网销接口','统一对账接口','统一非实时对账接口','统一退保接口','开通渠道'],
@@ -36,23 +39,23 @@ function init() {
 				},{
 					name : 'insCorpCode',
 					index : 'insCorpCode',
-					width : 90,
+					//width : 90,
 					editable : true
 					
 				},{
 					name : 'insCorpName',
 					index : 'insCorpName',
-					width : 90,
+					//width : 90,
 					editable : true
 				},{
 					name : 'insSimpName',
 					index : 'insSimpName',
-					width : 50,
+					//width : 50,
 					editable : true
 				},{
 					name : 'insCorpLevel',
 					index : 'insCorpLevel',
-					width : 100,
+					//width : 100,
 					unformat:function(cellValue, options, rowObject){
 						if(cellValue=='总公司'){
 							return "0";
@@ -75,13 +78,13 @@ function init() {
 				},{
 					name : 'upCorpCode',
 					index : 'upCorpCode',
-					width : 90,
+					//width : 90,
 					editable : true
 					
 				}, {
 					name : 'insCorpEnName',
 					index : 'insCorpEnName',
-					width : 120,
+					//width : 120,
 					editable : true
 				}, {
 					name : 'address',
@@ -142,28 +145,28 @@ function init() {
 				},{
 					name : 'createDate',
 					index : 'createDate',
-					width : 70,
+					//width : 70,
 					editable : false,
 					sorttype : "date",
 					unformat : pickDate
 				},{
 					name : 'updateDate',
 					index : 'updateDate',
-					width : 70,
+					//width : 70,
 					editable : false,
 					sorttype : "date",
 					unformat : pickDate
 				}, {
 					name : 'updateTime',
 					index : 'updateTime',
-					width : 70,
+					//width : 70,
 					hidden:true,
 					sorttype : "date",
 					unformat : pickDate
 				},{
 					name : 'commonCountFlag',
 					index : 'commonCountFlag',
-					width : 90,
+					//width : 90,
 					editable : true,
 					edittype : "select",
 					editoptions : {
@@ -181,7 +184,7 @@ function init() {
 				},{
 					name : 'commonNetFlag',
 					index : 'commonNetFlag',
-					width : 90,
+					//width : 90,
 					editable : true,
 					edittype : "select",
 					editoptions : {
@@ -199,7 +202,7 @@ function init() {
 				},{
 					name : 'commonCheckFlag',
 					index : 'commonCheckFlag',
-					width : 90,
+					//width : 90,
 					editable : false,
 					edittype : "select",
 					editoptions : {
@@ -217,7 +220,7 @@ function init() {
 				},{
 					name : 'commonNossdcheckFlag',
 					index : 'commonNossdcheckFlag',
-					width : 130,
+					//width : 130,
 					editable : true,
 					edittype : "select",
 					editoptions : {
@@ -235,7 +238,7 @@ function init() {
 				},{
 					name : 'commonSystbFlag',
 					index : 'commonSystbFlag',
-					width : 90,
+					//width : 90,
 					editable : true,
 					edittype : "select",
 					editoptions : {
@@ -253,7 +256,7 @@ function init() {
 				},{
 					name : 'channelFlag',
 					index : 'channelFlag',
-					width : 70,
+					//width : 70,
 					editable : true,
 					edittype : "select",
 					editoptions : {
