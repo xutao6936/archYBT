@@ -1,4 +1,5 @@
 $(function () {
+	
 	init();
 });
 
@@ -15,13 +16,14 @@ function submitSearchForm(){
 }
 
 function init() {
+
 	var grid_selector = "#grid-table";
 	var pager_selector = "#grid-pager";
 		jQuery(grid_selector).jqGrid(
 			{
 				url : ctx+'/topAgentrate/getTopAgentrateList.do',
 				datatype : "json",
-				height : 200,
+				height : 330,
 				mtype : "post",
 				colNames : [ '编号','保险产品编码','交易类型','机构','缴费年期','缴费年期单位','缴费类型','保障年期','保障年期单位', 
 				             '收费方式','一次性收费金额','百分比收费比例','操作机构','更新日期','更新时间'],
@@ -201,6 +203,7 @@ function init() {
 			   onClickButton: function(){ 
 				   $("#insPrdCode").val($("#insProducts").val());
 				   initGridData();
+				   
 				   $("#dialog-form").dialog({
 					  title:"新增手续费",
 					  title_html: true,
@@ -211,23 +214,58 @@ function init() {
 				    	  text:'提交',
 				    	  "class" : "btn btn-primary btn-xs",
 				    	  click:function(){
-				    		  $.ajax({
-				    			  url:ctx+'/topInsCorpInfo/insertTopInsCorpInfo.do',
-								  type: "POST",
-								  data:$('#validation-form').serialize(),
-								  dataType:'json',
-								 // beforeSend:validate(),
-								  success:function(msg){
-									  if('SUCC'==msg.result){
-										  layer.alert('添加成功',{icon:1});  
-										
-										  $("#dialog-form").dialog('close');
-										  $(grid_selector).trigger("reloadGrid");
-									  }else{
-										  layer.alert('添加失败',{icon:2});  
+				    		  if(validate()==false){//当验证不通过时，直接组织提交
+				    			  return false;
+				    		  }else{
+				    			  var obj = $("#gridData").jqGrid("getRowData");
+					    		  var array=[]; 
+					    		  var transType = $("#transType").val();
+					    		  var bankcode = $("#bankcode").val();
+					    		  var chargebacks = $("#chargebacks").val();
+					    		  var rateProperty = $("#rateProperty").val();
+					    		  var chargeMethod = $("#chargeMethod").val();
+					    		  var numRenewalPeriod = $("#numRenewalPeriod").val();
+					    		  var insPrdName = $("#insPrdName").val();
+					    		    jQuery(obj).each(function(){
+					    		    	var object = new Object();  
+					    		    	object.transType = transType;
+					    		    	object.numRenewalPeriod = numRenewalPeriod;
+					    		    	object.bankcode = bankcode;
+					    		    	object.chargebacks = chargebacks;
+					    		    	object.rateProperty = rateProperty;
+					    		    	object.insPrdName = insPrdName;
+					    		    	object.chargeMethod = chargeMethod;
+					    		    	object.payPeriod = this.payPeriod;  
+					    		    	object.insPeriod = this.insPeriod; 
+					    		    	object.percentAmt = this.percentAmt;
+					    		    	object.onceAmt = this.onceAmt;
+					    		    	array.push(object);  
+					    		    });
+					    		    var postData =  JSON.stringify(array); 
+					    		  $.ajax({
+					    			  url:ctx+'/topAgentrate/insertTopAgentrate.do',
+									  type: "POST",
+									  data:{postData:postData,insPrdName:$("#insPrdName").val()},
+									  dataType:'json',
+									  //beforeSend:validate(),
+									  success:function(req){
+										  if('SUCC'==req.msg){
+											  layer.alert('添加成功',{
+										            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+										            ,closeBtn: 0,icon:1
+										        }); 
+											  $("#dialog-form").dialog('close');
+											  $(grid_selector).trigger("reloadGrid");
+										  }else{
+											  layer.alert('添加失败',{
+										            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+										            ,closeBtn: 0,icon:2
+										        }); 
+										  }
 									  }
-								  }
-				    		  });
+					    		  });  
+				    		  }
+				    		
 				    	  }
 				      },{
 				    	  text:"关闭",
@@ -480,7 +518,57 @@ function init() {
 		});
 	}
 	
-	
+	/**
+	 * 提交前校验
+	 */
+	function validate(){
+		 var transType = $("#transType").val();
+		 var bankcode = $("#bankcode").val();
+		 var chargebacks = $("#chargebacks").val();
+		 var rateProperty = $("#rateProperty").val();
+		 var chargeMethod = $("#chargeMethod").val();
+		 if(transType == ""){
+		        layer.alert('交易类型不能为空',{
+		            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+		            ,closeBtn: 0,icon:2
+		        });
+			 return false;
+		 }
+		 if(bankcode == ""){
+		        layer.alert('总公司/分行不能为空',{
+		            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+		            ,closeBtn: 0,icon:2
+		        });
+			 return false;
+		 }
+		 if(chargebacks == ""){
+		        layer.alert('扣款方式不能为空',{
+		            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+		            ,closeBtn: 0,icon:2
+		        });
+			 return false;
+		 }
+		 if(rateProperty == ""){
+		        layer.alert('费率性质不能为空',{
+		            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+		            ,closeBtn: 0,icon:2
+		        });
+			 return false;
+		 }
+		 if(chargeMethod == ""){
+		        layer.alert('收费方式不能为空',{
+		            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+		            ,closeBtn: 0,icon:2
+		        });
+			 return false;
+		 }
+		if(typeof(lastrow) == "undefined"){//如果jqgrid未被编辑，直接跳过
+			return;
+		}else{
+	        $("#gridData").jqGrid("saveCell",lastrow,lastcell);
+		}
+		
+	}
 	
 	
 	function initGridData() {
@@ -489,15 +577,15 @@ function init() {
 				{
 					url : ctx+'/topAgentrate/getAgentrateByInsPrdCode.do',
 					datatype : "json",
-					height : 350,
-					 width: 1000,
+					height: 350,
+					width: 1000,
 					mtype : "post",
 					colNames : [ '编号','缴费年期','保险年期','百分比收费比例(%)','一次性收费金额(元)'],
 					colModel : [{
-						name : 'id',
-						index : 'id',
-						hidden:true,
-						 width: 250,
+					name : 'id',
+					index : 'id',
+					hidden:true,
+						 width: 200,
 						sorttype : "int",
 						editable : false
 					},{
@@ -508,7 +596,7 @@ function init() {
 					},{
 						name : 'insPeriod',
 						index : 'insPeriod',
-						 width: 250,
+						 width: 200,
 						 formatter:function(cellValue, options, rowObject){
 								if(cellValue=='2终生'){
 									return "终生";
@@ -519,22 +607,21 @@ function init() {
 					},{
 						name : 'percentAmt',
 						index : 'percentAmt',
-						width: 250,
+						width: 200,
 						editable : true
-						
 					}, {
 						name : 'onceAmt',
 						index : 'onceAmt',
-						width: 250,
+						width: 200,
 						editable : true
 					}],
-					//sortname : 'id',
+					sortname : 'id',
 					viewrecords : true,// 是否在浏览导航栏显示记录总数
 					altRows : true,// 设置为交替行表格,默认为false
-					editurl:ctx+'/topInsCorpInfo/oper.do',
+					cellsubmit:"clientArray",
+					cellEdit : true,
 					multiselect : false,
 					multiboxonly : true,
-					cellEdit : true,
 					jsonReader : {  
 					    root: "list",   // json中代表实际模型数据的入口  
 					    page: "pageNum",   // json中代表当前页码的数据  
@@ -552,10 +639,27 @@ function init() {
 							enableTooltips(table);
 						}, 0);
 					},
-					autowidth : true
-
+					autowidth : true,
+					
+					beforeEditCell:function(rowid, cellname, value, iRow, iCol){
+						lastrow = iRow;
+						lastcell = iCol;
+			
+					},
+				    afterSaveCell:function(rowid, cellname, value, iRow, iCol){
+				        $("#gridData").jqGrid('setCell', rowid, cellname, value);
+				    },
+				   
+				    onCellSelect:function(rowid, index, contents, event){
+				    	//alert(rowid+","+index+","+contents);
+				    	var rowid = $("#gridData").getGridParam("selrow"); 
+						var rowData = $("#gridData").getRowData(rowid);
+						//alert(rowData.percentAmt+","+rowData.onceAmt);
+				    	}
 				});
+			
 	}
+
 }
 
 

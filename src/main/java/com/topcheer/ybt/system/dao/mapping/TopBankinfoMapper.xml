@@ -193,4 +193,10 @@
   	<select id="getTopBankinfo" resultMap="TopBankinfoResultMap" parameterType="String">
   		select * from TOP_BANKINFO  where BANK_ID = #{bankId,jdbcType=VARCHAR}
   	</select>
+  	
+  	<select id="getBankInfoAjax" resultMap="TopBankinfoResultMap" parameterType="HashMap">
+    	select *
+		  from top_bankinfo
+		  where bank_level between 0 and 1 
+  	</select> 
 </mapper>

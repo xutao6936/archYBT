@@ -25,4 +25,6 @@ public interface TopInsprdInfoMapper {
 	public List<TopInsprdInfo> getTopInsPrdInfoListByInsPrdCode(
 			String insCorpCode);
 
+	public List<TopInsprdInfo> getInsPrdInfoByInsPrdCode(String insPrdCode);
+
 }

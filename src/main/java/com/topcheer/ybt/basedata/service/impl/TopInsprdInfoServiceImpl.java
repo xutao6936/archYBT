@@ -52,6 +52,12 @@ public class TopInsprdInfoServiceImpl implements ITopInsprdInfoService {
 		List<TopInsprdInfo>  topInsprdInfoList = topInsprdInfoMapper.getTopInsPrdInfoListByInsPrdCode(insCorpCode);
 		return topInsprdInfoList;
 	}
+
+	@Override
+	public List<TopInsprdInfo> getInsPrdInfoByInsPrdCode(String insPrdCode) {
+		List<TopInsprdInfo>  topInsprdInfoList = topInsprdInfoMapper.getInsPrdInfoByInsPrdCode(insPrdCode);
+		return topInsprdInfoList;
+	}
 	
 
 }
