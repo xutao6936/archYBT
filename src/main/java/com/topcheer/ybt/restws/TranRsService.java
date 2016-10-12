@@ -17,6 +17,7 @@ import javax.ws.rs.core.Response.Status;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
 import com.topcheer.ybt.data.InsPrdResult;
 import com.topcheer.ybt.data.MenuResult;
 import com.topcheer.ybt.restws.pojo.InsPrdPojo;
@@ -34,6 +35,9 @@ public class TranRsService {
 
 	@Resource(name = "topMenuinfoService")
 	ITopMenuinfoService menuService;
+
+	@Resource(name = "topInsPrdInfoBizImpl")
+	ITopInsPrdInfoBiz insPrdBiz;
 
 	@GET
 	@Path("/getInsPrdInfos/{bankCode}")
