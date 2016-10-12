@@ -648,6 +648,10 @@ create table TOP_INSPRDINFO  (
    UPDATE_TIME          VARCHAR2(10),
    OPERATOR             VARCHAR2(40),
    IS_OVER_RISK         VARCHAR2(2),
+   HOT_TYPE             VARCHAR2(2),
+   YIELD_RATE           VARCHAR2(20),
+   MIN_YIELD_RATE       VARCHAR2(20),
+   MAX_YIELD_RATE       VARCHAR2(20),
    constraint PK_TOP_INSPRDINFO primary key (ID)
 );
 
@@ -722,6 +726,19 @@ comment on column TOP_INSPRDINFO.OPERATOR is
 
 comment on column TOP_INSPRDINFO.IS_OVER_RISK is
 '是否允许超风险购买';
+
+comment on column TOP_INSPRDINFO.HOT_TYPE is
+'1:新 2:抢3:热';
+
+comment on column TOP_INSPRDINFO.YIELD_RATE is
+'预期收益率';
+
+comment on column TOP_INSPRDINFO.MIN_YIELD_RATE is
+'最低收益率';
+
+comment on column TOP_INSPRDINFO.MAX_YIELD_RATE is
+'最高受益率';
+
 
 /*==============================================================*/
 /* Table: TOP_INSPRDPERIOD                                      */
