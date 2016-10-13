@@ -8,11 +8,16 @@ function resetSearchForm(){
 }
 
 function submitSearchForm(){
+	var data = $('#searchForm').serializeArray();
+	var param = {};
+	$.each(data,function(i,v){
+		param[v.name] = v.value;
+	});
 	 jQuery("#grid-table").jqGrid('setGridParam', {
-		   url:ctx+'/topInsCorpinfo/getInsCorpByInsCorpCode.do',
+		   url:ctx+'/topInsCorpinfo/getTopInsCorpInfoList.do',
 		   type: "POST",
-		   postData:$('#searchForm').serialize()
-}).trigger("reloadGrid");
+		   postData:param
+	 }).trigger("reloadGrid");
 }
 
 function init() {

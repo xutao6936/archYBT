@@ -303,13 +303,51 @@
 		
 		<!-- 保障年期设置dialog  -->
 		<div id="dialog-insPrdPeriodform" style="display: none">
-			<form class="form-horizontal" id="insPrdPeriodForm" method="post" >
+			<!-- <form class="form-horizontal" id="insPrdPeriodForm" method="post" >
 				<input type="hidden" name="id"  id="id"> 
 				<table style="" id="grid-insPrdPeriodtable"></table>
 				
 				<div id="grid-insPrdPeriodPager"></div>
-			</form>
+			</form> -->
 		</div>
+		
+		
+		
+		<!-- 保险产品设置tabs -->
+		<div id="insprd-tabs" style="display: none">
+			  <ul>
+			    <li><a href="javascript:void(0)" id="setInsPrdPeriod">保障年期设置</a></li>
+			    <li><a href="javascript:void(0)" id="setPayPeriod">缴费年期设置</a></li>
+			    <li><a href="javascript:void(0)" id="setPayType">缴费类型设置</a></li>
+			  </ul>
+			  
+			  <div id="tabs-1">
+			    <form class="form-horizontal" id="insPrdPeriodForm" method="post" >
+					<input type="hidden" name="id"  id="id"> 
+					<table style="" id="grid-insPrdPeriodtable"></table>
+					<div id="grid-insPrdPeriodPager"></div>
+				</form>
+			  </div>
+			  
+			  <div id="tabs-2">
+			    <form class="form-horizontal" id="" method="post" >
+					<input type="hidden" name="" id=""> 
+					<table style="" id="grid-payPeriodtable"></table>
+					<div id="grid-payPeriodPager"></div>
+				</form>
+			  </div>
+			  
+			  <div id="tabs-3">
+			    <form class="form-horizontal" id="" method="post" >
+					<input type="hidden" name=""  id=""> 
+					<table style="" id="grid-payTypetable"></table>
+					<div id="grid-payTypePager"></div>
+				</form>
+			  </div>
+		</div>
+		
+		
+		
 		
 		<!-- 保障年期dialog -->
 		<div id="insPrdPeriodDialog-form" style="display: none">

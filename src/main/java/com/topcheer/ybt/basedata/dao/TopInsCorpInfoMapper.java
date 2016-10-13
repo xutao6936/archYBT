@@ -10,7 +10,7 @@ public interface TopInsCorpInfoMapper {
 	public List<TopInsCorpInfo> searchAll();
 	
 	//public List<TopInsCorpInfo> searchByinsCorpCode(String  insCorpCode);
-	public List<TopInsCorpInfo> searchByinsCorpCode(TopInsCorpInfo topInsCorpInfo);
+	public List<TopInsCorpInfo> searchInsCorpInfo(TopInsCorpInfo topInsCorpInfo);
 	
 	public int  insertTopInsCorpInfo(TopInsCorpInfo topInsCorpInfo);
 	

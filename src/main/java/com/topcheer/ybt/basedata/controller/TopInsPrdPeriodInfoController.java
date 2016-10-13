@@ -20,7 +20,6 @@ import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Maps;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdPeriodInfoBiz;
 import com.topcheer.ybt.basedata.entity.TopInsPrdPeriodInfo;
-import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.util.ResultHelper;
 
 @Controller

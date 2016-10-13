@@ -40,7 +40,7 @@
 			and  INSPRD_TRUE_CODE = #{insPrdTrueCode,jdbcType=VARCHAR}
 		</if>
 		<if test="insCorpCode !=null and insCorpCode != '' ">
-			and  INSCORP_CODE = #{insCorpLevel,jdbcType=VARCHAR}
+			and  INSCORP_CODE = #{insCorpCode,jdbcType=VARCHAR}
 		</if>
 		<if test="insPrdCnName !=null and insPrdCnName != '' ">
 			and  INSPRD_CNNAME = #{insPrdCnName,jdbcType=VARCHAR}
