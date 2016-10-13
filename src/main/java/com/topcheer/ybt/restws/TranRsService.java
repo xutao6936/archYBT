@@ -40,6 +40,10 @@ public class TranRsService {
 	@Path("/getInsPrdInfos/")
 	@Produces(MediaType.APPLICATION_JSON)
 
+
+	public InsPrdsResult<InsPrdPojo> searchPrds(@PathParam("bankCode") String bankCode) {
+
+
 	public InsPrdsResult<InsPrdPojo> searchPrds(@PathParam("bankCode") String bankCode) {
 
 		if (Strings.isNullOrEmpty(bankCode)) {
