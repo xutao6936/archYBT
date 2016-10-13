@@ -39,6 +39,7 @@ public class TranRsService {
 	/*@GET
 	@Path("/getInsPrdInfos/")
 	@Produces(MediaType.APPLICATION_JSON)
+<<<<<<< Updated upstream
 
 
 	public InsPrdsResult<InsPrdPojo> searchPrds(@PathParam("bankCode") String bankCode) {
@@ -46,6 +47,9 @@ public class TranRsService {
 
 	public InsPrdsResult<InsPrdPojo> searchPrds(@PathParam("bankCode") String bankCode) {
 
+=======
+	public InsPrdsResult<InsPrdPojo> searchPrds(@PathParam("bankCode") String bankCode) {
+>>>>>>> Stashed changes
 		if (Strings.isNullOrEmpty(bankCode)) {
 			String msg = "机构号为空";
 			throw buildException(Status.NOT_FOUND, msg);
@@ -57,7 +61,10 @@ public class TranRsService {
 			insPrds.add(re);
 		}
 		InsPrdsResult<InsPrdPojo> result = new InsPrdsResult<InsPrdPojo>("000000", "返回成功", insPrds);
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 		return result;
 
 	}*/
