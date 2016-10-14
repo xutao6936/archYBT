@@ -1,5 +1,7 @@
 package com.topcheer.ybt.basedata.biz.impl;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Component;
@@ -17,9 +19,9 @@ public class TopInsPrdPeriodInfoBizImpl implements ITopInsPrdPeriodInfoBiz{
 	@Resource(name = "topInsPrdPeriodInfoService")
 	ITopInsPrdPeriodInfoService  topInsPrdPeriodInfoService;
 	@Override
-	public PageInfo<TopInsPrdPeriodInfo> getInsPrdPeriodAllList(TopInsPrdPeriodInfo  topInsPrdPeriodInfo) {
+	public PageInfo<TopInsPrdPeriodInfo> getInsPrdPeriodAllList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return topInsPrdPeriodInfoService.getInsPrdPeriodAllList(topInsPrdPeriodInfo);
+		return topInsPrdPeriodInfoService.getInsPrdPeriodAllList(map);
 	}
 	@Override
 	public void insertInsPrdPeriod(TopInsPrdPeriodInfo topInsPrdPeriodInfo) {

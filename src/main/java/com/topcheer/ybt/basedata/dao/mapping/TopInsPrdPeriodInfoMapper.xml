@@ -10,7 +10,19 @@
 		
 	</resultMap>
 	<select id="searchAllTopInsPeriodInfo" resultMap="forTopInsprdPeriodInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsPrdPeriodInfo">
-		select * from top_insprdperiod  where INSPRD_CODE = #{insPrdcode,jdbcType=VARCHAR}
+		select * from top_insprdperiod  where 1=1
+		<if test="id != null and id != ''">
+			and ID = #{id,jdbcType=VARCHAR}
+		</if>
+		<if test="insPrdcode != null and insPrdcode!= ''">
+		 	and INSPRD_CODE = #{insPrdcode,jdbcType=VARCHAR}
+		</if>
+		<if test="key != null and key != ''">
+		 	and KEY = #{key,jdbcType=VARCHAR}
+		</if>
+		<if test="unit != null and unit != ''">
+		 	and UNIT = #{unit,jdbcType=VARCHAR}
+		</if>
 	</select>  
 	
 	<insert id="insertTopInsPeriodInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsPrdPeriodInfo">

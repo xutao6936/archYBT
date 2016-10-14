@@ -1,6 +1,7 @@
 package com.topcheer.ybt.basedata.biz.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -23,9 +24,9 @@ public class TopInsCorpInfoBizImpl implements ITopInsCorpInfoBiz {
 	ITopInsCorpInfoService topInsCorpInfoService;
 
 	@Override
-	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoList() {
+	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return topInsCorpInfoService.getTopInsCorpInfoList();
+		return topInsCorpInfoService.getTopInsCorpInfoList(map);
 	}
 
 	@Override

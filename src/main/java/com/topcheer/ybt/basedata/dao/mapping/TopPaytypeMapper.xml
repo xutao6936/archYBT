@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.basedata.dao.TopPaytypeMapper" >
+	<resultMap id="TopPaytypeResultMap" type="com.topcheer.ybt.basedata.entity.TopPaytype" >
+       		<result property="id"    column="ID" jdbcType="VARCHAR" />
+       		<result property="insprdCode"    column="INSPRD_CODE" jdbcType="VARCHAR" />
+       		<result property="key"    column="KEY" jdbcType="VARCHAR" />
+       		<result property="value"    column="VALUE" jdbcType="VARCHAR" />
+	</resultMap>
+    <sql id="TopPaytypeColumnList" >
+    		ID,
+    		INSPRD_CODE,
+    		KEY,
+    		VALUE
+    </sql>
+    <select id="searchTopPaytype" resultMap="TopPaytypeResultMap" parameterType="com.topcheer.ybt.basedata.entity.TopPaytype">
+    	select  * from TOP_PAYTYPE
+		where 1=1
+    		<if test="id !=null and id != '' ">
+		    	and ID = #{id,jdbcType=VARCHAR}
+			</if>
+    		<if test="insprdCode !=null and insprdCode != '' ">
+		    	and INSPRD_CODE = #{insprdCode,jdbcType=VARCHAR}
+			</if>
+    		<if test="key !=null and key != '' ">
+		    	and KEY = #{key,jdbcType=VARCHAR}
+			</if>
+    		<if test="value !=null and value != '' ">
+		    	and VALUE = #{value,jdbcType=VARCHAR}
+			</if>
+  	</select> 
+  	
+  	<select id="searchAll" resultMap="TopPaytypeResultMap" parameterType="HashMap">
+    	select * from TOP_PAYTYPE 
+  	</select> 
+  	
+  	<insert id="insert" parameterType="com.topcheer.ybt.basedata.entity.TopPaytype">
+  		INSERT INTO TOP_PAYTYPE (
+    			ID,
+    			INSPRD_CODE,
+    			KEY,
+    			VALUE
+  		)VALUES (
+    		#{id,jdbcType=VARCHAR},
+    		#{insprdCode,jdbcType=VARCHAR},
+    		#{key,jdbcType=VARCHAR},
+    		#{value,jdbcType=VARCHAR}
+  		)
+  	</insert>
+  	
+  	<insert id="update" parameterType="com.topcheer.ybt.basedata.entity.TopPaytype">
+  		update TOP_PAYTYPE set  
+	      		INSPRD_CODE = #{insprdCode,jdbcType=VARCHAR}  ,
+	      		KEY = #{key,jdbcType=VARCHAR}  ,
+	      		VALUE = #{value,jdbcType=VARCHAR}  
+  		where ID = #{id,jdbcType=VARCHAR}
+  	</insert>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete from TOP_PAYTYPE where ID = #{id,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<select id="getTopPaytype" resultMap="TopPaytypeResultMap" parameterType="String">
+  		select * from TOP_PAYTYPE  where ID = #{id,jdbcType=VARCHAR}
+  	</select>
+</mapper>

@@ -7,7 +7,6 @@ $(function() {
 		 var userName = jQuery("#searchuserName").val()||"";
 		  jQuery("#grid-table").jqGrid('setGridParam', {
 		    url : ctx+'/user/getUserList.do',
-		    page : 1,
 		    postData:{'loginAccount':loginAccount,"userName":userName}
 		  }).trigger("reloadGrid");
 	});
@@ -174,12 +173,8 @@ function init() {
 		   buttonicon:"icon-plus-sign purple",   
 		   onClickButton: function(){
 			   $("#loginAccount_userName").val("");
-			   /*$("#loginPwd").val("");
-			   $("#confirm_password").val("");*/
 			   $("#userName").val("");
 			   $("#userDept").val("");
-			   
-			   
 			   
 			   $("#dialog-form").dialog({
 				   title:"<div class='widget-header widget-header-small'><h4 class='smaller'><i class='icon-plus'></i>新增用户</h4></div>",

@@ -2,17 +2,30 @@ package com.topcheer.ybt.restws.pojo;
 
 import java.util.List;
 
-public class InsPrdsResult {
+
+public class InsPrdsResult<T> {
 
 	private String resultCode;
 	private String resultInfo;
-	private List<InsPrdPojo> insPrds;
+	private List<T> list;
 
-	public InsPrdsResult(String resultCode, String resultInfo, List<InsPrdPojo> insPrds) {
+	public List<T> getList() {
+		return list;
+	}
+
+	public InsPrdsResult(String resultCode, String resultInfo, List<T> list) {
 		super();
 		this.resultCode = resultCode;
 		this.resultInfo = resultInfo;
-		this.insPrds = insPrds;
+		this.list = list;
+	}
+
+	public InsPrdsResult() {
+		super();
+	}
+
+	public void setList(List<T> list) {
+		this.list = list;
 	}
 
 	public String getResultCode() {
@@ -31,17 +44,5 @@ public class InsPrdsResult {
 		this.resultInfo = resultInfo;
 	}
 
-	public List<InsPrdPojo> getInsPrds() {
-		return insPrds;
-	}
-
-	public void setInsPrds(List<InsPrdPojo> insPrds) {
-		this.insPrds = insPrds;
-	}
-
-	@Override
-	public String toString() {
-		return "InsPrdsResult [resultCode=" + resultCode + ", resultInfo=" + resultInfo + ", insPrds=" + insPrds + "]";
-	}
 
 }

@@ -301,15 +301,54 @@
 			</form>
 		</div>
 		
-		<!-- 	保障年期  -->
+		<!-- 保障年期设置dialog  -->
 		<div id="dialog-insPrdPeriodform" style="display: none">
-		<form class="form-horizontal" id="insPrdPeriodForm" method="post" >
-			<input type="hidden" name="id"  id="id"> 
-				<table style="height: 100%;" id="grid-insPrdPeriodtable"></table>
+			<!-- <form class="form-horizontal" id="insPrdPeriodForm" method="post" >
+				<input type="hidden" name="id"  id="id"> 
+				<table style="" id="grid-insPrdPeriodtable"></table>
 				
 				<div id="grid-insPrdPeriodPager"></div>
-		</form>
+			</form> -->
 		</div>
+		
+		
+		
+		<!-- 保险产品设置tabs -->
+		<div id="tabs-dialog" style="display: none">
+			<div id="insprd-tabs">
+				  <ul>
+				    <li><a href="#tabs-1" id="setInsPrdPeriod">保障年期设置</a></li><!-- javascript:void(0) -->
+				    <li><a href="#tabs-2" id="setPayPeriod">缴费年期设置</a></li>
+				    <li><a href="#tabs-3" id="setPayType">缴费类型设置</a></li>
+				  </ul>
+				  
+				  <div id="tabs-1">
+				    <form class="form-horizontal" id="insPrdPeriodForm" method="post" >
+						<input type="hidden" name="id"  id="id"> 
+						<table style="" id="grid-insPrdPeriodtable"></table>
+						<div id="grid-insPrdPeriodPager"></div>
+					</form>
+				  </div>
+				  
+				  <div id="tabs-2">
+				    <form class="form-horizontal" id="" method="post" >
+						<input type="hidden" name="" id=""> 
+						<table style="" id="grid-payPeriodtable"></table>
+						<div id="grid-payPeriodPager"></div>
+					</form>
+				  </div>
+				  
+				  <div id="tabs-3">
+				    <form class="form-horizontal" id="" method="post" >
+						<input type="hidden" name=""  id=""> 
+						<table style="" id="grid-payTypetable"></table>
+						<div id="grid-payTypePager"></div>
+					</form>
+				  </div>
+			</div>
+		</div>
+		
+		
 		
 		<!-- 保障年期dialog -->
 		<div id="insPrdPeriodDialog-form" style="display: none">
@@ -335,11 +374,48 @@
 			<div class="form-group">
 				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="unit">单位:</label>
 				<div class="col-xs-12 col-sm-3" style="float:left">
-					<select id="channelType" name="unit" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
-						<option value="">&nbsp;</option>
-						<option value="0">年</option>
+					<select id="unit" name="unit" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
+						<option value="0" selected="selected">年</option>
 						<option value="1">周岁</option>
 						<option value="2">保终身</option>
+					</select>
+					<font color="red">*</font>
+				</div>
+				<div class="space-2"></div>
+				<div class="space-2"></div>
+			</div>
+			</form>
+		</div>
+		
+		<!-- 缴费类型设置dialog -->
+		<div id="insPrdPayTypeDialog" style="display: none">
+		<form class="form-horizontal" id="insPrdPayTypeDialog-form" method="post" >
+			<input type="hidden" name="id"  id="id"> 
+			<div class="form-group">
+					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insprdCode" >产品编码:</label>
+				   <div class="col-xs-12 col-sm-3" style="float:left">	
+				  	 <input type="text" name="insprdCode" id="insprdCode"  class="col-xs-12 col-sm-10" />
+				  	 <font color="red">*</font>
+				   </div>
+				   
+					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="key">值:</label>
+					<div class="col-xs-12 col-sm-3" style="float:left">	
+						<input type="text" name="key" id="payTypekey"  class="col-xs-12 col-sm-10" />
+						<font color="red">*</font>
+					</div>
+					<div class="space-2"></div>
+			</div>
+		
+			<div class="space-2"></div>
+		
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="unit">缴费方式:</label>
+				<div class="col-xs-12 col-sm-3" style="float:left">
+					<select id="payTypeunit" name="value" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
+						<option value="1">趸缴</option>
+						<option value="2">月缴</option>
+						<option value="3">季缴</option>
+						<option value="4">半年缴</option>
 					</select>
 					<font color="red">*</font>
 				</div>

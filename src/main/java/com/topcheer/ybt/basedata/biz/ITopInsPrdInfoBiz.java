@@ -1,6 +1,7 @@
 package com.topcheer.ybt.basedata.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
@@ -8,7 +9,7 @@ import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 public interface ITopInsPrdInfoBiz {
 	
 	//取得保险产品基本信息表数据
-		public PageInfo<TopInsprdInfo> getTopInsPrdInfoList();
+		public PageInfo<TopInsprdInfo> getTopInsPrdInfoList(Map<String, Object> map);
 		
 		//根据保险产品编码查询基本信息
 		public  PageInfo<TopInsprdInfo> getTopInsPrdInfoByInsPrdCode(String insPrdCode);

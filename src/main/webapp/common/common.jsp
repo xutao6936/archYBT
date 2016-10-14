@@ -43,6 +43,7 @@
 <script src="${ctx }/assets/js/bootstrap.min.js"></script>
 <script src="${ctx }/assets/js/typeahead-bs2.min.js"></script>
 <script src="${ctx }/assets/js/bootstrap.autocomplete.js"></script>
+<script src="${ctx }/assets/js/jquery.ui.tabs.js"></script>
 <!-- page specific plugin scripts -->
 
 <script src="${ctx }/assets/js/date-time/bootstrap-datepicker.min.js"></script>

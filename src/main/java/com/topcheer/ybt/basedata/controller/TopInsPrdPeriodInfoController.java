@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Maps;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdPeriodInfoBiz;
 import com.topcheer.ybt.basedata.entity.TopInsPrdPeriodInfo;
 import com.topcheer.ybt.util.ResultHelper;
@@ -35,12 +36,14 @@ public class TopInsPrdPeriodInfoController {
 	 */
 	@RequestMapping("getTopInsPrdPeriodInfoList.do")
 	@ResponseBody
-	public PageInfo<TopInsPrdPeriodInfo> getTopInsPrdPeriodInfoList(HttpServletRequest request) {
-		String insprdCode = request.getParameter("insPrdCode");
-		TopInsPrdPeriodInfo topInsPrdPeriodInfo = new TopInsPrdPeriodInfo();
-		topInsPrdPeriodInfo.setInsPrdcode(insprdCode);
+	public PageInfo<TopInsPrdPeriodInfo> getTopInsPrdPeriodInfoList(String rows, String page,TopInsPrdPeriodInfo topInsPrdPeriodInfo,HttpServletRequest request) {
+		//String insprdCode = request.getParameter("insPrdCode");
+		Map<String, Object> map = Maps.newHashMap();
+		map.put("topInsPrdPeriodInfo", topInsPrdPeriodInfo);
+		map.put("pageSize", rows);
+		map.put("pageNo", page);
 		log.info("进入保障年期基本信息查询");
-		PageInfo<TopInsPrdPeriodInfo> topInsPrdPeriodInfoList = topInsPrdPeriodInfoBiz.getInsPrdPeriodAllList(topInsPrdPeriodInfo);
+		PageInfo<TopInsPrdPeriodInfo> topInsPrdPeriodInfoList = topInsPrdPeriodInfoBiz.getInsPrdPeriodAllList(map);
 		return topInsPrdPeriodInfoList;
 	}
 	

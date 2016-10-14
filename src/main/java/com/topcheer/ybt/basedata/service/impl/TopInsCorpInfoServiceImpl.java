@@ -1,6 +1,7 @@
 package com.topcheer.ybt.basedata.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.dao.TopInsCorpInfoMapper;
 import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
+import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.basedata.service.ITopInsCorpInfoService;
 
 @Service("topInsCorpInfoService")
@@ -21,9 +24,12 @@ public class TopInsCorpInfoServiceImpl implements ITopInsCorpInfoService {
 	protected TopInsCorpInfoMapper topInsCorpinfoMapper;
 
 	@Override
-	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoList() {
-		// TODO Auto-generated method stub
-		List<TopInsCorpInfo> list = topInsCorpinfoMapper.searchAll();
+	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoList(Map<String, Object> map) {
+		TopInsCorpInfo topInsCorpInfo = (TopInsCorpInfo) map.get("topInsCorpInfo");
+		int pageSize = Integer.parseInt(map.get("pageSize").toString());
+		int pageNo = Integer.parseInt(map.get("pageNo").toString());
+		PageHelper.startPage(pageNo, pageSize, true, true, true);
+		List<TopInsCorpInfo> list = topInsCorpinfoMapper.searchInsCorpInfo(topInsCorpInfo);
 		PageInfo<TopInsCorpInfo> pageinfo = new PageInfo<TopInsCorpInfo>(list);
 		return pageinfo;
 	}
@@ -49,7 +55,8 @@ public class TopInsCorpInfoServiceImpl implements ITopInsCorpInfoService {
 	public PageInfo<TopInsCorpInfo> getInsCorpByinsCorpCode(TopInsCorpInfo topInsCorpInfo) {
 		// TODO Auto-generated method stub
 		log.info("进入Service"+topInsCorpInfo.getInsCorpCode());
-		List<TopInsCorpInfo> list = topInsCorpinfoMapper.searchByinsCorpCode(topInsCorpInfo);
+		
+		List<TopInsCorpInfo> list = topInsCorpinfoMapper.searchInsCorpInfo(topInsCorpInfo);
 		PageInfo<TopInsCorpInfo> pageinfo = new PageInfo<TopInsCorpInfo>(list);
 		return pageinfo;
 	}

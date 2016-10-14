@@ -45,6 +45,57 @@ public class TopInsprdInfo {
 	private String updateTime;//更新时间
 	
 	private String operator;//操作员
+	
+	private String isOverRisk;//是否允许超风险购买
+	
+	private String hotType;//热款 1、新   2、抢  3、热
+	
+	private String yieldRate;//预计收益
+	
+	private String minYieldRate;//最低收益率
+	
+	private String maxYieldRate;//最高收益率
+
+	
+	public String getIsOverRisk() {
+		return isOverRisk;
+	}
+
+	public void setIsOverRisk(String isOverRisk) {
+		this.isOverRisk = isOverRisk;
+	}
+
+	public String getHotType() {
+		return hotType;
+	}
+
+	public void setHotType(String hotType) {
+		this.hotType = hotType;
+	}
+
+	public String getYieldRate() {
+		return yieldRate;
+	}
+
+	public void setYieldRate(String yieldRate) {
+		this.yieldRate = yieldRate;
+	}
+
+	public String getMinYieldRate() {
+		return minYieldRate;
+	}
+
+	public void setMinYieldRate(String minYieldRate) {
+		this.minYieldRate = minYieldRate;
+	}
+
+	public String getMaxYieldRate() {
+		return maxYieldRate;
+	}
+
+	public void setMaxYieldRate(String maxYieldRate) {
+		this.maxYieldRate = maxYieldRate;
+	}
 
 	public String getId() {
 		return id;

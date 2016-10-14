@@ -36,23 +36,28 @@ public class TranRsService {
 	@Resource(name = "topMenuinfoService")
 	ITopMenuinfoService menuService;
 
+
 	@Resource(name = "topInsPrdInfoBizImpl")
 	ITopInsPrdInfoBiz insPrdBiz;
 
 	@GET
 	@Path("/getInsPrdInfos/{bankCode}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdsResult searchPrds(@PathParam("bankCode") String bankCode) {
+	public InsPrdsResult<InsPrdPojo> searchPrds(@PathParam("bankCode") String bankCode) {
+
 		if (Strings.isNullOrEmpty(bankCode)) {
 			String msg = "机构号为空";
 			throw buildException(Status.NOT_FOUND, msg);
 		}
+
 		List<InsPrdPojo> insPrds = Lists.newArrayList();
 		for (int i = 0; i < 4; i++) {
 			InsPrdPojo re = new InsPrdPojo("100001", "心享恒安B款", "9%", "1000000.00", "1");
 			insPrds.add(re);
 		}
-		InsPrdsResult result = new InsPrdsResult("000000", "返回成功", insPrds);
+
+		InsPrdsResult<InsPrdPojo> result = new InsPrdsResult<InsPrdPojo>("000000", "返回成功", insPrds);
+
 		return result;
 
 	}
