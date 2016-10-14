@@ -529,7 +529,7 @@ create table TOP_INSCORPINFO  (
    POSTCODE             VARCHAR2(20),
    PHONE                VARCHAR2(20),
    FAX                  VARCHAR2(20),
-   EMAIL                VARCHAR2(2),
+   EMAIL                VARCHAR2(40),
    STATUS               VARCHAR2(40),
    OPERATOR_CODE        VARCHAR2(40),
    OPERATOR_BANK        VARCHAR2(40),
