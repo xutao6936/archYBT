@@ -798,3 +798,739 @@ comment on column TOP_PAYTYPE.KEY is
 
 comment on column TOP_PAYTYPE.VALUE is
 '值(1:趸缴    2:月缴  3:季缴  4:半年缴    5:年缴)';
+
+/*==============================================================*/
+/* Table: TOP_BUYINFO                                         */
+/*==============================================================*/
+create table TOP_BUYINFO
+(
+  serialno         VARCHAR2(32) not null,
+  channelflag      VARCHAR2(2),
+  channelno        VARCHAR2(32),
+  inscorpcode      VARCHAR2(10) not null,
+  templateid       VARCHAR2(20),
+  areaid           VARCHAR2(20),
+  prepolicyid      VARCHAR2(60),
+  policyid         VARCHAR2(60),
+  oldpolicyid      VARCHAR2(200),
+  contractid       VARCHAR2(60),
+  orgnserialno     VARCHAR2(32),
+  firstpremium     NUMBER(16,2),
+  firstpremiumcn   VARCHAR2(60),
+  effdate          VARCHAR2(8),
+  revdate          VARCHAR2(8),
+  innercommission  NUMBER(16,2),
+  outercommission  NUMBER(16,2),
+  lcoperatorcode   VARCHAR2(20),
+  lcoperatorid     VARCHAR2(20),
+  lcoperatorname   VARCHAR2(100),
+  tzoperatorcode   VARCHAR2(20),
+  tzoperatorid     VARCHAR2(20),
+  tzoperatorname   VARCHAR2(100),
+  inscorpstatus    VARCHAR2(1),
+  corestatus       VARCHAR2(1),
+  recordstatus     VARCHAR2(1),
+  serialtype       VARCHAR2(1),
+  deliver          VARCHAR2(1),
+  operatorbankcode VARCHAR2(20), 
+  operatorcode     VARCHAR2(20), 
+  updatedate       VARCHAR2(20), 
+  updatetime       VARCHAR2(20),
+  remark1          VARCHAR2(60),
+  remark2          VARCHAR2(60),
+  remark3          VARCHAR2(60),
+  remark4          VARCHAR2(60),
+  remark5          VARCHAR2(60),
+  remark6          VARCHAR2(60),
+  remark7          VARCHAR2(60),
+  remark8          VARCHAR2(60),
+  remark9          VARCHAR2(60),
+  remark10         VARCHAR2(60),
+   constraint PK_TOP_BUYINFO primary key (serialno)
+);
+
+comment on table TOP_BUYINFO is
+'新保承保表';
+
+comment on column TOP_BUYINFO.serialNo is
+'交易流水号';
+comment on column TOP_BUYINFO.channelFlag is
+'渠道标志(01: 柜面   02: 网银   03: 手机  04: 直销  05:自助)';
+comment on column TOP_BUYINFO.channelNo is
+'渠道流水号';
+comment on column TOP_BUYINFO.insCorpCode is
+'保险公司代码';
+comment on column TOP_BUYINFO.templateID is
+'产品库ID';
+comment on column TOP_BUYINFO.areaId is
+'地区代码';
+comment on column TOP_BUYINFO.prePolicyId is
+'投保单号';
+comment on column TOP_BUYINFO.policyId  is
+'保单印刷号';
+comment on column TOP_BUYINFO.oldPolicyId is
+'旧保单印刷号';
+comment on column TOP_BUYINFO.contractId is
+'保单合同号码';
+comment on column TOP_BUYINFO.orgnSerialNo is
+'原交易流水号';
+comment on column TOP_BUYINFO.firstPremium is
+'首期保费';
+comment on column TOP_BUYINFO.firstPremiumCN is
+'首期保费大写';
+comment on column TOP_BUYINFO.effDate  is
+'保单生效日期';
+comment on column TOP_BUYINFO.revDate is
+'保单到期日期';
+comment on column TOP_BUYINFO.innerCommission is
+'内扣手续费';
+comment on column TOP_BUYINFO.outerCommission is
+'外扣手续费';
+comment on column TOP_BUYINFO.lcOperatorCode is
+'销售人员网点号';
+comment on column TOP_BUYINFO.lcOperatorId  is
+'销售人员ID';
+comment on column TOP_BUYINFO.lcOperatorName is
+'销售人员姓名';
+comment on column TOP_BUYINFO.tzOperatorCode is
+'拓展人员网点号';
+comment on column TOP_BUYINFO.tzOperatorId is
+'拓展人员ID';
+comment on column TOP_BUYINFO.tzOperatorName is
+'拓展人员姓名';
+comment on column TOP_BUYINFO.insCorpStatus is
+'保险公司状态(1: 待核保   2: 核保成功   3: 核保失败   4: 冲正成功   5: 冲正失败)';
+comment on column TOP_BUYINFO.coreStatus is
+'核心状态(1: 未扣款   2: 扣款成功   3: 扣款失败   4: 冲正成功   5: 冲正失败   6: 撤单未还款)';
+comment on column TOP_BUYINFO.recordStatus is
+'保单打印状态(1: 已打印   2: 未打印)';
+comment on column TOP_BUYINFO.serialType  is
+'保单状态(1: 正常   2: 失效   3: 终止)';
+comment on column TOP_BUYINFO.deliver is
+'保单传递方式(1: 银行柜台   2: 邮件发送   3: 上门递送   4: 邮寄)';
+comment on column TOP_BUYINFO.operatorBankCode  is
+'操作机构';
+comment on column TOP_BUYINFO.operatorCode is
+'操作人员';
+comment on column TOP_BUYINFO.updateDate is
+'操作日期';
+comment on column TOP_BUYINFO.updateTime is
+'操作时间';
+comment on column TOP_BUYINFO.remark1 is
+'备注字段一';
+comment on column TOP_BUYINFO.remark2 is
+'备注字段二';
+comment on column TOP_BUYINFO.remark3 is
+'备注字段三';
+comment on column TOP_BUYINFO.remark4 is
+'备注字段四';
+comment on column TOP_BUYINFO.remark5 is
+'备注字段五';
+comment on column TOP_BUYINFO.remark6 is
+'备注字段六';
+comment on column TOP_BUYINFO.remark7  is
+'备注字段七';
+comment on column TOP_BUYINFO.remark8  is
+'备注字段八';
+comment on column TOP_BUYINFO.remark9  is
+'备注字段九';
+comment on column TOP_BUYINFO.remark10  is
+'备注字段十';
+
+/*==============================================================*/
+/* Table: TOP_BUYINFOADD                                         */
+/*==============================================================*/
+create table TOP_BUYINFOADD
+(
+  addserialno      VARCHAR2(32) not null,
+  serialno         VARCHAR2(32) not null,
+  insprdcode       VARCHAR2(8) not null,
+  mainflag         CHAR(1),
+  PAY_TYPE         VARCHAR2(1),
+  PAY_PERIOD       VARCHAR2(3),
+  PAY_PERIOD_TYPE  VARCHAR2(1),
+  INS_PERIOD       VARCHAR2(3),
+  INS_PERIOD_TYPE  VARCHAR2(1),
+  intialnumber     NUMBER(16),
+  basepremiumamt   NUMBER(16,2),
+  baseensureamt    NUMBER(16,2),
+  innercommission  NUMBER(16,2),
+  outercommission  NUMBER(16,2),
+  adrawtype        VARCHAR2(1),
+  adrawstartage    VARCHAR2(3),
+  adrawstopage     VARCHAR2(3),
+  adrawpart        VARCHAR2(3),
+  bonusdrawtype    VARCHAR2(10),
+  operatorbankcode VARCHAR2(20) not null,
+  operatorcode     VARCHAR2(20) not null,
+  updatedate       VARCHAR2(8) not null,
+  updatetime       VARCHAR2(8) not null,
+  remark1          VARCHAR2(60),
+  remark2          VARCHAR2(60),
+  remark3          VARCHAR2(60),
+  remark4          VARCHAR2(60),
+  remark5          VARCHAR2(60),
+  remark6          VARCHAR2(60),
+  remark7          VARCHAR2(60),
+  remark8          VARCHAR2(60),
+  remark9          VARCHAR2(60),
+  remark10         VARCHAR2(60),
+  constraint PK_TOP_BUYINFOADD primary key (addserialno)
+);
+
+comment on table TOP_BUYINFOADD is
+'新保承保产品表';
+
+comment on column TOP_BUYINFOADD.addSerialNo is
+'序列号';
+comment on column TOP_BUYINFOADD.serialNo is
+'交易流水号(新保承保交易流水号)';
+comment on column TOP_BUYINFOADD.insPrdCode is
+'交易产品代码';
+comment on column TOP_BUYINFOADD.mainFlag is
+'主附险标志(0: 主险   1: 附加险)';
+comment on column TOP_BUYINFOADD.PAY_TYPE is
+'缴费类型(1:趸缴    2:月缴  3:季缴  4:半年缴    5:年缴)';
+comment on column TOP_BUYINFOADD.PAY_PERIOD  is
+'缴费年期';
+comment on column TOP_BUYINFOADD.PAY_PERIOD_TYPE is
+'缴费年期单位(0: 年  1: 周岁  2: 终身)';
+comment on column TOP_BUYINFOADD.INS_PERIOD is
+'保障年期';
+comment on column TOP_BUYINFOADD.INS_PERIOD_TYPE is
+'保障年期单位(0: 年  1: 周岁  2: 保终身)';
+comment on column TOP_BUYINFOADD.intialNumber is
+'投保份数/档次';
+comment on column TOP_BUYINFOADD.basePremiumAmt  is
+'基本保费';
+comment on column TOP_BUYINFOADD.baseEnsureAmt  is
+'保险保额';
+comment on column TOP_BUYINFOADD.innerCommission  is
+'内扣手续费';
+comment on column TOP_BUYINFOADD.outerCommission is
+'外扣手续费';
+comment on column TOP_BUYINFOADD.aDrawType is
+'年金领取方式';
+comment on column TOP_BUYINFOADD.aDrawStartAge  is
+'年金领取开始年龄';
+comment on column TOP_BUYINFOADD.aDrawStopAge is
+'年金领取结束年龄';
+comment on column TOP_BUYINFOADD.aDrawPart  is
+'年金保证领取区间';
+comment on column TOP_BUYINFOADD.bonusDrawType is
+'红利领取方式(1：月领  2：年领  3：趸领)';
+comment on column TOP_BUYINFOADD.operatorBankCode is
+'操作机构';
+comment on column TOP_BUYINFOADD.operatorCode  is
+'操作人员';
+comment on column TOP_BUYINFOADD.updateDate  is
+'操作日期';
+comment on column TOP_BUYINFOADD.updateTime is
+'操作时间';
+comment on column TOP_BUYINFOADD.remark1  is
+'备注字段一';
+comment on column TOP_BUYINFOADD.remark2 is
+'备注字段二';
+comment on column TOP_BUYINFOADD.remark3  is
+'备注字段三';
+comment on column TOP_BUYINFOADD.remark4  is
+'备注字段四';
+comment on column TOP_BUYINFOADD.remark5 is
+'备注字段五';
+comment on column TOP_BUYINFOADD.remark6  is
+'备注字段六';
+comment on column TOP_BUYINFOADD.remark7  is
+'备注字段七';
+comment on column TOP_BUYINFOADD.remark8 is
+'备注字段八';
+comment on column TOP_BUYINFOADD.remark9  is
+'备注字段九';
+comment on column TOP_BUYINFOADD.remark10 is
+'备注字段十';
+
+/*==============================================================*/
+/* Table: TOP_BUYINFOADD                                         */
+/*==============================================================*/
+create table TOP_PHINFO
+(
+  phserialno       VARCHAR2(32) not null,
+  serialno         VARCHAR2(32) not null,
+  phname           VARCHAR2(60) not null,
+  phacctype        VARCHAR2(1),
+  phaccno          VARCHAR2(60),
+  phcustno         VARCHAR2(20),
+  phsex            VARCHAR2(1),
+  phbirthday       VARCHAR2(8),
+  phcfctype        VARCHAR2(2),
+  phcfcno          VARCHAR2(60),
+  phexpirydate     VARCHAR2(8),
+  phaddress        VARCHAR2(60),
+  phpostcode       VARCHAR2(10),
+  phcontactphone   VARCHAR2(20),
+  phfphone         VARCHAR2(20),
+  phcphone         VARCHAR2(20),
+  phmphone         VARCHAR2(20),
+  phemail          VARCHAR2(60),
+  phteincome       NUMBER(16,2),
+  phnality         VARCHAR2(10),
+  phhholder        VARCHAR2(60),
+  phcompany        VARCHAR2(60),
+  phjobtype        VARCHAR2(30),
+  phjob            VARCHAR2(30),
+  pheducation      VARCHAR2(1),
+  phmarried        VARCHAR2(1),
+  phrisklevel      VARCHAR2(1), 
+  operatorbankcode VARCHAR2(20),
+  operatorcode     VARCHAR2(20),
+  updatedate       VARCHAR2(8) ,
+  updatetime       VARCHAR2(8) ,
+  remark1          VARCHAR2(60),
+  remark2          VARCHAR2(60),
+  remark3          VARCHAR2(60),
+  remark4          VARCHAR2(60),
+  remark5          VARCHAR2(60),
+  remark6          VARCHAR2(60),
+  remark7          VARCHAR2(60),
+  remark8          VARCHAR2(60),
+  remark9          VARCHAR2(60),
+  remark10         VARCHAR2(60),
+  constraint PK_TOP_PHINFO primary key (phserialno)
+);
+
+comment on table TOP_PHINFO is
+'投保人信息表';
+
+comment on column TOP_PHINFO.phserialno is
+'序列号';
+comment on column TOP_PHINFO.serialNo is
+'交易流水号(新保承保交易流水号)';
+comment on column TOP_PHINFO.phName is
+'投保人姓名';
+comment on column TOP_PHINFO.phAccType is
+'投保人账户类型(0: 卡  1：折)';
+comment on column TOP_PHINFO.phAccNo is
+'序列号';
+comment on column TOP_PHINFO.phCustNo is
+'核心客户号';
+comment on column TOP_PHINFO.phSex is
+'投保人性别(0: 男性  1: 女性)';
+comment on column TOP_PHINFO.phBirthDay is
+'投保人出生日期';
+comment on column TOP_PHINFO.phcfcType is
+'投保人证件类型(1身份证 2户口本 3军官证 4警官证 5护照 6港澳通行证 7法人组织机构代码证
+8非法人组织机构代码证 9文职干部证 10士兵证 11台湾通行证 12其他)';
+comment on column TOP_PHINFO.phcfcNo is
+'投保人证件号码';
+comment on column TOP_PHINFO.phExpiryDate is
+'证件有效期';
+comment on column TOP_PHINFO.phAddress  is
+'投保人通讯地址';
+comment on column TOP_PHINFO.phPostCode is
+'投保人邮编';
+comment on column TOP_PHINFO.phContactphone is
+'联系电话';
+comment on column TOP_PHINFO.phFphone is
+'家庭电话';
+comment on column TOP_PHINFO.phCphone is
+'公司电话';
+comment on column TOP_PHINFO.phMphone is
+'投保人手机号码';
+comment on column TOP_PHINFO.phEmail is
+'投保人电子邮件';
+comment on column TOP_PHINFO.phteIncome is
+'投保人过去三年的平均收入(年收入)';
+comment on column TOP_PHINFO.phNality is
+'国籍';
+comment on column TOP_PHINFO.phHholder is
+'户籍';
+comment on column TOP_PHINFO.phCompany  is
+'工作单位';
+comment on column TOP_PHINFO.phJobType  is
+'投保险人职业类别';
+comment on column TOP_PHINFO.phJob is
+'投保险人职业';
+comment on column TOP_PHINFO.phEducation  is
+'学历(1博士研究生 2硕士研究生 3大学本科 4大学专科 5普通高中 6中职（中专、职专、技校）7初中 8初中以下)';
+comment on column TOP_PHINFO.phMarried is
+'婚姻状况(1: 已婚  2: 未婚 3: 离异  4: 丧偶)';
+comment on column TOP_PHINFO.phRiskLevel is
+'风险评估等级(0: 进取型  1: 成长型  2: 平衡型  3: 稳健型  4: 保守型)';
+comment on column TOP_PHINFO.operatorBankCode is
+'操作机构';
+comment on column TOP_PHINFO.operatorCode  is
+'操作人员';
+comment on column TOP_PHINFO.updateDate is
+'操作日期';
+comment on column TOP_PHINFO.updateTime is
+'操作时间';
+comment on column TOP_PHINFO.remark1  is
+'备注字段一';
+comment on column TOP_PHINFO.remark2 is
+'备注字段二';
+comment on column TOP_PHINFO.remark3  is
+'备注字段三';
+comment on column TOP_PHINFO.remark4  is
+'备注字段四';
+comment on column TOP_PHINFO.remark5 is
+'备注字段五';
+comment on column TOP_PHINFO.remark6  is
+'备注字段六';
+comment on column TOP_PHINFO.remark7  is
+'备注字段七';
+comment on column TOP_PHINFO.remark8 is
+'备注字段八';
+comment on column TOP_PHINFO.remark9  is
+'备注字段九';
+comment on column TOP_PHINFO.remark10 is
+'备注字段十';
+
+/*==============================================================*/
+/* Table: TOP_RNINFO                                         */
+/*==============================================================*/
+create table TOP_RNINFO
+(
+  rnserialno       VARCHAR2(32) not null,
+  serialno         VARCHAR2(32) not null,
+  prrelation       VARCHAR2(1) not null,
+  rnname           VARCHAR2(60),
+  rnsex            VARCHAR2(1) ,
+  rnbirthday       VARCHAR2(8) ,
+  rncfctype        VARCHAR2(2) ,
+  rncfcno          VARCHAR2(60),
+  rnexpirydate     VARCHAR2(8) ,
+  rnaddress        VARCHAR2(60),
+  rnpostcode       VARCHAR2(10),
+  rncontactphone   VARCHAR2(20),
+  rnfphone         VARCHAR2(20),
+  rncphone         VARCHAR2(20),
+  rnmphone         VARCHAR2(20),
+  rnemail          VARCHAR2(30),
+  rnteincome       NUMBER(16,2),
+  rnnality         VARCHAR2(60),
+  rnhholder        VARCHAR2(60),
+  rncompany        VARCHAR2(60),
+  rnjobtype        VARCHAR2(30),
+  rnjob            VARCHAR2(30),
+  rneducation      VARCHAR2(1) ,
+  rnmarried        VARCHAR2(1) ,
+  operatorbankcode VARCHAR2(20),
+  operatorcode     VARCHAR2(20),
+  updatedate       VARCHAR2(8) ,
+  updatetime       VARCHAR2(8) ,
+  remark1          VARCHAR2(60),
+  remark2          VARCHAR2(60),
+  remark3          VARCHAR2(60),
+  remark4          VARCHAR2(60),
+  remark5          VARCHAR2(60),
+  remark6          VARCHAR2(60),
+  remark7          VARCHAR2(60),
+  remark8          VARCHAR2(60),
+  remark9          VARCHAR2(60),
+  remark10         VARCHAR2(60),
+  constraint PK_TOP_RNINFO primary key (rnserialno)
+);
+
+comment on table TOP_RNINFO is
+'被保人信息表';
+
+comment on column TOP_RNINFO.rnSerialNo is
+'序列号';
+comment on column TOP_RNINFO.serialNo is
+'交易流水号(新保承保交易流水号)';
+comment on column TOP_RNINFO.prRelation is
+'投保人与被保险人关系(1本人 2配偶 3父子 4父女 5母子 6母女 7兄弟 8姊妹 9兄妹 10姐弟 11雇佣 12法定 13其他)';
+comment on column TOP_RNINFO.rnName is
+'被保人姓名';
+comment on column TOP_RNINFO.rnSex  is
+'被保人性别(0: 男性  1: 女性)';
+comment on column TOP_RNINFO.rnBirthDay is
+'被保人出生日期';
+comment on column TOP_RNINFO.rncfcType  is
+'被保人证件类型(1身份证 2户口本 3军官证 4警官证 5护照 6港澳通行证 7法人组织机构代码证
+8非法人组织机构代码证 9文职干部证 10士兵证 11台湾通行证 12其他)';
+comment on column TOP_RNINFO.rncfcNo is
+'被保人证件号码';
+comment on column TOP_RNINFO.rnExpiryDate is
+'证件有效期';
+comment on column TOP_RNINFO.rnAddress  is
+'被保人通讯地址';
+comment on column TOP_RNINFO.rnPostCode is
+'被保人邮编';
+comment on column TOP_RNINFO.rnContactphone is
+'联系电话';
+comment on column TOP_RNINFO.rnFphone is
+'家庭电话';
+comment on column TOP_RNINFO.rnCphone  is
+'公司电话';
+comment on column TOP_RNINFO.rnmPhone is
+'被保人手机号码';
+comment on column TOP_RNINFO.rnEmail  is
+'被保人电子邮件';
+comment on column TOP_RNINFO.rnteIncome  is
+'投保人过去三年的平均收入(年收入)';
+comment on column TOP_RNINFO.rnNality  is
+'国籍';
+comment on column TOP_RNINFO.rnHholder is
+'户籍';
+comment on column TOP_RNINFO.rnCompany   is
+'工作单位';
+comment on column TOP_RNINFO.rnJobType  is
+'被保险人职业类别';
+comment on column TOP_RNINFO.rnJob   is
+'被保险人职业';
+comment on column TOP_RNINFO.rnEducation  is
+'学历(1博士研究生 2硕士研究生 3大学本科 4大学专科 5普通高中 6中职（中专、职专、技校）7初中 8初中以下)';
+comment on column TOP_RNINFO.rnMarried  is
+'婚姻状况(1: 已婚  2: 未婚 3: 离异  4: 丧偶)';
+comment on column TOP_RNINFO.operatorBankCode is
+'操作机构';
+comment on column TOP_RNINFO.operatorCode  is
+'操作人员';
+comment on column TOP_RNINFO.updateDate is
+'操作日期';
+comment on column TOP_RNINFO.updateTime is
+'操作时间';
+comment on column TOP_RNINFO.remark1  is
+'备注字段一';
+comment on column TOP_RNINFO.remark2 is
+'备注字段二';
+comment on column TOP_RNINFO.remark3  is
+'备注字段三';
+comment on column TOP_RNINFO.remark4  is
+'备注字段四';
+comment on column TOP_RNINFO.remark5 is
+'备注字段五';
+comment on column TOP_RNINFO.remark6  is
+'备注字段六';
+comment on column TOP_RNINFO.remark7  is
+'备注字段七';
+comment on column TOP_RNINFO.remark8 is
+'备注字段八';
+comment on column TOP_RNINFO.remark9  is
+'备注字段九';
+comment on column TOP_RNINFO.remark10 is
+'备注字段十';
+
+/*==============================================================*/
+/* Table: TOP_BFYINFO                                         */
+/*==============================================================*/
+create table TOP_BFYINFO
+(
+  bfyserialno      VARCHAR2(32) not null,
+  serialno         VARCHAR2(32) not null,
+  brrelation       VARCHAR2(2) not null,
+  bfyname          VARCHAR2(60),
+  bfysex           VARCHAR2(1),
+  bfybirthday      VARCHAR2(8),
+  bfycfctype       VARCHAR2(2),
+  bfycfcno         VARCHAR2(60),
+  bfyexpirydate    VARCHAR2(8),
+  bfyaddress       VARCHAR2(60),
+  bfynumerator     NUMBER(3),
+  bfyorder         NUMBER(4),
+  bfymethod        VARCHAR2(1),
+  bfytype          VARCHAR2(1),
+  operatorbankcode VARCHAR2(20),
+  operatorcode     VARCHAR2(20),
+  updatedate       VARCHAR2(8) ,
+  updatetime       VARCHAR2(8) ,
+  remark1          VARCHAR2(60),
+  remark2          VARCHAR2(60),
+  remark3          VARCHAR2(60),
+  remark4          VARCHAR2(60),
+  remark5          VARCHAR2(60),
+  remark6          VARCHAR2(60),
+  remark7          VARCHAR2(60),
+  remark8          VARCHAR2(60),
+  remark9          VARCHAR2(60),
+  remark10         VARCHAR2(60),
+  constraint PK_TOP_BFYINFO primary key (bfyserialno)
+);
+comment on table TOP_BFYINFO is
+'受益人信息表';
+
+comment on column TOP_BFYINFO.bfyserialno  is
+'序列号';
+comment on column TOP_BFYINFO.serialNo is
+'交易流水号(新保承保交易流水号)';
+comment on column TOP_BFYINFO.rnRelation  is
+'与被保险人关系(1本人 2配偶 3父子 4父女 5母子 6母女 7兄弟 8姊妹 9兄妹 10姐弟 11雇佣 12法定 13其他)';
+comment on column TOP_BFYINFO.bfyName  is
+'姓名';
+comment on column TOP_BFYINFO.bfySex is
+'性别(0: 男性  1: 女性)';
+comment on column TOP_BFYINFO.bfyBirth  is
+'出生日期';
+comment on column TOP_BFYINFO.bfyCfcType  is
+'被保人证件类型(1身份证 2户口本 3军官证 4警官证 5护照 6港澳通行证 7法人组织机构代码证
+8非法人组织机构代码证 9文职干部证 10士兵证 11台湾通行证 12其他)';
+comment on column TOP_BFYINFO.bfyCfcNo is
+'证件号码';
+comment on column TOP_BFYINFO.expiryDate  is
+'证件有效期';
+comment on column TOP_BFYINFO.bfyAddress is
+'通讯地址';
+comment on column TOP_BFYINFO.bfybm is
+'受益分子(一份投保单的收益分子之和为100)';
+comment on column TOP_BFYINFO.bfyOrder is
+'受益顺序';
+comment on column TOP_BFYINFO.bfyType is
+'受益人类型(1: 身故受益人  2: 生存受益人)';
+comment on column TOP_BFYINFO.bfyMethod is
+'分配方式(1 顺位 ；2均分；3比例；4法定；5本人 6其他)';
+comment on column TOP_BFYINFO.operatorBankCode is
+'操作机构';
+comment on column TOP_BFYINFO.operatorCode  is
+'操作人员';
+comment on column TOP_BFYINFO.updateDate is
+'操作日期';
+comment on column TOP_BFYINFO.updateTime is
+'操作时间';
+comment on column TOP_BFYINFO.remark1  is
+'备注字段一';
+comment on column TOP_BFYINFO.remark2 is
+'备注字段二';
+comment on column TOP_BFYINFO.remark3  is
+'备注字段三';
+comment on column TOP_BFYINFO.remark4  is
+'备注字段四';
+comment on column TOP_BFYINFO.remark5 is
+'备注字段五';
+comment on column TOP_BFYINFO.remark6  is
+'备注字段六';
+comment on column TOP_BFYINFO.remark7  is
+'备注字段七';
+comment on column TOP_BFYINFO.remark8 is
+'备注字段八';
+comment on column TOP_BFYINFO.remark9  is
+'备注字段九';
+comment on column TOP_BFYINFO.remark10 is
+'备注字段十';
+
+/*==============================================================*/
+/* Table: TOP_SPECIALINFO                                         */
+/*==============================================================*/
+create table TOP_SPECIALINFO
+(
+  spserialno       VARCHAR2(32) not null,
+  serialno         VARCHAR2(32) not null,
+  ishealth         VARCHAR2(1),
+  iswhealth        VARCHAR2(1),
+  isphealth        VARCHAR2(1),
+  isjob            VARCHAR2(1),
+  ispjob           VARCHAR2(1),
+  amount           NUMBER(16,2),
+  specialinfo      VARCHAR2(100),
+  investtype       VARCHAR2(1),
+  addinvesttype    VARCHAR2(1),
+  yljflag          VARCHAR2(1),
+  isexistence      VARCHAR2(1),
+  isnextfee        VARCHAR2(1),
+  hlflag           VARCHAR2(1),
+  isrenewal        VARCHAR2(1),
+  njflag           VARCHAR2(1),
+  moneyaccountname VARCHAR2(20),
+  moneyaccount     VARCHAR2(20),
+  moneybank        VARCHAR2(60),
+  disputetype      VARCHAR2(1),
+  moneyform        VARCHAR2(1),
+  operatorbankcode VARCHAR2(20),
+  operatorcode     VARCHAR2(20),
+  updatedate       VARCHAR2(8),
+  updatetime       VARCHAR2(8),
+  remark1          VARCHAR2(60),
+  remark2          VARCHAR2(60),
+  remark3          VARCHAR2(60),
+  remark4          VARCHAR2(60),
+  remark5          VARCHAR2(60),
+  remark6          VARCHAR2(60),
+  remark7          VARCHAR2(60),
+  remark8          VARCHAR2(60),
+  remark9          VARCHAR2(60),
+  remark10         VARCHAR2(60),
+  constraint PK_TOP_SPECIALINFO primary key (spserialno)
+);
+
+comment on table TOP_SPECIALINFO is
+'受益人信息表';
+
+comment on column TOP_SPECIALINFO.spserialno  is
+'序列号';
+comment on column TOP_SPECIALINFO.serialNo is
+'交易流水号(新保承保交易流水号)';
+comment on column TOP_SPECIALINFO.ishealth is
+'健康告知(Y-是 N-否)';
+comment on column TOP_SPECIALINFO.iswhealth is
+'客户是否填写健康告知(Y-是 N-否)';
+comment on column TOP_SPECIALINFO.isphealth is
+'客户健康告知是否有问题(Y-是 N-否)';
+comment on column TOP_SPECIALINFO.isjob  is
+'职业告知(Y-是 N-否)';
+comment on column TOP_SPECIALINFO.ispjob is
+'客户职业告知是否有问题(Y-是 N-否)';
+comment on column TOP_SPECIALINFO.amount is
+'未成年人在其它保险公司投保死亡保额';
+comment on column TOP_SPECIALINFO.specialinfo is
+'特别约定';
+comment on column TOP_SPECIALINFO.investtype is
+'投资方式(Y-立投 N-非立投)';
+comment on column TOP_SPECIALINFO.addinvesttype is
+'追加投资方式(Y-立投 N-非立投)';
+comment on column TOP_SPECIALINFO.yljflag  is
+'养老金领取方式(M-月领 Q-季领 S-半年领 Y-年领 D-趸领 )';
+comment on column TOP_SPECIALINFO.isexistence  is
+'生存金是否累计生息(Y-累计生息 N-不累计生息)';
+comment on column TOP_SPECIALINFO.isnextfee  is
+'续期保费是否自动垫交(1 同意垫交2 保险合同中止)';
+comment on column TOP_SPECIALINFO.hlflag  is
+'红利领取方式(1- 现金给付2- 抵交保费3- 累积生息4- 直接领取)';
+comment on column TOP_SPECIALINFO.isrenewal  is
+'一年期主险/一年期附加险是否自动申请续保(Y-是  N-否)';
+comment on column TOP_SPECIALINFO.njflag  is
+'年金领取方式(1- 现金给付2- 抵交保费3- 累积生息4- 直接领取)';
+comment on column TOP_SPECIALINFO.moneyaccountname  is
+'领款账户户名';
+comment on column TOP_SPECIALINFO.moneyaccount   is
+'领款账户领款账号';
+comment on column TOP_SPECIALINFO.moneybank  is
+'领款账户开户银行';
+comment on column TOP_SPECIALINFO.disputetype  is
+'合同争议处理方式(1-诉讼  2-仲裁)';
+comment on column TOP_SPECIALINFO.moneyform  is
+'领款形式(1-现金 2-银行转账)';
+comment on column TOP_SPECIALINFO.disputetype  is
+'合同争议处理方式(1-诉讼  2-仲裁)';
+comment on column TOP_SPECIALINFO.disputetype  is
+'合同争议处理方式(1-诉讼  2-仲裁)';
+comment on column TOP_SPECIALINFO.disputetype  is
+'合同争议处理方式(1-诉讼  2-仲裁)';
+comment on column TOP_SPECIALINFO.disputetype  is
+'合同争议处理方式(1-诉讼  2-仲裁)';
+comment on column TOP_SPECIALINFO.operatorBankCode is
+'操作机构';
+comment on column TOP_SPECIALINFO.operatorCode  is
+'操作人员';
+comment on column TOP_SPECIALINFO.updateDate is
+'操作日期';
+comment on column TOP_SPECIALINFO.updateTime is
+'操作时间';
+comment on column TOP_SPECIALINFO.remark1  is
+'备注字段一';
+comment on column TOP_SPECIALINFO.remark2 is
+'备注字段二';
+comment on column TOP_SPECIALINFO.remark3  is
+'备注字段三';
+comment on column TOP_SPECIALINFO.remark4  is
+'备注字段四';
+comment on column TOP_SPECIALINFO.remark5 is
+'备注字段五';
+comment on column TOP_SPECIALINFO.remark6  is
+'备注字段六';
+comment on column TOP_SPECIALINFO.remark7  is
+'备注字段七';
+comment on column TOP_SPECIALINFO.remark8 is
+'备注字段八';
+comment on column TOP_SPECIALINFO.remark9  is
+'备注字段九';
+comment on column TOP_SPECIALINFO.remark10 is
+'备注字段十';
