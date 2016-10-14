@@ -1370,24 +1370,24 @@ comment on column TOP_BFYINFO.bfyserialno  is
 '序列号';
 comment on column TOP_BFYINFO.serialNo is
 '交易流水号(新保承保交易流水号)';
-comment on column TOP_BFYINFO.rnRelation  is
+comment on column TOP_BFYINFO.brrelation  is
 '与被保险人关系(1本人 2配偶 3父子 4父女 5母子 6母女 7兄弟 8姊妹 9兄妹 10姐弟 11雇佣 12法定 13其他)';
 comment on column TOP_BFYINFO.bfyName  is
 '姓名';
 comment on column TOP_BFYINFO.bfySex is
 '性别(0: 男性  1: 女性)';
-comment on column TOP_BFYINFO.bfyBirth  is
+comment on column TOP_BFYINFO.bfybirthday  is
 '出生日期';
 comment on column TOP_BFYINFO.bfyCfcType  is
 '被保人证件类型(1身份证 2户口本 3军官证 4警官证 5护照 6港澳通行证 7法人组织机构代码证
 8非法人组织机构代码证 9文职干部证 10士兵证 11台湾通行证 12其他)';
 comment on column TOP_BFYINFO.bfyCfcNo is
 '证件号码';
-comment on column TOP_BFYINFO.expiryDate  is
+comment on column TOP_BFYINFO.bfyexpirydate  is
 '证件有效期';
 comment on column TOP_BFYINFO.bfyAddress is
 '通讯地址';
-comment on column TOP_BFYINFO.bfybm is
+comment on column TOP_BFYINFO.bfynumerator is
 '受益分子(一份投保单的收益分子之和为100)';
 comment on column TOP_BFYINFO.bfyOrder is
 '受益顺序';
