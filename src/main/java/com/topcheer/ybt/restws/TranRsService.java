@@ -15,9 +15,6 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import org.apache.poi.ss.formula.functions.T;
-
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
@@ -36,52 +33,84 @@ import com.topcheer.ybt.system.service.ITopMenuinfoService;
  * @date 2016-7-4 下午11:07:32
  * 
  */
+@Path("/tranRsService")
 public class TranRsService {
 
 	@Resource(name = "topMenuinfoService")
 	ITopMenuinfoService menuService;
 
+
 	@Resource(name = "topInsPrdInfoBizImpl")
 	ITopInsPrdInfoBiz insPrdBiz;
+
 
 	@GET
 	@Path("/getInsPrdInfos/{bankCode}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdsResult searchPrds(@PathParam("bankCode") String bankCode) {
-		/*if (Strings.isNullOrEmpty(bankCode)) {
+
+	
+	public InsPrdsResult<InsPrdPojo> searchPrds(@PathParam("bankCode") String bankCode) {
+
+		if (Strings.isNullOrEmpty(bankCode)) {
 			String msg = "机构号为空";
 			throw buildException(Status.NOT_FOUND, msg);
 		}
-		List<T> insPrds = new ArrayList<T>();
+
+		List<InsPrdPojo> insPrds = Lists.newArrayList();
 		for (int i = 0; i < 4; i++) {
 			InsPrdPojo re = new InsPrdPojo("100001", "心享恒安B款", "9%", "1000000.00", "1");
 			insPrds.add(re);
 		}
-		InsPrdsResult result = new InsPrdsResult();
-		result.setInsPrds(insPrds);*/
-		return null;
+//		InsPrdsResult result = new InsPrdsResult();
+//		result.setInsPrds(insPrds);
+
+
+		InsPrdsResult<InsPrdPojo> result = new InsPrdsResult<InsPrdPojo>("000000", "返回成功", insPrds);
+
+		return result;
 
 	}
 
+
 	@Path("findInsPrdInfoByCode")
-	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdResult findSpecialPrd(@QueryParam("topMenuinfo") String topMenuinfo) {
+	public InsPrdResult findSpecialPrd(
+			@QueryParam(value = "insPrdCode") String insPrdCode,
+			@QueryParam("insPrdName") String insPrdName,
+			@QueryParam("yieldRate") String yieldRate
+			) {
 		/*
 		 * if (Strings.isNullOrEmpty(topMenuinfo)) {
 		 * String msg = "产品编号为空";
 		 * throw buildException(Status.NOT_FOUND, msg);
 		 * }
 		 */
-		return new InsPrdResult("100001", "28", "1", "60", "2", "每天不到3毛钱，即可享受最高100万的保障", "保险责任详细信息请参考以下相关文档");
+		return new InsPrdResult("","100001", "28", "1", "60", "2", "每天不到3毛钱，即可享受最高100万的保障", "保险责任详细信息请参考以下相关文档");
 	}
 
-	@GET
+
 	@Path("/getMenu/{loginAccount}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<MenuResult> getMenu(@PathParam("loginAccount") String loginAccount) {
 		return menuService.getTopMenusByUserId(loginAccount);
+	}
+	
+	@Path("/testJson")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<TopMenuinfo> testJson(InsPrdPojo insPrdPojo) {
+		System.out.println(insPrdPojo);
+		return menuService.searchAll();
+	}
+	
+	@Path("/testForm")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<TopMenuinfo> testForm(InsPrdPojo insPrdPojo) {
+		System.out.println(insPrdPojo);
+		return menuService.searchAll();
 	}
 
 	
@@ -104,7 +133,7 @@ public class TranRsService {
 		insPrdsResult.setResultCode("000000");
 		insPrdsResult.setResultInfo("success");
 		//insPrdsResult.setList(policyInquirylist);
-		insPrdsResult.setList(list);
+//		insPrdsResult.setList(list);
 		return insPrdsResult;
 
 	}

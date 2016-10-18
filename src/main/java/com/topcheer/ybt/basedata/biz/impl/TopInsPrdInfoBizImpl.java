@@ -1,6 +1,7 @@
 package com.topcheer.ybt.basedata.biz.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,7 @@ import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.basedata.service.ITopInsprdInfoService;
+import com.topcheer.ybt.restws.pojo.InsPrdPojo;
 
 @Component
 @Service(value = "topInsPrdInfoBizImpl")
@@ -20,9 +22,9 @@ public class TopInsPrdInfoBizImpl implements ITopInsPrdInfoBiz {
 	ITopInsprdInfoService topInsprdInfoService;
 
 	@Override
-	public PageInfo<TopInsprdInfo> getTopInsPrdInfoList() {
+	public PageInfo<TopInsprdInfo> getTopInsPrdInfoList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return topInsprdInfoService.getTopInsPrdInfoList();
+		return topInsprdInfoService.getTopInsPrdInfoList(map);
 	}
 
 	@Override
@@ -61,5 +63,12 @@ public class TopInsPrdInfoBizImpl implements ITopInsPrdInfoBiz {
 		List<TopInsprdInfo> list = topInsprdInfoService.getInsPrdInfoByInsPrdCode(insPrdCode);
 		return list;
 	}
+
+	@Override
+	public PageInfo<TopInsprdInfo> getTopInsPrdInfoList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

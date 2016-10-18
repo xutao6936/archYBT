@@ -9,6 +9,7 @@ package com.topcheer.ybt.data;
  */
 public class InsPrdResult {
 
+	private String inscorpCode = "";
 	private String insPrdCode;
 	private String minInsYear;
 	private String minInsYearUnit;
@@ -21,10 +22,11 @@ public class InsPrdResult {
 		super();
 	}
 
-	public InsPrdResult(String insPrdCode, String minInsYear,
-			String minInsYearUnit, String maxInsYear, String maxInsYearUnit,
-			String insPrdSpecial, String insNotice) {
+	public InsPrdResult(String inscorpCode, String insPrdCode,
+			String minInsYear, String minInsYearUnit, String maxInsYear,
+			String maxInsYearUnit, String insPrdSpecial, String insNotice) {
 		super();
+		this.inscorpCode = inscorpCode;
 		this.insPrdCode = insPrdCode;
 		this.minInsYear = minInsYear;
 		this.minInsYearUnit = minInsYearUnit;
@@ -33,6 +35,7 @@ public class InsPrdResult {
 		this.insPrdSpecial = insPrdSpecial;
 		this.insNotice = insNotice;
 	}
+
 
 	public String getInsPrdCode() {
 		return insPrdCode;
@@ -88,6 +91,14 @@ public class InsPrdResult {
 
 	public void setInsNotice(String insNotice) {
 		this.insNotice = insNotice;
+	}
+	
+	public String getInscorpCode() {
+		return inscorpCode;
+	}
+
+	public void setInscorpCode(String inscorpCode) {
+		this.inscorpCode = inscorpCode;
 	}
 
 }

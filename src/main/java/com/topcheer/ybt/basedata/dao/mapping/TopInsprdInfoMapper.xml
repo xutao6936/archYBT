@@ -25,55 +25,102 @@
 		<result property="updateDate" column="UPDATE_DATE" jdbcType="VARCHAR" />
 		<result property="updateTime" column="UPDATE_TIME" jdbcType="VARCHAR" />
 		<result property="operator" column="OPERATOR" jdbcType="VARCHAR" />
+		<result property="isOverRisk" column="IS_OVER_RISK" jdbcType="VARCHAR" />
+		<result property="hotType" column="HOT_TYPE" jdbcType="VARCHAR" />
+		<result property="yieldRate" column="YIELD_RATE" jdbcType="VARCHAR" />
+		<result property="minYieldRate" column="MIN_YIELD_RATE" jdbcType="VARCHAR" />
+		<result property="maxYieldRate" column="MAX_YIELD_RATE" jdbcType="VARCHAR" />
 	</resultMap>
 	<select id="searchAllTopInsprdInfo" resultMap="forTopInsprdInfo" >
 		select * from top_insprdInfo
 	</select>  
 	
-	<select id="searchTopInsPrdInfoByInsPrdCode"  resultMap="forTopInsprdInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
+	
+	<select id="searchTopInsPrdInfo"  resultMap="forTopInsprdInfo"  parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
 		select * from top_insprdInfo where 1=1
-		<if test="insPrdCode !=null and insPrdCode != '' ">
-			and  INSPRD_CODE = #{insPrdCode,jdbcType=VARCHAR}
-		</if> 
-		<if test="insPrdTrueCode !=null and insPrdTrueCode != '' ">
-			and  INSPRD_TRUE_CODE = #{insPrdTrueCode,jdbcType=VARCHAR}
-		</if>
-		<if test="insCorpCode !=null and insCorpCode != '' ">
-			and  INSCORP_CODE = #{insCorpLevel,jdbcType=VARCHAR}
-		</if>
-		<if test="insPrdCnName !=null and insPrdCnName != '' ">
-			and  INSPRD_CNNAME = #{insPrdCnName,jdbcType=VARCHAR}
-		</if>
-		<if test="insPrdSimName !=null and insPrdSimName != '' ">
-			and  INSPRD_SIMNAME = #{status,jdbcType=VARCHAR}
-		</if>
-		<if test="assuranceType !=null and assuranceType != '' ">
-			and  ASSURANCE_TYPE = #{assuranceType,jdbcType=VARCHAR}
-		</if>
-		<if test="insPrdType !=null and insPrdType != '' ">
-			and  INSPRD_TYPE = #{insPrdType,jdbcType=VARCHAR}
-		</if>
-		<if test="insBeginDate !=null and insBeginDate != '' ">
-			and  INSBENGIN_DATE = #{insBeginDate,jdbcType=VARCHAR}
-		</if>
-		<if test="insEndDate !=null and insEndDate != '' ">
-			and  INSEND_DATE = #{insEndDate,jdbcType=VARCHAR}
-		</if>
-		<if test="status !=null and status != '' ">
-			and  STATUS = #{status,jdbcType=VARCHAR}
-		</if>
-		<if test="impawnFlag !=null and impawnFlag != '' ">
-			and  IMPAWN_FLAG = #{impawnFlag,jdbcType=VARCHAR}
-		</if>
-		<if test="transType !=null and transType != '' ">
-			and  TRANS_TYPE = #{transType,jdbcType=VARCHAR}
-		</if>
-		<if test="channelType !=null and channelType != '' ">
-			and  CHANNEL_TYPE = #{channelType,jdbcType=VARCHAR}
-		</if>
-
+		<if test="id !=null and id != '' ">
+		    	and ID = #{id,jdbcType=VARCHAR}
+			</if>
+    		<if test="insPrdCode !=null and insPrdCode != '' ">
+		    	and INSPRD_CODE = #{insPrdCode,jdbcType=VARCHAR}
+			</if>
+    		<if test="insPrdTrueCode !=null and insPrdTrueCode != '' ">
+		    	and INSPRD_TRUE_CODE = #{insPrdTrueCode,jdbcType=VARCHAR}
+			</if>
+    		<if test="insCorpCode !=null and insCorpCode != '' ">
+		    	and INSCORP_CODE = #{insCorpCode,jdbcType=VARCHAR}
+			</if>
+    		<if test="insPrdCnName !=null and insPrdCnName != '' ">
+		    	and INSPRD_CNNAME = #{insPrdCnName,jdbcType=VARCHAR}
+			</if>
+    		<if test="insPrdSimName !=null and insPrdSimName != '' ">
+		    	and INSPRD_SIMNAME = #{insPrdSimName,jdbcType=VARCHAR}
+			</if>
+    		<if test="assuranceType !=null and assuranceType != '' ">
+		    	and ASSURANCE_TYPE = #{assuranceType,jdbcType=VARCHAR}
+			</if>
+    		<if test="buyUnit !=null and buyUnit != '' ">
+		    	and BUY_UNIT = #{buyUnit,jdbcType=VARCHAR}
+			</if>
+    		<if test="insPrdType !=null and insPrdType != '' ">
+		    	and INSPRD_TYPE = #{insPrdType,jdbcType=VARCHAR}
+			</if>
+    		<if test="insBeginDate !=null and insBeginDate != '' ">
+		    	and INSBENGIN_DATE = #{insBeginDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="insEndDate !=null and insEndDate != '' ">
+		    	and INSEND_DATE = #{insEndDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="startAMT !=null and startAMT != '' ">
+		    	and START_AMT = #{startAMT,jdbcType=VARCHAR}
+			</if>
+    		<if test="entAMT !=null and entAMT != '' ">
+		    	and END_AMT = #{entAMT,jdbcType=VARCHAR}
+			</if>
+    		<if test="inCreaseAMT !=null and inCreaseAMT != '' ">
+		    	and INCREASE_AMT = #{inCreaseAMT,jdbcType=VARCHAR}
+			</if>
+    		<if test="status !=null and status != '' ">
+		    	and STATUS = #{status,jdbcType=VARCHAR}
+			</if>
+    		<if test="impawnFlag !=null and impawnFlag != '' ">
+		    	and IMPAWN_FLAG = #{impawnFlag,jdbcType=VARCHAR}
+			</if>
+    		<if test="transType !=null and transType != '' ">
+		    	and TRANS_TYPE = #{transType,jdbcType=VARCHAR}
+			</if>
+    		<if test="channelType !=null and channelType != '' ">
+		    	and CHANNEL_TYPE = #{channelType,jdbcType=VARCHAR}
+			</if>
+    		<if test="createDate !=null and createDate != '' ">
+		    	and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="updateDate !=null and updateDate != '' ">
+		    	and UPDATE_DATE = #{updateDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="updateTime !=null and updateTime != '' ">
+		    	and UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+    		<if test="operator !=null and operator != '' ">
+		    	and OPERATOR = #{operator,jdbcType=VARCHAR}
+			</if>
+    		<if test="isOverRisk !=null and isOverRisk != '' ">
+		    	and IS_OVER_RISK = #{isOverRisk,jdbcType=VARCHAR}
+			</if>
+    		<if test="hotType !=null and hotType != '' ">
+		    	and HOT_TYPE = #{hotType,jdbcType=VARCHAR}
+			</if>
+    		<if test="yieldRate !=null and yieldRate != '' ">
+		    	and YIELD_RATE = #{yieldRate,jdbcType=VARCHAR}
+			</if>
+    		<if test="minYieldRate !=null and minYieldRate != '' ">
+		    	and MIN_YIELD_RATE = #{minYieldRate,jdbcType=VARCHAR}
+			</if>
+    		<if test="maxYieldRate !=null and maxYieldRate != '' ">
+		    	and MAX_YIELD_RATE = #{maxYieldRate,jdbcType=VARCHAR}
+			</if>
 	</select>
-	<insert id="insertTopInsPrdInfo"   parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
+	<insert id="insertTopInsPrdInfo" parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
 		insert into  top_insprdInfo (
 		ID,
 		INSPRD_CODE,
@@ -96,7 +143,12 @@
 		CREATE_DATE,
 		UPDATE_DATE,
 		UPDATE_TIME,
-		OPERATOR
+		OPERATOR,
+		IS_OVER_RISK,
+    	HOT_TYPE,
+    	YIELD_RATE,
+    	MIN_YIELD_RATE,
+    	MAX_YIELD_RATE
 		)values(
 		 #{id,jdbcType=VARCHAR},
 		 #{insPrdCode,jdbcType=VARCHAR}, 
@@ -119,35 +171,45 @@
          #{createDate,jdbcType=VARCHAR}, 
          #{updateDate,jdbcType=VARCHAR}, 
          #{updateTime,jdbcType=VARCHAR}, 
-         #{operator,jdbcType=VARCHAR}
+         #{operator,jdbcType=VARCHAR},
+         #{isOverRisk,jdbcType=VARCHAR},
+    	 #{hotType,jdbcType=VARCHAR},
+    	 #{yieldRate,jdbcType=VARCHAR},
+    	 #{minYieldRate,jdbcType=VARCHAR},
+    	 #{maxYieldRate,jdbcType=VARCHAR}
           )
 	</insert>
 	
 	
-	<update id="updateTopInsPrdInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
-	update TOP_INSPRDINFO
-    set INSPRD_CODE = #{insPrdCode,jdbcType=VARCHAR},
-      INSPRD_TRUE_CODE = #{insPrdTrueCode,jdbcType=VARCHAR},
-      INSCORP_CODE = #{insCorpCode,jdbcType=VARCHAR},
-      INSPRD_CNNAME = #{insPrdCnName,jdbcType=VARCHAR},
-      INSPRD_SIMNAME = #{insPrdSimName,jdbcType=VARCHAR},
-      ASSURANCE_TYPE = #{assuranceType,jdbcType=VARCHAR},
-      BUY_UNIT = #{buyUnit,jdbcType=VARCHAR},
-      INSPRD_TYPE = #{insPrdType,jdbcType=VARCHAR},
-      INSBENGIN_DATE = #{insBeginDate,jdbcType=VARCHAR},
-      INSEND_DATE = #{insEndDate,jdbcType=VARCHAR},
-      START_AMT = #{startAMT,jdbcType=VARCHAR},
-      END_AMT = #{entAMT,jdbcType=VARCHAR},
-      INCREASE_AMT = #{inCreaseAMT,jdbcType=VARCHAR},
-      STATUS = #{status,jdbcType=DECIMAL},
-      IMPAWN_FLAG = #{impawnFlag,jdbcType=DECIMAL},
-      TRANS_TYPE = #{transType,jdbcType=DECIMAL},
-      CHANNEL_TYPE = #{channelType,jdbcType=VARCHAR},
-      CREATE_DATE = #{createDate,jdbcType=VARCHAR},
-      UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
-      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
-      OPERATOR = #{operator,jdbcType=VARCHAR}
-      where  ID =  #{id,jdbcType=VARCHAR}
+	<update id="updateTopInsPrdInfo" parameterType="com.topcheer.ybt.basedata.entity.TopInsprdInfo">
+		update TOP_INSPRDINFO
+	    set INSPRD_CODE = #{insPrdCode,jdbcType=VARCHAR},
+	      INSPRD_TRUE_CODE = #{insPrdTrueCode,jdbcType=VARCHAR},
+	      INSCORP_CODE = #{insCorpCode,jdbcType=VARCHAR},
+	      INSPRD_CNNAME = #{insPrdCnName,jdbcType=VARCHAR},
+	      INSPRD_SIMNAME = #{insPrdSimName,jdbcType=VARCHAR},
+	      ASSURANCE_TYPE = #{assuranceType,jdbcType=VARCHAR},
+	      BUY_UNIT = #{buyUnit,jdbcType=VARCHAR},
+	      INSPRD_TYPE = #{insPrdType,jdbcType=VARCHAR},
+	      INSBENGIN_DATE = #{insBeginDate,jdbcType=VARCHAR},
+	      INSEND_DATE = #{insEndDate,jdbcType=VARCHAR},
+	      START_AMT = #{startAMT,jdbcType=VARCHAR},
+	      END_AMT = #{entAMT,jdbcType=VARCHAR},
+	      INCREASE_AMT = #{inCreaseAMT,jdbcType=VARCHAR},
+	      STATUS = #{status,jdbcType=DECIMAL},
+	      IMPAWN_FLAG = #{impawnFlag,jdbcType=DECIMAL},
+	      TRANS_TYPE = #{transType,jdbcType=DECIMAL},
+	      CHANNEL_TYPE = #{channelType,jdbcType=VARCHAR},
+	      CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+	      UPDATE_DATE = #{updateDate,jdbcType=VARCHAR},
+	      UPDATE_TIME = #{updateTime,jdbcType=VARCHAR},
+	      OPERATOR = #{operator,jdbcType=VARCHAR},
+	      IS_OVER_RISK = #{isOverRisk,jdbcType=VARCHAR}  ,
+		  HOT_TYPE = #{hotType,jdbcType=VARCHAR}  ,
+		  YIELD_RATE = #{yieldRate,jdbcType=VARCHAR}  ,
+		  MIN_YIELD_RATE = #{minYieldRate,jdbcType=VARCHAR}  ,
+		  MAX_YIELD_RATE = #{maxYieldRate,jdbcType=VARCHAR} 
+	      where ID =  #{id,jdbcType=VARCHAR}
 	</update>
 	
 	<delete id="deleteTopInsPrdInfo" parameterType="String">

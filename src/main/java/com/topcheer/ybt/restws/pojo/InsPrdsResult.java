@@ -1,22 +1,39 @@
 package com.topcheer.ybt.restws.pojo;
 
 import java.util.List;
-
 import org.apache.poi.ss.formula.functions.T;
 
-import com.topcheer.ybt.system.entity.TopMenuinfo;
-
-public class InsPrdsResult {
+public class InsPrdsResult<T> {
 
 	private String resultCode;
 	private String resultInfo;
-	//private List<PolicyInquiryPojo> list;
+	private List<T> insPrds;
+
 	
-	private List<TopMenuinfo> list;
+
+	public InsPrdsResult(String resultCode, String resultInfo, List<T> insPrds) {
+		super();
+	}
+
+
 
 	public InsPrdsResult() {
 		super();
 	}
+
+	
+
+	public List<T> getInsPrds() {
+		return insPrds;
+	}
+
+
+
+	public void setInsPrds(List<T> insPrds) {
+		this.insPrds = insPrds;
+	}
+
+
 
 	public String getResultCode() {
 		return resultCode;
@@ -32,14 +49,6 @@ public class InsPrdsResult {
 
 	public void setResultInfo(String resultInfo) {
 		this.resultInfo = resultInfo;
-	}
-
-	public List<TopMenuinfo> getList() {
-		return list;
-	}
-
-	public void setList(List<TopMenuinfo> list) {
-		this.list = list;
 	}
 
 

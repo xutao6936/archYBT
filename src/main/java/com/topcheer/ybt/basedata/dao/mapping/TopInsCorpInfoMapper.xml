@@ -32,7 +32,7 @@
 		select * from top_inscorpInfo
 	</select>  
 	
-	<select id="searchByinsCorpCode" resultMap="ForTopInsCorpInfo"   parameterType="com.topcheer.ybt.basedata.entity.TopInsCorpInfo">
+	<select id="searchInsCorpInfo" resultMap="ForTopInsCorpInfo" parameterType="com.topcheer.ybt.basedata.entity.TopInsCorpInfo">
 		select * from top_inscorpInfo
 		where 1=1
 		<if test="insCorpCode !=null and insCorpCode != '' ">

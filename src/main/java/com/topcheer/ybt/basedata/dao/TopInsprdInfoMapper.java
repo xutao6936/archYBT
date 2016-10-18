@@ -10,7 +10,7 @@ public interface TopInsprdInfoMapper {
 	public List<TopInsprdInfo> searchAllTopInsprdInfo();
 	
 	//根据保险产品编码查询基本信息
-	public List<TopInsprdInfo> searchTopInsPrdInfoByInsPrdCode(String insPrdCode);
+	public List<TopInsprdInfo> searchTopInsPrdInfo(TopInsprdInfo topInsprdInfo);
 	
 	//插入数据
 	public void insertTopInsPrdInfo(TopInsprdInfo topInsprdInfo);

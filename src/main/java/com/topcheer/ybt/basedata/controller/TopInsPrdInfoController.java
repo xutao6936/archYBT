@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
+import com.google.common.collect.Maps;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.system.entity.TopUserinfo;
@@ -48,8 +49,12 @@ public class TopInsPrdInfoController {
 	 */
 	@RequestMapping("getTopInsPrdInfoList.do")
 	@ResponseBody
-	public PageInfo<TopInsprdInfo> getTopInsPrdInfoList() {
-		PageInfo<TopInsprdInfo> topInsprdInfoList = topInsPrdInfoBiz.getTopInsPrdInfoList();
+	public PageInfo<TopInsprdInfo> getTopInsPrdInfoList(String rows, String page,TopInsprdInfo topInsprdInfo) {
+		Map<String, Object> map = Maps.newHashMap();
+		map.put("topInsprdInfo", topInsprdInfo);
+		map.put("pageSize", rows);
+		map.put("pageNo", page);
+		PageInfo<TopInsprdInfo> topInsprdInfoList = topInsPrdInfoBiz.getTopInsPrdInfoList(map);
 		return topInsprdInfoList;
 	}
 
