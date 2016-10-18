@@ -14,8 +14,8 @@ import com.topcheer.ybt.basedata.entity.TopBuyInfo;
 import com.topcheer.ybt.basedata.entity.TopPhInfo;
 import com.topcheer.ybt.basedata.entity.TopRnInfo;
 import com.topcheer.ybt.basedata.entity.TopSpecialInfo;
-import com.topcheer.ybt.restws.pojo.InsPrdsResult;
-import com.topcheer.ybt.restws.pojo.InsureInfoPojo;
+import com.topcheer.ybt.restws.pojo.InsPrdsRespPojo;
+import com.topcheer.ybt.restws.pojo.InsureInfoReqPojo;
 
 /**
  * @ClassName: ProdRsService
@@ -33,7 +33,7 @@ public class InsureInforInRsService {
 	@Path("/insureInfoin")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdsResult insureInfoin(InsureInfoPojo insureinfopojo) {
+	public InsPrdsRespPojo insureInfoin(InsureInfoReqPojo insureinfopojo) {
 		
 		System.out.println(insureinfopojo);
 		try{

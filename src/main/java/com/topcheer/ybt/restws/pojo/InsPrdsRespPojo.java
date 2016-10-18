@@ -3,7 +3,7 @@ package com.topcheer.ybt.restws.pojo;
 import java.util.List;
 import org.apache.poi.ss.formula.functions.T;
 
-public class InsPrdsResult<T> {
+public class InsPrdsRespPojo<T> {
 
 	private String resultCode;
 	private String resultInfo;
@@ -11,13 +11,13 @@ public class InsPrdsResult<T> {
 
 	
 
-	public InsPrdsResult(String resultCode, String resultInfo, List<T> insPrds) {
+	public InsPrdsRespPojo(String resultCode, String resultInfo, List<T> insPrds) {
 		super();
 	}
 
 
 
-	public InsPrdsResult() {
+	public InsPrdsRespPojo() {
 		super();
 	}
 

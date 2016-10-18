@@ -1,6 +1,6 @@
 package com.topcheer.ybt.restws.pojo;
 
-public class InsureInfoResult {
+public class InsureInfoRespPojo {
 
 	private String insPrdCode;
 	private String insPrdName;
@@ -8,7 +8,7 @@ public class InsureInfoResult {
 	private String amount;
 	private String serialNo;
 
-	public InsureInfoResult(String insPrdCode, String insPrdName,
+	public InsureInfoRespPojo(String insPrdCode, String insPrdName,
 			String account, String amount, String serialNo) {
 		super();
 		this.insPrdCode = insPrdCode;
