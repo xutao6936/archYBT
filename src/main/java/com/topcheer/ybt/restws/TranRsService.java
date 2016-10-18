@@ -45,6 +45,7 @@ public class TranRsService {
 	@Resource(name = "topInsPrdInfoBizImpl")
 	ITopInsPrdInfoBiz insPrdBiz;
 
+
 	@GET
 	@Path("/getInsPrdInfos/{bankCode}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -67,8 +68,8 @@ public class TranRsService {
 
 	}
 
+
 	@Path("findInsPrdInfoByCode")
-	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public InsPrdResult findSpecialPrd(
@@ -82,10 +83,10 @@ public class TranRsService {
 		 * throw buildException(Status.NOT_FOUND, msg);
 		 * }
 		 */
-		return new InsPrdResult("100001", "28", "1", "60", "2", "每天不到3毛钱，即可享受最高100万的保障", "保险责任详细信息请参考以下相关文档");
+		return new InsPrdResult("","100001", "28", "1", "60", "2", "每天不到3毛钱，即可享受最高100万的保障", "保险责任详细信息请参考以下相关文档");
 	}
 
-	@GET
+
 	@Path("/getMenu/{loginAccount}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<MenuResult> getMenu(@PathParam("loginAccount") String loginAccount) {

@@ -7,26 +7,36 @@ public class InsPrdsResult<T> {
 
 	private String resultCode;
 	private String resultInfo;
-	private List<T> list;
+	private List<T> insPrds;
 
-	public List<T> getList() {
-		return list;
-	}
+	
 
-	public InsPrdsResult(String resultCode, String resultInfo, List<T> list) {
+	public InsPrdsResult(String resultCode, String resultInfo, List<T> insPrds) {
 		super();
 		this.resultCode = resultCode;
 		this.resultInfo = resultInfo;
-		this.list = list;
+		this.insPrds = insPrds;
 	}
+
+
 
 	public InsPrdsResult() {
 		super();
 	}
 
-	public void setList(List<T> list) {
-		this.list = list;
+	
+
+	public List<T> getInsPrds() {
+		return insPrds;
 	}
+
+
+
+	public void setInsPrds(List<T> insPrds) {
+		this.insPrds = insPrds;
+	}
+
+
 
 	public String getResultCode() {
 		return resultCode;

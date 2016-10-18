@@ -15,16 +15,23 @@
 	<import resource="classpath:META-INF/cxf/cxf.xml" />
 	<!-- <import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" /> -->
 	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
-
 	<bean id="userRSService" class="com.topcheer.ybt.restws.UserRSService" />
 	<bean id="bankRSService" class="com.topcheer.ybt.restws.BankRSService" />
 	<bean id="tranRsService" class="com.topcheer.ybt.restws.TranRsService" />
+	<bean id="prdRsService" class="com.topcheer.ybt.restws.PrdRsService" />
+	<bean id="prdinforsservice" class="com.topcheer.ybt.restws.PrdInfoRsService" />
+	<bean id="baseInfoInRsService" class="com.topcheer.ybt.restws.BaseInfoInRsService" />
+	<bean id="insureInforInRsService" class="com.topcheer.ybt.restws.InsureInforInRsService" />
 	<!-- 这里的地址很重要，客户端需要通过这个地址来访问WebService -->
 	<jaxrs:server id="restServiceContainer">
 		<jaxrs:serviceBeans>
 			<ref bean="userRSService" />
 			<ref bean="bankRSService" />
 			<ref bean="tranRsService" />
+			<ref bean="prdRsService" />
+			<ref bean="prdinforsservice" />
+			<ref bean="baseInfoInRsService" />
+			<ref bean="insureInforInRsService" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />

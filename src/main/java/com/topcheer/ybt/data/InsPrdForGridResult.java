@@ -72,8 +72,4 @@ public class InsPrdForGridResult {
 	public void setPremium(String premium) {
 		this.premium = premium;
 	}
-	
-	
-	
-	
 }

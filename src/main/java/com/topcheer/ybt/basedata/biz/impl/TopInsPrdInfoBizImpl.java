@@ -12,6 +12,7 @@ import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.basedata.service.ITopInsprdInfoService;
+import com.topcheer.ybt.restws.pojo.InsPrdPojo;
 
 @Component
 @Service(value = "topInsPrdInfoBizImpl")
@@ -62,5 +63,12 @@ public class TopInsPrdInfoBizImpl implements ITopInsPrdInfoBiz {
 		List<TopInsprdInfo> list = topInsprdInfoService.getInsPrdInfoByInsPrdCode(insPrdCode);
 		return list;
 	}
+
+	@Override
+	public PageInfo<TopInsprdInfo> getTopInsPrdInfoList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

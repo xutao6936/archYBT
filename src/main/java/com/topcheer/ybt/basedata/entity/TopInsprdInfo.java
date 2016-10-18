@@ -19,12 +19,12 @@ public class TopInsprdInfo {
 	private String buyUnit;//购买单位(0:份数 1:保费 2:保额)
 	
 	private String  insPrdType; //产品类型
-	
+		
 	private String insBeginDate; //代理开始日期
 	
 	private String insEndDate;//代理结束日期
 	
-	private String startAMT;//起购金额/数量
+	private String startAMT="";//起购金额/数量
 	
 	private String entAMT;//最高金额/数量
 	

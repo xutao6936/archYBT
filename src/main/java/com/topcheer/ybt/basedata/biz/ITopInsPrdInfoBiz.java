@@ -8,8 +8,11 @@ import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 
 public interface ITopInsPrdInfoBiz {
 	
-	//取得保险产品基本信息表数据
+
 		public PageInfo<TopInsprdInfo> getTopInsPrdInfoList(Map<String, Object> map);
+
+	    //取得保险产品基本信息表数据
+		public PageInfo<TopInsprdInfo> getTopInsPrdInfoList();
 		
 		//根据保险产品编码查询基本信息
 		public  PageInfo<TopInsprdInfo> getTopInsPrdInfoByInsPrdCode(String insPrdCode);
@@ -28,5 +31,5 @@ public interface ITopInsPrdInfoBiz {
 
 		public List<TopInsprdInfo> getTopInsPrdInfoListByInsPrdCode(
 				String insCorpCode);
-
+		
 }
