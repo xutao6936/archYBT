@@ -1,5 +1,7 @@
 package com.topcheer.ybt.system.entity;
 
+import java.util.List;
+
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -67,6 +69,9 @@ public class TopBankinfo {
 
 	private String remark4;
 
+	//子机构
+	private List<TopBankinfo> topBankinfolist;
+		
 	public String getBankId() {
 		return bankId;
 	}
@@ -225,6 +230,14 @@ public class TopBankinfo {
 
 	public void setRemark4(String remark4) {
 		this.remark4 = remark4;
+	}
+
+	public List<TopBankinfo> getTopBankinfolist() {
+		return topBankinfolist;
+	}
+
+	public void setTopBankinfolist(List<TopBankinfo> topBankinfolist) {
+		this.topBankinfolist = topBankinfolist;
 	}
 
 	@Override

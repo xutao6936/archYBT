@@ -72,4 +72,9 @@ public class TopBankinfoServiceImpl implements ITopBankinfoService {
 		return topBankinfoMapper.getBankInfoAjax();
 	}
 
+	@Override
+	public List getChildrenBankInfo(String bankCode) throws DataAccessException {
+		return topBankinfoMapper.getChildrenBankInfo(bankCode);
+	}
+
 }

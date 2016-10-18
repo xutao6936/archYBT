@@ -55,4 +55,9 @@ public class TopBankinfoBizImpl implements ITopBankinfoBiz {
 		return service.getBankInfoAjax();
 	}
 
+	@Override
+	public List getChildrenBankInfo(String bankCode) {
+		return service.getChildrenBankInfo(bankCode);
+	}
+
 }

@@ -256,6 +256,7 @@ function init() {
 										        }); 
 											  $("#dialog-form").dialog('close');
 											  $(grid_selector).trigger("reloadGrid");
+											
 										  }else{
 											  layer.alert('添加失败',{
 										            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
@@ -591,7 +592,14 @@ function init() {
 					},{
 						name : 'payPeriod',
 						index : 'payPeriod',
-						editable : false
+						editable : false,
+						 formatter:function(cellValue, options, rowObject){
+								if(cellValue=='0趸缴'){
+									return "趸缴";
+								}else {
+									return cellValue;
+								}
+							}	
 						
 					},{
 						name : 'insPeriod',
@@ -600,7 +608,8 @@ function init() {
 						 formatter:function(cellValue, options, rowObject){
 								if(cellValue=='2终生'){
 									return "终生";
-								}else {
+								}
+								else {
 									return cellValue;
 								}
 							}	
