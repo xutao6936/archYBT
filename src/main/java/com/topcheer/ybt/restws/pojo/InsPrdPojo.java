@@ -16,6 +16,15 @@ public class InsPrdPojo {
 		this.startAmt = startAmt;
 		this.hotType = hotType;
 	}
+	
+	
+
+	public InsPrdPojo() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	public String getInsPrdCode() {
 		return insPrdCode;

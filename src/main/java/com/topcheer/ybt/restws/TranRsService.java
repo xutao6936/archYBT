@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -15,6 +16,8 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
+
+
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
@@ -22,6 +25,7 @@ import com.topcheer.ybt.data.InsPrdResult;
 import com.topcheer.ybt.data.MenuResult;
 import com.topcheer.ybt.restws.pojo.InsPrdPojo;
 import com.topcheer.ybt.restws.pojo.InsPrdsResult;
+import com.topcheer.ybt.system.entity.TopMenuinfo;
 import com.topcheer.ybt.system.service.ITopMenuinfoService;
 
 /**
@@ -31,6 +35,7 @@ import com.topcheer.ybt.system.service.ITopMenuinfoService;
  * @date 2016-7-4 下午11:07:32
  * 
  */
+@Path("/tranRsService")
 public class TranRsService {
 
 	@Resource(name = "topMenuinfoService")
@@ -66,7 +71,11 @@ public class TranRsService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdResult findSpecialPrd(@QueryParam("topMenuinfo") String topMenuinfo) {
+	public InsPrdResult findSpecialPrd(
+			@QueryParam(value = "insPrdCode") String insPrdCode,
+			@QueryParam("insPrdName") String insPrdName,
+			@QueryParam("yieldRate") String yieldRate
+			) {
 		/*
 		 * if (Strings.isNullOrEmpty(topMenuinfo)) {
 		 * String msg = "产品编号为空";
@@ -81,6 +90,23 @@ public class TranRsService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<MenuResult> getMenu(@PathParam("loginAccount") String loginAccount) {
 		return menuService.getTopMenusByUserId(loginAccount);
+	}
+	
+	@Path("/testJson")
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<TopMenuinfo> testJson(InsPrdPojo insPrdPojo) {
+		System.out.println(insPrdPojo);
+		return menuService.searchAll();
+	}
+	
+	@Path("/testForm")
+	@POST
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<TopMenuinfo> testForm(InsPrdPojo insPrdPojo) {
+		System.out.println(insPrdPojo);
+		return menuService.searchAll();
 	}
 
 	private WebApplicationException buildException(Status status, String message) {

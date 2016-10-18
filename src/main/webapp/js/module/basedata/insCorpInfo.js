@@ -382,7 +382,6 @@ function init() {
 											  dataType:'json',
 											//  beforeSend:validate(),
 											  success:function(msg){
-												  alert(msg.result);
 												  if('SUCC'==msg.result){
 													  layer.alert('修改成功',{icon:1});  
 													  $("#dialog-form").dialog('close');
