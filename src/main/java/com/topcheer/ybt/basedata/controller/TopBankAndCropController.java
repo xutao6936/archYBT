@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.topcheer.ybt.basedata.biz.ITopInsCorpInfoBiz;
+import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
 import com.topcheer.ybt.system.biz.ITopBankinfoBiz;
 import com.topcheer.ybt.system.entity.TopBankinfo;
 
@@ -35,6 +37,9 @@ public class TopBankAndCropController {
 			.getLogger(TopBankAndCropController.class);
 	@Resource(name = "topBankinfoBizImpl")
 	private ITopBankinfoBiz topBankinfoBiz;
+	
+	@Resource(name = "topInsCorpInfoBizImpl")
+	private ITopInsCorpInfoBiz topInsCorpInfoBiz;
 
 	@RequestMapping("/turnToTopBankAndCropInfo.do")
 	public String turnToTopBankAndCropInfo() {
@@ -166,6 +171,43 @@ public class TopBankAndCropController {
 		stringBuffer.deleteCharAt(stringBuffer.length()-1);
 		stringBuffer.append("}");
 		return stringBuffer.toString();
+	}
+	
+	
+	@RequestMapping(value = "/getCorpInfo", method = { RequestMethod.POST,
+			RequestMethod.GET })
+	@ResponseBody
+	public String getCorpInfo(HttpServletRequest request) {
+		List<TopInsCorpInfo> topInsCorpInfolist = topInsCorpInfoBiz.searchAll();
+
+		List<TopInsCorpInfo> list = new ArrayList<TopInsCorpInfo>();// 经过处理后的菜单
+		StringBuffer strBuff = new StringBuffer();
+		strBuff.append("{'保险公司':"
+				+ "{name:'保险公司',type: 'folder', 'additionalParameters': {'id': '0','children': {");
+		for (TopInsCorpInfo topInsCorpInfo : topInsCorpInfolist) {
+				strBuff.append("'" + topInsCorpInfo.getInsSimpName() + "':"
+						+ "{name:'" + topInsCorpInfo.getInsSimpName()
+						+ "',type: 'item'");
+				strBuff.append(",additionalParameters:{id:'" + topInsCorpInfo.getInsCorpCode()
+						+ "'}},");
+		}
+		strBuff.deleteCharAt(strBuff.length() - 1);
+		strBuff.append("}}}}");
+		logger.info(strBuff.toString());
+		Gson gson = new Gson();
+
+//		 String s =
+//		 "{'保险公司':{name:'保险公司',type: 'folder', 'additionalParameters': {'id': '0','children': {'东吴人寿':{name:'东吴人寿',type: 'item',additionalParameters:{id:'5'}},'长城人寿':{name:'长城人寿',type: 'item',additionalParameters:{id:'1992'}},'新华人寿':{name:'新华人寿',type: 'item',additionalParameters:{id:'2800'}},'国华人寿':{name:'国华人寿',type: 'item',additionalParameters:{id:'4200'}},'安邦人寿':{name:'安邦人寿',type: 'item',additionalParameters:{id:'5300'}}}}}}";
+//		
+		JsonObject returnData = new JsonParser().parse(strBuff.toString())
+				.getAsJsonObject();
+
+//		JsonObject returnData = new JsonParser().parse(s)
+//				.getAsJsonObject();
+		String jsonString = gson.toJson(returnData);
+		resultTree = jsonString;
+		logger.info(resultTree);
+		return resultTree;
 	}
 
 	public String getResultTree() {

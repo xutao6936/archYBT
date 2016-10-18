@@ -22,6 +22,7 @@
 	<bean id="prdinforsservice" class="com.topcheer.ybt.restws.PrdInfoRsService" />
 	<bean id="baseInfoInRsService" class="com.topcheer.ybt.restws.BaseInfoInRsService" />
 	<bean id="insureInforInRsService" class="com.topcheer.ybt.restws.InsureInforInRsService" />
+	<bean id="corePayValRsService" class="com.topcheer.ybt.restws.CorePayValRsService" />
 	<!-- 这里的地址很重要，客户端需要通过这个地址来访问WebService -->
 	<jaxrs:server id="restServiceContainer">
 		<jaxrs:serviceBeans>
@@ -32,6 +33,7 @@
 			<ref bean="prdinforsservice" />
 			<ref bean="baseInfoInRsService" />
 			<ref bean="insureInforInRsService" />
+			<ref bean="corePayValRsService" /><!-- 核心扣款 -->
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
