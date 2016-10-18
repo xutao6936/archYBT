@@ -22,4 +22,6 @@ public interface TopBankinfoMapper {
 
 	public List<TopBankinfo> getBankInfoAjax();
 
+	public List getChildrenBankInfo(String bankCode) throws DataAccessException;
+
 }

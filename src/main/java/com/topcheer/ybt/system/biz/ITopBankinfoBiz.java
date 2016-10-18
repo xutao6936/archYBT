@@ -22,4 +22,6 @@ public interface ITopBankinfoBiz {
 	public void delete(String id);
 
 	public List<TopBankinfo> getBankInfoAjax();
+
+	public List getChildrenBankInfo(String bankCode);
 }

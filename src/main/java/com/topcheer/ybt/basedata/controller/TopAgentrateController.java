@@ -190,6 +190,7 @@ public class TopAgentrateController {
 		String reg1 = ".*年.*"; // 判断字符串中是否含有特定字符串"年"
 		String reg2 = ".*周岁.*"; // 判断字符串中是否含有特定字符串"周岁"
 		String reg3 = ".*终生.*"; // 判断字符串中是否含有特定字符串"终生"
+		String reg4 = ".*趸缴.*"; // 判断字符串中是否含有特定字符串"终生"
 		//根据保险产品代码删除费率表中的保险产品费率信息
 		topAgentrateService.deleteByInsprdCode(insPrdName.split("-")[0]);
 		for (int i = 0; i < json.size(); i++) {
@@ -205,11 +206,12 @@ public class TopAgentrateController {
 						.split("-")[0]);// 产品编码
 				topAgentrate.setAdminBank((String) jsonOne.get("bankcode"));// 机构
 				topAgentrate.setTransType((String) jsonOne.get("transType"));// 交易类型
-				topAgentrate.setPayType("");// 缴费类型
+			
 				String str = (String) jsonOne.get("payPeriod");
 				if (str.matches(reg1)) {
 					topAgentrate.setPayPeriod(str.split("年")[0]);// 缴费年期
 					topAgentrate.setPayPeriodType("0");// 缴费年期单位
+					topAgentrate.setPayType("5");// 缴费类型(1:趸缴    2:月缴  3:季缴  4:半年缴    5:年缴)
 				}
 				if (str.matches(reg2)) {
 					topAgentrate.setPayPeriod(str.split("周岁")[0]);// 缴费年期
@@ -219,6 +221,12 @@ public class TopAgentrateController {
 					topAgentrate.setPayPeriod("2");// 缴费年期
 					topAgentrate.setPayPeriodType("2");// 缴费年期单位
 				}
+				if (str.matches(reg4)) {
+					topAgentrate.setPayPeriod("");// 缴费年期
+					topAgentrate.setPayPeriodType("");// 缴费年期单位
+					topAgentrate.setPayType("1");// 缴费类型(1:趸缴    2:月缴  3:季缴  4:半年缴    5:年缴)
+				}
+				
 				topAgentrate.setRateType((String) jsonOne.get("chargeMethod"));// 收费方式
 				topAgentrate.setOnceAmt((String) jsonOne.get("onceAmt"));// 一次性收费金额
 				topAgentrate.setPercentAmt((String) jsonOne.get("percentAmt"));// 百分比收费比例

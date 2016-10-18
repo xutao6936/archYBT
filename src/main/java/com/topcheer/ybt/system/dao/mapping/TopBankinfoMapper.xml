@@ -199,4 +199,8 @@
 		  from top_bankinfo
 		  where bank_level between 0 and 1 
   	</select> 
+  	
+  	<select id="getChildrenBankInfo" resultMap="TopBankinfoResultMap" parameterType="String">
+  		select * from top_bankinfo tb start with tb.bank_code=#{bankCode,jdbcType=VARCHAR} connect by tb.up_bank_code=prior tb.bank_code
+  	</select>
 </mapper>

@@ -65,6 +65,8 @@
 <script src="${ctx }/assets/js/select2.min.js"></script>
 <script src="${ctx }/js/common/select2_locale_zh-CN.js"></script>
 <script src="${ctx }/js/common/resize.js"></script>
+
+<script src="${ctx }/assets/js/fuelux/fuelux.tree.min.js"></script>
 <script type="text/javascript">
 	var ctx = "${ctx}";
 </script>

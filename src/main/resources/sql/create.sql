@@ -522,7 +522,7 @@ create table TOP_INSCORPINFO  (
    INSCORP_CODE         VARCHAR2(10)                    not null,
    INSCORP_NAME         VARCHAR2(60)                    not null,
    INS_SIMPLE_NAME      VARCHAR2(40)                    not null,
-   INSCORP_LEVEL        VARCHAR2(2)                     not null,
+   INSCORP_LEVEL        VARCHAR2(4)                     not null,
    UPCORP_CODE          VARCHAR2(10),
    INSCORP_EN_NAME      VARCHAR2(60),
    ADDRESS              VARCHAR2(80),

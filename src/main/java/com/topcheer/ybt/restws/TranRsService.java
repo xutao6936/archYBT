@@ -1,10 +1,10 @@
 package com.topcheer.ybt.restws;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -15,9 +15,6 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-
-
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
@@ -45,28 +42,6 @@ public class TranRsService {
 	@Resource(name = "topInsPrdInfoBizImpl")
 	ITopInsPrdInfoBiz insPrdBiz;
 
-
-	@GET
-	@Path("/getInsPrdInfos/{bankCode}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdsRespPojo<InsPrdReqPojo> searchPrds(@PathParam("bankCode") String bankCode) {
-
-		if (Strings.isNullOrEmpty(bankCode)) {
-			String msg = "机构号为空";
-			throw buildException(Status.NOT_FOUND, msg);
-		}
-
-		List<InsPrdReqPojo> insPrds = Lists.newArrayList();
-		for (int i = 0; i < 4; i++) {
-			InsPrdReqPojo re = new InsPrdReqPojo("100001", "心享恒安B款", "9%", "1000000.00", "1");
-			insPrds.add(re);
-		}
-
-		InsPrdsRespPojo<InsPrdReqPojo> result = new InsPrdsRespPojo<InsPrdReqPojo>("000000", "返回成功", insPrds);
-
-		return result;
-
-	}
 
 
 	@Path("findInsPrdInfoByCode")
@@ -109,6 +84,8 @@ public class TranRsService {
 		System.out.println(insPrdPojo);
 		return menuService.searchAll();
 	}
+
+	
 
 	private WebApplicationException buildException(Status status, String message) {
 		return new WebApplicationException(Response.status(status).entity(message).type(MediaType.APPLICATION_JSON)
