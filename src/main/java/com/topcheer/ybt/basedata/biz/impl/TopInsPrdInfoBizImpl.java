@@ -12,7 +12,7 @@ import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.basedata.service.ITopInsprdInfoService;
-import com.topcheer.ybt.restws.pojo.InsPrdPojo;
+import com.topcheer.ybt.restws.pojo.InsPrdReqPojo;
 
 @Component
 @Service(value = "topInsPrdInfoBizImpl")

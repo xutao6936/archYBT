@@ -20,10 +20,10 @@ import com.google.common.collect.Lists;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.data.InsPrdResult;
-import com.topcheer.ybt.restws.pojo.BaseInfoInPojo;
-import com.topcheer.ybt.restws.pojo.BaseInfoInResult;
-import com.topcheer.ybt.restws.pojo.InsPrdPojo;
-import com.topcheer.ybt.restws.pojo.InsPrdsResult;
+import com.topcheer.ybt.restws.pojo.BaseInfoInReqPojo;
+import com.topcheer.ybt.restws.pojo.BaseInfoInRespPojo;
+import com.topcheer.ybt.restws.pojo.InsPrdReqPojo;
+import com.topcheer.ybt.restws.pojo.InsPrdsRespPojo;
 import com.topcheer.ybt.system.entity.TopMenuinfo;
 
 /**
@@ -43,14 +43,14 @@ public class BaseInfoInRsService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public BaseInfoInResult BaseInfoIn(BaseInfoInPojo baseInfoInPojo) {
+	public BaseInfoInRespPojo BaseInfoIn(BaseInfoInReqPojo baseInfoInPojo) {
 
 //		System.out.println(baseInfoInPojo);
 		//BaseInfoInResult baseInfoInResult = new BaseInfoInResult(); 
 		/*baseInfoInResult.setSerialNo("20161018000000000001");
 		baseInfoInResult.setResultCode("000000");
 		baseInfoInResult.setResultInfo("返回成功");*/
-		return new BaseInfoInResult("20161018000000000001","000000","返回成功");
+		return new BaseInfoInRespPojo("20161018000000000001","000000","返回成功");
 	}
 	
 	private WebApplicationException buildException(Status status, String message) {

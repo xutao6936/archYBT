@@ -1,6 +1,6 @@
 package com.topcheer.ybt.restws.pojo;
 
-public class InsPrdPojo {
+public class InsPrdReqPojo {
 
 	private String insPrdCode="";
 	private String insPrdName="";
@@ -8,7 +8,7 @@ public class InsPrdPojo {
 	private String startAmt="";
 	private String hotType="";
 
-	public InsPrdPojo(String insPrdCode, String insPrdName, String yieldRate, String startAmt, String hotType) {
+	public InsPrdReqPojo(String insPrdCode, String insPrdName, String yieldRate, String startAmt, String hotType) {
 		super();
 		this.insPrdCode = insPrdCode;
 		this.insPrdName = insPrdName;
@@ -19,7 +19,7 @@ public class InsPrdPojo {
 	
 	
 
-	public InsPrdPojo() {
+	public InsPrdReqPojo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

@@ -5,7 +5,7 @@ package com.topcheer.ybt.restws.pojo;
  * @author Administrator
  *
  */
-public class BaseInfoInResult{
+public class BaseInfoInRespPojo{
 
 	private String serialNo; //银保通流水号
 	private String resultCode;
@@ -28,14 +28,14 @@ public class BaseInfoInResult{
 	public void setResultInfo(String resultInfo) {
 		this.resultInfo = resultInfo;
 	}
-	public BaseInfoInResult(String serialNo, String resultCode,
+	public BaseInfoInRespPojo(String serialNo, String resultCode,
 			String resultInfo) {
 		super();
 		this.serialNo = serialNo;
 		this.resultCode = resultCode;
 		this.resultInfo = resultInfo;
 	}
-	public BaseInfoInResult() {
+	public BaseInfoInRespPojo() {
 		super();
 	}
 

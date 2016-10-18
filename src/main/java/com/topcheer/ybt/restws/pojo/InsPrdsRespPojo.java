@@ -3,7 +3,7 @@ package com.topcheer.ybt.restws.pojo;
 import java.util.List;
 
 
-public class InsPrdsResult<T> {
+public class InsPrdsRespPojo<T> {
 
 	private String resultCode;
 	private String resultInfo;
@@ -11,7 +11,7 @@ public class InsPrdsResult<T> {
 
 	
 
-	public InsPrdsResult(String resultCode, String resultInfo, List<T> insPrds) {
+	public InsPrdsRespPojo(String resultCode, String resultInfo, List<T> insPrds) {
 		super();
 		this.resultCode = resultCode;
 		this.resultInfo = resultInfo;
@@ -20,7 +20,7 @@ public class InsPrdsResult<T> {
 
 
 
-	public InsPrdsResult() {
+	public InsPrdsRespPojo() {
 		super();
 	}
 

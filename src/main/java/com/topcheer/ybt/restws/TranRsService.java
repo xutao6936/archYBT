@@ -23,8 +23,8 @@ import com.google.common.collect.Lists;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
 import com.topcheer.ybt.data.InsPrdResult;
 import com.topcheer.ybt.data.MenuResult;
-import com.topcheer.ybt.restws.pojo.InsPrdPojo;
-import com.topcheer.ybt.restws.pojo.InsPrdsResult;
+import com.topcheer.ybt.restws.pojo.InsPrdReqPojo;
+import com.topcheer.ybt.restws.pojo.InsPrdsRespPojo;
 import com.topcheer.ybt.system.entity.TopMenuinfo;
 import com.topcheer.ybt.system.service.ITopMenuinfoService;
 
@@ -49,20 +49,20 @@ public class TranRsService {
 	@GET
 	@Path("/getInsPrdInfos/{bankCode}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdsResult<InsPrdPojo> searchPrds(@PathParam("bankCode") String bankCode) {
+	public InsPrdsRespPojo<InsPrdReqPojo> searchPrds(@PathParam("bankCode") String bankCode) {
 
 		if (Strings.isNullOrEmpty(bankCode)) {
 			String msg = "机构号为空";
 			throw buildException(Status.NOT_FOUND, msg);
 		}
 
-		List<InsPrdPojo> insPrds = Lists.newArrayList();
+		List<InsPrdReqPojo> insPrds = Lists.newArrayList();
 		for (int i = 0; i < 4; i++) {
-			InsPrdPojo re = new InsPrdPojo("100001", "心享恒安B款", "9%", "1000000.00", "1");
+			InsPrdReqPojo re = new InsPrdReqPojo("100001", "心享恒安B款", "9%", "1000000.00", "1");
 			insPrds.add(re);
 		}
 
-		InsPrdsResult<InsPrdPojo> result = new InsPrdsResult<InsPrdPojo>("000000", "返回成功", insPrds);
+		InsPrdsRespPojo<InsPrdReqPojo> result = new InsPrdsRespPojo<InsPrdReqPojo>("000000", "返回成功", insPrds);
 
 		return result;
 
@@ -97,7 +97,7 @@ public class TranRsService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<TopMenuinfo> testJson(InsPrdPojo insPrdPojo) {
+	public List<TopMenuinfo> testJson(InsPrdReqPojo insPrdPojo) {
 		System.out.println(insPrdPojo);
 		return menuService.searchAll();
 	}
@@ -105,7 +105,7 @@ public class TranRsService {
 	@Path("/testForm")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<TopMenuinfo> testForm(InsPrdPojo insPrdPojo) {
+	public List<TopMenuinfo> testForm(InsPrdReqPojo insPrdPojo) {
 		System.out.println(insPrdPojo);
 		return menuService.searchAll();
 	}
