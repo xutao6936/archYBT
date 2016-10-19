@@ -5,7 +5,7 @@ package com.topcheer.ybt.restws.pojo;
  * @author Administrator
  *
  */
-public class InsureInfoPojo {
+public class InsureInfoReqPojo {
 
 	private String serialNo; //银保通流水号
 	private String bankCode; //开户卡所属支行

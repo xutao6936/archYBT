@@ -5,7 +5,7 @@ package com.topcheer.ybt.restws.pojo;
  * @author Administrator
  *
  */
-public class BaseInfoInPojo {
+public class BaseInfoInReqPojo {
 
 	private String insCorpCode; //保险公司编号
 	private String bankCode; //开户卡所属支行
@@ -14,10 +14,10 @@ public class BaseInfoInPojo {
 	
 	
 	
-	public BaseInfoInPojo() {
+	public BaseInfoInReqPojo() {
 		super();
 	}
-	public BaseInfoInPojo(String insCorpCode, String bankCode,
+	public BaseInfoInReqPojo(String insCorpCode, String bankCode,
 			String insPrdCode, String channelType) {
 		super();
 		this.insCorpCode = insCorpCode;

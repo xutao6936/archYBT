@@ -21,8 +21,8 @@ import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.data.InsPrdResult;
 import com.topcheer.ybt.data.MenuResult;
-import com.topcheer.ybt.restws.pojo.InsPrdPojo;
-import com.topcheer.ybt.restws.pojo.InsPrdsResult;
+import com.topcheer.ybt.restws.pojo.InsPrdReqPojo;
+import com.topcheer.ybt.restws.pojo.InsPrdsRespPojo;
 import com.topcheer.ybt.system.service.ITopMenuinfoService;
 
 /**
@@ -57,7 +57,7 @@ public class PrdInfoRsService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdResult test(InsPrdPojo pojo){
+	public InsPrdResult test(InsPrdReqPojo pojo){
 		System.out.println(pojo);
 		return new InsPrdResult("","100001", "28", "1", "60", "2", "每天不到3毛钱，即可享受最高100万的保障", "保险责任详细信息请参考以下相关文档");
 		

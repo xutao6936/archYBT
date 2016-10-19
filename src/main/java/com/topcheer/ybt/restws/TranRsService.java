@@ -20,9 +20,8 @@ import com.google.common.collect.Lists;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
 import com.topcheer.ybt.data.InsPrdResult;
 import com.topcheer.ybt.data.MenuResult;
-import com.topcheer.ybt.restws.pojo.InsPrdPojo;
-import com.topcheer.ybt.restws.pojo.InsPrdsResult;
-import com.topcheer.ybt.restws.pojo.PolicyInquiryPojo;
+import com.topcheer.ybt.restws.pojo.InsPrdReqPojo;
+import com.topcheer.ybt.restws.pojo.InsPrdsRespPojo;
 import com.topcheer.ybt.system.entity.TopMenuinfo;
 import com.topcheer.ybt.system.service.ITopMenuinfoService;
 
@@ -43,33 +42,6 @@ public class TranRsService {
 	@Resource(name = "topInsPrdInfoBizImpl")
 	ITopInsPrdInfoBiz insPrdBiz;
 
-
-	@GET
-	@Path("/getInsPrdInfos/{bankCode}")
-	@Produces(MediaType.APPLICATION_JSON)
-
-	
-	public InsPrdsResult<InsPrdPojo> searchPrds(@PathParam("bankCode") String bankCode) {
-
-		if (Strings.isNullOrEmpty(bankCode)) {
-			String msg = "机构号为空";
-			throw buildException(Status.NOT_FOUND, msg);
-		}
-
-		List<InsPrdPojo> insPrds = Lists.newArrayList();
-		for (int i = 0; i < 4; i++) {
-			InsPrdPojo re = new InsPrdPojo("100001", "心享恒安B款", "9%", "1000000.00", "1");
-			insPrds.add(re);
-		}
-//		InsPrdsResult result = new InsPrdsResult();
-//		result.setInsPrds(insPrds);
-
-
-		InsPrdsResult<InsPrdPojo> result = new InsPrdsResult<InsPrdPojo>("000000", "返回成功", insPrds);
-
-		return result;
-
-	}
 
 
 	@Path("findInsPrdInfoByCode")
@@ -100,7 +72,7 @@ public class TranRsService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<TopMenuinfo> testJson(InsPrdPojo insPrdPojo) {
+	public List<TopMenuinfo> testJson(InsPrdReqPojo insPrdPojo) {
 		System.out.println(insPrdPojo);
 		return menuService.searchAll();
 	}
@@ -108,36 +80,13 @@ public class TranRsService {
 	@Path("/testForm")
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<TopMenuinfo> testForm(InsPrdPojo insPrdPojo) {
+	public List<TopMenuinfo> testForm(InsPrdReqPojo insPrdPojo) {
 		System.out.println(insPrdPojo);
 		return menuService.searchAll();
 	}
 
 	
-	@GET
-	@Path("/getPolicyInquiry/{userId}")
-	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdsResult PolicyInquiry(@PathParam("userId") String bankCode) {
-		
-		List<PolicyInquiryPojo> policyInquirylist = new ArrayList<PolicyInquiryPojo>();
-		
-		PolicyInquiryPojo data1 = new PolicyInquiryPojo("5300", "安邦人寿", "1", "201610131605", "11124212", "10000.0", "20161013", "安邦分红险一号");
-		PolicyInquiryPojo data2 = new PolicyInquiryPojo("5400", "新华人寿", "1", "201610131606", "11124213", "10000.0", "20161013", "新华分红险一号");
-		PolicyInquiryPojo data3 = new PolicyInquiryPojo("5500", "国华人寿", "1", "201610131607", "11124214", "10000.0", "20161013", "国华分红险一号");
-		policyInquirylist.add(data1);
-		policyInquirylist.add(data2);
-		policyInquirylist.add(data3);
-		
-		List<TopMenuinfo> list = menuService.searchAll();
-		InsPrdsResult insPrdsResult = new InsPrdsResult();
-		insPrdsResult.setResultCode("000000");
-		insPrdsResult.setResultInfo("success");
-		//insPrdsResult.setList(policyInquirylist);
-//		insPrdsResult.setList(list);
-		return insPrdsResult;
 
-	}
-	
 	private WebApplicationException buildException(Status status, String message) {
 		return new WebApplicationException(Response.status(status).entity(message).type(MediaType.APPLICATION_JSON)
 				.build());
