@@ -37,7 +37,7 @@ public class PrdInfoRsService {
 
 	@Resource(name = "topInsPrdInfoBizImpl")
 	ITopInsPrdInfoBiz insPrdBiz;
-
+	@GET
 	@Path("/findInsPrdInfoByCode/{insPrdCode}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public InsPrdResult findSpecialPrd(@PathParam("insPrdCode") String insPrdCode) {
@@ -53,15 +53,4 @@ public class PrdInfoRsService {
 				.build());
 	}
 	
-	@Path("test123")
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdResult test(InsPrdReqPojo pojo){
-		System.out.println(pojo);
-		return new InsPrdResult("","100001", "28", "1", "60", "2", "每天不到3毛钱，即可享受最高100万的保障", "保险责任详细信息请参考以下相关文档");
-		
-	}
-	
-
 }

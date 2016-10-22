@@ -1,33 +1,23 @@
 package com.topcheer.ybt.restws;
 
-import java.util.List;
 
 import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
-
-import com.google.common.base.Strings;
-import com.google.common.collect.Lists;
-import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
-import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
-import com.topcheer.ybt.data.InsPrdResult;
+import com.topcheer.ybt.basedata.biz.ITopTradeInfoBiz;
+import com.topcheer.ybt.basedata.entity.TopBuyInfo;
 import com.topcheer.ybt.restws.pojo.BaseInfoInReqPojo;
 import com.topcheer.ybt.restws.pojo.BaseInfoInRespPojo;
-import com.topcheer.ybt.restws.pojo.InsPrdReqPojo;
-import com.topcheer.ybt.restws.pojo.InsPrdsRespPojo;
-import com.topcheer.ybt.system.entity.TopMenuinfo;
+import com.topcheer.ybt.util.OracleSequenceUtil;
 
 /**
- * @ClassName: ProdRsService
+ * @ClassName: BaseInfoInRsService
  * @Description: TODO(基本信息录入)
  * @author xuxl
  * @date 
@@ -36,21 +26,43 @@ import com.topcheer.ybt.system.entity.TopMenuinfo;
 @Path("/baseInfoInRsService")
 public class BaseInfoInRsService {
 
+	@Resource(name = "oracleSequenceUtil")
+	OracleSequenceUtil oracleSequenceUtil;
 	
-//	@Resource(name = "topInsPrdInfoBizImpl")
-//	ITopInsPrdInfoBiz insPrdBiz;
+	@Resource(name = "topTradeInfoBizImpl")
+	ITopTradeInfoBiz iTopTradeInfoBiz;
 	@Path("/baseInfoIn")
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public BaseInfoInRespPojo BaseInfoIn(BaseInfoInReqPojo baseInfoInPojo) {
 
-//		System.out.println(baseInfoInPojo);
-		//BaseInfoInResult baseInfoInResult = new BaseInfoInResult(); 
-		/*baseInfoInResult.setSerialNo("20161018000000000001");
-		baseInfoInResult.setResultCode("000000");
-		baseInfoInResult.setResultInfo("返回成功");*/
-		return new BaseInfoInRespPojo("20161018000000000001","000000","返回成功");
+		String serialno = "";
+		String resultInfo = "";
+		String resultCode = "";
+		try{
+		//1封装数据
+		TopBuyInfo topBuyInfo = new TopBuyInfo();
+	    serialno = oracleSequenceUtil.getPhInfoSerialNo();
+		topBuyInfo.setSerialno(serialno);
+		topBuyInfo.setInscorpcode(baseInfoInPojo.getInsCorpCode());
+		topBuyInfo.setAreaid(baseInfoInPojo.getBankCode());
+		topBuyInfo.setChannelflag(baseInfoInPojo.getChannelType());
+		//2将数据插入数据库
+		iTopTradeInfoBiz.insertBaseInfo(topBuyInfo);
+		
+		resultInfo = "返回成功";
+		resultCode = "000000";
+		}catch(Exception e){
+			resultInfo = "处理失败";
+			resultCode = "111111";
+		}
+		//3响应结果
+		BaseInfoInRespPojo baseInfoInResult = new BaseInfoInRespPojo(); 
+		baseInfoInResult.setSerialNo(serialno);
+		baseInfoInResult.setResultCode(resultCode);
+		baseInfoInResult.setResultInfo(resultInfo);
+		return baseInfoInResult;
 	}
 	
 	private WebApplicationException buildException(Status status, String message) {

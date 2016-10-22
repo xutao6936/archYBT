@@ -1,6 +1,8 @@
 package com.topcheer.ybt.restws;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.ws.rs.Consumes;
@@ -41,10 +43,9 @@ public class PrdRsService {
 	@Path("/getInsPrdInfos/{bankCode}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public InsPrdsRespPojo searchPrds(@PathParam("bankCode") String bankCode) {
-		if (Strings.isNullOrEmpty(bankCode)) {
-			String msg = "机构号为空";
-			throw buildException(Status.NOT_FOUND, msg);
-		}
+		
+		Map resultmap = checkData(bankCode);
+		
 		List<TopInsprdInfo>  insPrds = insPrdBiz.getTopInsPrdInfoListByInsPrdCode(bankCode);
 		List<InsPrdReqPojo> insPrdsresults = Lists.newArrayList();
 		TopInsprdInfo topInsprdInfo = null;
@@ -53,22 +54,24 @@ public class PrdRsService {
 			InsPrdReqPojo re = new InsPrdReqPojo(topInsprdInfo.getInsPrdCode(), topInsprdInfo.getInsPrdCnName(), topInsprdInfo.getYieldRate(), topInsprdInfo.getStartAMT(),topInsprdInfo.getHotType());
 			insPrdsresults.add(re);
 		}
-		InsPrdsRespPojo result = new InsPrdsRespPojo("000000", "返回成功", insPrdsresults);
+		InsPrdsRespPojo result = new InsPrdsRespPojo((String)resultmap.get("resultCode"), (String)resultmap.get("resultMsg"), insPrdsresults);
 		return result;
 
 	}
 	
 	
-	@Path("test123")
-	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdResult test(@FormParam("pojo") InsPrdReqPojo pojo){
-		System.out.println(pojo);
-		return new InsPrdResult("","100001", "28", "1", "60", "2", "每天不到3毛钱，即可享受最高100万的保障", "保险责任详细信息请参考以下相关文档");
-		
+	private Map checkData(String bankCode) {
+		Map map = new HashMap();
+		String resultMsg = "";
+		String resultCode = "";
+		if (Strings.isNullOrEmpty(bankCode)) {
+				resultMsg = "机构号为空";
+				resultCode = "000001";
+				map.put("resultMsg", resultMsg);
+				map.put("resultCode", resultCode);
+		}
+		return map;
 	}
-	
 
 	private WebApplicationException buildException(Status status, String message) {
 		return new WebApplicationException(Response.status(status).entity(message).type(MediaType.APPLICATION_JSON)
