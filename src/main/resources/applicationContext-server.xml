@@ -23,6 +23,8 @@
 	<bean id="baseInfoInRsService" class="com.topcheer.ybt.restws.BaseInfoInRsService" />
 	<bean id="insureInforInRsService" class="com.topcheer.ybt.restws.InsureInforInRsService" />
 	<bean id="corePayValRsService" class="com.topcheer.ybt.restws.CorePayValRsService" />
+	<bean id="cancleBusinessRsService" class="com.topcheer.ybt.restws.CancleBusinessRsService" />
+	<bean id="transQueryRsService" class="com.topcheer.ybt.restws.TransQueryRsService" />
 	<!-- 这里的地址很重要，客户端需要通过这个地址来访问WebService -->
 	<jaxrs:server id="restServiceContainer">
 		<jaxrs:serviceBeans>
@@ -34,6 +36,8 @@
 			<ref bean="baseInfoInRsService" />
 			<ref bean="insureInforInRsService" />
 			<ref bean="corePayValRsService" /><!-- 核心扣款 -->
+			<ref bean="cancleBusinessRsService" />
+			<ref bean="transQueryRsService" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<bean class="com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider" />
