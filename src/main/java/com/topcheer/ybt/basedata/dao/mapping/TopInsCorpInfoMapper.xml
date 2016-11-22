@@ -155,5 +155,57 @@
 	<delete id="deleteTopInsCorpInfo" parameterType="String">
 		delete from top_inscorpinfo where  ID = #{id,jdbcType=VARCHAR}
 	</delete>
+	
+	<select id="getInsCorpByInsCorpCode" resultMap="ForTopInsCorpInfo" parameterType="String">
+		select * from top_inscorpinfo where INSCORP_CODE =  #{corpCode,jdbcType=VARCHAR}
+	</select>
+	
+	<select id="getInsCorpList" resultMap="ForTopInsCorpInfo" >
+		select * from top_inscorpinfo where INSCORP_CODE not in
+		 <foreach item="item" index="index" collection="list" open="(" separator="," close=")">  
+		 	 #{item}  
+		 </foreach>  
+	</select>
+	
+	
+	<select id="getTopInsCorpInfoListByParams" resultMap="ForTopInsCorpInfo" parameterType="java.util.Map">
+    	select * from top_inscorpinfo 
+ 		<where> 
+	    	<if test="insCorpCode !=null and insCorpCode != '' ">
+			    INSCORP_CODE like '%'||'${insCorpCode}'||'%'
+			</if>
+	    	<if test="insCorpName !=null and insCorpName != '' ">
+				and  INSCORP_NAME  like '%'||'${insCorpName}'||'%'
+			</if>
+			<if test="insCorpLevel !=null and insCorpLevel != '' ">
+				and  INSCORP_LEVEL = #{insCorpLevel,jdbcType=VARCHAR}
+			</if>
+			<if test="upCorpCode !=null and upCorpCode != '' ">
+				and  UPCORP_CODE ike '%'||'${upCorpCode}'||'%'
+			</if>
+			<if test="status !=null and status != '' ">
+				and  STATUS = #{status,jdbcType=VARCHAR}
+			</if>
+			<if test="commonCountFlag !=null and commonCountFlag != '' ">
+				and  COMMON_COUNTER_FLAG = #{commonCountFlag,jdbcType=VARCHAR}
+			</if>
+			<if test="commonNetFlag !=null and commonNetFlag != '' ">
+				and  COMMON_NET_FLAG = #{commonNetFlag,jdbcType=VARCHAR}
+			</if>
+			<if test="commonCheckFlag !=null and commonCheckFlag != '' ">
+				and  COMMON_CHECK_FLAG = #{commonCheckFlag,jdbcType=VARCHAR}
+			</if>
+			<if test="commonNossdcheckFlag !=null and commonNossdcheckFlag != '' ">
+				and  COMMON_NOSSDCHECK_FLAG = #{commonNossdcheckFlag,jdbcType=VARCHAR}
+			</if>
+			<if test="commonSystbFlag !=null and commonSystbFlag != '' ">
+				and  COMMON_SYSTB_FLAG = #{commonSystbFlag,jdbcType=VARCHAR}
+			</if>
+			<if test="channelFlag !=null and channelFlag != '' ">
+				and  CHANNEL_FLAG = #{channelFlag,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by UPDATE_DATE desc
+  	</select> 
 </mapper>
 

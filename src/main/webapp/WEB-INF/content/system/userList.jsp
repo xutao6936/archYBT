@@ -27,18 +27,24 @@
 
 
 			<div class="page-content">
-
-				<div class="rows" id='mysearch'>
-					<label>用户名：</label> 
-					<input type="text" class="search-query input-medium" placeholder="Search"
-						id="loginAccount" name="loginAccount" value="" />&nbsp;&nbsp;&nbsp;
-					<label>真实姓名：</label> 
-					<input type="text" class="search-query input-medium" placeholder="Search"
-						id="searchuserName" name="userName" value="" />
-					<button id="searchFilter" class="btn btn-primary btn-xs">查询</button>
+				<table>
+					<tr>
+						<td>用户名：</td>
+						<td>
+							<input type="text" name="loginAccount" id="loginAccount"  class="col-xs-12 col-sm-10 form-control" placeholder="请输入用户名"/>   
+						</td>
+						<td>真实姓名：</td>
+						<td>
+							<input type="text" name="searchuserName" id="searchuserName"  class="col-xs-12 col-sm-10 form-control" placeholder="请输入真实姓名"/>
+						</td>
+						<td>
+							<button type="button" class="btn btn-primary pull-right" id="searchFilter">查询</button>
+						</td>
+					</tr>
+					
+				</table>
 				</div>
 				<!-- /.page-header -->
-				<div style="margin:2px 10px;"></div>
 				<table style="height: 100%;" id="grid-table"></table>
 
 				<div id="grid-pager"></div>
@@ -49,7 +55,6 @@
 			<!-- /.row -->
 		</div>
 		<!-- /.page-content -->
-	</div>
 	<!-- /.main-content -->
 
 

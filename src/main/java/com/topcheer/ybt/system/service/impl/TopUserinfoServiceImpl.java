@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.topcheer.ybt.annotation.SystemServiceLog;
 import com.topcheer.ybt.system.dao.TopUserRoleMapper;
 import com.topcheer.ybt.system.dao.TopUserinfoMapper;
 import com.topcheer.ybt.system.entity.TopUserinfo;
@@ -31,6 +32,7 @@ public class TopUserinfoServiceImpl implements ITopUserinfoService {
 	private TopUserRoleMapper topUserRoleMapper;
 
 	@Transactional
+	@SystemServiceLog(description = "删除用户")
 	public void delete(String id) {
 		try {
 			topUserRoleMapper.deleteByUserId(id);
@@ -69,6 +71,7 @@ public class TopUserinfoServiceImpl implements ITopUserinfoService {
 		return topUserinfoMapper.searchTopUserinfo(userInfo);
 	}
 
+	@SystemServiceLog(description = "查询用户列表信息")
 	public PageInfo<TopUserinfo> searchTopUserinfo(Map<String,Object> searchMap) {
 		TopUserinfo userInfo = (TopUserinfo) searchMap.get("userInfo");
 		int pageSize = Integer.parseInt(searchMap.get("pageSize").toString());

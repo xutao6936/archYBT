@@ -36,7 +36,7 @@
        });  
        $('#tree1').ace_tree({
 			dataSource:  showData ,
-			multiSelect:true,
+			multiSelect: false,//是否多选
 			loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
 			'open-icon' : 'icon-minus',
 			'close-icon' : 'icon-plus',
@@ -52,6 +52,7 @@
 			 $('#tree2').ace_tree({
 				 	dataSource:  showData2 ,
 					multiSelect:true,
+					folderSelect: true,
 					loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
 					'open-icon' : 'icon-minus',
 					'close-icon' : 'icon-plus',
@@ -102,17 +103,33 @@
 			 ////////获取tree中选中的数据的id和name
 
 			 function getDatas(){
-			 var output ="";
 			 var ids = "";
 			     var items = $('#tree1' ).tree('selectedItems' );  
 			     for (var i in items) if (items.hasOwnProperty(i)) {  
 			         var item = items[i];  
-			        ids += item.additionalParameters['id' ] + ",";
-			        output += item.text + ",";
+			        ids += item.additionalParameters['id' ];
 			     }
 			     
-			     ids = ids.substring(0, ids.lastIndexOf(","));
-			     output = output.substring(0, output.lastIndexOf(","));
-			 alert(ids+"___"+output);
 			 }
+			 
+			 function getDatas2(){
+//				 var output ="";
+				 var ids = "";
+				     var items = $('#tree2' ).tree('selectedItems' );  
+				     for (var i in items) if (items.hasOwnProperty(i)) {  
+				         var item = items[i];  
+				        ids += item.additionalParameters['id' ] + ",";
+//				        output += item.name + ",";
+				     }
+				     
+//				     ids = ids.substring(0, ids.lastIndexOf(","));
+//				     output = output.substring(0, output.lastIndexOf(","));
+				    
+				     if((ids.split(",")).length > 4){
+				    	 layer.alert('保险公司只能选择3家！',{
+					            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+					            ,closeBtn: 0,icon:2
+					        }); 
+				     }
+				 }
 		

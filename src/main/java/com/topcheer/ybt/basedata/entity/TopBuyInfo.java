@@ -3,43 +3,49 @@ package com.topcheer.ybt.basedata.entity;
 
 public class TopBuyInfo {
 	
-	private String channelflag ;
-	private String serialno ;
-	private String channelno ;
-	private String inscorpcode ;
-	private String templateid ;
-	private String areaid ;
-	private String prepolicyid ;
-	private String policyid ;
-	private String oldpolicyid ;
-	private String contractid ;
-	private String orgnserialno ;
-	private String firstpremium ;
-	private String firstpremiumcn ;
-	private String effdate ;
-	private String revdate ;
-	private String innercommission ;
-	private String outercommission ;
-	private String lcoperatorcode ;
-	private String lcoperatorid ;
-	private String lcoperatorname ;
-	private String tzoperatorcode ;
-	private String tzoperatorid ;
-	private String tzoperatorname ;
-	private String inscorpstatus ;
-	private String corestatus ;
-	private String recordstatus ;
-	private String serialtype ;
-	private String deliver ;
-	private String operatorbankcode ;
-	private String operatorcode ;
-	private String updatedate ;
-	private String updatetime ;
-	private String remark1 ;
-	private String remark2 ;
-	private String remark3 ;
-	private String remark4 ;
-	private String remark5 ;
+	private String serialno ;        //交易流水号
+	private String channelflag ;     //渠道标志(01: 柜面   02: 网银   03: 手机  04: 直销  05:自助)
+	private String channelno ;       //渠道流水号
+	private String inscorpcode ;     //保险公司代码
+	private String templateid ;      //产品库ID
+	private String areaid ;          //地区代码
+	private String prepolicyid ;     //投保单号
+	private String policyid ;        //保单印刷号
+	private String oldpolicyid ;     //旧保单印刷号
+	private String contractid ;      //保单合同号码
+	private String orgnserialno ;    //原交易流水号
+	private String firstpremium ;    //首期保费
+	private String firstpremiumcn ;  //首期保费大写
+	private String effdate ;         //保单生效日期
+	private String revdate ;         //保单到期日期
+	private String innercommission ; //内扣手续费
+	private String outercommission ; //外扣手续费
+	private String lcoperatorcode ;  //销售人员网点号
+	private String lcoperatorid ;    //销售人员ID
+	private String lcoperatorname ;  //销售人员姓名
+	private String tzoperatorcode ;  //拓展人员网点号
+	private String tzoperatorid ;    //拓展人员ID
+	private String tzoperatorname ;  //拓展人员姓名
+	private String inscorpstatus ;   //保险公司状态(1: 待核保   2: 核保成功   3: 核保失败   4: 冲正成功   5: 冲正失败)
+	private String corestatus ;      //核心状态(1: 未扣款   2: 扣款成功   3: 扣款失败   4: 冲正成功   5: 冲正失败   6: 撤单未还款)
+	private String recordstatus ;    //保单打印状态(1: 已打印   2: 未打印)
+	private String serialtype ;      //保单状态(1: 正常   2: 失效   3: 终止)
+	private String deliver ;         //保单传递方式(1: 银行柜台   2: 邮件发送   3: 上门递送   4: 邮寄)
+	private String operatorbankcode ;//操作机构
+	private String operatorcode ;    //操作人员
+	private String updatedate ;      //操作日期
+	private String updatetime ;      //操作时间
+	private String remark1 ;         //备注字段一
+	private String remark2 ;         //备注字段二
+	private String remark3 ;         //备注字段三
+	private String remark4 ;         //备注字段四
+	private String remark5 ;         //备注字段五
+	private String remark6 ;         //备注字段六
+	private String remark7 ;         //备注字段七
+	private String remark8 ;         //备注字段八
+	private String remark9 ;         //备注字段九
+	private String remark10 ;        //备注字段十
+
 	public String getChannelflag() {
 		return channelflag;
 	}
@@ -261,6 +267,36 @@ public class TopBuyInfo {
 	}
 	public void setRemark5(String remark5) {
 		this.remark5 = remark5;
+	}
+	public String getRemark6() {
+		return remark6;
+	}
+	public void setRemark6(String remark6) {
+		this.remark6 = remark6;
+	}
+	public String getRemark7() {
+		return remark7;
+	}
+	public void setRemark7(String remark7) {
+		this.remark7 = remark7;
+	}
+	public String getRemark8() {
+		return remark8;
+	}
+	public void setRemark8(String remark8) {
+		this.remark8 = remark8;
+	}
+	public String getRemark9() {
+		return remark9;
+	}
+	public void setRemark9(String remark9) {
+		this.remark9 = remark9;
+	}
+	public String getRemark10() {
+		return remark10;
+	}
+	public void setRemark10(String remark10) {
+		this.remark10 = remark10;
 	}
 	
 	

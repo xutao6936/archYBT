@@ -44,22 +44,22 @@ public class TranRsService {
 
 
 
-	@Path("findInsPrdInfoByCode")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public InsPrdResult findSpecialPrd(
-			@QueryParam(value = "insPrdCode") String insPrdCode,
-			@QueryParam("insPrdName") String insPrdName,
-			@QueryParam("yieldRate") String yieldRate
-			) {
-		/*
-		 * if (Strings.isNullOrEmpty(topMenuinfo)) {
-		 * String msg = "产品编号为空";
-		 * throw buildException(Status.NOT_FOUND, msg);
-		 * }
-		 */
-		return new InsPrdResult("","100001", "28", "1", "60", "2", "每天不到3毛钱，即可享受最高100万的保障", "保险责任详细信息请参考以下相关文档");
-	}
+//	@Path("findInsPrdInfoByCode")
+//	@Consumes(MediaType.APPLICATION_JSON)
+//	@Produces(MediaType.APPLICATION_JSON)
+//	public InsPrdResult findSpecialPrd(
+//			@QueryParam(value = "insPrdCode") String insPrdCode,
+//			@QueryParam("insPrdName") String insPrdName,
+//			@QueryParam("yieldRate") String yieldRate
+//			) {
+//		/*
+//		 * if (Strings.isNullOrEmpty(topMenuinfo)) {
+//		 * String msg = "产品编号为空";
+//		 * throw buildException(Status.NOT_FOUND, msg);
+//		 * }
+//		 */
+//		return new InsPrdResult("","100001", "28", "1", "60", "2", "每天不到3毛钱，即可享受最高100万的保障", "保险责任详细信息请参考以下相关文档");
+//	}
 
 
 	@Path("/getMenu/{loginAccount}")

@@ -30,7 +30,8 @@
 			</script>
 
 					<div class="page-content">
-						<div class="row">
+						<form class="form-horizontal" role="form" name='form' method="post" action="">
+								<div class="row">
 									<div class="col-sm-6">
 										<div class="widget-box">
 											<div class="widget-header header-color-blue2">
@@ -52,13 +53,19 @@
 											</div>
 
 											<div class="widget-body">
-												<div class="widget-main padding-8">
+												<div id="test" class="widget-main padding-8">
 													<div id="tree2" class="tree"></div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
+								<div>
+									<button id="fat-btn" class="btn btn-primary" data-loading-text="努力绑定中..."
+									    type="button"> 确认绑定
+									</button>
+								</div>
+						</form>
 				</div><!-- /#ace-settings-container -->
 
 		</div><!-- /.main-container -->
@@ -107,7 +114,135 @@
 		<!-- inline scripts related to this page -->
 
 		<script type="text/javascript">
+	    $(function() { 
+	    	
+	    	//使保险公司树默认打开
+	    	$("#tree2").find(".tree-folder-header").each(function(){  
+	    	    if($(this).parent().css("display")=="block"){   
+	    	        $(this).trigger("click");  
+	    	    }  
+	    	});
+	    	
+	    	
+	        $(".btn").click(function(){
+	            $(this).button('loading').delay(1000).queue(function() {
+	            	getDatas();
+	             $(this).button('reset');
+	            });        
+	        });
+	        
+	        $('#tree2').on('selected', function(evt, data) {  
+	            getDatas2();  
+	        }); 
+	        
+	        
+	        $('#tree1').on('selected', function(evt, data) { 
+	        	var bankCode = "";
+	        	var items = $('#tree1' ).tree('selectedItems' );  
+			     for (var i in items) if (items.hasOwnProperty(i)) {  
+			         var item = items[i];  
+			         bankCode += item.additionalParameters['id' ];
+			     }
+			     $("#tree2").remove();
+			     $("#test").append(" <div id='tree2' class='tree'></div>");
+			     var showData = new DataSourceTree({  
+			          data: bindInsCorp(bankCode)  
+			       });  
+			       $('#tree2').ace_tree({
+						dataSource:  showData ,
+						multiSelect: true,//是否多选
+						loadingHTML:'<div class="tree-loading"><i class="icon-refresh icon-spin blue"></i></div>',
+						'open-icon' : 'icon-minus',
+						'close-icon' : 'icon-plus',
+						'selectable' : true,
+						'selected-icon' : 'icon-ok',
+						'unselected-icon' : 'icon-remove'
+					});
+			     //使保险公司树默认打开
+			       $("#tree2").find(".tree-folder-header").each(function(){  
+			    	    if($(this).parent().css("display")=="block"){   
+			    	        $(this).trigger("click");  
+			    	    }  
+			    	});
+			       $('#tree2').on('selected', function(evt, data) {  
+			            getDatas2();  
+			        }); 
+	        }); 
+	        
+	        
+	      function bindInsCorp(bankCode){
+	    	  
+	    	  var resultData = {};  
+              $.ajax({    
+                 type: 'POST',  
+				   url: ctx+"/topBankAndCrop/getCorpInfo.do?bankCode="+bankCode,   
+                 async : false,  
+                 dataType: 'json' ,    
+                 success : function (data) {  
+                      resultData = data;  
+                   },    
+                 error: function (response) {    
+                      //console.log(response);    
+                 }    
+            });    
+	          console.log(resultData) ; 
+	          return resultData;  
+	      }	  
 
+	    $("#fat-btn").unbind('click').click(function(){
+	    	var bankCode = "";
+        	var items = $('#tree1' ).tree('selectedItems' );  
+		     for (var i in items) if (items.hasOwnProperty(i)) {  
+		         var item = items[i];  
+		         bankCode += item.additionalParameters['id' ];
+		     }
+			var corpCodes="";
+			var items = $('#tree2' ).tree('selectedItems' );  
+		     for (var i in items) if (items.hasOwnProperty(i)) {  
+		         var item = items[i];  
+		         corpCodes += item.additionalParameters['id' ]+ ",";
+		     }
+		     if(bankCode.length ==0){
+		    	 layer.alert('请选择机构',{
+			            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+			            ,closeBtn: 0,icon:2
+			        });
+		    	 return;
+		     }
+		     if((corpCodes.split(",")).length > 4){
+		    	 layer.alert('保险公司只能选择3家！',{
+			            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+			            ,closeBtn: 0,icon:2
+			        }); 
+		    	 return;
+		     }
+		     $.ajax({  
+		         async: false,  
+		         cache: true,  
+		         type: 'POST',  
+		         url: ctx+"/topBankAndCrop/insert.do",  
+		         data: "bankCode="+bankCode+"&corpCodes="+corpCodes,  
+		         error: function () {// 请求失败处理函数  
+		             //$.scojs_message("更新失败,请重新登陆!", $ERROR);  
+		         },  
+		         success: function (req) {
+		        	 var req = eval('('+req+')');
+		        	 if('SUCC'==req.result){
+						  layer.alert('机构绑定保险公司成功',{
+					            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+					            ,closeBtn: 0,icon:1
+					        }); 
+						
+					  }else{
+						  layer.alert('机构绑定保险公司失败',{
+					            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+					            ,closeBtn: 0,icon:2
+					        }); 
+					  }    
+		          }  
+		  	 });   
+		});	
+	    });  
 		</script>
 	 
 </body>

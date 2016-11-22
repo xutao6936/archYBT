@@ -9,11 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.google.common.collect.Maps;
 import com.topcheer.ybt.basedata.dao.TopInsprdInfoMapper;
+import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.basedata.service.ITopInsprdInfoService;
-import com.topcheer.ybt.system.entity.TopUserinfo;
 
 
 @Service("topInsprdInfoService")
@@ -66,6 +65,17 @@ public class TopInsprdInfoServiceImpl implements ITopInsprdInfoService {
 	public List<TopInsprdInfo> getInsPrdInfoByInsPrdCode(String insPrdCode) {
 		List<TopInsprdInfo>  topInsprdInfoList = topInsprdInfoMapper.getInsPrdInfoByInsPrdCode(insPrdCode);
 		return topInsprdInfoList;
+	}
+
+	@Override
+	public PageInfo<TopInsprdInfo> getTopInsPrdInfoListByParams(
+			Map<String, String> map) {
+		int pageSize = Integer.parseInt(map.get("pageSize").toString());
+		int pageNo = Integer.parseInt(map.get("pageNo").toString());
+		PageHelper.startPage(pageNo, pageSize, true, true, true);
+		List<TopInsprdInfo> list  = topInsprdInfoMapper.getTopInsPrdInfoListByParams(map);
+		PageInfo<TopInsprdInfo> pageinfo = new PageInfo<TopInsprdInfo>(list);
+		return pageinfo;
 	}
 	
 

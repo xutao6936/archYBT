@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.dao.TopPayperiodMapper;
@@ -62,6 +63,11 @@ public class TopPayperiodServiceImpl implements ITopPayperiodService{
 
 	public void setTopPayperiodMapper(TopPayperiodMapper TopPayperiodMapper) {
 		this.topPayperiodMapper = TopPayperiodMapper;
+	}
+
+	@Override
+	public List<TopPayperiod> getTopPayperiodListByInsPrdCode(String InsprdCode) {
+		return  topPayperiodMapper.getTopPayperiodListByInsPrdCode(InsprdCode);
 	}
 	
 	

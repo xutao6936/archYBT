@@ -8,6 +8,12 @@
        		<result property="key"    column="KEY" jdbcType="VARCHAR" />
        		<result property="unit"    column="UNIT" jdbcType="VARCHAR" />
 	</resultMap>
+	
+	<resultMap id="ResultMap" type="com.topcheer.ybt.basedata.entity.TopPayperiod" >
+       		<result property="key"    column="KEY" jdbcType="VARCHAR" />
+       		<result property="unit"    column="UNIT" jdbcType="VARCHAR" />
+	</resultMap>
+	
     <sql id="TopPayperiodColumnList" >
     		ID,
     		INSPRD_CODE,
@@ -64,5 +70,8 @@
   	
   	<select id="getTopPayperiod" resultMap="TopPayperiodResultMap" parameterType="String">
   		select * from TOP_PAYPERIOD  where ID = #{id,jdbcType=VARCHAR}
+  	</select>
+  	<select id="getTopPayperiodListByInsPrdCode" resultMap="ResultMap" parameterType="String">
+  		select KEY,UNIT from TOP_PAYPERIOD  where INSPRD_CODE = #{insprdCode,jdbcType=VARCHAR}
   	</select>
 </mapper>

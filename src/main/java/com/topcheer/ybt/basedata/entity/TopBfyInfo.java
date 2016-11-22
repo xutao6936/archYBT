@@ -3,6 +3,7 @@ package com.topcheer.ybt.basedata.entity;
 
 public class TopBfyInfo {
 	
+	private    String   bfyserialno ;
 	private    String   serialno ;//交易流水号(新保承保交易流水号)
 	private    String   brrelation ;
 	private    String   bfyname ;
@@ -25,6 +26,19 @@ public class TopBfyInfo {
 	private    String   remark3 ;
 	private    String   remark4 ;
 	private    String   remark5 ;
+	private    String   remark6 ;
+	private    String   remark7 ;
+	private    String   remark8 ;
+	private    String   remark9 ;
+	private    String   remark10 ;
+	
+	
+	public String getBfyserialno() {
+		return bfyserialno;
+	}
+	public void setBfyserialno(String bfyserialno) {
+		this.bfyserialno = bfyserialno;
+	}
 	public String getSerialno() {
 		return serialno;
 	}
@@ -156,6 +170,36 @@ public class TopBfyInfo {
 	}
 	public void setRemark5(String remark5) {
 		this.remark5 = remark5;
+	}
+	public String getRemark6() {
+		return remark6;
+	}
+	public void setRemark6(String remark6) {
+		this.remark6 = remark6;
+	}
+	public String getRemark7() {
+		return remark7;
+	}
+	public void setRemark7(String remark7) {
+		this.remark7 = remark7;
+	}
+	public String getRemark8() {
+		return remark8;
+	}
+	public void setRemark8(String remark8) {
+		this.remark8 = remark8;
+	}
+	public String getRemark9() {
+		return remark9;
+	}
+	public void setRemark9(String remark9) {
+		this.remark9 = remark9;
+	}
+	public String getRemark10() {
+		return remark10;
+	}
+	public void setRemark10(String remark10) {
+		this.remark10 = remark10;
 	}
 	
   

@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.basedata.dao.TopTradeInfoMapper">
+<resultMap id="forTopTradeInfo" type="com.topcheer.ybt.basedata.entity.TopBuyInfo">
+		<result property="serialno" column="SERIALNO" jdbcType="VARCHAR" />
+		<result property="channelflag" column="CHANNELFLAG" jdbcType="VARCHAR" />
+		<result property="channelno" column="CHANNELNO" jdbcType="VARCHAR" />
+		<result property="inscorpcode" column="INSCORPCODE" jdbcType="VARCHAR" />
+		<result property="templateid" column="TEMPLATEID" jdbcType="VARCHAR" />
+		<result property="areaid" column="AREAID" jdbcType="VARCHAR" />
+		<result property="prepolicyid" column="PREPOLICYID" jdbcType="VARCHAR" />
+		<result property="policyid" column="POLICYID" jdbcType="VARCHAR" />
+		<result property="oldpolicyid" column="OLDPOLICYID" jdbcType="VARCHAR" />
+		<result property="contractid" column="CONTRACTID" jdbcType="VARCHAR" />
+		<result property="orgnserialno" column="ORGNSERIALNO" jdbcType="VARCHAR" />
+		<result property="firstpremium" column="FIRSTPREMIUM" jdbcType="VARCHAR" />
+		<result property="firstpremiumcn" column="FIRSTPREMIUMCN" jdbcType="VARCHAR" />
+		<result property="effdate" column="EFFDATE" jdbcType="VARCHAR" />
+		<result property="revdate" column="REVDATE" jdbcType="VARCHAR" />
+		<result property="innercommission" column="INNERCOMMISSION" jdbcType="VARCHAR" />
+		<result property="outercommission" column="OUTERCOMMISSION" jdbcType="VARCHAR" />
+		<result property="lcoperatorcode" column="LCOPERATORCODE" jdbcType="VARCHAR" />
+		<result property="lcoperatorid" column="LCOPERATORID" jdbcType="VARCHAR" />
+		<result property="lcoperatorname" column="LCOPERATORNAME" jdbcType="VARCHAR" />
+		<result property="tzoperatorcode" column="TZOPERATORCODE" jdbcType="VARCHAR" />
+		<result property="tzoperatorid" column="TZOPERATORID" jdbcType="VARCHAR" />
+		<result property="tzoperatorname" column="TZOPERATORNAME" jdbcType="VARCHAR" />
+		<result property="inscorpstatus" column="INSCORPSTATUS" jdbcType="VARCHAR" />
+		<result property="corestatus" column="CORESTATUS" jdbcType="VARCHAR" />
+		<result property="recordstatus" column="RECORDSTATUS" jdbcType="VARCHAR" />
+		<result property="serialtype" column="SERIALTYPE" jdbcType="VARCHAR" />
+		
+		<result property="deliver" column="DELIVER" jdbcType="VARCHAR" />
+		<result property="operatorbankcode" column="OPERATORBANKCODE" jdbcType="VARCHAR" />
+		<result property="operatorcode" column="OPERATORCODE" jdbcType="VARCHAR" />
+		<result property="updatedate" column="UPDATEDATE" jdbcType="VARCHAR" />
+		<result property="updatetime" column="UPDATETIME" jdbcType="VARCHAR" />
+		<result property="remark1" column="REMARK1" jdbcType="VARCHAR" />
+		<result property="remark2" column="REMARK2" jdbcType="VARCHAR" />
+		<result property="remark3" column="REMARK3" jdbcType="VARCHAR" />
+		<result property="remark4" column="REMARK4" jdbcType="VARCHAR" />
+		<result property="remark5" column="REMARK5" jdbcType="VARCHAR" />
+		<result property="remark6" column="REMARK6" jdbcType="VARCHAR" />
+		<result property="remark7" column="REMARK7" jdbcType="VARCHAR" />
+		<result property="remark8" column="REMARK8" jdbcType="VARCHAR" />
+		<result property="remark9" column="REMARK9" jdbcType="VARCHAR" />
+		<result property="remark10" column="REMAR101" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="selectBaseInfo" resultMap="forTopTradeInfo" parameterType="String">
+		select * from top_buyinfo where  SERIALNO = #{serialno,jdbcType=VARCHAR}
+	</select>  
+	
+	
+<insert id="insertBaseInfo" parameterType="com.topcheer.ybt.basedata.entity.TopBuyInfo">
+		insert into  TOP_BUYINFO (
+		SERIALNO,
+		INSCORPCODE,
+		AREAID,
+		CHANNELFLAG
+		)values(
+		#{serialno,jdbcType=VARCHAR},
+		 #{inscorpcode,jdbcType=VARCHAR},
+		 #{areaid,jdbcType=VARCHAR}, 
+		 #{channelflag,jdbcType=VARCHAR}     	 
+          )
+	</insert>	
+	
+	<update id="updateBuyInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopBuyInfo">
+		UPDATE top_buyinfo SET
+		AREAID =  #{areaid,jdbcType=VARCHAR},
+		TZOPERATORID = #{tzoperatorid,jdbcType=VARCHAR},
+		INSCORPSTATUS = #{inscorpstatus,jdbcType=VARCHAR},
+		CORESTATUS = #{corestatus,jdbcType=VARCHAR},
+		RECORDSTATUS = #{recordstatus,jdbcType=VARCHAR},
+		SERIALTYPE = #{serialtype,jdbcType=VARCHAR}
+		WHERE SERIALNO = #{serialno,jdbcType=VARCHAR}
+	</update>
+	
+	<insert id="insertPhInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopPhInfo">
+		INSERT INTO TOP_PHINFO (
+    			PHSERIALNO,
+    			SERIALNO,
+    			PHNAME,
+    			PHACCTYPE,
+    			PHACCNO,
+    			PHCUSTNO,
+    			PHSEX,
+    			PHBIRTHDAY,
+    			PHCFCTYPE,
+    			PHCFCNO,
+    			PHEXPIRYDATE,
+    			PHADDRESS,
+    			PHPOSTCODE,
+    			PHCONTACTPHONE,
+    			PHFPHONE,
+    			PHCPHONE,
+    			PHMPHONE,
+    			PHEMAIL,
+    			PHTEINCOME,
+    			PHNALITY,
+    			PHHHOLDER,
+    			PHCOMPANY,
+    			PHJOBTYPE,
+    			PHJOB,
+    			PHEDUCATION,
+    			PHMARRIED,
+    			PHRISKLEVEL,
+    			OPERATORBANKCODE,
+    			OPERATORCODE,
+    			UPDATEDATE,
+    			UPDATETIME,
+    			REMARK1,
+    			REMARK2,
+    			REMARK3,
+    			REMARK4,
+    			REMARK5,
+    			REMARK6,
+    			REMARK7,
+    			REMARK8,
+    			REMARK9,
+    			REMARK10
+  		)VALUES (
+    		#{phserialno,jdbcType=VARCHAR},
+    		#{serialno,jdbcType=VARCHAR},
+    		#{phname,jdbcType=VARCHAR},
+    		#{phacctype,jdbcType=VARCHAR},
+    		#{phaccno,jdbcType=VARCHAR},
+    		#{phcustno,jdbcType=VARCHAR},
+    		#{phsex,jdbcType=VARCHAR},
+    		#{phbirthday,jdbcType=VARCHAR},
+    		#{phcfctype,jdbcType=VARCHAR},
+    		#{phcfcno,jdbcType=VARCHAR},
+    		#{phexpirydate,jdbcType=VARCHAR},
+    		#{phaddress,jdbcType=VARCHAR},
+    		#{phpostcode,jdbcType=VARCHAR},
+    		#{phcontactphone,jdbcType=VARCHAR},
+    		#{phfphone,jdbcType=VARCHAR},
+    		#{phcphone,jdbcType=VARCHAR},
+    		#{phmphone,jdbcType=VARCHAR},
+    		#{phemail,jdbcType=VARCHAR},
+    		#{phteincome,jdbcType=VARCHAR},
+    		#{phnality,jdbcType=VARCHAR},
+    		#{phhholder,jdbcType=VARCHAR},
+    		#{phcompany,jdbcType=VARCHAR},
+    		#{phjobtype,jdbcType=VARCHAR},
+    		#{phjob,jdbcType=VARCHAR},
+    		#{pheducation,jdbcType=VARCHAR},
+    		#{phmarried,jdbcType=VARCHAR},
+    		#{phrisklevel,jdbcType=VARCHAR},
+    		#{operatorbankcode,jdbcType=VARCHAR},
+    		#{operatorcode,jdbcType=VARCHAR},
+    		#{updatedate,jdbcType=VARCHAR},
+    		#{updatetime,jdbcType=VARCHAR},
+    		#{remark1,jdbcType=VARCHAR},
+    		#{remark2,jdbcType=VARCHAR},
+    		#{remark3,jdbcType=VARCHAR},
+    		#{remark4,jdbcType=VARCHAR},
+    		#{remark5,jdbcType=VARCHAR},
+    		#{remark6,jdbcType=VARCHAR},
+    		#{remark7,jdbcType=VARCHAR},
+    		#{remark8,jdbcType=VARCHAR},
+    		#{remark9,jdbcType=VARCHAR},
+    		#{remark10,jdbcType=VARCHAR}
+  		)
+	</insert>
+	
+	
+	<insert id="insertBfyInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopBfyInfo">
+		INSERT INTO TOP_BFYINFO (
+    		bfyserialno        ,
+    		  serialno         ,
+    		  brrelation       ,
+    		  bfyname          ,
+    		  bfysex           ,
+    		  bfybirthday      ,
+    		  bfycfctype       ,
+    		  bfycfcno         ,
+    		  bfyexpirydate    ,
+    		  bfyaddress       ,
+    		  bfynumerator     ,
+    		  bfyorder         ,
+    		  bfymethod        ,
+    		  bfytype          ,
+    		  operatorbankcode ,
+    		  operatorcode     ,
+    		  updatedate       ,
+    		  updatetime       ,
+    		  remark1          ,
+    		  remark2          ,
+    		  remark3          ,
+    		  remark4          ,
+    		  remark5          ,
+    		  remark6          ,
+    		  remark7          ,
+    		  remark8          ,
+    		  remark9          ,
+    		  remark10 
+  		)VALUES (
+    		#{bfyserialno        ,  jdbcType=VARCHAR},      
+    		#{  serialno         ,  jdbcType=VARCHAR},      
+    		#{  brrelation       ,  jdbcType=VARCHAR},      
+    		#{  bfyname          ,  jdbcType=VARCHAR},      
+    		#{  bfysex           ,  jdbcType=VARCHAR},      
+    		#{  bfybirthday      ,  jdbcType=VARCHAR},      
+    		#{  bfycfctype       ,  jdbcType=VARCHAR},      
+    		#{  bfycfcno         ,  jdbcType=VARCHAR},      
+    		#{  bfyexpirydate    ,  jdbcType=VARCHAR},      
+    		#{  bfyaddress       ,  jdbcType=VARCHAR},      
+    		#{  bfynumerator     ,  jdbcType=VARCHAR},      
+    		#{  bfyorder         ,  jdbcType=VARCHAR},      
+    		#{  bfymethod        ,  jdbcType=VARCHAR},      
+    		#{  bfytype          ,  jdbcType=VARCHAR},      
+    		#{  operatorbankcode ,  jdbcType=VARCHAR},      
+    		#{  operatorcode     ,  jdbcType=VARCHAR},      
+    		#{  updatedate       ,  jdbcType=VARCHAR},      
+    		#{  updatetime       ,  jdbcType=VARCHAR},      
+    		#{  remark1          ,  jdbcType=VARCHAR},      
+    		#{  remark2          ,  jdbcType=VARCHAR},      
+    		#{  remark3          ,  jdbcType=VARCHAR},      
+    		#{  remark4          ,  jdbcType=VARCHAR},      
+    		#{  remark5          ,  jdbcType=VARCHAR},      
+    		#{  remark6          ,  jdbcType=VARCHAR},      
+    		#{  remark7          ,  jdbcType=VARCHAR},      
+    		#{  remark8          ,  jdbcType=VARCHAR},      
+    		#{  remark9          ,  jdbcType=VARCHAR},      
+    		#{  remark10         ,  jdbcType=VARCHAR}      
+  		)
+	</insert>
+	
+	
+	<insert id="insertRnInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopRnInfo">
+		INSERT INTO TOP_RNINFO (
+    		rnserialno        ,
+    		  serialno        ,
+    		  prrelation      ,
+    		  rnname          ,
+    		  rnsex           ,
+    		  rnbirthday      ,
+    		  rncfctype       ,
+    		  rncfcno         ,
+    		  rnexpirydate    ,
+    		  rnaddress       ,
+    		  rnpostcode      ,
+    		  rncontactphone  ,
+    		  rnfphone        ,
+    		  rncphone        ,
+    		  rnmphone        ,
+    		  rnemail         ,
+    		  rnteincome      ,
+    		  rnnality        ,
+    		  rnhholder       ,
+    		  rncompany       ,
+    		  rnjobtype       ,
+    		  rnjob           ,
+    		  rneducation     ,
+    		  rnmarried       ,
+    		  operatorbankcode,
+    		  operatorcode    ,
+    		  updatedate      ,
+    		  updatetime      ,
+    		  remark1         ,
+    		  remark2         ,
+    		  remark3         ,
+    		  remark4         ,
+    		  remark5         ,
+    		  remark6         ,
+    		  remark7         ,
+    		  remark8         ,
+    		  remark9         ,
+    		  remark10        	
+  		)VALUES (
+    		#{  rnserialno           ,  jdbcType=VARCHAR},      
+    		#{    serialno         ,  jdbcType=VARCHAR},      
+    		#{    prrelation       ,  jdbcType=VARCHAR},      
+    		#{    rnname           ,  jdbcType=VARCHAR},      
+    		#{    rnsex            ,  jdbcType=VARCHAR},      
+    		#{    rnbirthday       ,  jdbcType=VARCHAR},      
+    		#{    rncfctype        ,  jdbcType=VARCHAR},      
+    		#{    rncfcno          ,  jdbcType=VARCHAR},      
+    		#{    rnexpirydate     ,  jdbcType=VARCHAR},      
+    		#{    rnaddress        ,  jdbcType=VARCHAR},      
+    		#{    rnpostcode       ,  jdbcType=VARCHAR},      
+    		#{    rncontactphone   ,  jdbcType=VARCHAR},      
+    		#{    rnfphone         ,  jdbcType=VARCHAR},      
+    		#{    rncphone         ,  jdbcType=VARCHAR},      
+    		#{    rnmphone         ,  jdbcType=VARCHAR},      
+    		#{    rnemail          ,  jdbcType=VARCHAR},      
+    		#{    rnteincome       ,  jdbcType=VARCHAR},      
+    		#{    rnnality         ,  jdbcType=VARCHAR},      
+    		#{    rnhholder        ,  jdbcType=VARCHAR},      
+    		#{    rncompany        ,  jdbcType=VARCHAR},      
+    		#{    rnjobtype        ,  jdbcType=VARCHAR},      
+    		#{    rnjob            ,  jdbcType=VARCHAR},      
+    		#{    rneducation      ,  jdbcType=VARCHAR},      
+    		#{    rnmarried        ,  jdbcType=VARCHAR},      
+    		#{    operatorbankcode ,  jdbcType=VARCHAR},      
+    		#{    operatorcode     ,  jdbcType=VARCHAR},      
+    		#{    updatedate       ,  jdbcType=VARCHAR},      
+    		#{    updatetime       ,  jdbcType=VARCHAR},   
+    		#{    remark1          ,  jdbcType=VARCHAR},      
+    		#{    remark2          ,  jdbcType=VARCHAR},      
+    		#{    remark3          ,  jdbcType=VARCHAR},      
+    		#{    remark4          ,  jdbcType=VARCHAR},      
+    		#{    remark5          ,  jdbcType=VARCHAR},      
+    		#{    remark6          ,  jdbcType=VARCHAR},      
+    		#{    remark7          ,  jdbcType=VARCHAR},      
+    		#{    remark8          ,  jdbcType=VARCHAR},      
+    		#{    remark9          ,  jdbcType=VARCHAR},      
+    		#{    remark10         ,  jdbcType=VARCHAR}    
+  		)
+	</insert>
+	
+	
+	<insert id="insertSpecialInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopSpecialInfo">
+		INSERT INTO TOP_SPECIALINFO (
+    		spserialno      ,
+    		serialno        ,
+    		ishealth        ,
+    		iswhealth       ,
+    		isphealth       ,
+    		isjob           ,
+    		ispjob          ,
+    		amount          ,
+    		specialinfo     ,
+    		investtype      ,
+    		addinvesttype   ,
+    		yljflag         ,
+    		isexistence     ,
+    		isnextfee       ,
+    		hlflag          ,
+    		isrenewal       ,
+    		njflag          ,
+    		moneyaccountname,
+    		moneyaccount    ,
+    		moneybank       ,
+    		disputetype     ,
+    		moneyform       ,
+    		operatorbankcode,
+    		operatorcode    ,
+    		updatedate      ,
+    		updatetime      ,
+    		remark1         ,
+    		remark2         ,
+    		remark3         ,
+    		remark4         ,
+    		remark5         ,
+    		remark6         ,
+    		remark7         ,
+    		remark8         ,
+    		remark9         ,
+    		remark10        
+  		)VALUES (
+    		#{  spserialno          ,  jdbcType=VARCHAR},      
+    		#{  serialno          ,  jdbcType=VARCHAR},      
+    		#{  ishealth          ,  jdbcType=VARCHAR},      
+    		#{  iswhealth         ,  jdbcType=VARCHAR},      
+    		#{  isphealth         ,  jdbcType=VARCHAR},      
+    		#{  isjob             ,  jdbcType=VARCHAR},      
+    		#{  ispjob            ,  jdbcType=VARCHAR},      
+    		#{  amount            ,  jdbcType=VARCHAR},      
+    		#{  specialinfo       ,  jdbcType=VARCHAR},      
+    		#{  investtype        ,  jdbcType=VARCHAR},      
+    		#{  addinvesttype     ,  jdbcType=VARCHAR},      
+    		#{  yljflag           ,  jdbcType=VARCHAR},      
+    		#{  isexistence       ,  jdbcType=VARCHAR},      
+    		#{  isnextfee         ,  jdbcType=VARCHAR},      
+    		#{  hlflag            ,  jdbcType=VARCHAR},      
+    		#{  isrenewal         ,  jdbcType=VARCHAR},      
+    		#{  njflag            ,  jdbcType=VARCHAR},      
+    		#{  moneyaccountname  ,  jdbcType=VARCHAR},      
+    		#{  moneyaccount      ,  jdbcType=VARCHAR},      
+    		#{  moneybank         ,  jdbcType=VARCHAR},      
+    		#{  disputetype       ,  jdbcType=VARCHAR},      
+    		#{  moneyform         ,  jdbcType=VARCHAR},      
+    		#{  operatorbankcode  ,  jdbcType=VARCHAR},      
+    		#{  operatorcode      ,  jdbcType=VARCHAR},      
+    		#{  updatedate        ,  jdbcType=VARCHAR},      
+    		#{  updatetime        ,  jdbcType=VARCHAR},      
+    		#{  remark1           ,  jdbcType=VARCHAR},      
+    		#{  remark2           ,  jdbcType=VARCHAR},   
+    		#{  remark3           ,  jdbcType=VARCHAR},      
+    		#{  remark4           ,  jdbcType=VARCHAR},      
+    		#{  remark5           ,  jdbcType=VARCHAR},      
+    		#{  remark6           ,  jdbcType=VARCHAR},      
+    		#{  remark7           ,  jdbcType=VARCHAR},      
+    		#{  remark8           ,  jdbcType=VARCHAR},      
+    		#{  remark9           ,  jdbcType=VARCHAR},      
+    		#{  remark10          ,  jdbcType=VARCHAR}      
+  		)
+	</insert>
+	
+	
+	<insert id="insertBuyInfoAddInfo"    parameterType="com.topcheer.ybt.basedata.entity.TopBuyInfoAdd">
+		INSERT INTO TOP_BUYINFOADD (
+    		addserialno       ,
+    		  serialno        ,
+    		  insprdcode      ,
+    		  mainflag        ,
+    		  pay_type        ,
+    		  pay_period      ,
+    		  pay_period_type ,
+    		  ins_period      ,
+    		  ins_period_type ,
+    		  intialnumber    ,
+    		  basepremiumamt  ,
+    		  baseensureamt   ,
+    		  innercommission ,
+    		  outercommission ,
+    		  adrawtype       ,
+    		  adrawstartage   ,
+    		  adrawstopage    ,
+    		  adrawpart       ,
+    		  bonusdrawtype   ,
+    		  operatorbankcode,
+    		  operatorcode    ,
+    		  updatedate      ,
+    		  updatetime      ,
+    		  remark1         ,
+    		  remark2         ,
+    		  remark3         ,
+    		  remark4         ,
+    		  remark5         ,
+    		  remark6         ,
+    		  remark7         ,
+    		  remark8         ,
+    		  remark9         ,
+    		  remark10        
+  		)VALUES (
+    		#{            addserialno       ,     jdbcType=VARCHAR},      
+    		#{      		  serialno        ,   jdbcType=VARCHAR},      
+    		#{      		  insprdcode      ,   jdbcType=VARCHAR},      
+    		#{      		  mainflag        ,   jdbcType=VARCHAR},      
+    		#{      		  pay_type        ,   jdbcType=VARCHAR},      
+    		#{      		  pay_period      ,   jdbcType=VARCHAR},      
+    		#{      		  pay_period_type ,   jdbcType=VARCHAR},      
+    		#{      		  ins_period      ,   jdbcType=VARCHAR},      
+    		#{      		  ins_period_type ,   jdbcType=VARCHAR},      
+    		#{      		  intialnumber    ,   jdbcType=VARCHAR},      
+    		#{      		  basepremiumamt  ,   jdbcType=VARCHAR},      
+    		#{      		  baseensureamt   ,   jdbcType=VARCHAR},      
+    		#{      		  innercommission ,   jdbcType=VARCHAR},      
+    		#{      		  outercommission ,   jdbcType=VARCHAR},      
+    		#{      		  adrawtype       ,   jdbcType=VARCHAR},      
+    		#{      		  adrawstartage   ,   jdbcType=VARCHAR},      
+    		#{      		  adrawstopage    ,   jdbcType=VARCHAR},      
+    		#{      		  adrawpart       ,   jdbcType=VARCHAR},      
+    		#{      		  bonusdrawtype   ,   jdbcType=VARCHAR},      
+    		#{      		  operatorbankcode,   jdbcType=VARCHAR},      
+    		#{      		  operatorcode    ,   jdbcType=VARCHAR},      
+    		#{      		  updatedate      ,   jdbcType=VARCHAR},      
+    		#{      		  updatetime      ,   jdbcType=VARCHAR},      
+    		#{      		  remark1         ,   jdbcType=VARCHAR},      
+    		#{      		  remark2         ,   jdbcType=VARCHAR},      
+    		#{      		  remark3         ,   jdbcType=VARCHAR},      
+    		#{      		  remark4         ,   jdbcType=VARCHAR},      
+    		#{      		  remark5         ,   jdbcType=VARCHAR},   
+    		#{      		  remark6         ,   jdbcType=VARCHAR},      
+    		#{      		  remark7         ,   jdbcType=VARCHAR},      
+    		#{      		  remark8         ,   jdbcType=VARCHAR},      
+    		#{      		  remark9         ,   jdbcType=VARCHAR},
+    		#{      		  remark10         , jdbcType=VARCHAR}     
+    		
+  		)
+	</insert>
+</mapper>

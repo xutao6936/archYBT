@@ -25,42 +25,52 @@ public class TopInsCorpInfoBizImpl implements ITopInsCorpInfoBiz {
 
 	@Override
 	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
 		return topInsCorpInfoService.getTopInsCorpInfoList(map);
 	}
 
 	@Override
 	/*public PageInfo<TopInsCorpInfo> getInsCorpByinsCorpCode(String insCorpCode) {
-		// TODO Auto-generated method stub
 		return topInsCorpInfoService.getInsCorpByinsCorpCode(insCorpCode);
 	}*/
 	public PageInfo<TopInsCorpInfo> getInsCorpByinsCorpCode(TopInsCorpInfo topInsCorpInfo) {
-		// TODO Auto-generated method stub
 		log.info("进入BIZ");
 		return topInsCorpInfoService.getInsCorpByinsCorpCode(topInsCorpInfo);
 	}
 
 	@Override
 	public int insertTopInsCorpInfo(TopInsCorpInfo topInsCorpInfo) {
-		// TODO Auto-generated method stub
 		return topInsCorpInfoService.insertTopInsCorpInfo(topInsCorpInfo);
 	}
 
 	@Override
 	public int updateTopInsCorpInfo(TopInsCorpInfo topInsCorpInfo) {
-		// TODO Auto-generated method stub
 		return topInsCorpInfoService.updateTopInsCorpInfo(topInsCorpInfo);
 	}
 
 	@Override
 	public int deletetTopInsCorpInfo(String topInsCorpInfoCode) {
-		// TODO Auto-generated method stub
 		return topInsCorpInfoService.deletetTopInsCorpInfo(topInsCorpInfoCode);
 	}
 
 	@Override
 	public List<TopInsCorpInfo> searchAll() {
 		return topInsCorpInfoService.searchAll();
+	}
+
+	@Override
+	public TopInsCorpInfo getInsCorpByInsCorpCode(String corpCode) {
+		return (TopInsCorpInfo) topInsCorpInfoService.getInsCorpByInsCorpCode(corpCode);
+	}
+
+	@Override
+	public List<TopInsCorpInfo> getInsCorpList(List<String> list) {
+		return topInsCorpInfoService.getInsCorpList(list);
+	}
+
+	@Override
+	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoListByParams(
+			Map<String, String> map) {
+		return topInsCorpInfoService.getTopInsCorpInfoListByParams(map);
 	}
 
 }

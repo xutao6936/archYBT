@@ -16,4 +16,6 @@ public interface TopInsPrdPeriodInfoMapper {
 	
 	//删除保障年期信息
 	public void deleteTopInsPeriodInfo(String  insPrdCode);
+
+	public List getInsPrdPeriodByInsPrdCode(String insPrdCode);
 }

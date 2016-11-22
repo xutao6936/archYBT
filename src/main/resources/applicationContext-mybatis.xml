@@ -44,30 +44,50 @@
 			location="classpath*:/application.local.properties" order="0"/>
 		<context:property-placeholder ignore-resource-not-found="true"
 			location="classpath*:/application.properties" order="1"/>
-		<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-			destroy-method="close">
-			<!-- Connection Info -->
-			<property name="driverClassName" value="${jdbc.driver}" />
-			<property name="url" value="${jdbc.url}" />
-			<property name="username" value="${jdbc.username}" />
-			<property name="password" value="${jdbc.password}" />
-
-			<!-- Connection Pooling Info -->
-			<property name="maxActive" value="${jdbc.pool.maxActive}" />
-			<property name="maxIdle" value="${jdbc.pool.maxIdle}" />
-			<property name="defaultAutoCommit" value="false" /><!--貌似必须设置false，否则事物无效 -->
-			<!-- 获取连接最大等待时间 -->
-			<property name="maxWait" value="60000" />
-			<!-- mysql 配置， 用于8小时连接失效问题 <property name="validationQuery" value="${validationQuery}" 
-				/> -->
-			<property name="testOnBorrow" value="false" />
-			<property name="testOnReturn" value="false" />
-			<property name="testWhileIdle" value="true" />
-
-			<!-- 连接Idle一个小时后超时 -->
-			<property name="timeBetweenEvictionRunsMillis" value="3600000" />
-			<property name="minEvictableIdleTimeMillis" value="3600000" />
-		</bean>
+			<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close" lazy-init="false">
+     <!-- 驱动名称 -->
+        <property name="driverClassName" value="${dataSource.driverClassName}" />
+        <!-- JDBC连接串 -->
+        <property name="url"
+            value="${dataSource.url}" />
+        <!-- 数据库用户名称 -->
+        <property name="username" value="${dataSource.username}" />
+        <!-- 数据库密码 -->
+        <property name="password" value="${dataSource.password}" />
+         <!-- 初始化连接数量 -->
+        <property name="initialSize" value="${dataSource.initialSize}" />
+        <!-- 最大并发连接数 -->
+        <property name="maxActive" value="${dataSource.maxActive}" />
+        <!-- 最小空闲连接数 -->
+        <property name="minIdle" value="${dataSource.minIdle}" />
+        <!-- 配置获取连接等待超时的时间 -->     
+        <property name="maxWait" value="${dataSource.maxWait}" />
+        <!-- 超过时间限制是否回收 -->
+        <property name="removeAbandoned" value="${dataSource.removeAbandoned}" />
+        <!-- 超过时间限制多长； -->
+        <property name="removeAbandonedTimeout" value="${dataSource.removeAbandonedTimeout}" />
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="${dataSource.timeBetweenEvictionRunsMillis}" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="${dataSource.minEvictableIdleTimeMillis}" />
+        <!-- 用来检测连接是否有效的sql，要求是一个查询语句-->
+        <property name="validationQuery" value="${dataSource.validationQuery}" />
+        <!-- 申请连接的时候检测 -->
+        <property name="testWhileIdle" value="${dataSource.testWhileIdle}" />
+        <!-- 申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能 -->
+        <property name="testOnBorrow" value="${dataSource.testOnBorrow}" />
+        <!-- 归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能  -->
+        <property name="testOnReturn" value="${dataSource.testOnReturn}" />
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="${dataSource.poolPreparedStatements}" />    
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="${dataSource.maxPoolPreparedStatementPerConnectionSize}" />
+        <!--属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：                
+	                开启Druid的监控统计功能用的filter:stat
+	                日志用的filter:log4j
+	               防御SQL注入的filter:wall -->
+        <property name="filters" value="${dataSource.filters}" /> 
+       
+    </bean> 
 
 
 		<!-- 初始化数据表结构 与默认数据 <jdbc:initialize-database data-source="dataSource" 

@@ -2,37 +2,30 @@ package com.topcheer.ybt.restws.pojo;
 
 public class InsureInfoRespPojo {
 
-	private String insPrdCode;
-	private String insPrdName;
+	private String resultCode;
+	private String resultInfo;
 	private String account;
 	private String amount;
 	private String serialNo;
 
-	public InsureInfoRespPojo(String insPrdCode, String insPrdName,
-			String account, String amount, String serialNo) {
+	public InsureInfoRespPojo() {
 		super();
-		this.insPrdCode = insPrdCode;
-		this.insPrdName = insPrdName;
-		this.account = account;
-		this.amount = amount;
-		this.serialNo = serialNo;
 	}
 
-	
-	public String getInsPrdCode() {
-		return insPrdCode;
+	public String getResultCode() {
+		return resultCode;
 	}
 
-	public void setInsPrdCode(String insPrdCode) {
-		this.insPrdCode = insPrdCode;
+	public void setResultCode(String resultCode) {
+		this.resultCode = resultCode;
 	}
 
-	public String getInsPrdName() {
-		return insPrdName;
+	public String getResultInfo() {
+		return resultInfo;
 	}
 
-	public void setInsPrdName(String insPrdName) {
-		this.insPrdName = insPrdName;
+	public void setResultInfo(String resultInfo) {
+		this.resultInfo = resultInfo;
 	}
 
 	public String getAccount() {
@@ -58,6 +51,5 @@ public class InsureInfoRespPojo {
 	public void setSerialNo(String serialNo) {
 		this.serialNo = serialNo;
 	}
-
 
 }

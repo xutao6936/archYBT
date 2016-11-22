@@ -1,6 +1,7 @@
 package com.topcheer.ybt.restws.pojo;
 
 import java.util.List;
+
 import org.apache.poi.ss.formula.functions.T;
 
 public class InsPrdsRespPojo<T> {
@@ -11,8 +12,12 @@ public class InsPrdsRespPojo<T> {
 
 	
 
+
 	public InsPrdsRespPojo(String resultCode, String resultInfo, List<T> insPrds) {
 		super();
+		this.resultCode = resultCode;
+		this.resultInfo = resultInfo;
+		this.insPrds = insPrds;
 	}
 
 

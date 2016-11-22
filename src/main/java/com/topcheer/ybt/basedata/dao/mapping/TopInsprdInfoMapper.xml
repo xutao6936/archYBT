@@ -223,4 +223,62 @@
 	<select id="getInsPrdInfoByInsPrdCode" resultMap="forTopInsprdInfo" parameterType="String">
 		select * from top_insprdInfo  where  INSPRD_CODE = #{insPrdCode,jdbcType=VARCHAR}
 	</select>
+	
+		<select id="getTopInsPrdInfoListByParams" resultMap="forTopInsprdInfo" parameterType="java.util.Map">
+    	select * from top_insprdInfo 
+ 		<where> 
+	    	<if test="insPrdCode !=null and insPrdCode != '' ">
+		    	INSPRD_CODE like '%'||'${insPrdCode}'||'%'
+			</if>
+    		<if test="insPrdTrueCode !=null and insPrdTrueCode != '' ">
+		    	and INSPRD_TRUE_CODE like '%'||'${insPrdTrueCode}'||'%'
+			</if>
+    		<if test="insCorpCode !=null and insCorpCode != '' ">
+		    	and INSCORP_CODE like '%'||'${insCorpCode}'||'%'
+			</if>
+    		<if test="insPrdCnName !=null and insPrdCnName != '' ">
+		    	and INSPRD_CNNAME like '%'||'${insPrdCnName}'||'%'
+			</if>
+    		<if test="insPrdSimName !=null and insPrdSimName != '' ">
+		    	and INSPRD_SIMNAME like '%'||'${insPrdSimName}'||'%'
+			</if>
+    		<if test="assuranceType !=null and assuranceType != '' ">
+		    	and ASSURANCE_TYPE = #{assuranceType,jdbcType=VARCHAR}
+			</if>
+    		<if test="buyUnit !=null and buyUnit != '' ">
+		    	and BUY_UNIT = #{buyUnit,jdbcType=VARCHAR}
+			</if>
+    		<if test="insPrdType !=null and insPrdType != '' ">
+		    	and INSPRD_TYPE = #{insPrdType,jdbcType=VARCHAR}
+			</if>
+    		<if test="insBeginDate !=null and insBeginDate != '' ">
+		    	and INSBENGIN_DATE &gt;= #{insBeginDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="insEndDate !=null and insEndDate != '' ">
+		    	and INSEND_DATE &lt;= #{insEndDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="startAMT !=null and startAMT != '' ">
+		    	and START_AMT = #{startAMT,jdbcType=VARCHAR}
+			</if>
+    		<if test="entAMT !=null and entAMT != '' ">
+		    	and END_AMT = #{entAMT,jdbcType=VARCHAR}
+			</if>
+    		<if test="inCreaseAMT !=null and inCreaseAMT != '' ">
+		    	and INCREASE_AMT = #{inCreaseAMT,jdbcType=VARCHAR}
+			</if>
+    		<if test="status !=null and status != '' ">
+		    	and STATUS = #{status,jdbcType=VARCHAR}
+			</if>
+    		<if test="impawnFlag !=null and impawnFlag != '' ">
+		    	and IMPAWN_FLAG = #{impawnFlag,jdbcType=VARCHAR}
+			</if>
+    		<if test="transType !=null and transType != '' ">
+		    	and TRANS_TYPE = #{transType,jdbcType=VARCHAR}
+			</if>
+    		<if test="channelType !=null and channelType != '' ">
+		    	and CHANNEL_TYPE = #{channelType,jdbcType=VARCHAR}
+			</if>
+		</where>
+		order by UPDATE_DATE desc
+  	</select>
 </mapper>

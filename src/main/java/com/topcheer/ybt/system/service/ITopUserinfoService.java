@@ -2,7 +2,6 @@ package com.topcheer.ybt.system.service;
 
 import java.util.List;
 import java.util.Map;
-
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.system.entity.TopUserinfo;
 
@@ -26,7 +25,7 @@ public interface ITopUserinfoService {
 	public void insert(TopUserinfo topUserinfo);
 
 	public void update(TopUserinfo topUserinfo);
-
+	
 	public void delete(String id);
 
 	public void uploadPath(TopUserinfo topUserinfo);

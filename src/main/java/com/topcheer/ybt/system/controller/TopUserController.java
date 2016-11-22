@@ -23,6 +23,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Maps;
+import com.topcheer.ybt.annotation.SystemControllerLog;
 import com.topcheer.ybt.system.entity.TopUserinfo;
 import com.topcheer.ybt.system.service.ITopUserinfoService;
 import com.topcheer.ybt.util.DateUtil;
@@ -52,6 +53,7 @@ public class TopUserController {
 		return ResultHelper.RESULT_SUCC;
 	}
 
+	@SystemControllerLog(description = "查询用户列表")
 	@ResponseBody
 	@RequestMapping(value = "/getUserList.do")
 	public PageInfo<TopUserinfo> getUserList(HttpServletRequest request, String rows, String page, TopUserinfo userInfo) {

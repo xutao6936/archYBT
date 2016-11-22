@@ -56,8 +56,7 @@
 					<div class="login-container">
 						<div class="center">
 							<h1>
-								<i class="icon-leaf green"></i> <span class="red">上海银行</span> <span
-									class="white">银保通系统</span>
+								<i class="icon-leaf green"></i> <span class="red">银保通系统</span>
 							</h1>
 							<h4 class="blue">&copy; 天正软件公司</h4>
 						</div>

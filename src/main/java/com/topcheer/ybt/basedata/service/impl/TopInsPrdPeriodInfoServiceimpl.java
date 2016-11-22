@@ -52,6 +52,10 @@ public class TopInsPrdPeriodInfoServiceimpl implements ITopInsPrdPeriodInfoServi
 		// TODO Auto-generated method stub
 		topInsPrdPeriodInfoMapper.deleteTopInsPeriodInfo(insPrdCode);
 	}
+	@Override
+	public List getInsPrdPeriodByInsPrdCode(String insPrdCode) {
+		return topInsPrdPeriodInfoMapper.getInsPrdPeriodByInsPrdCode(insPrdCode);
+	}
 	
 
 }

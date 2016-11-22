@@ -1,5 +1,6 @@
 package com.topcheer.ybt.basedata.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import com.topcheer.ybt.basedata.dao.TopInsCorpInfoMapper;
 import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.basedata.service.ITopInsCorpInfoService;
+import com.topcheer.ybt.system.entity.TopLog;
 
 @Service("topInsCorpInfoService")
 @Transactional
@@ -53,7 +55,6 @@ public class TopInsCorpInfoServiceImpl implements ITopInsCorpInfoService {
 
 	@Override
 	public PageInfo<TopInsCorpInfo> getInsCorpByinsCorpCode(TopInsCorpInfo topInsCorpInfo) {
-		// TODO Auto-generated method stub
 		log.info("进入Service"+topInsCorpInfo.getInsCorpCode());
 		
 		List<TopInsCorpInfo> list = topInsCorpinfoMapper.searchInsCorpInfo(topInsCorpInfo);
@@ -65,6 +66,29 @@ public class TopInsCorpInfoServiceImpl implements ITopInsCorpInfoService {
 	public List <TopInsCorpInfo> searchAll() {
 		List <TopInsCorpInfo> list = topInsCorpinfoMapper.searchAll();
 		return list;
+	}
+
+	@Override
+	public TopInsCorpInfo getInsCorpByInsCorpCode(String corpCode) {
+		TopInsCorpInfo topInsCorpInfo = topInsCorpinfoMapper.getInsCorpByInsCorpCode(corpCode);
+		return topInsCorpInfo;
+	}
+
+	@Override
+	public List<TopInsCorpInfo> getInsCorpList(List<String> list1) {
+		List <TopInsCorpInfo> list = topInsCorpinfoMapper.getInsCorpList(list1);
+		return list;
+	}
+
+	@Override
+	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoListByParams(
+			Map<String, String> map) {
+		int pageSize = Integer.parseInt(map.get("pageSize").toString());
+		int pageNo = Integer.parseInt(map.get("pageNo").toString());
+		PageHelper.startPage(pageNo, pageSize, true, true, true);
+		List<TopInsCorpInfo> list  = topInsCorpinfoMapper.getTopInsCorpInfoListByParams(map);
+		PageInfo<TopInsCorpInfo> pageinfo = new PageInfo<TopInsCorpInfo>(list);
+		return pageinfo;
 	}
 
 }

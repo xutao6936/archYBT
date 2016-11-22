@@ -115,6 +115,7 @@
 		where t1.role_id = t2.role_id 
 		      and t2.menu_id = t3.menu_id
 		      and t1.user_id=#{userId,jdbcType=VARCHAR}
+		order by t3.menu_code asc
 	</select>
 
 	<select id="searchAll" resultMap="TopMenuinfoResultMap"

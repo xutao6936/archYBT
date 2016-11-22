@@ -51,4 +51,8 @@
 		delete from top_insprdperiod where  ID = #{id,jdbcType=VARCHAR}
 	</delete>
 	
+	<select id="getInsPrdPeriodByInsPrdCode" resultMap="forTopInsprdPeriodInfo" parameterType="String">
+		select KEY,UNIT from top_insprdperiod where  INSPRD_CODE = #{insPrdCode,jdbcType=VARCHAR}
+	</select>
+	
 </mapper>

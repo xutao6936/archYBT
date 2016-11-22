@@ -6,12 +6,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Map;
 import java.util.UUID;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -20,12 +18,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Maps;
 import com.topcheer.ybt.basedata.biz.ITopInsCorpInfoBiz;
 import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
-import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 import com.topcheer.ybt.system.entity.TopUserinfo;
 import com.topcheer.ybt.util.DateUtil;
 import com.topcheer.ybt.util.ResultHelper;
@@ -50,13 +46,42 @@ public class TopInsCorpInfoController {
 	@RequestMapping("/getTopInsCorpInfoList.do")
 	@ResponseBody
 	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoList(String rows, String page,TopInsCorpInfo topInsCorpInfo) {
-
 		log.info("进入 getTopInsCorpInfoList");
 		Map<String, Object> map = Maps.newHashMap();
 		map.put("topInsCorpInfo", topInsCorpInfo);
 		map.put("pageSize", rows);
 		map.put("pageNo", page);
 		PageInfo<TopInsCorpInfo> searchTopInsCorpInfo = topInsCorpInfoBiz.getTopInsCorpInfoList(map);
+		return searchTopInsCorpInfo;
+	}
+	
+	
+	/**
+	 * 根据条件查询保险公司信息
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/getTopInsCorpInfoListByParams.do")
+	@ResponseBody
+	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoListByParams(String rows, String page,HttpServletRequest request) {
+
+		log.info("进入 getTopInsCorpInfoListByParams");
+		Map<String, String> map = Maps.newHashMap();
+		log.info("insCorpCode:"+request.getParameter("insCorpCode"));
+		map.put("insCorpCode", request.getParameter("insCorpCode"));
+		map.put("insCorpName", request.getParameter("insCorpName"));
+		map.put("upCorpCode", request.getParameter("upCorpCode"));
+		map.put("insCorpLevel", request.getParameter("insCorpLevel"));
+		map.put("status", request.getParameter("status"));
+		map.put("commonCountFlag", request.getParameter("commonCountFlag"));
+		map.put("commonNetFlag", request.getParameter("commonNetFlag"));
+		map.put("commonCheckFlag", request.getParameter("commonCheckFlag"));
+		map.put("commonNossdcheckFlag", request.getParameter("commonNossdcheckFlag"));
+		map.put("commonSystbFlag", request.getParameter("commonSystbFlag"));
+		map.put("channelFlag", request.getParameter("channelFlag"));
+		map.put("pageSize", rows);
+		map.put("pageNo", page);
+		PageInfo<TopInsCorpInfo> searchTopInsCorpInfo = topInsCorpInfoBiz.getTopInsCorpInfoListByParams(map);
 		return searchTopInsCorpInfo;
 	}
 

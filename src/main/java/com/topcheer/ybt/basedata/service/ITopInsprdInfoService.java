@@ -27,4 +27,7 @@ public interface ITopInsprdInfoService {
 
 	public List<TopInsprdInfo> getInsPrdInfoByInsPrdCode(String insPrdCode);
 
+	public PageInfo<TopInsprdInfo> getTopInsPrdInfoListByParams(
+			Map<String, String> map);
+
 }

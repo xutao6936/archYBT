@@ -27,4 +27,11 @@ public interface ITopInsCorpInfoBiz {
 
 	public List<TopInsCorpInfo> searchAll();
 
+	public TopInsCorpInfo getInsCorpByInsCorpCode(String corpCode);
+
+	public List<TopInsCorpInfo> getInsCorpList(List<String> list);
+
+	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoListByParams(
+			Map<String, String> map);
+
 }

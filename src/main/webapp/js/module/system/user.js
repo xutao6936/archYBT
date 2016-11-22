@@ -212,10 +212,17 @@ function init() {
 							  beforeSend:validate(),
 							  error:function(msg){
 								  if('SUCC'==msg.responseText){
+									  layer.alert('添加成功',{
+								            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+								            ,closeBtn: 0,icon:1
+								        });
 									  $("#dialog-form").dialog('close');
 									  $(grid_selector).trigger("reloadGrid");
 								  }else{
-									  layer.alert(msg.responseText,{icon:2}); 
+									  layer.alert('添加失败',{
+								            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+								            ,closeBtn: 0,icon:2
+								        }); 
 								  }
 							  }
 			    		  });
@@ -274,10 +281,17 @@ function init() {
 										  beforeSend:validate(),
 										  error:function(msg){
 											  if('SUCC'==msg.responseText){
+												  layer.alert('编辑成功',{
+											            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+											            ,closeBtn: 0,icon:1
+											        });
 												  $("#dialog-form").dialog('close');
 												  $(grid_selector).trigger("reloadGrid");
 											  }else{
-												  layer.alert(msg.responseText,{icon:2}); 
+												  layer.alert('编辑失败',{
+											            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+											            ,closeBtn: 0,icon:2
+											        }); 
 											  }
 										  }
 						    		  });
@@ -292,7 +306,10 @@ function init() {
 
 						   }); 
 					   }else {
-						  layer.alert('请选中一行!',{icon:2}); 
+						  layer.alert('请选中一行!',{
+					            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+					            ,closeBtn: 0,icon:7
+					        }); 
 					   
 				   }
 				   

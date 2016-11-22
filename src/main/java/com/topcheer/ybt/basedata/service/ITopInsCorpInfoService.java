@@ -20,5 +20,12 @@ public interface ITopInsCorpInfoService {
 	public int deletetTopInsCorpInfo(String  topInsCorpInfoCode);
 	
 	public List<TopInsCorpInfo> searchAll();
+	
+	public TopInsCorpInfo getInsCorpByInsCorpCode(String corpCode);
+	public List<TopInsCorpInfo> getInsCorpList(List<String> list);
+	
+	//根据条件查询保险公司信息
+	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoListByParams(
+			Map<String, String> map);
 
 }

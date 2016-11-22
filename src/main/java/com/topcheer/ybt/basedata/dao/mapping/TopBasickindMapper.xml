@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.basedata.dao.TopBasickindMapper" >
+	<resultMap id="TopBasickindResultMap" type="com.topcheer.ybt.basedata.entity.TopBasickind" >
+       		<result property="id"    column="ID" jdbcType="VARCHAR" />
+       		<result property="code"    column="CODE" jdbcType="VARCHAR" />
+       		<result property="value"    column="VALUE" jdbcType="VARCHAR" />
+       		<result property="kindCode"    column="KIND_CODE" jdbcType="VARCHAR" />
+       		<result property="kindValue"    column="KIND_VALUE" jdbcType="VARCHAR" />
+       		<result property="updateDate"    column="UPDATE_DATE" jdbcType="VARCHAR" />
+       		<result property="operator"    column="OPERATOR" jdbcType="VARCHAR" />
+       		<result property="updateTime"    column="UPDATE_TIME" jdbcType="VARCHAR" />
+	</resultMap>
+    <sql id="TopBasickindColumnList" >
+    		ID,
+    		CODE,
+    		VALUE,
+    		KIND_CODE,
+    		KIND_VALUE,
+    		UPDATE_DATE,
+    		OPERATOR,
+    		UPDATE_TIME
+    </sql>
+    <select id="searchTopBasickind" resultMap="TopBasickindResultMap" parameterType="com.topcheer.ybt.basedata.entity.TopBasickind">
+    	select  * from TOP_BASICKIND
+		where 1=1
+    		<if test="id !=null and id != '' ">
+		    	and ID = #{id,jdbcType=VARCHAR}
+			</if>
+    		<if test="code !=null and code != '' ">
+		    	and CODE = #{code,jdbcType=VARCHAR}
+			</if>
+    		<if test="value !=null and value != '' ">
+		    	and VALUE = #{value,jdbcType=VARCHAR}
+			</if>
+    		<if test="kindCode !=null and kindCode != '' ">
+		    	and KIND_CODE = #{kindCode,jdbcType=VARCHAR}
+			</if>
+    		<if test="kindValue !=null and kindValue != '' ">
+		    	and KIND_VALUE = #{kindValue,jdbcType=VARCHAR}
+			</if>
+    		<if test="updateDate !=null and updateDate != '' ">
+		    	and UPDATE_DATE = #{updateDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="operator !=null and operator != '' ">
+		    	and OPERATOR = #{operator,jdbcType=VARCHAR}
+			</if>
+    		<if test="updateTime !=null and updateTime != '' ">
+		    	and UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}
+			</if>
+  	</select> 
+  	
+  	<select id="searchAll" resultMap="TopBasickindResultMap" parameterType="HashMap">
+    	select * from TOP_BASICKIND 
+  	</select> 
+  	
+  	<insert id="insert" parameterType="com.topcheer.ybt.basedata.entity.TopBasickind">
+  		INSERT INTO TOP_BASICKIND (
+    			ID,
+    			CODE,
+    			VALUE,
+    			KIND_CODE,
+    			KIND_VALUE,
+    			UPDATE_DATE,
+    			OPERATOR,
+    			UPDATE_TIME
+  		)VALUES (
+    		#{id,jdbcType=VARCHAR},
+    		#{code,jdbcType=VARCHAR},
+    		#{value,jdbcType=VARCHAR},
+    		#{kindCode,jdbcType=VARCHAR},
+    		#{kindValue,jdbcType=VARCHAR},
+    		#{updateDate,jdbcType=VARCHAR},
+    		#{operator,jdbcType=VARCHAR},
+    		#{updateTime,jdbcType=VARCHAR}
+  		)
+  	</insert>
+  	
+  	<insert id="update" parameterType="com.topcheer.ybt.basedata.entity.TopBasickind">
+  		update TOP_BASICKIND set  
+	      		CODE = #{code,jdbcType=VARCHAR}  ,
+	      		VALUE = #{value,jdbcType=VARCHAR}  ,
+	      		KIND_CODE = #{kindCode,jdbcType=VARCHAR}  ,
+	      		KIND_VALUE = #{kindValue,jdbcType=VARCHAR}  ,
+	      		UPDATE_DATE = #{updateDate,jdbcType=VARCHAR}  ,
+	      		OPERATOR = #{operator,jdbcType=VARCHAR}  ,
+	      		UPDATE_TIME = #{updateTime,jdbcType=VARCHAR}  
+  		where ID = #{id,jdbcType=VARCHAR}
+  	</insert>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete from TOP_BASICKIND where ID = #{id,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<select id="getTopBasickind" resultMap="TopBasickindResultMap" parameterType="String">
+  		select * from TOP_BASICKIND  where ID = #{id,jdbcType=VARCHAR}
+  	</select>
+</mapper>
