@@ -9,7 +9,8 @@ var addTabs = function (options) {
   //如果TAB不存在，创建一个新的TAB
   if (!$("#" + id)[0]) {
     //固定TAB中IFRAME高度
-    mainHeight = document.body.scrollHeight*0.85;
+    //mainHeight = document.body.scrollHeight*0.85;
+	  mainHeight = document.documentElement.clientHeight-161;
     //创建新TAB的title
     title = '<li role="presentation" id="tab_' + id + '"><a href="#' + id + '" aria-controls="' + id + '" role="tab" data-toggle="tab">' + options.title;
     //是否允许关闭
