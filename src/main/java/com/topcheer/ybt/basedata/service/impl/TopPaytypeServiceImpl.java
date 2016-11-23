@@ -6,6 +6,7 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.dao.TopPaytypeMapper;
@@ -62,6 +63,11 @@ public class TopPaytypeServiceImpl implements ITopPaytypeService{
 
 	public void setTopPaytypeMapper(TopPaytypeMapper TopPaytypeMapper) {
 		this.topPaytypeMapper = TopPaytypeMapper;
+	}
+
+	@Override
+	public List<TopPaytype> getTopPaytypeListByInsPrdCode(String insPrdCode) {
+		return topPaytypeMapper.getTopPaytypeListByInsPrdCode(insPrdCode);
 	}
 	
 	

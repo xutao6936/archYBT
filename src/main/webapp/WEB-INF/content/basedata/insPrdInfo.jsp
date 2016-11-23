@@ -10,13 +10,17 @@
 <title>银保通</title>
 <!-- basic styles -->
 <%@ include file="/common/common.jsp" %>
-<!-- <script src="${ctx }/js/common/datepicker/css/datepicker.css"></script> -->
-<script src="${ctx }/js/common/datepicker/js/bootstrap-datepicker.js"></script> 
 <script src="${ctx }/js/module/basedata/insPrdInfo.js"></script>
-
+<script src="${ctx }/js/common/jquery.form.js"></script>
 </head>
+<script type="text/javascript">
+		$(".select2").css('width','200px').select2({allowClear:true})
+		.on('change', function(){
+			$(this).closest('form').validate().element($(this));
+		}); 
+</script>
 
-<body>
+<body>  
 <div class="main-container" id="main-container">
 		<div class="main-container-inner">
 			<div class="page-content">
@@ -25,95 +29,99 @@
 					
 					<table align="center">
 						<tr>
-							<td>产品代码:</td>
+							<td style="text-align:right;">产品代码:</td>
 							<td><input type="text" name="insPrdCode" id="insPrdCode"  class="col-xs-12 col-sm-10" /></td>
-							<td>产品真实代码:</td>
+							<td style="text-align:right;">产品真实代码:</td>
 							<td><input type="text" name="insPrdTrueCode" id="insPrdTrueCode"  class="col-xs-12 col-sm-10" /></td>
-							<td>公司编码：</td>
+							<td style="text-align:right;">公司编码：</td>
 							<td>
 								<input type="text" name="insCorpCode" id="insCorpCode"  class="col-xs-12 col-sm-10" />
-							<td>产品名称：</td>
-							<td><input type="text"   class="col-xs-12 col-sm-10"  placeholder="Search"  id="insPrdCnName" name="insPrdCnName" /></td>
+						
 						</tr>
 						<tr>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>产品简称：</td>
+							<td style="text-align:right;">产品名称：</td>
+							<td><input type="text"   class="col-xs-12 col-sm-10"   id="insPrdCnName" name="insPrdCnName" /></td>
+							<td style="text-align:right;">产品简称：</td>
 							<td>
 								<input type="text" name="insPrdSimName" id="insPrdSimName"  class="col-xs-12 col-sm-10" />
 							</td>
-							<td>主附险标志:</td>
-							<td>
-								<select id="assuranceType" name="assuranceType" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
-									<option value="">&nbsp;</option>
-									<option value="0">主险</option>
-									<option value="1">附加险</option>
-								</select>
-							</td>
-							<td>购买单位:</td>
-							<td>
-								<select id="buyUnit" name="buyUnit" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
-									<option value="">&nbsp;</option>
-									<option value="0">份数</option>
-									<option value="1">保费</option>
-									<option value="2">保额</option>
-								</select>
-							</td>
-							
-							<td>产品类型：</td>
+							<td style="text-align:right;">产品类型：</td>
 							<td>
 								<input type="text" name="insPrdType" id="insPrdType"  class="col-xs-12 col-sm-10" />
 							</td>
 						</tr>
 						<tr>
-							<td>&nbsp;</td>
-						</tr>
-						<tr>
-							<td>代理开始日期：</td>
+							
+							<td style="text-align:right;">主附险标志:</td>
 							<td>
-								<input id="insBeginDate" name="insBeginDate"  type="text" class="col-xs-12 col-sm-10"  data-date-format="mm/dd/yyyy"  placeholder="请选择日期">
+								<select id="assuranceType" name="assuranceType" class="select2"  data-placeholder="Click to Choose...">
+									<option value="">请选择</option>
+									<option value="0">主险</option>
+									<option value="1">附加险</option>
+								</select>
 							</td>
-							<td>代理结束日期：</td>
+							<td style="text-align:right;">购买单位:</td>
 							<td>
-								<input id="insEndDate" name="insEndDate"  type="text"  class="col-xs-12 col-sm-10"  data-date-format="mm/dd/yyyy"  placeholder="请选择日期">
+								<select id="buyUnit" name="buyUnit" class="select2"  data-placeholder="Click to Choose...">
+									<option value="">请选择</option>
+									<option value="0">份数</option>
+									<option value="1">保费</option>
+									<option value="2">保额</option>
+								</select>
 							</td>
-							<td>状态：</td>
+							<td style="text-align:right;">状态：</td>
 							<td>
-								<select id="status" name="status" class="col-xs-12 col-sm-10"   data-placeholder="Click to Choose...">
-										<option value="">&nbsp;</option>
+								<select id="status" name="status" class="select2"   data-placeholder="Click to Choose...">
+										<option value="">请选择</option>
 										<option value="0">有效</option>
 										<option value="1">无效</option>
 										
 									</select>
 							</td>
-							<td>是否可质押：</td>
+						</tr>
+						<tr>
+						<td style="text-align:right;">代理开始日期：</td>
 							<td>
-								<select id="impawnFlag" name="impawnFlag" class="col-xs-12 col-sm-10"   data-placeholder="Click to Choose...">
-										<option value="">&nbsp;</option>
+								<div class="col-sm-12 input-group date" data-provide="datepicker">
+								   	<input class="form-control date-picker input-medium" id="insBeginDate"  name="insBeginDate" type="text" placeholder="请输入代理开始时间" data-date-format="yyyymmdd" />
+								    <div class="input-group-addon">
+								        <span class="icon-calendar bigger-110"></span>
+								    </div>
+								</div>
+							</td>
+							<td style="text-align:right;">代理结束日期：</td>
+							<td>
+								<div class="col-sm-12 input-group date" data-provide="datepicker">
+								   	<input class="form-control date-picker input-medium" id="insEndDate"  name="insEndDate" type="text" placeholder="请输入代理结束时间" data-date-format="yyyymmdd" />
+								    <div class="input-group-addon">
+								        <span class="icon-calendar bigger-110"></span>
+								    </div>
+								</div>
+							</td>
+							<td style="text-align:right;">是否可质押：</td>
+							<td>
+								<select id="impawnFlag" name="impawnFlag" class="select2"   data-placeholder="Click to Choose...">
+										<option value="">请选择</option>
 										<option value="0">是</option>
 										<option value="1">否</option>
 									</select>
 							</td>
 							</tr>
 							<tr>
-								<td>&nbsp;</td>
-							</tr>
-							<tr>
 							
-							<td>交易类型：</td>
+							<td style="text-align:right;">交易类型：</td>
 							<td>
-								<select id="transType" name="transType" class="col-xs-12 col-sm-10"   data-placeholder="Click to Choose...">
-										<option value="">&nbsp;</option>
+								<select id="transType" name="transType" class="select2"   data-placeholder="Click to Choose...">
+										<option value="">请选择</option>
 										<option value="0">全部</option>
 										<option value="1">实时</option>
 										<option value="2">非实时</option>
 									</select>
 							</td>
-							<td>交易渠道：</td>
+							<td style="text-align:right;">交易渠道：</td>
 							<td>
-								<select id="channelFlag" name="channelFlag" class="col-xs-12 col-sm-10"   data-placeholder="Click to Choose...">
-										<option value="">&nbsp;</option>
+								<select id="channelFlag" name="channelFlag" class="select2"   data-placeholder="Click to Choose...">
+										<option value="">请选择</option>
 										<option value="01">柜面</option>
 										<option value="02">网上银行</option>
 										<option value="03">手机银行</option>
@@ -121,16 +129,16 @@
 										<option value="05">自助终端</option>
 									</select>
 							</td>
+							<td>&nbsp;</td>
+							<td align="center">
+								<button type="button" class="btn btn-primary  btn-xs" id="searchBtn">查询</button>
+								<button id="resetFilter"  class="btn btn-primary  btn-xs"  onclick="resetSearchForm()">重置</button>
+							</td>
 							</tr>
-							<tr><td>&nbsp;</td></tr>
 					</table>
 				</form>
-				<div align="center">
-					<button id="searchFilter"  class="btn btn-primary btn-xs" onclick="submitSearchForm()">查询</button>
-					<button id="resetFilter"  class="btn btn-primary  btn-xs"  onclick="resetSearchForm()">重置</button>
-				</div>
+				
 					<!-- /.page-header -->
-
 				<table style="height: 100%;" id="grid-table"></table>
 
 				<div id="grid-pager"></div>
@@ -150,154 +158,141 @@
 
 	<!-- 新增界面    action="${ctx }/topInsPrdInfo/insertTopInsPrdInfo.do"-->
 		<div id="dialog-form" style="display: none">
-		<form class="form-horizontal" id="validation-form" method="post" >
-			<input type="hidden" name="id"  id="id"> 
-			<div class="form-group">
-					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insPrdCode" >产品代码:</label>
-				   <div class="col-xs-12 col-sm-3" style="float:left">	
-				  	 <input type="text" name="insPrdCode" id="insPrdCode1"  class="col-xs-12 col-sm-10" />
-				  	 <font color="red">*</font>
-				   </div>
-				   
-					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insPrdTrueCode">产品真实代码:</label>
-					<div class="col-xs-12 col-sm-3" style="float:left">	
+			<form class="form-horizontal" id="validation-form" method="post" >
+				<input type="hidden" name="id"  id="id"> 
+				<table align="center">
+				<tr>
+					<td>产品代码：</td>
+					<td>
+					  	 <input type="text" name="insPrdCode" id="insPrdCode1"  class="col-xs-12 col-sm-10" />
+					  	 <font color="red">*</font>
+					</td>
+					<td>产品真实代码：</td>
+					<td>
 						<input type="text" name="insPrdTrueCode" id="insPrdTrueCode"  class="col-xs-12 col-sm-10" />
 						<font color="red">*</font>
-					</div>
-					<div class="space-2"></div>
-			</div>
-		
-			<div class="space-2"></div>
-		
-			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insCorpCode">公司编码:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">
-					<input type="text" name="insCorpCode" 	id="insCorpCode" class="col-xs-12 col-sm-10" />
-					<font color="red">*</font>
-				</div>
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insPrdCnName">产品名称：</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">	
-					<input type="text" name="insPrdCnName" 	id="insPrdCnName" class="col-xs-12 col-sm-10" />
-					<font color="red">*</font>
-				</div>
-				<div class="space-2"></div>
-			</div>
-		
-			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insPrdSimName">产品简称:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">
-					<input type="text" id="insPrdSimName" name="insPrdSimName"  class="col-xs-12 col-sm-10" />	
-				</div>
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="assuranceType">主附险标志:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">
-					<select id="assuranceType" name="assuranceType" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
+					</td>
+				</tr>
+				<tr>
+					<td>公司编码：</td>
+					<td>
+						<input type="text" name="insCorpCode" 	id="insCorpCode" class="col-xs-12 col-sm-10" />
+						<font color="red">*</font>
+					</td>
+					<td>产品名称：</td>
+					<td>
+						<input type="text" name="insPrdCnName" 	id="insPrdCnName" class="col-xs-12 col-sm-10" />
+						<font color="red">*</font>
+					</td>
+				</tr>
+				<tr>
+					<td>产品简称：</td>
+					<td>
+						<input type="text" id="insPrdSimName" name="insPrdSimName"  class="col-xs-12 col-sm-10" />
+					</td>
+					<td>主附险标志：</td>
+					<td>
+						<select id="assuranceType" name="assuranceType" class="select2"  data-placeholder="Click to Choose...">
+						<option value="">请选择</option>
 						<option value="0">主险</option>
 						<option value="1">附加险</option>
 					</select>
-				</div>
-			</div>
-		
-			<div class="space-2"></div>
-			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="address">购买单位:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">
-					<select id="buyUnit" name="buyUnit" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
-						<option value="">&nbsp;</option>
-						<option value="0">份数</option>
-						<option value="1">保费</option>
-						<option value="2">保额</option>
-					</select>
-				</div>
+					</td>
+				</tr>
+				<tr>
+					<td>购买单位：</td>
+					<td>
+						<select id="buyUnit" name="buyUnit" class="select2"  data-placeholder="Click to Choose...">
+							<option value="">请选择</option>
+							<option value="0">份数</option>
+							<option value="1">保费</option>
+							<option value="2">保额</option>
+						</select>
+					</td>
+					<td>产品类型：</td>
+					<td>
+						<input type="text" id="insPrdType" name="insPrdType" class="col-xs-12 col-sm-10" />
+					</td>
+				</tr>
+				<tr>
+					<td>代理开始日期：</td>
+					<td>
+						<div class="col-sm-12 input-group date" data-provide="datepicker">
+							<input class="form-control date-picker input-medium" id="insBeginDate1"  name="insBeginDate1" type="text" placeholder="请输入代理开始时间" data-date-format="yyyymmdd" />
+							<div class="input-group-addon">
+								<span class="icon-calendar bigger-110"></span>
+							</div>
+						</div>
+					</td>
+					<td>代理结束日期：</td>
+					<td>
+						<div class="col-sm-12 input-group date" data-provide="datepicker">
+							<input class="form-control date-picker input-medium" id="insEndDate1"  name="insEndDate1" type="text" placeholder="请输入代理结束时间" data-date-format="yyyymmdd" />
+							<div class="input-group-addon">
+								<span class="icon-calendar bigger-110"></span>
+							</div>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>起购金额/数量：</td>
+					<td>
+						<input type="text" id="startAMT" name="startAMT" class="col-xs-12 col-sm-10" />
+					</td>
+					<td>最高金额/数量：</td>
+					<td>
+						<input type="text" id="entAMT" name="entAMT" class="col-xs-12 col-sm-10" />
+					</td>
+				</tr>
+				<tr>
+					<td>递增金额/数量：</td>
+					<td>
+						<input type="text" id="inCreaseAMT" name="inCreaseAMT" class="col-xs-12 col-sm-10" />
+					</td>
+					<td>状态：</td>
+					<td>
+						<select id="status" name="status" class="select2"  data-placeholder="Click to Choose...">
+							<option value="">请选择</option>
+							<option value="0">是</option>
+							<option value="1">否</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>是否可质押：</td>
+					<td>
+						<select id="impawnFlag" name="impawnFlag" class="select2"  data-placeholder="Click to Choose...">
+							<option value="">请选择</option>
+							<option value="0">是</option>
+							<option value="1">否</option>
+						</select>
+					</td>
+					<td>交易类型：</td>
+					<td>
+						<select id="transType" name="transType" class="select2"  data-placeholder="Click to Choose...">
+							<option value="">请选择</option>
+							<option value="0">全部</option>
+							<option value="1">实时</option>
+							<option value="2">非实时</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>交易渠道：</td>
+					<td>
+						<select id="channelType" name="channelType" class="select2"  data-placeholder="Click to Choose...">
+							<option value="">请选择</option>
+							<option value="01">柜面</option>
+							<option value="02">网上银行</option>
+							<option value="03">手机银行</option>
+							<option value="04">直销银行</option>
+							<option value="05">自助终端</option>
+						</select>
+					</td>
+					
+				</tr>
 				
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="postCode">产品类型:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">
-					<input type="text" id="insPrdType" name="insPrdType" class="col-xs-12 col-sm-10" />
-				</div>
-			</div>
-		
-			<div class="space-2"></div>
-		
-			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insBeginDate12">代理开始日期:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">
-					<input id="insBeginDate1" name="insBeginDate" class="col-xs-12 col-sm-10"  type="text"  placeholder="请选择日期">
-					<!--  <input type="text" id="insBeginDate" name="insBeginDate"  class="col-xs-12 col-sm-10" />-->
-				</div>
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insEndDate">代理结束日期:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">
-					<input id="insEndDate1" name="insEndDate"  type="text"  class="col-xs-12 col-sm-10" >
-				</div>	
-				<div class="space-2"></div>
-			</div>
-		
-			<div class="form-group">
-			   <label class="control-label col-xs-12 col-sm-2 no-padding-right"	for="startAMT">起购金额/数量:</label>
-			   <div class="col-xs-12 col-sm-3" style="float:left">
-			     <input type="text" id="startAMT" name="startAMT" class="col-xs-12 col-sm-10" />
-			   </div>
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="entAMT">最高金额/数量:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">
-					<input type="text" id="entAMT" name="entAMT" class="col-xs-12 col-sm-10" />
-				</div>
-			</div>
-		
-			<div class="space-2"></div>
-			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="inCreaseAMT">递增金额/数量:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">
-					<input type="text" id="inCreaseAMT" name="inCreaseAMT" class="col-xs-12 col-sm-10" />
-				</div>
-				
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="status">状态:</label>
-			    <div class="col-xs-12 col-sm-3" style="float:left">
-					<select id="status" name="status" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
-						<option value="">&nbsp;</option>
-						<option value="0">是</option>
-						<option value="1">否</option>
-					</select>
-				</div>	
-			</div>
-		
-			<div class="space-2"></div>
-		
-			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right" for="impawnFlag">是否可质押:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">	
-					<select id="impawnFlag" name="impawnFlag" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
-						<option value="">&nbsp;</option>
-						<option value="0">是</option>
-						<option value="1">否</option>
-					</select>
-			</div>
-			
-			<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="transType">交易类型:</label>
-			<div class="col-xs-12 col-sm-3" style="float:left">	
-				<select id="transType" name="transType" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
-					<option value="">&nbsp;</option>
-					<option value="0">全部</option>
-					<option value="1">实时</option>
-					<option value="2">非实时</option>
-				</select>
-			</div>
-		</div>
-		<div class="space-2"></div>
-		
-		<div class="form-group">
-			
-			<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="channelType">交易渠道：</label>
-			<div class="col-xs-12 col-sm-3" style="float:left">
-					<select id="channelType" name="channelType" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
-						<option value="">&nbsp;</option>
-						<option value="01">柜面</option>
-						<option value="02">网上银行</option>
-						<option value="03">手机银行</option>
-						<option value="04">直销银行</option>
-						<option value="05">自助终端</option>
-					</select>
-				</div>
-				
-			</div>
-			<div class="space-2"></div>
+			</table>
 			</form>
 		</div>
 		
@@ -354,36 +349,34 @@
 		<div id="insPrdPeriodDialog-form" style="display: none">
 		<form class="form-horizontal" id="insPrdPeriod-form" method="post" >
 			<input type="hidden" name="id"  id="id"> 
-			<div class="form-group">
-					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insPrdCode" >产品编码:</label>
-				   <div class="col-xs-12 col-sm-3" style="float:left">	
-				  	 <input type="text" name="insPrdcode" id="insPrdcode"  class="col-xs-12 col-sm-10" />
-				  	 <font color="red">*</font>
-				   </div>
-				   
-					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="key">值:</label>
-					<div class="col-xs-12 col-sm-3" style="float:left">	
+			<table align="center">
+				<tr>
+					<td>产品编码：</td>
+					<td>
+						<input type="text" name="insPrdcode" id="insPrdcode"  class="col-xs-12 col-sm-10" />
+				  		<font color="red">*</font>
+					</td>
+				</tr>
+				<tr>
+					<td>值：</td>
+					<td>
 						<input type="text" name="key" id="key"  class="col-xs-12 col-sm-10" />
 						<font color="red">*</font>
-					</div>
-					<div class="space-2"></div>
-			</div>
-		
-			<div class="space-2"></div>
-		
-			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="unit">单位:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">
-					<select id="unit" name="unit" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
-						<option value="0" selected="selected">年</option>
-						<option value="1">周岁</option>
-						<option value="2">保终身</option>
-					</select>
-					<font color="red">*</font>
-				</div>
-				<div class="space-2"></div>
-				<div class="space-2"></div>
-			</div>
+					</td>
+				</tr>
+				<tr>
+					<td>单位：</td>
+					<td>
+						<select id="unit" name="unit" class="select2"  data-placeholder="Click to Choose...">
+							<option value="">请选择</option>
+							<option value="0">年</option>
+							<option value="1">周岁</option>
+							<option value="2">保终身</option>
+						</select>
+						<font color="red">*</font>
+					</td>
+				</tr>
+			</table>
 			</form>
 		</div>
 		
@@ -391,38 +384,46 @@
 		<div id="insPrdPayTypeDialog" style="display: none">
 		<form class="form-horizontal" id="insPrdPayTypeDialog-form" method="post" >
 			<input type="hidden" name="id"  id="id"> 
-			<div class="form-group">
-					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="insprdCode" >产品编码:</label>
-				   <div class="col-xs-12 col-sm-3" style="float:left">	
-				  	 <input type="text" name="insprdCode" id="insprdCode"  class="col-xs-12 col-sm-10" />
-				  	 <font color="red">*</font>
-				   </div>
-				   
-					<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="key">值:</label>
-					<div class="col-xs-12 col-sm-3" style="float:left">	
+			<table align="center">
+				<tr>
+					<td>产品编码：</td>
+					<td>
+						<input type="text" name="insprdCode" id="insprdCode"  class="col-xs-12 col-sm-10" />
+				  		<font color="red">*</font>
+					</td>
+				</tr>
+				<tr>
+					<td>值：</td>
+					<td>
 						<input type="text" name="key" id="payTypekey"  class="col-xs-12 col-sm-10" />
 						<font color="red">*</font>
-					</div>
-					<div class="space-2"></div>
-			</div>
-		
-			<div class="space-2"></div>
-		
-			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-2 no-padding-right"  for="unit">缴费方式:</label>
-				<div class="col-xs-12 col-sm-3" style="float:left">
-					<select id="payTypeunit" name="value" class="col-xs-12 col-sm-10"  data-placeholder="Click to Choose...">
-						<option value="1">趸缴</option>
-						<option value="2">月缴</option>
-						<option value="3">季缴</option>
-						<option value="4">半年缴</option>
-					</select>
-					<font color="red">*</font>
-				</div>
-				<div class="space-2"></div>
-				<div class="space-2"></div>
-			</div>
+					</td>
+				</tr>
+				<tr>
+					<td>缴费方式：</td>
+					<td>
+						<select id="payTypeunit" name="value" class="select2"  data-placeholder="Click to Choose...">
+							<option value="">请选择</option>
+							<option value="1">1-趸缴</option>
+							<option value="2">2-月缴</option>
+							<option value="3">3-季缴</option>
+							<option value="4">4-半年缴</option>
+							<option value="5">5-年缴</option>
+						</select>
+						<font color="red">*</font>
+					</td>
+				</tr>
+			</table>
 			</form>
 		</div>
+		
+		<script type="text/javascript">
+			$(".select2").css('width','200px').select2({allowClear:true})
+			.on('change', function(){
+				$(this).closest('form').validate().element($(this));
+			}); 
+			
+		
+		</script>
 </body>
 </html>

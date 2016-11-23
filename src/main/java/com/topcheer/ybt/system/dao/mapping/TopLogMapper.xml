@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.system.dao.TopLogMapper" >
+	<resultMap id="TopLogResultMap" type="com.topcheer.ybt.system.entity.TopLog" >
+       		<result property="id"    column="ID" jdbcType="VARCHAR" />
+       		<result property="description"    column="DESCRIPTION" jdbcType="VARCHAR" />
+       		<result property="method"    column="METHOD" jdbcType="VARCHAR" />
+       		<result property="type"    column="TYPE" jdbcType="VARCHAR" />
+       		<result property="requestIp"    column="REQUESTIP" jdbcType="VARCHAR" />
+       		<result property="exceptionCode"    column="EXCEPTIONCODE" jdbcType="VARCHAR" />
+       		<result property="params"    column="PARAMS" jdbcType="VARCHAR" />
+       		<result property="createBy"    column="CREATEBY" jdbcType="VARCHAR" />
+       		<result property="executeTime"    column="executeTime" jdbcType="VARCHAR" />
+       		<result property="createDate"    column="CREATEDATE" jdbcType="VARCHAR" />
+       		<result property="createTime"    column="CREATETIME" jdbcType="VARCHAR" />
+	</resultMap>
+    <sql id="TopLogColumnList" >
+    		ID,
+    		DESCRIPTION,
+    		METHOD,
+    		TYPE,
+    		REQUESTIP,
+    		EXCEPTIONCODE,
+    		PARAMS,
+    		CREATEBY,
+    		executeTime,
+    		CREATEDATE,
+    		CREATETIME
+    </sql>
+    <select id="searchTopLog" resultMap="TopLogResultMap" parameterType="com.topcheer.ybt.system.entity.TopLog">
+    	select  * from TOP_LOG
+		where 1=1
+    		<if test="id !=null and id != '' ">
+		    	and ID = #{id,jdbcType=VARCHAR}
+			</if>
+    		<if test="description !=null and description != '' ">
+		    	and DESCRIPTION = #{description,jdbcType=VARCHAR}
+			</if>
+    		<if test="method !=null and method != '' ">
+		    	and METHOD = #{method,jdbcType=VARCHAR}
+			</if>
+    		<if test="type !=null and type != '' ">
+		    	and TYPE = #{type,jdbcType=VARCHAR}
+			</if>
+    		<if test="requestIp !=null and requestIp != '' ">
+		    	and REQUESTIP = #{requestIp,jdbcType=VARCHAR}
+			</if>
+    		<if test="exceptionCode !=null and exceptionCode != '' ">
+		    	and EXCEPTIONCODE = #{exceptionCode,jdbcType=VARCHAR}
+			</if>
+    		<if test="executeTime !=null and executeTime != '' ">
+		    	and executeTime = #{executeTime,jdbcType=VARCHAR}
+			</if>
+    		<if test="params !=null and params != '' ">
+		    	and PARAMS = #{params,jdbcType=VARCHAR}
+			</if>
+    		<if test="createBy !=null and createBy != '' ">
+		    	and CREATEBY = #{createBy,jdbcType=VARCHAR}
+			</if>
+    		<if test="createDate !=null and createDate != '' ">
+		    	and CREATEDATE = #{createDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="createTime !=null and createTime != '' ">
+		    	and CREATETIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			and type = '0'
+			order by CREATEDATE desc
+  	</select> 
+  	
+  	<select id="searchAll" resultMap="TopLogResultMap" parameterType="HashMap">
+    	select * from TOP_LOG 
+  	</select> 
+  	
+  	<insert id="insert" parameterType="com.topcheer.ybt.system.entity.TopLog">
+  		INSERT INTO TOP_LOG (
+    			ID,
+    			DESCRIPTION,
+    			METHOD,
+    			TYPE,
+    			REQUESTIP,
+    			EXCEPTIONCODE,
+    			PARAMS,
+    			CREATEBY,
+    			executeTime,
+    			CREATEDATE,
+    			CREATETIME
+  		)VALUES (
+    		#{id,jdbcType=VARCHAR},
+    		#{description,jdbcType=VARCHAR},
+    		#{method,jdbcType=VARCHAR},
+    		#{type,jdbcType=VARCHAR},
+    		#{requestIp,jdbcType=VARCHAR},
+    		#{exceptionCode,jdbcType=VARCHAR},
+    		#{params,jdbcType=VARCHAR},
+    		#{createBy,jdbcType=VARCHAR},
+    		#{executeTime,jdbcType=VARCHAR},
+    		#{createDate,jdbcType=VARCHAR},
+    		#{createTime,jdbcType=VARCHAR}
+  		)
+  	</insert>
+  	
+  	<insert id="update" parameterType="com.topcheer.ybt.system.entity.TopLog">
+  		update TOP_LOG set  
+	      		DESCRIPTION = #{description,jdbcType=VARCHAR}  ,
+	      		METHOD = #{method,jdbcType=VARCHAR}  ,
+	      		TYPE = #{type,jdbcType=VARCHAR}  ,
+	      		REQUESTIP = #{requestIp,jdbcType=VARCHAR}  ,
+	      		EXCEPTIONCODE = #{exceptionCode,jdbcType=VARCHAR}  ,,
+	      		PARAMS = #{params,jdbcType=VARCHAR}  ,
+	      		CREATEBY = #{createBy,jdbcType=VARCHAR}  ,
+	      		CREATEDATE = #{createDate,jdbcType=VARCHAR}  ,
+	      		CREATETIME = #{createTime,jdbcType=VARCHAR}  
+  		where ID = #{id,jdbcType=VARCHAR}
+  	</insert>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete from TOP_LOG where ID = #{id,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<select id="getTopLog" resultMap="TopLogResultMap" parameterType="String">
+  		select * from TOP_LOG  where ID = #{id,jdbcType=VARCHAR} order by CREATEDATE desc
+  	</select>
+  	
+  	
+  	  <select id="getExcptionLogInfo" resultMap="TopLogResultMap" parameterType="com.topcheer.ybt.system.entity.TopLog">
+    	select  * from TOP_LOG
+		where 1=1
+    		<if test="id !=null and id != '' ">
+		    	and ID = #{id,jdbcType=VARCHAR}
+			</if>
+    		<if test="description !=null and description != '' ">
+		    	and DESCRIPTION = #{description,jdbcType=VARCHAR}
+			</if>
+    		<if test="method !=null and method != '' ">
+		    	and METHOD = #{method,jdbcType=VARCHAR}
+			</if>
+    		<if test="type !=null and type != '' ">
+		    	and TYPE = #{type,jdbcType=VARCHAR}
+			</if>
+    		<if test="requestIp !=null and requestIp != '' ">
+		    	and REQUESTIP = #{requestIp,jdbcType=VARCHAR}
+			</if>
+    		<if test="exceptionCode !=null and exceptionCode != '' ">
+		    	and EXCEPTIONCODE = #{exceptionCode,jdbcType=VARCHAR}
+			</if>
+    		<if test="executeTime !=null and executeTime != '' ">
+		    	and executeTime = #{executeTime,jdbcType=VARCHAR}
+			</if>
+    		<if test="params !=null and params != '' ">
+		    	and PARAMS = #{params,jdbcType=VARCHAR}
+			</if>
+    		<if test="createBy !=null and createBy != '' ">
+		    	and CREATEBY = #{createBy,jdbcType=VARCHAR}
+			</if>
+    		<if test="createDate !=null and createDate != '' ">
+		    	and CREATEDATE = #{createDate,jdbcType=VARCHAR}
+			</if>
+    		<if test="createTime !=null and createTime != '' ">
+		    	and CREATETIME = #{createTime,jdbcType=VARCHAR}
+			</if>
+			and type = '1'
+			order by CREATEDATE desc
+  	</select> 
+  	
+  	<select id="getTopLogListByParams" resultMap="TopLogResultMap" parameterType="java.util.Map">
+    	select * from TOP_LOG 
+ 		<where> 
+	    	<if test="createBy !=null and createBy != '' ">
+			    CREATEBY like '%'||'${createBy}'||'%'
+			</if>
+	    	<if test="startDate !=null and startDate != '' ">
+			    and CREATEDATE &gt;= #{startDate,jdbcType=VARCHAR}
+			</if>
+			<if test="endDate !=null and endDate != '' ">
+			    and CREATEDATE  &lt;= #{endDate,jdbcType=VARCHAR}
+			</if>
+			and type = '0'
+			
+		</where>
+		order by CREATEDATE desc
+  	</select> 
+  	
+  		<select id="getExcptionLogListByParams" resultMap="TopLogResultMap" parameterType="java.util.Map">
+    	select * from TOP_LOG 
+ 		<where> 
+	    	<if test="createBy !=null and createBy != '' ">
+			    CREATEBY like '%'||'${createBy}'||'%'
+			</if>
+	    	<if test="startDate !=null and startDate != '' ">
+			    and CREATEDATE &gt;= #{startDate,jdbcType=VARCHAR}
+			</if>
+			<if test="endDate !=null and endDate != '' ">
+			    and CREATEDATE  &lt;= #{endDate,jdbcType=VARCHAR}
+			</if>
+			and type = '1'
+			
+		</where>
+		order by CREATEDATE desc
+  	</select> 
+  	
+</mapper>

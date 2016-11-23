@@ -1551,3 +1551,71 @@ comment on column TOP_SPECIALINFO.remark9  is
 '备注字段九';
 comment on column TOP_SPECIALINFO.remark10 is
 '备注字段十';
+
+
+/*==============================================================*/
+/* Table: TOPCHEER_BANKANDCORP                                         */
+/*==============================================================*/
+create table TOP_BANKANDCORP  (
+  BANKCODE           varchar2(20)  not null,
+  BANKCHNAME         varchar2(60)  not null,
+  CORPCODE           varchar2(20),
+  CORPCODE2          varchar2(20),
+  CORPCODE3          varchar2(20),
+  FILENAME           varchar2(60),
+  OPERATORBANKCODE   varchar2(20),
+  OPERATORCODE       varchar2(20),
+  OPERDATE           varchar2(8),
+  OPERTIME           varchar2(6),
+  REVIEWBANKCODE     varchar2(20),
+  REVIEWCODE         varchar2(20),
+  UPDATEDATE         varchar2(8),
+  UPDATETIME         varchar2(6),
+
+   constraint PK_TOP_BANKANDCORP primary key (BANKCODE)
+);
+
+comment on table TOP_BANKANDCORP is
+'机构绑定保险公司表';
+
+comment on column TOP_BANKANDCORP.BANKCODE is
+'机构号';
+
+comment on column TOP_BANKANDCORP.BANKCHNAME is
+'机构名称';
+
+comment on column TOP_BANKANDCORP.CORPCODE is
+'保险公司1';
+
+comment on column TOP_BANKANDCORP.CORPCODE2 is
+'保险公司2';
+
+comment on column TOP_BANKANDCORP.CORPCODE3 is
+'保险公司3';
+
+comment on column TOP_BANKANDCORP.FILENAME is
+'导入文件名';
+
+comment on column TOP_BANKANDCORP.OPERATORBANKCODE  is
+'操作机构号';
+
+comment on column TOP_BANKANDCORP.OPERATORCODE  is
+'操作员工号';
+
+comment on column TOP_BANKANDCORP.OPERDATE is
+'操作日期';
+
+comment on column TOP_BANKANDCORP.OPERTIME is
+'操作时间';
+
+comment on column TOP_BANKANDCORP.REVIEWBANKCODE is
+'复核机构号';
+
+comment on column TOP_BANKANDCORP.REVIEWCODE is
+'复核员工号';
+
+comment on column TOP_BANKANDCORP.UPDATEDATE is
+'更新日期';
+
+comment on column TOP_BANKANDCORP.UPDATETIME is
+'更新时间';

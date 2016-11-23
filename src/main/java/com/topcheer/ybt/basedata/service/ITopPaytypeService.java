@@ -21,5 +21,7 @@ public interface ITopPaytypeService {
 	public void update(TopPaytype topPaytype);
 	
 	public void delete(String id);
+	
+	public List<TopPaytype> getTopPaytypeListByInsPrdCode(String insPrdCode);
 
 }

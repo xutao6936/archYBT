@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="GBK" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.system.dao.TopSequenceMapper" >
+	<resultMap id="SequenceResult" type="java.lang.String" >
+       		<result property="seqNum"    column="seqNum" jdbcType="VARCHAR" />
+	</resultMap>
+    
+    <select id="getSequenceByName" resultMap="SequenceResult" >
+    	select test_sequence.nextVal as seqNum from dual 
+  	</select> 
+  	
+</mapper>

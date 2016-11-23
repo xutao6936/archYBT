@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.basedata.dao.TopBankAndCorpMapper" >
+	<resultMap id="TopBankandcorpResultMap" type="com.topcheer.ybt.basedata.entity.TopBankAndCorp" >
+       		<result property="bankCode"    column="BANKCODE" jdbcType="VARCHAR" />
+       		<result property="bankChName"    column="BANKCHNAME" jdbcType="VARCHAR" />
+       		<result property="corpCode"    column="CORPCODE" jdbcType="VARCHAR" />
+       		<result property="corpCode2"    column="CORPCODE2" jdbcType="VARCHAR" />
+       		<result property="corpCode3"    column="CORPCODE3" jdbcType="VARCHAR" />
+       		<result property="fileName"    column="FILENAME" jdbcType="VARCHAR" />
+       		<result property="operatorBankCode"    column="OPERATORBANKCODE" jdbcType="VARCHAR" />
+       		<result property="operatorCode"    column="OPERATORCODE" jdbcType="VARCHAR" />
+       		<result property="operDate"    column="OPERDATE" jdbcType="VARCHAR" />
+       		<result property="operTime"    column="OPERTIME" jdbcType="VARCHAR" />
+       		<result property="reviewBankCode"    column="REVIEWBANKCODE" jdbcType="VARCHAR" />
+       		<result property="reviewCode"    column="REVIEWCODE" jdbcType="VARCHAR" />
+       		<result property="updateDate"    column="UPDATEDATE" jdbcType="VARCHAR" />
+       		<result property="updateTime"    column="UPDATETIME" jdbcType="VARCHAR" />
+	</resultMap>
+    <sql id="TopBankandcorpColumnList" >
+    		BANKCODE,
+    		BANKCHNAME,
+    		CORPCODE,
+    		CORPCODE2,
+    		CORPCODE3,
+    		FILENAME,
+    		OPERATORBANKCODE,
+    		OPERATORCODE,
+    		OPERDATE,
+    		OPERTIME,
+    		REVIEWBANKCODE,
+    		REVIEWCODE,
+    		UPDATEDATE,
+    		UPDATETIME
+    </sql>
+    <select id="searchTopBankandcorp" resultMap="TopBankandcorpResultMap" parameterType="com.topcheer.ybt.basedata.entity.TopBankAndCorp">
+    	select  * from TOP_BANKANDCORP
+		where 1=1
+    		<if test="bankcode !=null and bankcode != '' ">
+		    	and BANKCODE = #{bankcode,jdbcType=VARCHAR}
+			</if>
+    		<if test="bankchname !=null and bankchname != '' ">
+		    	and BANKCHNAME = #{bankchname,jdbcType=VARCHAR}
+			</if>
+    		<if test="corpcode !=null and corpcode != '' ">
+		    	and CORPCODE = #{corpcode,jdbcType=VARCHAR}
+			</if>
+    		<if test="corpcode2 !=null and corpcode2 != '' ">
+		    	and CORPCODE2 = #{corpcode2,jdbcType=VARCHAR}
+			</if>
+    		<if test="corpcode3 !=null and corpcode3 != '' ">
+		    	and CORPCODE3 = #{corpcode3,jdbcType=VARCHAR}
+			</if>
+    		<if test="filename !=null and filename != '' ">
+		    	and FILENAME = #{filename,jdbcType=VARCHAR}
+			</if>
+    		<if test="operatorbankcode !=null and operatorbankcode != '' ">
+		    	and OPERATORBANKCODE = #{operatorbankcode,jdbcType=VARCHAR}
+			</if>
+    		<if test="operatorcode !=null and operatorcode != '' ">
+		    	and OPERATORCODE = #{operatorcode,jdbcType=VARCHAR}
+			</if>
+    		<if test="operdate !=null and operdate != '' ">
+		    	and OPERDATE = #{operdate,jdbcType=VARCHAR}
+			</if>
+    		<if test="opertime !=null and opertime != '' ">
+		    	and OPERTIME = #{opertime,jdbcType=VARCHAR}
+			</if>
+    		<if test="reviewbankcode !=null and reviewbankcode != '' ">
+		    	and REVIEWBANKCODE = #{reviewbankcode,jdbcType=VARCHAR}
+			</if>
+    		<if test="reviewcode !=null and reviewcode != '' ">
+		    	and REVIEWCODE = #{reviewcode,jdbcType=VARCHAR}
+			</if>
+    		<if test="updatedate !=null and updatedate != '' ">
+		    	and UPDATEDATE = #{updatedate,jdbcType=VARCHAR}
+			</if>
+    		<if test="updatetime !=null and updatetime != '' ">
+		    	and UPDATETIME = #{updatetime,jdbcType=VARCHAR}
+			</if>
+  	</select> 
+  	
+  	<select id="searchAll" resultMap="TopBankandcorpResultMap" parameterType="HashMap">
+    	select * from TOP_BANKANDCORP 
+  	</select> 
+  	
+  	<insert id="insert" parameterType="com.topcheer.ybt.basedata.entity.TopBankAndCorp">
+  		INSERT INTO TOP_BANKANDCORP (
+    			BANKCODE,
+    			BANKCHNAME,
+    			CORPCODE,
+    			CORPCODE2,
+    			CORPCODE3,
+    			FILENAME,
+    			OPERATORBANKCODE,
+    			OPERATORCODE,
+    			OPERDATE,
+    			OPERTIME,
+    			REVIEWBANKCODE,
+    			REVIEWCODE,
+    			UPDATEDATE,
+    			UPDATETIME
+  		)VALUES (
+    		#{bankCode,jdbcType=VARCHAR},
+    		#{bankChName,jdbcType=VARCHAR},
+    		#{corpCode,jdbcType=VARCHAR},
+    		#{corpCode2,jdbcType=VARCHAR},
+    		#{corpCode3,jdbcType=VARCHAR},
+    		#{fileName,jdbcType=VARCHAR},
+    		#{operatorBankCode,jdbcType=VARCHAR},
+    		#{operatorCode,jdbcType=VARCHAR},
+    		#{operDate,jdbcType=VARCHAR},
+    		#{operTime,jdbcType=VARCHAR},
+    		#{reviewBankCode,jdbcType=VARCHAR},
+    		#{reviewCode,jdbcType=VARCHAR},
+    		#{updateDate,jdbcType=VARCHAR},
+    		#{updateTime,jdbcType=VARCHAR}
+  		)
+  	</insert>
+  	
+  	<insert id="update" parameterType="com.topcheer.ybt.basedata.entity.TopBankAndCorp">
+  		update TOP_BANKANDCORP set  
+	      		BANKCHNAME = #{bankchname,jdbcType=VARCHAR}  ,
+	      		CORPCODE = #{corpcode,jdbcType=VARCHAR}  ,
+	      		CORPCODE2 = #{corpcode2,jdbcType=VARCHAR}  ,
+	      		CORPCODE3 = #{corpcode3,jdbcType=VARCHAR}  ,
+	      		FILENAME = #{filename,jdbcType=VARCHAR}  ,
+	      		OPERATORBANKCODE = #{operatorbankcode,jdbcType=VARCHAR}  ,
+	      		OPERATORCODE = #{operatorcode,jdbcType=VARCHAR}  ,
+	      		OPERDATE = #{operdate,jdbcType=VARCHAR}  ,
+	      		OPERTIME = #{opertime,jdbcType=VARCHAR}  ,
+	      		REVIEWBANKCODE = #{reviewbankcode,jdbcType=VARCHAR}  ,
+	      		REVIEWCODE = #{reviewcode,jdbcType=VARCHAR}  ,
+	      		UPDATEDATE = #{updatedate,jdbcType=VARCHAR}  ,
+	      		UPDATETIME = #{updatetime,jdbcType=VARCHAR}  
+  		where BANKCODE = #{bankcode,jdbcType=VARCHAR}
+  	</insert>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete from TOP_BANKANDCORP where BANKCODE = #{bankCode,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<select id="getCorpByBankCode" resultMap="TopBankandcorpResultMap" parameterType="String">
+  		select * from TOP_BANKANDCORP  where BANKCODE = #{bankCode,jdbcType=VARCHAR}
+  	</select>
+</mapper>

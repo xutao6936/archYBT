@@ -23,6 +23,7 @@
 <!-- ace styles -->
 <link rel="stylesheet" href="${ctx }/assets/css/select2.css" />
 <link rel="stylesheet" href="${ctx }/css/fullcalendar.css" />
+<link rel="stylesheet" href="${ctx }/css/table.css" />
 <style type="text/css">
 #footer {
 	margin-top: 1px;

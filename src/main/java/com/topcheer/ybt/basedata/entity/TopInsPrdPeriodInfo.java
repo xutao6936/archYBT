@@ -9,6 +9,18 @@ public class TopInsPrdPeriodInfo {
 	public String key;//值
 	
 	public String unit;//单位
+	
+	public TopInsPrdPeriodInfo() {
+		super();
+	}
+
+	
+	public TopInsPrdPeriodInfo(String key, String unit) {
+		super();
+		this.key = key;
+		this.unit = unit;
+	}
+
 
 	public String getId() {
 		return id;

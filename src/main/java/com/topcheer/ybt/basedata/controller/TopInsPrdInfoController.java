@@ -6,12 +6,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.util.Map;
 import java.util.UUID;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
@@ -20,7 +18,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.github.pagehelper.PageInfo;
 import com.google.common.collect.Maps;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
@@ -41,7 +38,7 @@ public class TopInsPrdInfoController {
 	public String turnToJsp() {
 		return "basedata/insPrdInfo";
 	}
-
+	
 	/**
 	 * 查询保险产品信息
 	 * 
@@ -56,6 +53,38 @@ public class TopInsPrdInfoController {
 		map.put("pageNo", page);
 		PageInfo<TopInsprdInfo> topInsprdInfoList = topInsPrdInfoBiz.getTopInsPrdInfoList(map);
 		return topInsprdInfoList;
+	}
+	
+	/**
+	 * 根据条件查询保险产品信息
+	 * 
+	 * @return
+	 */
+	@RequestMapping("/getTopInsPrdInfoListByParams.do")
+	@ResponseBody
+	public PageInfo<TopInsprdInfo> getTopInsPrdInfoListByParams(String rows, String page,HttpServletRequest request) {
+
+		log.info("进入 getTopInsPrdInfoListByParams");
+		Map<String, String> map = Maps.newHashMap();
+		log.info("insPrdCode:"+request.getParameter("insPrdCode"));
+		map.put("insPrdCode", request.getParameter("insPrdCode"));
+		map.put("insPrdTrueCode", request.getParameter("insPrdTrueCode"));
+		map.put("insCorpCode", request.getParameter("insCorpCode"));
+		map.put("insPrdCnName", request.getParameter("insPrdCnName"));
+		map.put("insPrdSimName", request.getParameter("insPrdSimName"));
+		map.put("insPrdType", request.getParameter("insPrdType"));
+		map.put("assuranceType", request.getParameter("assuranceType"));
+		map.put("buyUnit", request.getParameter("buyUnit"));
+		map.put("status", request.getParameter("status"));
+		map.put("insBeginDate", request.getParameter("insBeginDate"));
+		map.put("insEndDate", request.getParameter("insEndDate"));
+		map.put("impawnFlag", request.getParameter("impawnFlag"));
+		map.put("transType", request.getParameter("transType"));
+		map.put("channelFlag", request.getParameter("channelFlag"));
+		map.put("pageSize", rows);
+		map.put("pageNo", page);
+		PageInfo<TopInsprdInfo> searchTopInsCorpInfo = topInsPrdInfoBiz.getTopInsPrdInfoListByParams(map);
+		return searchTopInsCorpInfo;
 	}
 
 	/**

@@ -64,4 +64,8 @@
   	<select id="getTopPaytype" resultMap="TopPaytypeResultMap" parameterType="String">
   		select * from TOP_PAYTYPE  where ID = #{id,jdbcType=VARCHAR}
   	</select>
+  	
+  	<select id="getTopPaytypeListByInsPrdCode" resultMap="TopPaytypeResultMap" parameterType="String">
+  		select KEY,VALUE from TOP_PAYTYPE  where INSPRD_CODE = #{insPrdCode,jdbcType=VARCHAR}
+  	</select>
 </mapper>

@@ -18,5 +18,7 @@ public interface TopPayperiodMapper {
 	public void update(TopPayperiod topPayperiod);
 	
 	public void delete(String id);
+
+	public List<TopPayperiod> getTopPayperiodListByInsPrdCode(String insprdCode);
 	
 }

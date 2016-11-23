@@ -60,8 +60,9 @@ public class TopLoginContorller {
 			request.getSession().setAttribute("userinfo", userinfo);
 			return "index";
 		} else {
-			model.addAttribute("error", ResultHelper.LOGIN_ERROR);
-			return "login";
+			  map.put("msg", "用户名或密码错误");
+			  request.getSession().setAttribute("error",map);
+			return "redirect:/login.do";
 		}
 	}
 
@@ -69,7 +70,7 @@ public class TopLoginContorller {
 	public String loginOut(HttpServletRequest request) {
 		request.getSession().invalidate();
 		log.info("登出系统");
-		return "login";
+		return "redirect:/login.do";
 	}
 
 }

@@ -1,5 +1,8 @@
 package com.topcheer.ybt.basedata.service;
 
+/**
+ * 缴费年期Service
+ */
 import java.util.List;
 import java.util.Map;
 
@@ -22,5 +25,8 @@ public interface ITopPayperiodService {
 	public void update(TopPayperiod topPayperiod);
 	
 	public void delete(String id);
+	
+	//根据保险产品编码查询缴费年期信息
+	public  List<TopPayperiod> getTopPayperiodListByInsPrdCode(String InsprdCode);
 
 }

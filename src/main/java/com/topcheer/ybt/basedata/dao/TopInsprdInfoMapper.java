@@ -1,7 +1,9 @@
 package com.topcheer.ybt.basedata.dao;
 
 import java.util.List;
+import java.util.Map;
 
+import com.topcheer.ybt.basedata.entity.TopInsCorpInfo;
 import com.topcheer.ybt.basedata.entity.TopInsprdInfo;
 
 
@@ -26,5 +28,9 @@ public interface TopInsprdInfoMapper {
 			String insCorpCode);
 
 	public List<TopInsprdInfo> getInsPrdInfoByInsPrdCode(String insPrdCode);
+
+	//根据条件查询保险产品信息
+	public List<TopInsprdInfo> getTopInsPrdInfoListByParams(
+			Map<String, String> map);
 
 }

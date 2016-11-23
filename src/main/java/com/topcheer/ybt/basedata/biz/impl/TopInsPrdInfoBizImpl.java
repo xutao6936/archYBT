@@ -70,5 +70,11 @@ public class TopInsPrdInfoBizImpl implements ITopInsPrdInfoBiz {
 		return null;
 	}
 
+	@Override
+	public PageInfo<TopInsprdInfo> getTopInsPrdInfoListByParams(
+			Map<String, String> map) {
+		return topInsprdInfoService.getTopInsPrdInfoListByParams(map);
+	}
+
 
 }
