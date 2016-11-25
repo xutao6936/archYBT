@@ -12,18 +12,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-		<link href="${ctx }/js/common/bootstrap-fileinput/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
-		<link rel="stylesheet" href="${ctx }/assets/css/font-awesome.min.css" />
-		<!-- page specific plugin styles -->
-		<link rel="stylesheet" href="${ctx }/assets/css/jquery-ui-1.10.3.full.min.css" />
-		<link rel="stylesheet" href="${ctx }/assets/css/datepicker.css" />
-		<link rel="stylesheet" href="${ctx }/assets/css/ui.jqgrid.css" />
-		<!-- ace styles -->
-		<link rel="stylesheet" href="${ctx }/assets/css/ace.min.css" />
-		<link rel="stylesheet" href="${ctx }/assets/css/ace-rtl.min.css" />
-		<link rel="stylesheet" href="${ctx }/assets/css/ace-skins.min.css" />
+	
 		
-		<link rel="stylesheet" href="${ctx }/assets/css/font-awesome-ie7.min.css" />
+
+	
 		<style type="text/css">
 		#footer {
 			margin-top: 200px;
@@ -39,17 +31,9 @@
 		</style>
 		
 		
-		<script src="${ctx }/assets/js/jquery-ui-1.10.3.full.min.js"></script>
-		<script src="${ctx }/assets/js/ace-extra.min.js"></script>
-		<script src="${ctx }/assets/js/bootstrap.min.js"></script>
-		<script src="${ctx }/assets/js/typeahead-bs2.min.js"></script>
-		<script src="${ctx }/assets/js/bootstrap.autocomplete.js"></script>
-		<script src="${ctx }/assets/js/jquery.ui.tabs.js"></script>
-		<!-- page specific plugin scripts -->
-		
-		<!-- ace scripts -->
-		
-		<script src="${ctx }/assets/js/ace-elements.min.js"></script>
+
+	
+	
 		
 		<script type="text/javascript">
 			var ctx = "${ctx}";
@@ -71,12 +55,16 @@
         <div class="page-container">
         	<div class="center">
 							<h1>
-								<i class="icon-leaf green"></i> <span class="red">银保通系统</span>
+								<i class="icon-leaf green"></i> 银保通系统
 							</h1>
-							<h4 class="blue">&copy; 天正软件公司</h4>
+							<div style="margin-top:20px">
+								<h4 class="blue">&copy; 天正软件公司</h4>
+							</div>
 						</div>
 			<div class="space"></div>
-            <h1>登录(Login)</h1>
+			<div style="margin-top:20px">
+          	  <h1>登录(Login)</h1>
+            </div>
             <form name='form1' method='post' id='validation-form'
 											action="${ctx }/login/login.do">
                 <input type="text" id="loginAccount" name="loginAccount"  class="form-control" placeholder="请输入您的用户名！" maxlength="8" >

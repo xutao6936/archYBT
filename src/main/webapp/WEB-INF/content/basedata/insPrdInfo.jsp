@@ -422,8 +422,20 @@
 			.on('change', function(){
 				$(this).closest('form').validate().element($(this));
 			}); 
-			
-		
+
+			$("#searchBtn").unbind('click').click(function(){
+				var data = $('#searchForm').serializeArray();
+				var param = {};
+				$.each(data,function(i,v){
+					param[v.name] = v.value;
+				});
+				 jQuery("#grid-table").jqGrid('setGridParam', {
+					   url:ctx+'/topInsprdInfo/getTopInsPrdInfoListByParams.do',
+					   type: "POST",
+					   postData:param
+				 }).trigger("reloadGrid");
+			});	
+
 		</script>
 </body>
 </html>

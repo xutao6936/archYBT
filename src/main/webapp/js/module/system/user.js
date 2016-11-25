@@ -428,7 +428,10 @@ function uploadPath(){
 
 			   }); 
 		   }else {
-			   layer.alert('请选中一行!',{icon:2}); 
+			   layer.alert('请选中一行!',{
+		            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+		            ,closeBtn: 0,icon:7
+		        }); 
 	   }
 }
 
@@ -570,7 +573,10 @@ function uploadPath(){
 	function glmenu(){
 		var cell = $(grid_selector).jqGrid("getGridParam","selrow");
 		if(null == cell || 0 == cell.length){
-			layer.alert('请选中一行!',{icon:2}); 
+			 layer.alert('请选中一行!',{
+		            skin: 'layui-layer-molv' //样式类名,	墨绿深蓝风
+		            ,closeBtn: 0,icon:7
+		        }); 
 		}else{
 			var ret = $(grid_selector).jqGrid('getRowData', cell);
 			var userId = ret.userId;
