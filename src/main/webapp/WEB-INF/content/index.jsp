@@ -3,7 +3,7 @@
 <%@ page isELIgnored="false"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8" />
 <title>银保通</title>

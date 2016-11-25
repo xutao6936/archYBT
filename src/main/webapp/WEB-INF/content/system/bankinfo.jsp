@@ -11,6 +11,7 @@
 <!-- basic styles -->
 <%@ include file="/common/common.jsp" %>
 <script src="${ctx }/js/module/system/bankinfo.js"></script>
+<script src="${ctx }/js/common/common.js"></script>
 </head>
 
 <body>
