@@ -30,4 +30,6 @@ public interface ITopInsprdInfoService {
 	public PageInfo<TopInsprdInfo> getTopInsPrdInfoListByParams(
 			Map<String, String> map);
 
+	public List<TopInsprdInfo> getInsPrdInfoByInsCorpCode(String insCorpCode);
+
 }

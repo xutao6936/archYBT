@@ -185,8 +185,8 @@ public class TopBankAndCropController {
 			strBuff.append("{'保险公司':"
 					+ "{name:'保险公司',type: 'folder', 'additionalParameters': {'id': '0','children': {");
 			for (TopInsCorpInfo topInsCorpInfo : topInsCorpInfolist) {
-					strBuff.append("'" + topInsCorpInfo.getInsSimpName() + "':"
-							+ "{name:'" + topInsCorpInfo.getInsSimpName()
+					strBuff.append("'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName() + "':"
+							+ "{name:'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName()
 							+ "',type: 'item'");
 					strBuff.append(",additionalParameters:{id:'" + topInsCorpInfo.getInsCorpCode()
 							+ "'}},");
@@ -209,8 +209,8 @@ public class TopBankAndCropController {
 				if(null !=topBankAndCorpInfo){
 					if(null !=topBankAndCorpInfo.getCorpCode()){
 						TopInsCorpInfo topInsCorpInfo = topInsCorpInfoBiz.getInsCorpByInsCorpCode(topBankAndCorpInfo.getCorpCode());
-						strBuff.append("'" + topInsCorpInfo.getInsSimpName() + "':"
-								+ "{name:'" + topInsCorpInfo.getInsSimpName()
+						strBuff.append("'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName() + "':"
+								+ "{name:'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName()
 								+ "',type: 'item'");
 						strBuff.append(",additionalParameters:{id:'" + topInsCorpInfo.getInsCorpCode()
 								+ "','item-selected':true}},");
@@ -219,8 +219,8 @@ public class TopBankAndCropController {
 					}
 					if(null !=topBankAndCorpInfo.getCorpCode2()){
 						TopInsCorpInfo topInsCorpInfo = topInsCorpInfoBiz.getInsCorpByInsCorpCode(topBankAndCorpInfo.getCorpCode2());
-						strBuff.append("'" + topInsCorpInfo.getInsSimpName() + "':"
-								+ "{name:'" + topInsCorpInfo.getInsSimpName()
+						strBuff.append("'" +topInsCorpInfo.getInsCorpCode()+"-"+ topInsCorpInfo.getInsSimpName() + "':"
+								+ "{name:'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName()
 								+ "',type: 'item'");
 						strBuff.append(",additionalParameters:{id:'" + topInsCorpInfo.getInsCorpCode()
 								+ "','item-selected':true}},");
@@ -228,8 +228,8 @@ public class TopBankAndCropController {
 					}
 					if(null !=topBankAndCorpInfo.getCorpCode3()){
 						TopInsCorpInfo topInsCorpInfo = topInsCorpInfoBiz.getInsCorpByInsCorpCode(topBankAndCorpInfo.getCorpCode3());
-						strBuff.append("'" + topInsCorpInfo.getInsSimpName() + "':"
-								+ "{name:'" + topInsCorpInfo.getInsSimpName()
+						strBuff.append("'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName() + "':"
+								+ "{name:'" +topInsCorpInfo.getInsCorpCode()+"-"+ topInsCorpInfo.getInsSimpName()
 								+ "',type: 'item'");
 						strBuff.append(",additionalParameters:{id:'" + topInsCorpInfo.getInsCorpCode()
 								+ "','item-selected':true}},");
@@ -244,8 +244,8 @@ public class TopBankAndCropController {
 				InsCorpInfolist = topInsCorpInfoBiz.searchAll();
 			}
 			for (TopInsCorpInfo topInsCorpInfo : InsCorpInfolist) {
-				strBuff.append("'" + topInsCorpInfo.getInsSimpName() + "':"
-						+ "{name:'" + topInsCorpInfo.getInsSimpName()
+				strBuff.append("'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName() + "':"
+						+ "{name:'" +topInsCorpInfo.getInsCorpCode()+"-"+ topInsCorpInfo.getInsSimpName()
 						+ "',type: 'item'");
 				strBuff.append(",additionalParameters:{id:'" + topInsCorpInfo.getInsCorpCode()
 						+ "'}},");
@@ -287,27 +287,27 @@ public class TopBankAndCropController {
 			for (int j =0;j< topInsCorpInfolist.size();j++) {
 				TopInsCorpInfo topInsCorpInfo =topInsCorpInfolist.get(j);
 				if(!"".equals(topBankAndCorpInfo.getCorpCode())){
-					strBuff.append("'" + topInsCorpInfo.getInsSimpName() + "':"
-							+ "{name:'" + topInsCorpInfo.getInsSimpName()
+					strBuff.append("'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName() + "':"
+							+ "{name:'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName()
 							+ "',type: 'item'");
 					strBuff.append(",additionalParameters:{id:'" + topInsCorpInfo.getInsCorpCode()
 							+ "','item-selected':true}},");
 				}
 				if(!"".equals(topBankAndCorpInfo.getCorpCode2())){
-					strBuff.append("'" + topInsCorpInfo.getInsSimpName() + "':"
-							+ "{name:'" + topInsCorpInfo.getInsSimpName()
+					strBuff.append("'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName() + "':"
+							+ "{name:'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName()
 							+ "',type: 'item'");
 					strBuff.append(",additionalParameters:{id:'" + topInsCorpInfo.getInsCorpCode()
 							+ "','item-selected':true}},");
 				}if(!"".equals(topBankAndCorpInfo.getCorpCode3())){
-					strBuff.append("'" + topInsCorpInfo.getInsSimpName() + "':"
-							+ "{name:'" + topInsCorpInfo.getInsSimpName()
+					strBuff.append("'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName() + "':"
+							+ "{name:'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName()
 							+ "',type: 'item'");
 					strBuff.append(",additionalParameters:{id:'" + topInsCorpInfo.getInsCorpCode()
 							+ "','item-selected':true}},");
 				}else{
-					strBuff.append("'" + topInsCorpInfo.getInsSimpName() + "':"
-							+ "{name:'" + topInsCorpInfo.getInsSimpName()
+					strBuff.append("'" + topInsCorpInfo.getInsCorpCode()+"-"+topInsCorpInfo.getInsSimpName() + "':"
+							+ "{name:'" +topInsCorpInfo.getInsCorpCode()+"-"+ topInsCorpInfo.getInsSimpName()
 							+ "',type: 'item'");
 					strBuff.append(",additionalParameters:{id:'" + topInsCorpInfo.getInsCorpCode()
 							+ "'}},");

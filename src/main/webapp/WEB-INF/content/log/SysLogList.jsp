@@ -20,6 +20,7 @@
 </script>
 
 <body>  
+<div class="main-container" id="main-container">
 <ul id="myTab" class="nav nav-tabs">
    <li class="active"><a href="#home" data-toggle="tab" id="getOperationLogInfo">
      系统操作</a>
@@ -144,7 +145,7 @@
 
    </div>
 </div>
-
+</div>
 <script type="text/javascript">
 $(function(){
     $(window).resize(function(){   

@@ -73,4 +73,10 @@ public class TopInsCorpInfoBizImpl implements ITopInsCorpInfoBiz {
 		return topInsCorpInfoService.getTopInsCorpInfoListByParams(map);
 	}
 
+	@Override
+	public List<TopInsCorpInfo> getInsCompanyNameAjax(String insCorpCode) {
+		return topInsCorpInfoService.getInsCompanyNameAjax(insCorpCode);
+	}
+
+
 }

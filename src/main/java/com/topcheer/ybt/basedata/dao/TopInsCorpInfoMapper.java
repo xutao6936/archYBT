@@ -28,4 +28,6 @@ public interface TopInsCorpInfoMapper {
 	public List<TopInsCorpInfo> getTopInsCorpInfoListByParams(
 			Map<String, String> map2);
 
+	public List<TopInsCorpInfo> getInsCompanyNameAjax(String insCorpCode);
+
 }

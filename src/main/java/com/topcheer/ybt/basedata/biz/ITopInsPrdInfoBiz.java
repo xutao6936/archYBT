@@ -35,5 +35,7 @@ public interface ITopInsPrdInfoBiz {
 		//根据条件查询保险产品信息
 		public PageInfo<TopInsprdInfo> getTopInsPrdInfoListByParams(
 				Map<String, String> map);
+
+		public List<TopInsprdInfo> getInsPrdInfoByInsCorpCode(String insCorpCode);
 		
 }

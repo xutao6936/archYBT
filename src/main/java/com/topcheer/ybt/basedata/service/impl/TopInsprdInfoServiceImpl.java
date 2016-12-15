@@ -77,6 +77,12 @@ public class TopInsprdInfoServiceImpl implements ITopInsprdInfoService {
 		PageInfo<TopInsprdInfo> pageinfo = new PageInfo<TopInsprdInfo>(list);
 		return pageinfo;
 	}
+
+	@Override
+	public List<TopInsprdInfo> getInsPrdInfoByInsCorpCode(String insCorpCode) {
+		List<TopInsprdInfo>  topInsprdInfoList = topInsprdInfoMapper.getInsPrdInfoByInsCorpCode(insCorpCode);
+		return topInsprdInfoList;
+	}
 	
 
 }

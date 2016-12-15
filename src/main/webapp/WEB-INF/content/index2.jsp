@@ -3,66 +3,42 @@
 <%@ page isELIgnored="false"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-	<%@ include file="/common/common.jsp" %>
-		
-    <link rel="stylesheet" href="${ctx }/tab/css/bootstrap.addtabs.css" type="text/css" media="screen"/>
-
-	
-    <script src="${ctx }/tab/js/bootstrap.addtabs.js"></script>
-	<script type="text/javascript" src="${ctx }/js/common/sidebar-menu.js"></script>
-    <!--[if lt IE 9]>
-    <script src="theme/js/html5shiv.min.js"></script>
-    <script src="theme/js/respond.min.js"></script>
-    <![endif]-->
-
-
-    <script type="text/javascript">
-        $(function () {
-        	 $.ajax({
-      		 	url: ctx+"/topMenuinfo/returnTree.do" ,    //请求的url地址
-      		    dataType: "json",   //返回格式为json
-      		    async: true, //请求是否异步，默认为异步，这也是ajax重要特性
-      		   // data: { "id": "value" },    //参数值
-      		    type: "post",
-      		    success: function(req) {
-      		        //请求成功时处理
-      		    	 $('#menu').sidebarMenu({data:req });
-      		    }
-      		});
-      	  
-      	
-        	
-            $('#tabs').addtabs({contextmenu:true});
-            $('#save').click(function () {
-                Addtabs.add({
-                    id: $(this).attr('addtabs'),
-                    title: $(this).attr('title') ? $(this).attr('title') : $(this).html(),
-                    content: Addtabs.options.content ? Addtabs.options.content : $(this).attr('content'),
-                    url: $(this).attr('url'),
-                    ajax: $(this).attr('ajax') ? true : false
-                })
-            });
-        })
-    </script>
+<meta charset="utf-8" />
+<title>银保通</title>
+<!-- basic styles -->
+<%@ include file="/common/common.jsp" %>
 </head>
+<script type="text/javascript" src="${ctx }/js/common/sidebar-menu.js"></script>
+<script type="text/javascript" src="${ctx }/js/common/bootstrap-tab.js"></script>
+<script type="text/javascript">
+  $(function () {
+	  $.ajax({
+		 	url: ctx+"/topMenuinfo/returnTree.do" ,    //请求的url地址
+		    dataType: "json",   //返回格式为json
+		    async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+		   // data: { "id": "value" },    //参数值
+		    type: "post",
+		    success: function(req) {
+		        //请求成功时处理
+		    	 $('#menu').sidebarMenu({data:req });
+		    }
+		});
+	  
+		tabClose();
+		tabCloseEven();
+  });
+</script>
 <body>
-<header>
-   <div class="navbar navbar-default" id="navbar">
+	<div class="navbar navbar-default" id="navbar">
 		<script type="text/javascript">
 				try{ace.settings.check('navbar' , 'fixed')}catch(e){}
 			</script>
 		<%@ include file="/common/head.jsp" %>
 
 	</div>
-</header>
+
 	<div class="sidebar" id="sidebar">
 		<ul class="nav nav-list" id="menu">
 			<li class="active"><a href="#"> <i class="icon-dashboard"></i>
@@ -75,11 +51,11 @@
 				data-icon2="icon-double-angle-right"></i>
 		</div>
 	</div>
-	 <div class="main-content">
+
+	<div class="main-content">
 		<div class="page-content">
 			<div class="row">
 				<div class="col-xs-12" style="padding-left: 5px;">
-				 <div id="tabs">
 					<ul class="nav nav-tabs" role="tablist">
 						<li class="active"><a href="#Index" role="tab"
 							data-toggle="tab">首页</a></li>
@@ -111,7 +87,6 @@
 									data-slide="next">&rsaquo;</a>
 							</div>
 						</div>
-					</div>
 					</div>
 				</div>
 			</div>

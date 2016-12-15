@@ -27,5 +27,7 @@ public interface ITopInsCorpInfoService {
 	//根据条件查询保险公司信息
 	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoListByParams(
 			Map<String, String> map);
+	
+	public List<TopInsCorpInfo> getInsCompanyNameAjax(String insCorpCode);
 
 }

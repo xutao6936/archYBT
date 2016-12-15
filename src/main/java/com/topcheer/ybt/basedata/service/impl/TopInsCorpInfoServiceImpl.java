@@ -91,4 +91,11 @@ public class TopInsCorpInfoServiceImpl implements ITopInsCorpInfoService {
 		return pageinfo;
 	}
 
+	@Override
+	public List<TopInsCorpInfo> getInsCompanyNameAjax(String insCorpCode) {
+		List <TopInsCorpInfo> list = topInsCorpinfoMapper.getInsCompanyNameAjax(insCorpCode);
+		return list;
+	}
+
+
 }

@@ -34,4 +34,6 @@ public interface ITopInsCorpInfoBiz {
 	public PageInfo<TopInsCorpInfo> getTopInsCorpInfoListByParams(
 			Map<String, String> map);
 
+	public List<TopInsCorpInfo> getInsCompanyNameAjax(String insCorpCode);
+
 }

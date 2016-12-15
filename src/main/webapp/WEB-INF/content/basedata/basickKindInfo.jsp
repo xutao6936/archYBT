@@ -55,7 +55,7 @@
 			<input type="hidden" name="id"  id="id">
 			<input type="hidden" name="operator" value="${userinfo.loginAccount }"> 
 			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="code">编号</label>
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="code">编号：</label>
 
 				<div class="col-xs-12 col-sm-9">
 					<div class="clearfix">
@@ -67,7 +67,7 @@
 			<div class="space-2"></div>
 
 			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="value">名称:</label>
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="value">名称：</label>
 
 				<div class="col-xs-12 col-sm-9">
 					<div class="clearfix">
@@ -79,7 +79,7 @@
 			<div class="space-2"></div>
 
 			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="kindCode">父级编号:</label>
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="kindCode">父级编号：</label>
 
 				<div class="col-xs-12 col-sm-9">
 					<div class="clearfix">
@@ -91,7 +91,7 @@
 			<div class="space-2"></div>
 
 			<div class="form-group">
-				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="kindValue">父级名称:</label>
+				<label class="control-label col-xs-12 col-sm-3 no-padding-right" for="kindValue">父级名称：</label>
 
 				<div class="col-xs-12 col-sm-9">
 					<div class="clearfix">

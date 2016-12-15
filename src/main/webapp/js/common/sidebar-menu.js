@@ -41,9 +41,13 @@
           li.append(menus);
         }
         else {
-          var href = 'javascript:addTabs({id:\''+ item.id + '\',title: \''+ item.text + '\',close: true,url: \''+ ctx+'/'+item.url + '\'});';
-
-          a.attr('href', href);
+//          var href = 'javascript:addTabs({id:\''+ item.id + '\',title: \''+ item.text + '\',close: true,url: \''+ ctx+'/'+item.url + '\'});';
+//
+//          a.attr('href', href);
+        	var href ='javascript:void(0);';
+        	a.attr('href', href);
+        	a.attr('url',ctx+'/'+item.url);
+        	a.attr('data-addtab',item.id);
           //if (item.istab)
           //  a.attr('href', href);
           //else {

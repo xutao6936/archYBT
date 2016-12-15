@@ -207,5 +207,9 @@
 		</where>
 		order by UPDATE_DATE desc
   	</select> 
+  	
+  	<select id="getInsCompanyNameAjax" resultMap="ForTopInsCorpInfo" parameterType="String">
+    	select * from top_inscorpinfo where INSCORP_CODE =  #{insCorpCode,jdbcType=VARCHAR}
+	</select>
 </mapper>
 

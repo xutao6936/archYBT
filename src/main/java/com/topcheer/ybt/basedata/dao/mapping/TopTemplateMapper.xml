@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.topcheer.ybt.basedata.dao.TopTemplateMapper" >
+	<resultMap id="TopTemplateResultMap" type="com.topcheer.ybt.basedata.entity.TopTemplate" >
+       		<result property="templateid"    column="TEMPLATEID" jdbcType="VARCHAR" />
+       		<result property="templatename"    column="TEMPLATENAME" jdbcType="VARCHAR" />
+       		<result property="operatorbankcode"    column="OPERATORBANKCODE" jdbcType="VARCHAR" />
+       		<result property="operatorcode"    column="OPERATORCODE" jdbcType="VARCHAR" />
+       		<result property="updatedate"    column="UPDATEDATE" jdbcType="VARCHAR" />
+       		<result property="updatetime"    column="UPDATETIME" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="TopTempInsPrdResultMap" type="com.topcheer.ybt.basedata.entity.TopTempInsPrdInfo" >
+			<result property="id"    column="ID" jdbcType="VARCHAR" />
+       		<result property="templateid"    column="TEMPLATEID" jdbcType="VARCHAR" />
+       		<result property="insprdcode"    column="INSPRDCODE" jdbcType="VARCHAR" />
+       		<result property="inscorpcode"    column="INSCORPCODE" jdbcType="VARCHAR" />
+       		<result property="operatorbankcode"    column="OPERATORBANKCODE" jdbcType="VARCHAR" />
+       		<result property="operatorcode"    column="OPERATORCODE" jdbcType="VARCHAR" />
+       		<result property="updatedate"    column="UPDATEDATE" jdbcType="VARCHAR" />
+       		<result property="updatetime"    column="UPDATETIME" jdbcType="VARCHAR" />
+	</resultMap>
+	
+	<resultMap id="TopInsTempResultMap" type="com.topcheer.ybt.basedata.entity.TopInsTemplateInfo" >
+			<result property="id"    column="ID" jdbcType="VARCHAR" />
+       		<result property="templateid"    column="TEMPLATEID" jdbcType="VARCHAR" />
+       		<result property="inscorpcode"    column="INSCORPCODE" jdbcType="VARCHAR" />
+       		<result property="operatorbankcode"    column="OPERATORBANKCODE" jdbcType="VARCHAR" />
+       		<result property="operatorcode"    column="OPERATORCODE" jdbcType="VARCHAR" />
+       		<result property="updatedate"    column="UPDATEDATE" jdbcType="VARCHAR" />
+       		<result property="updatetime"    column="UPDATETIME" jdbcType="VARCHAR" />
+	</resultMap>
+    <sql id="TopTemplateColumnList" >
+    		TEMPLATEID,
+    		TEMPLATENAME,
+    		OPERATORBANKCODE,
+    		OPERATORCODE,
+    		UPDATEDATE,
+    		UPDATETIME
+    </sql>
+    <select id="searchTopTemplate" resultMap="TopTemplateResultMap" parameterType="com.topcheer.ybt.basedata.entity.TopTemplate">
+    	select  * from TOP_TEMPLATE
+		where 1=1
+    		<if test="templateid !=null and templateid != '' ">
+		    	and TEMPLATEID = #{templateid,jdbcType=VARCHAR}
+			</if>
+    		<if test="templatename !=null and templatename != '' ">
+		    	and TEMPLATENAME = #{templatename,jdbcType=VARCHAR}
+			</if>
+    		<if test="operatorbankcode !=null and operatorbankcode != '' ">
+		    	and OPERATORBANKCODE = #{operatorbankcode,jdbcType=VARCHAR}
+			</if>
+    		<if test="operatorcode !=null and operatorcode != '' ">
+		    	and OPERATORCODE = #{operatorcode,jdbcType=VARCHAR}
+			</if>
+    		<if test="updatedate !=null and updatedate != '' ">
+		    	and UPDATEDATE = #{updatedate,jdbcType=VARCHAR}
+			</if>
+    		<if test="updatetime !=null and updatetime != '' ">
+		    	and UPDATETIME = #{updatetime,jdbcType=VARCHAR}
+			</if>
+  	</select> 
+  	
+  	<select id="searchAll" resultMap="TopTemplateResultMap" parameterType="HashMap">
+    	select * from TOP_TEMPLATE 
+  	</select> 
+  	
+  	<insert id="insert" parameterType="com.topcheer.ybt.basedata.entity.TopTemplate">
+  		INSERT INTO TOP_TEMPLATE (
+    			TEMPLATEID,
+    			TEMPLATENAME,
+    			OPERATORBANKCODE,
+    			OPERATORCODE,
+    			UPDATEDATE,
+    			UPDATETIME
+  		)VALUES (
+    		#{templateid,jdbcType=VARCHAR},
+    		#{templatename,jdbcType=VARCHAR},
+    		#{operatorbankcode,jdbcType=VARCHAR},
+    		#{operatorcode,jdbcType=VARCHAR},
+    		#{updatedate,jdbcType=VARCHAR},
+    		#{updatetime,jdbcType=VARCHAR}
+  		)
+  	</insert>
+  	
+  	<insert id="update" parameterType="com.topcheer.ybt.basedata.entity.TopTemplate">
+  		update TOP_TEMPLATE set  
+	      		TEMPLATENAME = #{templatename,jdbcType=VARCHAR}  ,
+	      		OPERATORBANKCODE = #{operatorbankcode,jdbcType=VARCHAR}  ,
+	      		OPERATORCODE = #{operatorcode,jdbcType=VARCHAR}  ,
+	      		UPDATEDATE = #{updatedate,jdbcType=VARCHAR}  ,
+	      		UPDATETIME = #{updatetime,jdbcType=VARCHAR}  
+  		where TEMPLATEID = #{templateid,jdbcType=VARCHAR}
+  	</insert>
+  	
+  	<delete id="delete" parameterType="String">
+  		delete from TOP_TEMPLATE where TEMPLATEID = #{templateid,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<select id="getTopTemplate" resultMap="TopTemplateResultMap" parameterType="String">
+  		select * from TOP_TEMPLATE  where TEMPLATEID = #{templateid,jdbcType=VARCHAR}
+  	</select>
+  	
+  	
+  	<select id="getTopTempInsPrdInfoByInsPrdCode" resultMap="TopTempInsPrdResultMap" parameterType="HashMap">
+  		 select * from top_template_insprdinfo where INSPRDCODE= #{insPrdCode,jdbcType=VARCHAR} 
+  		 	and TEMPLATEID = #{templateId,jdbcType=VARCHAR}
+  		 	and INSCORPCODE =#{insCorpCode,jdbcType=VARCHAR}
+  	</select>
+  	
+  	<delete id="deleteTempInsPrdByTempId" parameterType="String">
+  		delete from top_template_insprdinfo where TEMPLATEID = #{templateid,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<insert id="insertTempInsPrd" parameterType="com.topcheer.ybt.basedata.entity.TopTempInsPrdInfo">
+  		INSERT INTO top_template_insprdinfo (
+  				ID,
+    			TEMPLATEID,
+    			INSPRDCODE,
+    			INSCORPCODE,
+    			OPERATORBANKCODE,
+    			OPERATORCODE,
+    			UPDATEDATE,
+    			UPDATETIME
+  		)VALUES (
+  			#{id,jdbcType=VARCHAR},
+    		#{templateid,jdbcType=VARCHAR},
+    		#{insprdcode,jdbcType=VARCHAR},
+    		#{inscorpcode,jdbcType=VARCHAR},
+    		#{operatorbankcode,jdbcType=VARCHAR},
+    		#{operatorcode,jdbcType=VARCHAR},
+    		#{updatedate,jdbcType=VARCHAR},
+    		#{updatetime,jdbcType=VARCHAR}
+  		)
+  	</insert>
+  	
+  	<delete id="deleteInsTemplateByTempId" parameterType="String">
+  		delete from top_ins_template where TEMPLATEID = #{templateid,jdbcType=VARCHAR}
+  	</delete>
+  	
+  	<insert id="insertInsTemplate" parameterType="com.topcheer.ybt.basedata.entity.TopInsTemplateInfo">
+  		INSERT INTO top_ins_template (
+  				ID,
+    			TEMPLATEID,
+    			INSCORPCODE,
+    			OPERATORBANKCODE,
+    			OPERATORCODE,
+    			UPDATEDATE,
+    			UPDATETIME
+  		)VALUES (
+  			#{id,jdbcType=VARCHAR},
+    		#{templateid,jdbcType=VARCHAR},
+    		#{inscorpcode,jdbcType=VARCHAR},
+    		#{operatorbankcode,jdbcType=VARCHAR},
+    		#{operatorcode,jdbcType=VARCHAR},
+    		#{updatedate,jdbcType=VARCHAR},
+    		#{updatetime,jdbcType=VARCHAR}
+  		)
+  	</insert>
+  	
+  	 <select id="getTopInsTemplateInfo" resultMap="TopInsTempResultMap" parameterType="HashMap">
+  		 select * from top_ins_template where TEMPLATEID = #{templateId,jdbcType=VARCHAR}
+  		 	and INSCORPCODE =#{insCorpCode,jdbcType=VARCHAR}
+  	</select>
+  	
+  	<select id="getTemplateIdAjax" resultMap="TopTemplateResultMap" parameterType="String">
+  		select * from TOP_TEMPLATE  where TEMPLATEID  in (select templateId from top_ins_template where insCorpCode=#{insCorpCode,jdbcType=VARCHAR})
+  	</select>
+</mapper>

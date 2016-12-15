@@ -1619,3 +1619,118 @@ comment on column TOP_BANKANDCORP.UPDATEDATE is
 
 comment on column TOP_BANKANDCORP.UPDATETIME is
 '更新时间';
+
+/*==============================================================*/
+/* Table: TOP_TEMPLATE                                          */
+/*==============================================================*/
+create table TOP_TEMPLATE  (
+   TEMPLATEID           VARCHAR2(10)                    not null,
+   TEMPLATENAME         VARCHAR2(60)                    not null,
+   OPERATORBANKCODE     VARCHAR2(20),
+   OPERATORCODE         VARCHAR2(20),
+   UPDATEDATE           VARCHAR2(20),
+   UPDATETIME           VARCHAR2(20),
+   constraint PK_TOP_TEMPLATE primary key (TEMPLATEID)
+);
+
+comment on table TOP_TEMPLATE is
+'产品库信息表';
+
+comment on column TOP_TEMPLATE.TEMPLATEID is
+'模板编号';
+
+comment on column TOP_TEMPLATE.TEMPLATENAME is
+'模板名称';
+
+comment on column TOP_TEMPLATE.OPERATORBANKCODE is
+'操作机构';
+
+comment on column TOP_TEMPLATE.OPERATORCODE is
+'操作人员';
+
+comment on column TOP_TEMPLATE.UPDATEDATE is
+'操作日期';
+
+comment on column TOP_TEMPLATE.UPDATETIME is
+'操作时间';
+
+/*==============================================================*/
+/* Table: TOP_INS_TEMPLATE                                      */
+/*==============================================================*/
+create table TOP_INS_TEMPLATE  (
+   ID                   VARCHAR2(60)                    not null,
+   INSCORPCODE          VARCHAR2(10)                    not null,
+   TEMPLATEID           VARCHAR2(10)                    not null,
+   OPERATORBANKCODE     VARCHAR2(20),
+   OPERATORCODE         VARCHAR2(20),
+   UPDATEDATE           VARCHAR2(20),
+   UPDATETIME           VARCHAR2(20),
+   constraint PK_TOP_INS_TEMPLATE primary key (ID)
+);
+
+comment on table TOP_INS_TEMPLATE is
+'产品库绑定保险公司信息表';
+
+comment on column TOP_INS_TEMPLATE.ID is
+'主键编号';
+
+comment on column TOP_INS_TEMPLATE.INSCORPCODE is
+'保险公司编号';
+
+comment on column TOP_INS_TEMPLATE.TEMPLATEID is
+'产品库编号';
+
+comment on column TOP_INS_TEMPLATE.OPERATORBANKCODE is
+'操作机构';
+
+comment on column TOP_INS_TEMPLATE.OPERATORCODE is
+'操作人员';
+
+comment on column TOP_INS_TEMPLATE.UPDATEDATE is
+'操作日期';
+
+comment on column TOP_INS_TEMPLATE.UPDATETIME is
+'操作时间';
+
+
+/*==============================================================*/
+/* Table: TOP_TEMPLATE_INSPRDINFO                               */
+/*==============================================================*/
+create table TOP_TEMPLATE_INSPRDINFO  (
+   ID                   VARCHAR2(60)                    not null,
+   TEMPLATEID           VARCHAR2(20)                    not null,
+   INSPRDCODE           VARCHAR2(20)                    not null,
+   INSCORPCODE          VARCHAR2(10),
+   OPERATORBANKCODE     VARCHAR2(20),
+   OPERATORCODE         VARCHAR2(20),
+   UPDATEDATE           VARCHAR2(20),
+   UPDATETIME           VARCHAR2(20),
+   constraint PK_TOP_TEMPLATE_INSPRDINFO primary key (ID)
+);
+
+comment on table TOP_TEMPLATE_INSPRDINFO is
+'产品库绑定保险产品信息表';
+
+comment on column TOP_TEMPLATE_INSPRDINFO.ID is
+'编号';
+
+comment on column TOP_TEMPLATE_INSPRDINFO.TEMPLATEID is
+'产品库编号';
+
+comment on column TOP_TEMPLATE_INSPRDINFO.INSPRDCODE is
+'保险产品编号';
+
+comment on column TOP_TEMPLATE_INSPRDINFO.INSCORPCODE is
+'保险公司编号';
+
+comment on column TOP_TEMPLATE_INSPRDINFO.OPERATORBANKCODE is
+'操作机构';
+
+comment on column TOP_TEMPLATE_INSPRDINFO.OPERATORCODE is
+'操作人员';
+
+comment on column TOP_TEMPLATE_INSPRDINFO.UPDATEDATE is
+'操作日期';
+
+comment on column TOP_TEMPLATE_INSPRDINFO.UPDATETIME is
+'操作时间';

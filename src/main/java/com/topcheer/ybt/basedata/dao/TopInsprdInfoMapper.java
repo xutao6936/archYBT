@@ -33,4 +33,6 @@ public interface TopInsprdInfoMapper {
 	public List<TopInsprdInfo> getTopInsPrdInfoListByParams(
 			Map<String, String> map);
 
+	public List<TopInsprdInfo> getInsPrdInfoByInsCorpCode(String insCorpCode);
+
 }

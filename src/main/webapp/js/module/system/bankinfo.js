@@ -19,22 +19,19 @@ function init(size) {
         size: size
     }),{
 				url : ctx+'/topBankinfo/getTopBankinfoList.do',
-				/*datatype : "json",
+				datatype : "json",
 				height : 330,
-				mtype : "post",*/
+				mtype : "post",
 				colNames : [ '机构ID','机构编号','机构名称', '机构等级', '上级机构编码', '状态',  '更新日期',
 						'更新时间'],
 				colModel : [{
 					name : 'bankId',
 					index : 'bankId',
 					hidden:true,
-					width : 90,
 					editable : true
 				},{
 					name : 'bankCode',
 					index : 'bankCode',
-					//hidden:true,
-					width : 90,
 					editable : true
 				},{
 					name : 'bankName',
@@ -50,7 +47,6 @@ function init(size) {
 					*/
 					name : 'bankLevel',
 					index : 'bankLevel',
-					width : 150,
 					editable : true,
 					edittype : "select",
 					editoptions : {
@@ -70,7 +66,6 @@ function init(size) {
 				},  {
 					name : 'upBankCode',
 					index : 'upBankCode',
-					width : 90,
 					editable : true,
 					edittype:'text',
 					editoptions:{
@@ -92,12 +87,9 @@ function init(size) {
 				            });
 						}
 					}
-					//sorttype : "date",
-					//unformat : pickDate
 				}, {
 					name : 'status',
 					index : 'status',
-					width : 70,
 					editable : true,
 					edittype : "select",
 					editoptions : {
@@ -114,22 +106,20 @@ function init(size) {
 				},  {
 					name : 'updateDate',
 					index : 'updateDate',
-					width : 90,
 					editable : false,
 					sorttype : "date",
 					unformat : pickDate
 				}, {
 					name : 'updateTime',
 					index : 'updateTime',
-					width : 90,
 					editable : false,
 					sorttype : "date",
 					unformat : pickDate
 				} ],
 				//sortname : 'userId',
 				viewrecords : true,// 是否在浏览导航栏显示记录总数
-				//rowNum : 10,// 每页显示记录数
-				//rowList : [ 10, 20, 30 ],// 用于改变显示行数的下拉列表框的元素数组。
+				rowNum : 10,// 每页显示记录数
+				rowList : [ 10, 20, 30 ],// 用于改变显示行数的下拉列表框的元素数组。
 				pager : pager_selector,
 				altRows : true,// 设置为交替行表格,默认为false
 				// toppager: true,

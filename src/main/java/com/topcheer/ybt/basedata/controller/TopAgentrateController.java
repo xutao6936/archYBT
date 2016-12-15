@@ -1,16 +1,20 @@
 package com.topcheer.ybt.basedata.controller;
 
 import java.util.*;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import com.github.pagehelper.PageInfo;
 import com.topcheer.ybt.basedata.biz.ITopInsCorpInfoBiz;
 import com.topcheer.ybt.basedata.biz.ITopInsPrdInfoBiz;
@@ -70,7 +74,30 @@ public class TopAgentrateController {
 		logger.info(result);
 		return result;
 	}
+	
 
+	@RequestMapping(value = "/getInsCompanyNameAjax", method = {
+			RequestMethod.POST, RequestMethod.GET })
+	@ResponseBody
+	public String getInsCompanyNameAjax(HttpServletRequest request) {
+		String insCorpCode = (String) request.getParameter("insCorpCode");
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("insCorpCode", insCorpCode);
+		List<TopInsCorpInfo> insCorpList  = topInsCorpInfoBiz.getInsCompanyNameAjax(insCorpCode);
+		List<TopInsCorpInfo> list = new ArrayList<TopInsCorpInfo>();
+		for (TopInsCorpInfo topInsCorpInfo : insCorpList) {
+			list.add(topInsCorpInfo);
+		}
+		Gson gson = new Gson();
+		String jsonString = gson.toJson(list)
+				.replaceAll("insCorpCode", "insCorpCode")
+				.replaceAll("insCorpName", "insCorpName");
+		result = jsonString;// 给result赋值，传递给页面
+		logger.info(result);
+		return result;
+	}
+	
+	
 	@RequestMapping(value = "/getInsPrdAjax", method = { RequestMethod.POST,
 			RequestMethod.GET })
 	@ResponseBody

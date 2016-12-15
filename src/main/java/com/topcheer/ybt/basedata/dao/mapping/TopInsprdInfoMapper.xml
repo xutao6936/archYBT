@@ -224,6 +224,7 @@
 		select * from top_insprdInfo  where  INSPRD_CODE = #{insPrdCode,jdbcType=VARCHAR}
 	</select>
 	
+
 		<select id="getTopInsPrdInfoListByParams" resultMap="forTopInsprdInfo" parameterType="java.util.Map">
     	select * from top_insprdInfo 
  		<where> 
@@ -281,4 +282,9 @@
 		</where>
 		order by UPDATE_DATE desc
   	</select>
+  	
+  		
+	<select id="getInsPrdInfoByInsCorpCode" resultMap="forTopInsprdInfo" parameterType="String">
+		select * from top_insprdInfo  where  INSCORP_CODE = #{insCorpCode,jdbcType=VARCHAR}
+	</select>
 </mapper>
