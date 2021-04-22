@@ -27,7 +27,7 @@
 
 		<oracle.version>11.2.0.1.0</oracle.version>
 
-		<mybatis.version>3.3.0</mybatis.version>
+		<mybatis.version>3.5.6</mybatis.version>
 		<jersey.version>1.19</jersey.version>
 		<cxf.version>2.7.5</cxf.version>
 		<!-- Plugin -->
