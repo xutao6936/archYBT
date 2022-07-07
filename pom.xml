@@ -29,7 +29,7 @@
 
 		<mybatis.version>3.3.0</mybatis.version>
 		<jersey.version>1.19</jersey.version>
-		<cxf.version>2.7.5</cxf.version>
+		<cxf.version>2.7.8</cxf.version>
 		<!-- Plugin -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jdk.version>1.6</jdk.version>
